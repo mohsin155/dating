@@ -11,10 +11,10 @@
             <div class="col-md-4 header_logo text-right"><img src="image/apache_pb2.png" /></div>
         </div>
         <div class="navbar col-md-12 pd-0">
-            <div class="col-md-10 link_color"><a href="#" class="link_color">Home</a> | <a href="#" >Join Free Now</a> | <a href="#">Testinomials</a></div>
+            <div class="col-md-10 link_color"><a href="#" class="link_color">Home</a> | <a href="{{url('/signup')}}" >Join Free Now</a> | <a href="#">Testinomials</a></div>
             <div class="col-md-2 text-right pd-0"><img src="image/flag_English.gif" /><img src="image/arrowdown.png" class="pd-l-10" /> </div>
         </div>
-        <form  name="login-page" id="login-page" action="{{url('users/login')}}">
+        <form  name="login-page" id="login-pages" method="post" action="{{url('users/login')}}">
             <div class="col-md-12 main_content pd-b-70">
                 <div class="col-md-12 rounded_container rounder_continer_outer mr-t-20">
                     <div class="col-md-5 login_box  mr-t-30 mr-b-40 pd-0">
@@ -56,7 +56,7 @@
                             </span>
 
                         </div>
-                        <div class="text-center pd-10 join mr-t-15"> <em>Not a member? <strong><a href="#">Join Free Now!</a></strong></em></div>
+                        <div class="text-center pd-10 join mr-t-15"> <em>Not a member? <strong><a href="{{url('/signup')}}">Join Free Now!</a></strong></em></div>
                     </div>
                     <div class="col-md-7">
                         <div class="col-md-7 pd-0 pd-t-30">   

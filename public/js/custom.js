@@ -80,7 +80,7 @@
               
             },
             submitHandler: function (form, event) {
-                event.preventDefault();
+                //event.preventDefault();
               
             }
         });

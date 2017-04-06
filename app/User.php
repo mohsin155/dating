@@ -3,7 +3,8 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\Utility\Utility;
+use Illuminate\Database\Eloquent;
 class User extends Authenticatable
 {
     /**
