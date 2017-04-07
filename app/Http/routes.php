@@ -20,3 +20,6 @@ Route::post('users/login','UsersController@postLogin');
 
 Route::get('/signup','UsersController@getSignup');
 Route::post('users/signup','UsersController@postSignup');
+
+Route::get('/state/{id}','UsersController@getState');
+Route::get('/city/{id}','UsersController@getCity');

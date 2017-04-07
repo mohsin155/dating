@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\UtilityController;
 use App\User;
+use App\Models\Country;
+use App\Models\State;
+use App\Models\City;
+
 class UsersController extends UtilityController {
 
     public function __construct() {
@@ -15,7 +19,8 @@ class UsersController extends UtilityController {
     }
     
     public function getSignup(){
-        return view('users.signup');
+        $countries = Country::get();
+        return view('users.signup')->with('countries',$countries);
     }
     
     public function postLogin(){
@@ -42,7 +47,7 @@ class UsersController extends UtilityController {
     }
     
     public function postSignup(){
-          $user = new User();
+        $user = new User();
         $inputs = Input::all();
         $rules = array(
             'firstname' => 'required',
@@ -59,5 +64,31 @@ class UsersController extends UtilityController {
             $user->processUser($inputs);
             return Redirect::to('users/login')->with('success', 'SignUp successfully!!!');
         }
+    }
+    
+    public function getState($country_id){
+        $response = array();
+        $states = State::where('country_id',$country_id)->get();
+        if(!$states->isEmpty()){
+            $response['status'] = 1;
+            $response['states'] = $states;
+        }else{
+            $response['status'] = 0;
+            $response['states'] = '';
+        }
+        return response()->json($response);
+    }
+    
+    public function getCity($state_id){
+        $response = array();
+        $cities = City::where('state_id',$state_id)->get();
+        if(!$cities->isEmpty()){
+            $response['status'] = 1;
+            $response['cities'] = $cities;
+        }else{
+            $response['status'] = 0;
+            $response['cities'] = '';
+        }
+        return response()->json($response);
     }
 }
