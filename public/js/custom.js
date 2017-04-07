@@ -49,10 +49,6 @@
                  terms_condition: {
                      required: 'Please select terms and conditions'
                 }
-            },
-            submitHandler: function (form, event) {
-                event.preventDefault();
-              
             }
         });
         signUpForm.validate().settings.ignore = "";
@@ -77,10 +73,6 @@
                 password: {
                      required: "Please enter your password"
                 }
-              
-            },
-            submitHandler: function (form, event) {
-                //event.preventDefault();
               
             }
         });

@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Html;
+use App\Http\Requests;
 use App\Http\Controllers\UtilityController;
+use Illuminate\Http\Request;
 use App\User;
+use DB;
 class UsersController extends UtilityController {
 
     public function __construct() {
@@ -18,8 +21,12 @@ class UsersController extends UtilityController {
         return view('users.signup');
     }
     
+    public function getComingsoon(){
+        return view('users.comingsoon');
+    }
+    
     public function postLogin(){
-        echo "kjhk";exit;
+       
          $user = new User();
          $inputs = Input::all();
         $rules = array(
@@ -56,8 +63,30 @@ class UsersController extends UtilityController {
             //dd($validator->errors()->all());exit;
             return Redirect::to('users/signup')->with('errors', $validator->errors()->all())->withInput();
         } else {
-            $user->processUser($inputs);
+            $user = array('email'=>$inputs['email'],);
+            User::insert($user);
             return Redirect::to('users/login')->with('success', 'SignUp successfully!!!');
         }
     }
+    
+    public function index()
+    {
+        $countries = DB::table("countries")->lists("name","id");
+        return view('index',compact('countries'));
+    }
+    public function getStateList(Request $request)
+    {
+        $states = DB::table("states")
+                    ->where("country_id",$request->country_id)
+                    ->lists("name","id");
+        return response()->json($states);
+    }
+    public function getCityList(Request $request)
+    {
+        $cities = DB::table("cities")
+                    ->where("state_id",$request->state_id)
+                    ->lists("name","id");
+        return response()->json($cities);
+    }
+     
 }

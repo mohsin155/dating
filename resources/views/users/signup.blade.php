@@ -48,37 +48,30 @@
                                         <hr class="seperate-line">
                                         <div class="form-group">
                                             <label for="sel1">Age:</label>
-                                            <select class="form-control" id="age" name="age">
-                                                <option>18</option>
-                                                <option>19</option>
-                                                <option>20</option>
-                                                <option>21</option>
-                                            </select>
+                                            <select class="form-control" id="age" name="age">0
+                                                <?php
+                                                for ($age= 18; $age <= 90; $age++){
+                                                echo "<option>".$age."</option>";
+                                                }
+                                                ?>
+                                                </select>
                                         </div>
                                         <hr class="seperate-line">
                                         <div class="form-group">
                                             <label for="age">Country</label>
-                                            <select class="form-control" id="country" name="country">
-                                                <option>India</option>
-
-                                            </select>
+                                         {!! Form::select('country', ['' => 'Select'] +$countries,'',array('class'=>'form-control','id'=>'country'));!!}
                                         </div>
                                         <hr class="seperate-line">
                                         <div class="form-group">
                                             <label for="State/Province">State/Province</label>
-                                            <select class="form-control" id="state" name="state">
-                                                <option>Haryana</option>
-                                                <option>Punjab</option>
+                                            <select name="state" id="state" class="form-control" >
 
                                             </select>
                                         </div>
                                         <hr class="seperate-line">
                                         <div class="form-group">
                                             <label for="State/Province">City</label>
-                                            <select class="form-control" id="city" name="city">
-                                                <option>City1</option>
-                                                <option>City2</option>
-
+                                           <select name="city" id="city" class="form-control">
                                             </select>
                                         </div>
                                         <hr class="seperate-line">
