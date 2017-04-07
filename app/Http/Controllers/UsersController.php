@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Html;
 use Illuminate\Support\Facades\Validator;
@@ -70,14 +71,29 @@ class UsersController extends UtilityController {
         $validator = Validator::make($inputs, $rules);
         if ($validator->fails()) {
             //dd($validator->errors()->all());exit;
+            echo "error";
             return Redirect::to('users/signup')->with('errors', $validator->errors()->all())->withInput();
         } else {
             $pwd=Hash::make($inputs['password']);
             
-            $user = array('email'=>$inputs['email'],);
+            $user = array('first_name'=>$inputs['firstname'],
+                            'password'=>$pwd,
+                            'email'=>$inputs['email'],
+                            'gender'=>$inputs['gender'],
+                            'age'=>$inputs['age'],
+                            'country'=>$inputs['country'],
+                                 'state'=>$inputs['state'],
+                                     'city'=>$inputs['city']
+                    );
             
             User::insert($user);
-            return Redirect::to('users/comingsoon')->with('success', 'SignUp successfully!!!');
+            if (Auth::attempt(['email' => $inputs['email'], 'password' => $inputs['password']], false)) {
+                return Redirect::to('users/comingsoon')->with('success', 'login successfully!!!');
+            } else {
+                $message[] = trans('messages.login_fail');
+                return Redirect::to('users/login')->with('errors', $message);
+            }
+            return Redirect::to('/comingsoon')->with('success', 'SignUp successfully!!!');
         }
     }
     public function index()

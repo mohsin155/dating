@@ -7,7 +7,7 @@
                             <img src="image/Logo.jpg" border="0" height="70" width="350" alt="logo"/>
                         </div>
                         <div class="main_content main-height">
-                            <form name="signup-page" class="form-inline" id="signup-page">
+                            <form name="signup-page" class="form-inline" id="signup-page" method ="post" action="{{url('users/signup')}}">
                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                                 <div class="col-md-7 signup-page-outer">
                                     <div class="signup-page-inner">
