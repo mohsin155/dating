@@ -24,19 +24,19 @@
                                         </div>
                                         <div class="form-group mr-t-10">
                                             <label for="email">First Name</label>
-                                            <input type="text" id="firstName" name="firstname">
+                                            <input type="text" id="firstName" name="firstname" class="form-control float-label">
                                             <label class="control-label"></label>
                                         </div>
                                         <hr class="seperate-line">
                                         <div class="form-group">
                                             <label for="email">Password</label>
-                                            <input type="password" id="password" name="password">
+                                            <input type="password" id="password" name="password" class="form-control float-label">
                                             <label class="control-label"></label>
                                         </div>
                                         <hr class="seperate-line">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text"  id="email" name="email">
+                                            <input type="text"  id="email" name="email" class="form-control float-label">
                                             <label class="control-label"></label>
                                         </div>
                                         <hr class="seperate-line">
@@ -119,5 +119,7 @@
         </div>
     </div>
 </div>
+<div class="bg-loader">
+<div class="cssload-loader"></div>
 </div>
 @endsection
