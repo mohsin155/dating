@@ -15,7 +15,7 @@
                                             IT'S FREE TO JOIN
                                         </div>
                                         <div class="text-center">
-                                            <div class="fb-logo">
+                                            <div class="fb-logo" id="fb">
                                                 <img src="image/fb-icon.png" border="0" alt="fb-logo"/> Join with Facebook
                                             </div>
                                         </div>    
