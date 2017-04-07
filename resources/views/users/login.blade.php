@@ -6,13 +6,13 @@
     <div class="col-md-10 col-md-offset-2">
         <div class="header row">
             <div class="col-md-8 logo_left header_logo">
-                <img src="{{url('image/guestheaderlogo.gif')}}" border="0" alt="logo">
+                <img src="{{url('image/Logo.jpg')}}" border="0" height="70" width="350" alt="logo">
             </div>
-            <div class="col-md-4 header_logo text-right"><img src="image/apache_pb2.png" /></div>
+            <div class="col-md-4 header_logo text-right"><!--<img src="image/apache_pb2.png" />--></div>
         </div>
         <div class="navbar col-md-12 pd-0">
             <div class="col-md-10 link_color"><a href="#" class="link_color">Home</a> | <a href="{{url('/signup')}}" >Join Free Now</a> | <a href="#">Testinomials</a></div>
-            <div class="col-md-2 text-right pd-0"><img src="image/flag_English.gif" /><img src="image/arrowdown.png" class="pd-l-10" /> </div>
+            <div class="col-md-2 text-right pd-0"><!--<img src="image/flag_English.gif" /><img src="image/arrowdown.png" class="pd-l-10" />--> </div>
         </div>
         <form  name="login-page" id="login-page" method="post" action="{{url('users/login')}}">
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -71,7 +71,7 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-8 pd-l-40">
                             <ul class="">
-                                <li>Largest Latin Dating Site With Over 3 Million Members</li>
+                                <!--<li>Largest Latin Dating Site With Over 3 Million Members</li>-->
                                 <li>Access to messages, advanced matching, and instant messaging features</li>
                                 <li>Review your matches for free</li>
                             </ul>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="roundedContainer social col-md-12 mr-t-15">
-                    <p class="text-border text-center pd-5 mr-t-30">Help spread the word about LatinAmericanCupid.com!</p>
+                    <p class="text-border text-center pd-5 mr-t-30">Help spread the word about foreverwelove.com!</p>
 
                     <div class="col-md-12 buttons clearfix mr-b-20">
                         <div class="col-md-4"><a href="#" class="fb" target="_blank"><img src="image/fb-icon.png" class="socialicon" border="0">Share on Facebook</a> </div>
@@ -98,7 +98,7 @@
 
             </p>
         </div>
-        <div class="text-center trademark"><p>&COPY;Company Name</p></div>
+        <div class="text-center trademark"><p>&COPY;&nbsp;Foreverwelove.com</p></div>
     </div>    
 </div> 
 @endsection

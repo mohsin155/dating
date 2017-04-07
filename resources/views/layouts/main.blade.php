@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Latin American Cupid</title>
+        <title>ForeverWeLove</title>
         <!-- Bootstrap Core CSS -->
         <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
         <!-- Custom CSS -->
@@ -37,5 +37,6 @@
         <script src="{{url('js/bootstrap.min.js')}}"></script>
          <script src="{{url('js/jquery.validate.js')}}"></script>
         <script src="{{url('js/custom.js')}}"></script>
+        <script src="{{url('js/script.js')}}"></script>
     </body>
 </html>

@@ -22,7 +22,5 @@ Route::get('/signup','UsersController@getSignup');
 Route::post('users/signup','UsersController@postSignup');
 
 Route::get('/comingsoon','UsersController@getComingsoon');
-
-Route::get('users/dependent-dropdown','UsersController@index');
-Route::get('users/get-state-list','UsersController@getStateList');
-Route::get('users/get-city-list','UsersController@getCityList');
+Route::get('/state/{id}','UsersController@getState');
+Route::get('/city/{id}','UsersController@getCity');
