@@ -25,11 +25,11 @@
                             <input name="page" value="" type="hidden">
                             <div class="">
                                 <label class="color_black">Email</label>
-                                <input class="email" style="width:100%;" size="30" tabindex="1" value="" name="email" autocomplete="off" type="email">
+                                <input class="email form-control float-label" style="width:100%;" size="30" tabindex="1" value="" name="email" autocomplete="off" type="email">
                             </div>
                             <div class="pd-t-10">
                                 <label>Password</label>
-                                <input class="password" size="30" tabindex="2" style="width:100%;" value="" name="password" autocomplete="off" type="password">
+                                <input class="password form-control float-label" size="30" tabindex="2" style="width:100%;" value="" name="password" autocomplete="off" type="password">
                             </div>
                             <div class="pd-t-10 forgotPW"><a href="/en/auth/showforgotpassword" tabindex="4" class="">Forgot Password</a></div>
                             <span class="loggedin pd-t-10">
@@ -60,10 +60,10 @@
                         <div class="text-center pd-10 join mr-t-15"> <em>Not a member? <strong><a href="{{url('/signup')}}">Join Free Now!</a></strong></em></div>
                     </div>
                     <div class="col-md-7">
-                        <div class="col-md-7 pd-0 pd-t-30">   
+                        <div class="col-md-7 pd-0 pd-t-100">   
                             <img src="image/5m.png" width="300" height="350" border="0"/>
                         </div>
-                        <div class="col-md-5 pd-0 pd-t-50">   
+                        <div class="col-md-5 pd-0 pd-t-100">   
                             <img src="image/5.png" width="200" height="150" border="0" />
                         </div>
                     </div>    
@@ -101,4 +101,7 @@
         <div class="text-center trademark"><p>&COPY;&nbsp;Foreverwelove.com</p></div>
     </div>    
 </div> 
+<div class="bg-loader">
+<div class="cssload-loader"></div>
+</div>
 @endsection
