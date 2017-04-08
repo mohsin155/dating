@@ -68,7 +68,7 @@ class UsersController extends UtilityController {
         $inputs = Input::all();
         //dd($inputs);
         $rules = array(
-            'firstname' => 'required',
+            'first_name' => 'required',
             'password' => 'required|min:6|max:12',
             'email' => 'required|email|unique:users,email',
             'gender' => 'required',
@@ -85,7 +85,7 @@ class UsersController extends UtilityController {
         } else {
             $pwd=Hash::make($inputs['password']);
             
-            $user = array('first_name'=>$inputs['firstname'],
+            $user = array('first_name'=>$inputs['first_name'],
                             'password'=>$pwd,
                             'email'=>$inputs['email'],
                             'gender'=>$inputs['gender'],

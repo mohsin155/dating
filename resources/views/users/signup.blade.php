@@ -26,9 +26,16 @@
                         <div class="horizontalLine">
                             <span class="orText">OR</span>
                         </div>
+                        @if(!empty($errors) && count($errors)>0)
+                        <div class="alert alert-danger">
+                            @foreach($errors as $msg)
+                            <p>{{$msg}}</p>
+                            @endforeach
+                        </div>
+                        @endif
                         <div class="form-group mr-t-10">
                             <label for="email">First Name</label>
-                            <input type="text" id="firstName" name="firstname" class="form-control float-label">
+                            <input type="text" id="firstName" name="first_name" class="form-control float-label" value="">
                             <label class="control-label"></label>
                         </div>
                         <hr class="seperate-line">
