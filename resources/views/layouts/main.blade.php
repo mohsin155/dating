@@ -54,5 +54,6 @@
          <script src="{{url('js/jquery.validate.js')}}"></script>
         <script src="{{url('js/custom.js')}}"></script>
         <script src="{{url('js/script.js')}}"></script>
+        @yield('script')
     </body>
 </html>

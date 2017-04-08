@@ -13,12 +13,18 @@ var country = {
             dataType: 'json',
             success: function (data) {
                 $options = "<option value=0>--Select--</option>";
+                $prev = $("input[name=state_pre]").val();
                 if (data.status == 1) {
                     $.each(data.states, function (key, value) {
-                        $options += "<option value='" + value.id + "'>" + value.name + "</option>";
+                        if($prev==value.id){
+                            $options += "<option value='" + value.id + "' selected >" + value.name + "</option>";
+                        }else{
+                            $options += "<option value='" + value.id + "' >" + value.name + "</option>";
+                        }
                     })
                 }
                 $("select[name=state]").html($options);
+                $( "select[name=state]" ).trigger( "change" ); 
             }
         });
     },
@@ -30,9 +36,14 @@ var country = {
             dataType: 'json',
             success: function (data) {
                 $options = "<option value=0>--Select--</option>";
+                $prev = $("input[name=city_pre]").val();
                 if (data.status == 1) {
                     $.each(data.cities, function (key, value) {
-                        $options += "<option value='" + value.id + "'>" + value.name + "</option>";
+                        if($prev==value.id){
+                            $options += "<option value='" + value.id + "' selected >" + value.name + "</option>";
+                        }else{
+                            $options += "<option value='" + value.id + "' >" + value.name + "</option>";
+                        }
                     })
                 }
                 $("select[name=city]").html($options);

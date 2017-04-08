@@ -98,7 +98,7 @@
 
             </p>
         </div>
-        <div class="text-center trademark"><p>&COPY;&nbsp;Foreverwelove.com</p></div>
+        <div class="text-center trademark"><p>&COPY;&nbsp;Foreverwelove.com</p><p>Powered By : evalueweb.com</p></div>
     </div>    
 </div> 
 <div class="bg-loader">

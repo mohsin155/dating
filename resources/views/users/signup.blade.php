@@ -10,6 +10,8 @@
         <div class="main_content main-height">
             <form name="signup-page" class="form-inline" id="signup-page" method ="post" action="{{url('users/signup')}}">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <input type="hidden" name="state_pre" value="{{old('state')}}">
+                <input type="hidden" name="city_pre" value="{{old('city')}}">
                 <div class="col-md-7 signup-page-outer">
                     <div class="signup-page-inner">
                         <div class="signup-page-inner-text text-center">
@@ -63,8 +65,9 @@
                         <div class="form-group">
                             <label for="age">Country</label>
                             <select class="form-control" id="country" name="country">
+                                <option value="0">--Select--</option>
                                 @foreach($countries as $country)
-                                <option value="{{$country->id}}">{{$country->name}}</option>
+                                <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif>{{$country->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -121,7 +124,22 @@
         </div>
     </div>
 </div>
+<div class="col-md-10 col-md-offset-2">
+        <div id="footer">
+            <p class="link_color link-padding">
+
+            </p>
+        </div>
+    <div class="text-center trademark"><p>&COPY;&nbsp;Foreverwelove.com</p><p>Powered By : evalueweb.com</p></div>
+    </div>    
 <div class="bg-loader">
     <div class="cssload-loader"></div>
 </div>
+@section('script')
+<script>
+    $(document).ready(function(){
+       $( "select[name=country]" ).trigger( "change" ); 
+    });
+</script>
+@endsection
 @endsection
