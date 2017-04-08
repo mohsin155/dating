@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Html;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests;
 use App\Http\Controllers\UtilityController;
-use Illuminate\Http\Request;
 use App\User;
 use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends UtilityController {
 
@@ -20,12 +20,20 @@ class UsersController extends UtilityController {
     }
     
     public function getLogin(){
-        return view('users.login');
+        if (Auth::check()) {
+            return Redirect::to('comingsoon');
+        }else{
+            return view('users.login');
+        }
     }
     
     public function getSignup(){
-        $countries = Country::get();
-        return view('users.signup')->with('countries',$countries);
+        if (Auth::check()) {
+            return Redirect::to('comingsoon');
+        }else{
+            $countries = Country::get();
+            return view('users.signup')->with('countries',$countries);
+        }
     }
     
     public function getComingsoon(){
@@ -46,10 +54,10 @@ class UsersController extends UtilityController {
             return Redirect::to('users/login')->with('errors', $validator->errors()->all())->withInput();
         } else {
             if (Auth::attempt(['email' => $inputs['email'], 'password' => $inputs['password']], false)) {
-                return Redirect::to('users/comingsoon')->with('success', 'login successfully!!!');
+                return Redirect::to('comingsoon')->with('success', 'login successfully!!!');
             } else {
                 $message[] = trans('messages.login_fail');
-                return Redirect::to('users/login')->with('errors', $message);
+                return Redirect::to('login')->with('errors', $message);
             }
         }
           
@@ -58,6 +66,7 @@ class UsersController extends UtilityController {
     public function postSignup(){
         $user = new User();
         $inputs = Input::all();
+        //dd($inputs);
         $rules = array(
             'firstname' => 'required',
             'password' => 'required|min:6|max:12',
@@ -70,9 +79,9 @@ class UsersController extends UtilityController {
         );
         $validator = Validator::make($inputs, $rules);
         if ($validator->fails()) {
-            //dd($validator->errors()->all());exit;
-            echo "error";
-            return Redirect::to('users/signup')->with('errors', $validator->errors()->all())->withInput();
+            //dd($validator->errors()->all());
+            //echo "error";
+            return Redirect::to('signup')->with('errors', $validator->errors()->all())->withInput();
         } else {
             $pwd=Hash::make($inputs['password']);
             
@@ -82,16 +91,16 @@ class UsersController extends UtilityController {
                             'gender'=>$inputs['gender'],
                             'age'=>$inputs['age'],
                             'country'=>$inputs['country'],
-                                 'state'=>$inputs['state'],
-                                     'city'=>$inputs['city']
+                            'state'=>$inputs['state'],
+                            'city'=>$inputs['city']
                     );
             
             User::insert($user);
             if (Auth::attempt(['email' => $inputs['email'], 'password' => $inputs['password']], false)) {
-                return Redirect::to('users/comingsoon')->with('success', 'login successfully!!!');
+                return Redirect::to('/comingsoon')->with('success', 'login successfully!!!');
             } else {
                 $message[] = trans('messages.login_fail');
-                return Redirect::to('users/login')->with('errors', $message);
+                return Redirect::to('login')->with('errors', $message);
             }
             return Redirect::to('/comingsoon')->with('success', 'SignUp successfully!!!');
         }
@@ -138,16 +147,44 @@ class UsersController extends UtilityController {
             $response['status'] = 0;
             $response['errors'] = $validator->errors()->first();
         }else{
-            $user = array('email'=>isset($inputs['email'])?$inputs['email']:'','gender'=>$inputs['gender'],'facebook_id'=>$inputs['facebook_id']);
-            User::insert($user);
-            if (Auth::attempt(['first_name'=>$inputs['first_name'],'email' => $inputs['email'], 'password' => $inputs['password']], false)) {
+            $user = array('first_name'=>$inputs['first_name'],'email'=>isset($inputs['email'])?$inputs['email']:'','gender'=>$inputs['gender'],'facebook_id'=>$inputs['facebook_id']);
+            $user_id = User::insertGetId($user);
+            if (Auth::loginUsingId($user_id, true)) {
                 $response['status'] = 1;
-                $response['redirect_url'] = url('users/comingsoon');
+                $response['redirect_url'] = url('comingsoon');
             } else {
                 $response['status'] = 1;
-                $response['redirect_url'] = url('users/login');
+                $response['redirect_url'] = url('login');
             }
         }
         return response()->json($response);
+    }
+    
+    public function postFblogin(){
+        $inputs = Input::all();
+        $rules = array(
+            'facebook_id' => 'required|exists:users,facebook_id'
+        );
+        $validator = Validator::make($inputs, $rules);
+        if ($validator->fails()) {
+            $response['status'] = 0;
+            $response['errors'] = $validator->errors()->first();
+        }else{
+            $user = User::where('facebook_id',$inputs['facebook_id'])->first();
+            if (Auth::loginUsingId($user->user_id, true)) {
+                $response['status'] = 1;
+                $response['redirect_url'] = url('comingsoon');
+            } else {
+                $response['status'] = 1;
+                $response['redirect_url'] = url('login');
+            }
+        }
+        return response()->json($response);
+    }
+    
+    public function getLogout() {
+        Auth::logout();
+        Session::flush();
+        return Redirect::to('login');
     }
 }

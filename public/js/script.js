@@ -60,22 +60,61 @@ var users = {
             success: function (data) {
                 if(data.status==0){
                     console.log(data.errors);
-                    $.each(data.errors,function(index,value){
-                        //$html += '<li>'+value.+'</li>'
-                    });
+                    $(".fberror").removeClass('hide').addClass('show').html('<li>'+data.errors+'</li>');
+                }else{
+                    window.location.href = data.redirect_url;
                 }
+                $(".bg-loader").removeClass("show");
+            }
+        });
+    },
+    fblogin: function (response) {
+        var token = $("input[name=_token]").val();
+        $.ajax({
+            type: 'POST',
+            url: 'users/fblogin',
+            data: {
+                'facebook_id': response.id,
+                '_token': token
+            },
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.status==0){
+                    console.log(data.errors);
+                    $(".fberror").removeClass('hide').addClass('show').html('<li>'+data.errors+'</li>');
+                }else{
+                    window.location.href = data.redirect_url;
+                }
+                $(".bg-loader").removeClass("show");
             }
         });
     }
 }
 
 $("#fb").on('click', function () {
+    $(".bg-loader").addClass("show");
     FB.login(function (response) {
         if (response.authResponse) {
             console.log('Welcome!  Fetching your information.... ');
             FB.api('/me?fields=first_name,email,gender,id,birthday', function (response) {
                 console.log(response);
                 users.fbsignup(response);
+            }, {scope: 'public_profile,email'});
+        } else {
+            console.log('User cancelled login or did not fully authorize.');
+        }
+    });
+});
+
+$("#fblogin").on('click', function () {
+    $(".bg-loader").addClass("show");
+    FB.login(function (response) {
+        if (response.authResponse) {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me?fields=first_name,email,gender,id,birthday', function (response) {
+                console.log(response);
+                users.fblogin(response);
             }, {scope: 'public_profile,email'});
         } else {
             console.log('User cancelled login or did not fully authorize.');

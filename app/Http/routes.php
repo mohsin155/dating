@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('login');
 });
 
 Route::get('/login','UsersController@getLogin');
@@ -21,6 +21,8 @@ Route::post('users/login','UsersController@postLogin');
 Route::get('/signup','UsersController@getSignup');
 Route::post('users/signup','UsersController@postSignup');
 Route::post('users/fbsignup','UsersController@postFbsignup');
+Route::post('users/fblogin','UsersController@postFblogin');
+Route::get('users/logout','UsersController@getLogout');
 
 Route::get('/comingsoon','UsersController@getComingsoon');
 Route::get('/state/{id}','UsersController@getState');

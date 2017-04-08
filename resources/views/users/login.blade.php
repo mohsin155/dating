@@ -21,7 +21,7 @@
                     <div class="col-md-5 login_box  mr-t-30 mr-b-40 pd-0">
                         <div class="text-center greygrad heading">Members Login</div>
                         <div class="pd-l-20 pd-r-20 pd-t-10">
-
+                            <ul class="fberror errors hide"></ul>
                             <input name="page" value="" type="hidden">
                             <div class="">
                                 <label class="color_black">Email</label>
@@ -31,7 +31,7 @@
                                 <label>Password</label>
                                 <input class="password form-control float-label" size="30" tabindex="2" style="width:100%;" value="" name="password" autocomplete="off" type="password">
                             </div>
-                            <div class="pd-t-10 forgotPW"><a href="/en/auth/showforgotpassword" tabindex="4" class="">Forgot Password</a></div>
+                            <div class="pd-t-10 forgotPW"><a href="#" tabindex="4" class="">Forgot Password</a></div>
                             <span class="loggedin pd-t-10">
                                 <input id="RememberMe" name="RememberMe" value="1" tabindex="5" type="checkbox">
                                 <label for="RememberMe"><strong>Keep me logged in</strong></label>
@@ -48,11 +48,11 @@
                         <div class="horizontalLine pd-t-5">
                             <span class="orText">OR</span>
                         </div>
-                        <div class="fb-logo">        
+                        <div class="fb-logo" id="fblogin">        
 
                             <img src="image/fb-icon.png" border="0" alt="fb-logo">
 
-                            <span class="pd-l-20">
+                            <span class="pd-l-20" >
                                 Login with Facebook
                             </span>
 

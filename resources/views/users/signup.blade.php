@@ -4,59 +4,60 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-2">
         <div class="logo_left header_logo">
-                            <img src="image/Logo.jpg" border="0" height="70" width="350" alt="logo"/>
+            <a href="{{url('/')}}"><img src="image/Logo.jpg" border="0" height="70" width="350" alt="logo"/></a>
+        </div>
+
+        <div class="main_content main-height">
+            <form name="signup-page" class="form-inline" id="signup-page" method ="post" action="{{url('users/signup')}}">
+                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <div class="col-md-7 signup-page-outer">
+                    <div class="signup-page-inner">
+                        <div class="signup-page-inner-text text-center">
+                            IT'S FREE TO JOIN
                         </div>
-                        <div class="main_content main-height">
-                            <form name="signup-page" class="form-inline" id="signup-page" method ="post" action="{{url('users/signup')}}">
-                                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                                <div class="col-md-7 signup-page-outer">
-                                    <div class="signup-page-inner">
-                                        <div class="signup-page-inner-text text-center">
-                                            IT'S FREE TO JOIN
-                                        </div>
-                                        <div class="text-center">
-                                            <ul class="errors hide"></ul>
-                                            <div class="fb-logo" id="fb">
-                                                <img src="image/fb-icon.png" border="0" alt="fb-logo"/> Join with Facebook
-                                            </div>
-                                        </div>    
-                                        <div class="horizontalLine">
-                                            <span class="orText">OR</span>
-                                        </div>
-                                        <div class="form-group mr-t-10">
-                                            <label for="email">First Name</label>
-                                            <input type="text" id="firstName" name="firstname" class="form-control float-label">
-                                            <label class="control-label"></label>
-                                        </div>
-                                        <hr class="seperate-line">
-                                        <div class="form-group">
-                                            <label for="email">Password</label>
-                                            <input type="password" id="password" name="password" class="form-control float-label">
-                                            <label class="control-label"></label>
-                                        </div>
-                                        <hr class="seperate-line">
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="text"  id="email" name="email" class="form-control float-label">
-                                            <label class="control-label"></label>
-                                        </div>
-                                        <hr class="seperate-line">
-                                        <div class="form-group">
-                                            <label for="email">I'm a</label>
-                                            <label class="radio-inline"><input type="radio" name="gender" value="male">Male</label>
-                                            <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
-                                            <label class="control-label"></label>
-                                        </div>
-                                        <hr class="seperate-line">
-                                        <div class="form-group">
-                                            <label for="sel1">Age:</label>
-                                 <select class="form-control" id="age" name="age">0
-                                                <?php
-                                                for ($age= 18; $age <= 90; $age++){
-                                                echo "<option>".$age."</option>";
-                                                }
-                                                ?>
-                                                </select>
+                        <div class="text-center">
+                            <ul class="fberror errors hide"></ul>
+                            <div class="fb-logo" id="fb">
+                                <img src="image/fb-icon.png" border="0" alt="fb-logo"/> Join with Facebook
+                            </div>
+                        </div>    
+                        <div class="horizontalLine">
+                            <span class="orText">OR</span>
+                        </div>
+                        <div class="form-group mr-t-10">
+                            <label for="email">First Name</label>
+                            <input type="text" id="firstName" name="firstname" class="form-control float-label">
+                            <label class="control-label"></label>
+                        </div>
+                        <hr class="seperate-line">
+                        <div class="form-group">
+                            <label for="email">Password</label>
+                            <input type="password" id="password" name="password" class="form-control float-label">
+                            <label class="control-label"></label>
+                        </div>
+                        <hr class="seperate-line">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text"  id="email" name="email" class="form-control float-label">
+                            <label class="control-label"></label>
+                        </div>
+                        <hr class="seperate-line">
+                        <div class="form-group">
+                            <label for="email">I'm a</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="male">Male</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
+                            <label class="control-label"></label>
+                        </div>
+                        <hr class="seperate-line">
+                        <div class="form-group">
+                            <label for="sel1">Age:</label>
+                            <select class="form-control" id="age" name="age">0
+                                <?php
+                                for ($age = 18; $age <= 90; $age++) {
+                                    echo "<option>" . $age . "</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
                         <hr class="seperate-line">
                         <div class="form-group">
@@ -121,6 +122,6 @@
     </div>
 </div>
 <div class="bg-loader">
-<div class="cssload-loader"></div>
+    <div class="cssload-loader"></div>
 </div>
 @endsection
