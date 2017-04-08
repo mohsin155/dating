@@ -126,4 +126,28 @@ class UsersController extends UtilityController {
         }
         return response()->json($response);
     }
+    
+    public function postFbsignup(){
+        $inputs = Input::all();
+        $rules = array(
+            'email' => 'email|unique:users,email',
+            'facebook_id' => 'unique:users,facebook_id'
+        );
+        $validator = Validator::make($inputs, $rules);
+        if ($validator->fails()) {
+            $response['status'] = 0;
+            $response['errors'] = $validator->errors()->first();
+        }else{
+            $user = array('email'=>isset($inputs['email'])?$inputs['email']:'','gender'=>$inputs['gender'],'facebook_id'=>$inputs['facebook_id']);
+            User::insert($user);
+            if (Auth::attempt(['first_name'=>$inputs['first_name'],'email' => $inputs['email'], 'password' => $inputs['password']], false)) {
+                $response['status'] = 1;
+                $response['redirect_url'] = url('users/comingsoon');
+            } else {
+                $response['status'] = 1;
+                $response['redirect_url'] = url('users/login');
+            }
+        }
+        return response()->json($response);
+    }
 }
