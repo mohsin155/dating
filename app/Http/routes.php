@@ -16,13 +16,13 @@ Route::get('/', function () {
 });
 
 Route::get('/login','UsersController@getLogin');
-Route::post('users/login','UsersController@postLogin');
-
+Route::post('/login','UsersController@postLogin');
 Route::get('/signup','UsersController@getSignup');
-Route::post('users/signup','UsersController@postSignup');
-Route::post('users/fbsignup','UsersController@postFbsignup');
-Route::post('users/fblogin','UsersController@postFblogin');
-Route::get('users/logout','UsersController@getLogout');
+Route::post('/signup','UsersController@postSignup');
+
+Route::controllers([
+    'users'=>'UsersController'
+]);
 
 Route::get('/comingsoon','UsersController@getComingsoon');
 Route::get('/state/{id}','UsersController@getState');

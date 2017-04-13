@@ -79,5 +79,57 @@
         loginPage.validate().settings.ignore = "";
     }
     /* End Validation in Login and signup form */
-
+if ($("#change-email").length > 0) {
+        $("#change-email").trigger('reset');
+        var changeemail = $("#change-email");
+        changeemail.validate({
+            rules: {
+                email: {
+                    email: true,
+                    required: true
+                }
+            },
+            messages: {
+                email: {
+                    required: "Please enter your email address"
+                }
+            },
+            submitHandler: function (form, event) {
+                event.preventDefault();
+            }
+        });
+        changeemail.validate().settings.ignore = "";
+    }
+    
+    if ($("#change-password").length > 0) {
+        $("#change-password").trigger('reset');
+        var changepassword = $("#change-password");
+        changepassword.validate({
+            rules: {
+                newpassword: {
+                   required: true,
+                   minlength: 6,
+                   maxlength: 20
+                },
+                confirmpassword: {
+                    required: true,
+                    
+                    equalTo : "#newpassword"
+                }
+            },
+            messages: {
+                newpassword: {
+                   required: "Please enter new password"
+                },
+                confirmpassword: {
+                   required: "Please enter confirm password"
+                }
+            },
+            submitHandler: function (form, event) {
+                event.preventDefault();
+            }
+        });
+        changepassword.validate().settings.ignore = "";
+    }
+    /* End Validation in Login and signup form */
 

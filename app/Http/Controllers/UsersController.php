@@ -51,7 +51,7 @@ class UsersController extends UtilityController {
         $validator = Validator::make($inputs, $rules);
         if ($validator->fails()) {
             //dd($validator->errors()->all());exit;
-            return Redirect::to('users/login')->with('errors', $validator->errors()->all())->withInput();
+            return Redirect::to('/login')->with('errors', $validator->errors()->all())->withInput();
         } else {
             if (Auth::attempt(['email' => $inputs['email'], 'password' => $inputs['password']], false)) {
                 return Redirect::to('comingsoon')->with('success', 'login successfully!!!');
@@ -186,5 +186,9 @@ class UsersController extends UtilityController {
         Auth::logout();
         Session::flush();
         return Redirect::to('login');
+    }
+    
+    public function getProfileSettings(){
+        return view('users.profile-settings');
     }
 }
