@@ -64,6 +64,15 @@
                 <div class="col-md-12 rounded_container rounder_continer_outer mr-t-20">
                     <div class="col-md-5 login_box  mr-t-30 mr-b-40 pd-0">
                         <div class="text-center greygrad heading">Members Login</div>
+                        @if(!empty($errors) && count($errors)>0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach($errors as $messages)
+                                        <li> {{$messages}} </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
                         <div class="pd-l-20 pd-r-20 pd-t-10">
                             <ul class="fberror errors hide"></ul>
                             <input name="page" value="" type="hidden">
@@ -89,6 +98,7 @@
                             </div>
 
                         </div>
+                         
                         <div class="horizontalLine pd-t-5">
                             <span class="orText">OR</span>
                         </div>
