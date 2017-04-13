@@ -10,6 +10,7 @@
         <div class="main_content main-height">
             <form name="signup-page" class="form-inline" id="signup-page" method ="post" action="{{url('users/signup')}}">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                
                 <input type="hidden" name="state_pre" value="{{old('state')}}">
                 <input type="hidden" name="city_pre" value="{{old('city')}}">
                 <div class="col-md-7 signup-page-outer">
@@ -35,7 +36,7 @@
                         @endif
                         <div class="form-group mr-t-10">
                             <label for="email">First Name</label>
-                            <input type="text" id="firstName" name="first_name" class="form-control float-label" value="">
+                            <input type="text" id="firstName" name="first_name" class="form-control float-label" value="{{old('first_name')}}">
                             <label class="control-label"></label>
                         </div>
                         <hr class="seperate-line">
@@ -47,7 +48,7 @@
                         <hr class="seperate-line">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text"  id="email" name="email" class="form-control float-label">
+                            <input type="text"  id="email" name="email" class="form-control float-label" value="{{old('email')}}">
                             <label class="control-label"></label>
                         </div>
                         <hr class="seperate-line">
