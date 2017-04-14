@@ -21,7 +21,8 @@ Route::get('/signup','UsersController@getSignup');
 Route::post('/signup','UsersController@postSignup');
 
 Route::controllers([
-    'users'=>'UsersController'
+    'users'=>'UsersController',
+    'html'=>'HtmlController'
 ]);
 
 Route::get('/comingsoon','UsersController@getComingsoon');
