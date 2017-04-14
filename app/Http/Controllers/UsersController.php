@@ -29,7 +29,7 @@ class UsersController extends UtilityController {
     
     public function getSignup(){
         if (Auth::check()) {
-            return Redirect::to('comingsoon');
+            return Redirect::to('users/account-settings');
         }else{
             $countries = Country::get();
             return view('users.signup')->with('countries',$countries);
@@ -54,7 +54,7 @@ class UsersController extends UtilityController {
             return Redirect::to('/login')->with('errors', $validator->errors()->all())->withInput();
         } else {
             if (Auth::attempt(['email' => $inputs['email'], 'password' => $inputs['password']], false)) {
-                return Redirect::to('comingsoon')->with('success', 'login successfully!!!');
+                return Redirect::to('users/account-settings')->with('success', 'login successfully!!!');
             } else {
                 $message[] = trans('messages.login_fail');
                 return Redirect::to('login')->with('errors', $message);
@@ -97,12 +97,12 @@ class UsersController extends UtilityController {
             
             User::insert($user);
             if (Auth::attempt(['email' => $inputs['email'], 'password' => $inputs['password']], false)) {
-                return Redirect::to('/comingsoon')->with('success', 'login successfully!!!');
+                return Redirect::to('users/account-settings')->with('success', 'login successfully!!!');
             } else {
                 $message[] = trans('messages.login_fail');
                 return Redirect::to('login')->with('errors', $message);
             }
-            return Redirect::to('/comingsoon')->with('success', 'SignUp successfully!!!');
+            return Redirect::to('users/account-settings')->with('success', 'SignUp successfully!!!');
         }
     }
     public function index()
@@ -191,4 +191,18 @@ class UsersController extends UtilityController {
     public function getProfileSettings(){
         return view('users.profile-settings');
     }
+     public function getAccountSettings(){
+        return view('users.account-settings');
+    }
+    
+    public function getBilling(){
+        return view('users.billing');
+    }
+    public function getNotification(){
+        return view('users.notification');
+    }
+     public function getResetPassword(){
+        return view('users.reset-password');
+    }
+    
 }
