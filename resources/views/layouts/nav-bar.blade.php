@@ -31,7 +31,7 @@
                     </ul>   
                     <div class="other-details">
                         <ul class="sidemenu">
-
+                              <b><a href="{{url('users/logout')}}">Logout</a></b>
                         </ul>     
                     </div>
                 </div>
