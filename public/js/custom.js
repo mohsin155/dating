@@ -131,3 +131,25 @@ if ($("#change-email").length > 0) {
     }
     /* End Validation in Login and signup form */
 
+        /* Upgrade Page JS */
+        $(document).on('click', '.platinum',function(e){
+           $('.platinum-section').removeClass('hide');
+            $('.gold-section').addClass('hide');
+            $('.gold').removeClass('active');
+            $(this).addClass('active');
+        });
+         $(document).on('click', '.gold',function(e){
+            $('.gold-section').removeClass('hide'); 
+            $('.platinum-section').addClass('hide');
+            $('.platinum').removeClass('active');
+            $(this).addClass('active');
+        });
+        $(document).on('change', '.payment-method input[type=radio]',function(e){
+            if($(this).val()!=1){
+                $('.subscription-text').css('display','none');
+            }
+            else {
+                $('.subscription-text').css('display','block');
+            }
+        })
+        /*End Upgrade Page JS */
