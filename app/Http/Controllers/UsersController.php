@@ -12,6 +12,7 @@ use App\Models\City;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Languages;
 
 class UsersController extends UtilityController {
 
@@ -203,6 +204,13 @@ class UsersController extends UtilityController {
     }
      public function getResetPassword(){
         return view('users.reset-password');
+    }
+    
+    public function getEditProfile(){
+        $form_layout = $this->getProfileForm();
+        $countries = Country::get();
+        $languages = Languages::get();
+        return view('users.edit-profile')->with('countries',$countries)->with('languages',$languages)->with('form_layout',$form_layout);
     }
     
 }
