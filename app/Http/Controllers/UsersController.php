@@ -21,7 +21,7 @@ class UsersController extends UtilityController {
     
     public function getLogin(){
         if (Auth::check()) {
-            return Redirect::to('comingsoon');
+            return Redirect::to('users/account-settings');
         }else{
             return view('users.login');
         }
@@ -36,9 +36,6 @@ class UsersController extends UtilityController {
         }
     }
     
-    public function getComingsoon(){
-        return view('users.comingsoon');
-    }
     
     public function postLogin(){
        
@@ -203,6 +200,27 @@ class UsersController extends UtilityController {
     }
      public function getResetPassword(){
         return view('users.reset-password');
+    }
+    
+     public function postAccountSettings(){
+         $user = new User();
+        $inputs = Input::all();
+        
+        $rules= array('email' => 'required|email|unique:users,email');
+        $validator = Validator::make($inputs, $rules);
+        if ($validator->fails()) {
+           
+            return Redirect::to('users/account-settings')->with('errors', $validator->errors()->all())->withInput();
+        }
+        else
+        {
+            $affectedRows = User::where('user_id', '=', Auth::user()->user_id )->update(array('email' => $inputs['email']));
+            
+            $message = trans('messages.email_id changed');
+                $status = 'success';
+            
+        }
+        return Redirect::to('users/account-settings')->with($status, $message);
     }
     
 }

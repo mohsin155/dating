@@ -93,10 +93,8 @@ if ($("#change-email").length > 0) {
                 email: {
                     required: "Please enter your email address"
                 }
-            },
-            submitHandler: function (form, event) {
-                event.preventDefault();
             }
+           
         });
         changeemail.validate().settings.ignore = "";
     }

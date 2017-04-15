@@ -22,32 +22,32 @@
                     <div class="notification signup-page-outer">
                             <div class="form-group">
                                 <label for="Newmessages">New messages:</label>
-                                <label class="radio-inline"><input type="radio" name="optradio1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio1">No</label>
+                                <label class="radio-inline"><input type="radio" name="msg" vlaue="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="msg" vlaue="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
                                 <label for="Newmessages">Interest in me:</label>
-                                <label class="radio-inline"><input type="radio" name="optradio2">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio2">No</label>
+                                <label class="radio-inline"><input type="radio" name="interest_in_me" vlaue="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="interest_in_me" vlaue="0">No</label>
                             </div>
                           <hr class="seperate-line">
                            <div class="form-group">
                                 <label for="Newmessages">Missed Instant Messenger attempts:</label>
-                                <label class="radio-inline"><input type="radio" name="optradio3">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio3">No</label>
+                                <label class="radio-inline"><input type="radio" name="missed_instant_messenger" vlaue="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="missed_instant_messenger" vlaue="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
-                                <label for="Newmessages">LatinAmericanCupid.com offers and promotions:</label>
-                                <label class="radio-inline"><input type="radio" name="optradio4">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio4">No</label>
+                                <label for="Newmessages">ForeverWeLove.com offers and promotions:</label>
+                                <label class="radio-inline"><input type="radio" name="offers_and_promotions" vlaue="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="offers_and_promotions" vlaue="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
-                                <label for="Newmessages">Cupid Media offers and promotions:</label>
-                                <label class="radio-inline"><input type="radio" name="optradio4">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio4">No</label>
+                                <label for="Newmessages">ForeverWeLove offers and promotions:</label>
+                                <label class="radio-inline"><input type="radio" name="promotions" vlaue="1">Yes</label>
+                                <label class="radio-inline"><input type="radio "name="promotions" vlaue="0">No</label>
                             </div>
     
 
@@ -56,32 +56,32 @@
                         </div>
                         <div class="form-group">
                                 <label for="Newmessages">New messages:</label>
-                                <label class="radio-inline"><input type="radio" name="optradio5">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio5">No</label>
+                                <label class="radio-inline"><input type="radio" name="new_msg" vlaue="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="new_msg" vlaue="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
                                 <label for="Newmessages">Interest in me:</label>
-                                <label class="radio-inline"><input type="radio" name="optradio6">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio6">No</label>
+                                <label class="radio-inline"><input type="radio" name="interest_me" vlaue="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="interest_me" vlaue="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
                                 <label for="Newmessages">Someone viewed my profile:</label>
-                                <label class="radio-inline"><input type="radio" name="optradio7">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio7">No</label>
+                                <label class="radio-inline"><input type="radio" name="profile_view" vlaue="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="profile_view" vlaue="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
                                 <label for="Newmessages">Someone added me as a favorite:</label>
-                                <label class="radio-inline"><input type="radio" name="optradio8">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio8">No</label>
+                                <label class="radio-inline"><input type="radio" name="favorite" vlaue="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="favorite" vlaue="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
                                 <label for="Newmessages">Potential matches:</label>
-                                <label class="radio-inline"><input type="radio" name="optradio9">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="optradio9">No</label>
+                                <label class="radio-inline"><input type="radio" name="potential_matches" vlaue="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="potential_matches" vlaue="0">No</label>
                             </div>
                           <div class="button-inner text-center">
                                             <button class="btn btn-primary btn-green" type="submit">SAVE</button>

@@ -25,6 +25,6 @@ Route::controllers([
     'html'=>'HtmlController'
 ]);
 
-Route::get('/comingsoon','UsersController@getComingsoon');
+
 Route::get('/state/{id}','UsersController@getState');
 Route::get('/city/{id}','UsersController@getCity');
