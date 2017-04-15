@@ -25,6 +25,10 @@
 {
 	padding:20px;
 }
+.pd-l-0
+{
+	padding-left:0px !important;
+}
 .pd-l-10
 {
 	padding-left:10px;
@@ -927,6 +931,58 @@ a, a:hover,  a:visited {
 }
 /*------------End Account Setting Page CSS --------------------- */
 
+
+/*------------Upgrade Setting Page CSS --------------------- */
+.upgrade-top-section {
+        padding: 5px 0 10px;
+}
+  .steps {
+    width: 98%;
+    float: right;
+    padding-right: 2%;
+}
+.step {
+    float: right;
+    font-size: 1.2em;
+    text-align: left;
+    height: 30px;
+}
+.rightarrow {
+    height: 30px;
+    width: 5%;
+    background: url(../image/arrow.png) no-repeat center center;
+    background-size: 20px 20px;
+    float: right;
+}
+.step .vertical-table {
+    display: table;
+    float: left;
+}
+.step .circle {
+    background-color: #aaa;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 700;
+    height: 25px;
+    width: 27px;
+    padding-top: 0px;
+    text-align: center;
+    float: left;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.step .selected {
+    background-color: #555;
+}
+.step p {
+    display: table-cell;
+    vertical-align: middle;
+    height: 30px;
+    padding-left: 7px;
+    font-size: 0.9em;
+}
+/*------------End Upgrade Setting Page CSS --------------------- */
 
 /***************************
  MEDIA QUERIES
