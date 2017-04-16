@@ -18,7 +18,23 @@
                             <h1>Enter your new password</h1>
                         </div>
                          <div class="email-address signup-page-outer">
-                             <form name="change-password" class="form-inline" id="change-password" novalidate="novalidate">
+                             <form name="change-password" class="form-inline" id="change-password" method="post" action="{{url('users/reset-password')}}">
+                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                                  @if(!empty($errors) && count($errors)>0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors as $messages)
+                                            <li> {{$messages}} </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>      
+                                    @elseif(session('success'))
+                                        <div class="alert alert-success">
+                                        <ul>
+                                            <li> {{session('success')}} </li>
+                                        </ul>
+                                    </div>
+                                    @endif
                                  <div class="form-group">
                                             <label for="email">New Password:</label>
                                             <input type="password" id="newpassword" name="newpassword">

@@ -47,7 +47,7 @@
                           <div class="form-group">
                                 <label for="Newmessages">ForeverWeLove offers and promotions:</label>
                                 <label class="radio-inline"><input type="radio" name="promotions" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio "name="promotions" vlaue="0">No</label>
+                                <label class="radio-inline"><input type="radio" name="promotions" vlaue="0">No</label>
                             </div>
     
 

@@ -19,6 +19,22 @@
             <div class="email-address signup-page-outer">
                 <form name="change-email" class="form-inline" id="change-email"  method="post" action="{{url('users/account-settings')}}">
                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                    @if(!empty($errors) && count($errors)>0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors as $messages)
+                                            <li> {{$messages}} </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    
+                                    @elseif(session('success'))
+                                        <div class="alert alert-success">
+                                        <ul>
+                                            <li> {{session('success')}} </li>
+                                        </ul>
+                                    </div>
+                                    @endif
                     <div class="form-group">
                         <label for="email">Email Address:</label>
                         <input type="text" id="email" name="email">
