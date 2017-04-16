@@ -129,6 +129,26 @@
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
+                        <label for="height">Height : </label>
+                        <select class="form-control" name="height">
+                            <option value="0">--Please Select--</option>
+                            @for($i=140;$i<220;$i++)
+                            <option value="{{$i}}">{{$i}}cm</option>
+                            @endfor
+                        </select>
+                    </div>
+                    <hr class="seperate-line">
+                    <div class="form-group">
+                        <label for="weight">Weight : </label>
+                        <select class="form-control" name="weight">
+                            <option value="0">--Please Select--</option>
+                            @for($i=140;$i<220;$i++)
+                            <option value="{{$i}}">{{$i}}kg</option>
+                            @endfor
+                        </select>
+                    </div>
+                    <hr class="seperate-line">
+                    <div class="form-group">
                         <label for="body_type">Body Type : </label>
                         <select class="form-control" name="body_type">
                             <option value="0">--Please Select--</option>
@@ -302,6 +322,13 @@
                         <label for="income">Annual Income : </label>
                         <select class="form-control" name="income">
                             <option value="0">--Please Select--</option>
+                            <option value="1">$0 - $30,000 (USD)</option>
+                            <option value="2">$30,001 - $60,000 (USD)</option>
+                            <option value="3">$60,001 - $120,000 (USD)</option>
+                            <option value="4">$120,001 - $180,000 (USD)</option>
+                            <option value="5">$180,001 - $240,000 (USD)</option>
+                            <option value="6">$240,001 - $600,000+ (USD)</option>
+                            <option value="7">Prefer not to say</option>
                         </select>
                     </div>
                     <hr class="seperate-line">
