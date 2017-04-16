@@ -22,7 +22,7 @@ class UsersController extends UtilityController {
     
     public function getLogin(){
         if (Auth::check()) {
-            return Redirect::to('comingsoon');
+            return Redirect::to('users/account-settings');
         }else{
             return view('users.login');
         }
@@ -37,9 +37,6 @@ class UsersController extends UtilityController {
         }
     }
     
-    public function getComingsoon(){
-        return view('users.comingsoon');
-    }
     
     public function postLogin(){
        
@@ -204,6 +201,50 @@ class UsersController extends UtilityController {
     }
      public function getResetPassword(){
         return view('users.reset-password');
+    }
+    
+     public function postAccountSettings(){
+         $user = new User();
+        $inputs = Input::all();
+        
+        $rules= array('email' => 'required|email|unique:users,email');
+        $validator = Validator::make($inputs, $rules);
+        if ($validator->fails()) {
+           
+            return Redirect::to('users/account-settings')->with('errors', $validator->errors()->all())->withInput();
+        }
+        else
+        {
+            $affectedRows = User::where('user_id', '=', Auth::user()->user_id )->update(array('email' => $inputs['email']));
+            
+            $message = trans('messages.email_id changed');
+                $status = 'success';
+            
+        }
+        return Redirect::to('users/account-settings')->with($status, $message);
+    }
+    public function postResetPassword(){
+        $user = new User();
+        $inputs = Input::all();
+        
+        $rules= array('newpassword' => 'required|min:6|max:12|same:confirmpassword'
+                       //'confirmpassword' => 'required|min:6|max:12'
+                        );
+        $validator = Validator::make($inputs, $rules);
+        if ($validator->fails()) {
+           
+            return Redirect::to('users/reset-password')->with('errors', $validator->errors()->all())->withInput();
+        }
+        else
+        {
+            $pwd=Hash::make($inputs['newpassword']);
+            $affectedRows = User::where('user_id', '=', Auth::user()->user_id )->update(array('password' => $pwd));
+            
+            $message = trans('messages.password changed');
+                $status = 'success';
+            
+        }
+        return Redirect::to('users/reset-password')->with($status, $message);
     }
     
     public function getEditProfile(){

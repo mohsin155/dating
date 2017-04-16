@@ -93,10 +93,8 @@ if ($("#change-email").length > 0) {
                 email: {
                     required: "Please enter your email address"
                 }
-            },
-            submitHandler: function (form, event) {
-                event.preventDefault();
             }
+           
         });
         changeemail.validate().settings.ignore = "";
     }
@@ -124,10 +122,8 @@ if ($("#change-email").length > 0) {
                 confirmpassword: {
                    required: "Please enter confirm password"
                 }
-            },
-            submitHandler: function (form, event) {
-                event.preventDefault();
             }
+            
         });
         changepassword.validate().settings.ignore = "";
     }
