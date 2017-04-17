@@ -99,7 +99,19 @@
 .mr-l-20 {
     margin-left: 20px;
 }
+.mr-l-30 {
+    margin-left: 30px;
+}
+.mr-l-40 {
+    margin-left: 40px;
+}
+.mr-l-50 {
+    margin-left: 50px;
+}
 
+.mr-l40 {
+ margin-left: -40px;   
+}
 .mr-t25 {
     margin-top: -25px;
 }
@@ -1227,7 +1239,18 @@ padding-bottom: 2px;
     font-size: 1.2em;
 }
 /*------------End Upgrade Setting Page CSS --------------------- */
-
+/*------------Edit Setting Page CSS --------------------- */
+.pets-label {
+    float: left;
+}
+.pets-section {
+    float: right;
+    width: 280px;
+}
+.pets-section input[type="checkbox"] {
+    margin-right: 10px;
+}
+/*------------END Edit Setting Page CSS --------------------- */
 /***************************
  MEDIA QUERIES
 ***************************/
@@ -1247,5 +1270,8 @@ padding-bottom: 2px;
      }
      .form-group .form-control  {
          width: 250px !important;
+     }
+     .edit-profile-page .form-control {
+        width: 175px !important;
      }
  }
