@@ -23,7 +23,8 @@ Route::post('/signup','UsersController@postSignup');
 Route::controllers([
     'users'=>'UsersController',
     'search'=>'SearchController',
-    'html'=>'HtmlController'
+    'html'=>'HtmlController',
+    'payment'=>'PaymentController'
 ]);
 
 
