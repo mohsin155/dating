@@ -151,3 +151,7 @@ if ($("#change-email").length > 0) {
             }
         })
         /*End Upgrade Page JS */
+
+$(document).on('click', '#upload-file',function(e){
+   $('#uploadForm2').trigger('click');
+})

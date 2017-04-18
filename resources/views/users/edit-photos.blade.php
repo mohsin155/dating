@@ -6,23 +6,26 @@
         <div class="address-update-container">
             <div class="address-update-inner">
                 <div>
-                    <h1>Edit Profile</h1>
+                    <h1>Upload a photo</h1>
                 </div>
 
             </div>
-            <div class="address-update-heading">
-                <h1>Your Basics:</h1>
-            </div>
-            <div class="signup-page-outer">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="gender">First Name: </label>
-                        <input name="first_name" value=""/>
+
+            <div class="email-address signup-page-outer">
+                <div class="photo-upload-section text-center">
+                    <h3 class="pcOrFacebook">From your computer</h3>
+                        <div class="button-inner text-center">
+                            <button class="btn btn-primary btn-green" type="button" id="upload-file">+ Choose File</button>
                     </div>
-                    <hr class="seperate-line">
-                </form>
+                    <form class="mx-auto block col-4 center" name="uploadPhotoForm" action="#" method="post" enctype="multipart/form-data">
+            
+                <input type="file" name="uploadForm" value="uploadForm" id="uploadForm2" accept="image/jpeg,image/gif,image/png,image/bmp" class="hide">
+            </form>
+                </div>
             </div>
+            
         </div>
+        
     </div>
 </div>
 @endsection
