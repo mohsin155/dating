@@ -53,7 +53,7 @@
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
-                        <label for="age">Country</label>
+                        <label for="country">Country</label>
                         <select class="form-control" id="country" name="country">
                             <option value="0">--Please Select--</option>
                             @foreach($countries as $country)
@@ -142,7 +142,7 @@
                         <label for="weight">Weight : </label>
                         <select class="form-control" name="weight">
                             <option value="0">--Please Select--</option>
-                            @for($i=140;$i<220;$i++)
+                            @for($i=40;$i<220;$i++)
                             <option value="{{$i}}">{{$i}}kg</option>
                             @endfor
                         </select>
@@ -180,7 +180,7 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="best_feature">My best feature : </label>
-                        <select class="form-control" name="facial_hair">
+                        <select class="form-control" name="best_feature">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[11] as $row)
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
@@ -242,7 +242,7 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="have_children">Do you have children? : </label>
-                        <select class="form-control" name="children">
+                        <select class="form-control" name="have_children">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[17] as $row)
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
@@ -262,7 +262,7 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="oldest_child">Oldest Child : </label>
-                        <select class="form-control" name="no_children">
+                        <select class="form-control" name="oldest_child">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[19] as $row)
                             <option value="{{$row['value']}}">{{$row['label']}}</option>

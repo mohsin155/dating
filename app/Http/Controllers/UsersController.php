@@ -247,6 +247,52 @@ class UsersController extends UtilityController {
         return Redirect::to('users/reset-password')->with($status, $message);
     }
     
+     public function postNotification(){
+        $user = new User();
+        $inputs = Input::all();
+       $rules = array(
+            'email_newmessages' => 'required',
+           'email_interest' => 'required',
+           'email_instantmsg' => 'required',
+           'email_offers' => 'required',
+           'email_promotions' => 'required',
+           'realtime_messages' => 'required',
+           'realtime_interest' => 'required',
+           'realtime_viewprofile' => 'required',
+           'realtime_fav' => 'required',
+           'realtime_matches' => 'required'
+           );
+           
+       $validator = Validator::make($inputs, $rules);
+        if ($validator->fails()) {
+           
+            return Redirect::to('users/notification')->with('errors', $validator->errors()->all())->withInput();
+        }
+        else
+        {
+             $email_notification = array(
+            'email_newmessages' => $inputs['email_newmessages'],
+           'email_interest' => $inputs['email_interest'],
+           'email_instantmsg' => $inputs['email_instantmsg'],
+           'email_offers' => $inputs['email_offers'],
+           'email_promotions' => $inputs['email_promotions'],
+              
+           'realtime_messages' => $inputs['realtime_messages'],
+           'realtime_interest' => $inputs['realtime_interest'],
+           'realtime_viewprofile' => $inputs['realtime_viewprofile'],
+           'realtime_fav' => $inputs['realtime_fav'],
+           'realtime_matches' => $inputs['realtime_matches']
+           );
+             
+             $email_value= serialize($email_notification);
+            
+              $affectedRows = User::where('user_id', '=', Auth::user()->user_id )->update(array('email_notifications' => $email_value));
+            $message = trans('messages.notification updated');
+                $status = 'success';
+        }
+        return Redirect::to('users/notification')->with($status, $message);
+    }
+        
     public function getEditProfile(){
         $form_layout = $this->getProfileForm();
         $countries = Country::get();

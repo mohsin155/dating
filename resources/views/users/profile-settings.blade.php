@@ -89,7 +89,7 @@
                         </div>
                         <div class="email-address signup-page-outer">
                             <div class="form-group">
-                                <p>To switch your profile off on LatinAmericanCupid.com please <a href="#">click here</a></p>
+                                <p>To switch your profile off on ForeverWeLove.com please <a href="#">click here</a></p>
                             </div>
                         </div>
                     </div>

@@ -20,34 +20,51 @@
                             <h1>Email Notifications</h1>
                         </div>
                     <div class="notification signup-page-outer">
-                            <div class="form-group">
-                                <label for="Newmessages">New messages:</label>
-                                <label class="radio-inline"><input type="radio" name="msg" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="msg" vlaue="0">No</label>
+                         <form name="notification" class="form-inline" id="notification" method="post" action="{{url('users/notification')}}">
+                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                             @if(!empty($errors) && count($errors)>0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors as $messages)
+                                            <li> {{$messages}} </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>      
+                                    @elseif(session('success'))
+                                        <div class="alert alert-success">
+                                        <ul>
+                                            <li> {{session('success')}} </li>
+                                        </ul>
+                                    </div>
+                                    @endif
+                             <div class="form-group">
+                                <label for="email_newmessages">New messages:</label>
+                                <label class="radio-inline"><input type="radio" name="email_newmessages"  checked="checked" value="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="email_newmessages" value="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
-                                <label for="Newmessages">Interest in me:</label>
-                                <label class="radio-inline"><input type="radio" name="interest_in_me" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="interest_in_me" vlaue="0">No</label>
+                                <label for="email_interest">Interest in me:</label>
+                                <label class="radio-inline"><input type="radio" name="email_interest" checked="checked" value="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="email_interest" value="0">No</label>
                             </div>
                           <hr class="seperate-line">
                            <div class="form-group">
-                                <label for="Newmessages">Missed Instant Messenger attempts:</label>
-                                <label class="radio-inline"><input type="radio" name="missed_instant_messenger" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="missed_instant_messenger" vlaue="0">No</label>
+                                <label for="email_instantmsg">Missed Instant Messenger attempts:</label>
+                                <label class="radio-inline"><input type="radio" name="email_instantmsg" checked="checked" value="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="email_instantmsg" value="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
-                                <label for="Newmessages">ForeverWeLove.com offers and promotions:</label>
-                                <label class="radio-inline"><input type="radio" name="offers_and_promotions" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="offers_and_promotions" vlaue="0">No</label>
+                                <label for="email_offers">ForeverWeLove.com offers and promotions:</label>
+                                <label class="radio-inline"><input type="radio" name="email_offers" checked="checked" value="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="email_offers" value="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
-                                <label for="Newmessages">ForeverWeLove offers and promotions:</label>
-                                <label class="radio-inline"><input type="radio" name="promotions" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="promotions" vlaue="0">No</label>
+                                <label for="email_promotions">ForeverWeLove offers and promotions:</label>
+                                <label class="radio-inline"><input type="radio" name="email_promotions" checked="checked" value="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="email_promotions" value="0">No</label>
                             </div>
     
 
@@ -55,38 +72,39 @@
                             <h1>Realtime Notifications</h1>
                         </div>
                         <div class="form-group">
-                                <label for="Newmessages">New messages:</label>
-                                <label class="radio-inline"><input type="radio" name="new_msg" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="new_msg" vlaue="0">No</label>
+                                <label for="realtime_messages">New messages:</label>
+                                <label class="radio-inline"><input type="radio" name="realtime_messages" checked="checked" value="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="realtime_messages" value="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
-                                <label for="Newmessages">Interest in me:</label>
-                                <label class="radio-inline"><input type="radio" name="interest_me" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="interest_me" vlaue="0">No</label>
+                                <label for="realtime_interest">Interest in me:</label>
+                                <label class="radio-inline"><input type="radio" name="realtime_interest" checked="checked" value="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="realtime_interest" value="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
-                                <label for="Newmessages">Someone viewed my profile:</label>
-                                <label class="radio-inline"><input type="radio" name="profile_view" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="profile_view" vlaue="0">No</label>
+                                <label for="realtime_viewprofile">Someone viewed my profile:</label>
+                                <label class="radio-inline"><input type="radio" name="realtime_viewprofile" checked="checked" value="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="realtime_viewprofile" value="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
-                                <label for="Newmessages">Someone added me as a favorite:</label>
-                                <label class="radio-inline"><input type="radio" name="favorite" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="favorite" vlaue="0">No</label>
+                                <label for="realtime_fav">Someone added me as a favorite:</label>
+                                <label class="radio-inline"><input type="radio" name="realtime_fav" checked="checked" value="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="realtime_fav" value="0">No</label>
                             </div>
                           <hr class="seperate-line">
                           <div class="form-group">
-                                <label for="Newmessages">Potential matches:</label>
-                                <label class="radio-inline"><input type="radio" name="potential_matches" vlaue="1">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="potential_matches" vlaue="0">No</label>
+                                <label for="realtime_matches">Potential matches:</label>
+                                <label class="radio-inline"><input type="radio" name="realtime_matches" checked="checked" value="1">Yes</label>
+                                <label class="radio-inline"><input type="radio" name="realtime_matches" value="0">No</label>
                             </div>
                           <div class="button-inner text-center">
-                                            <button class="btn btn-primary btn-green" type="submit">SAVE</button>
-                                        </div>
-                                                  </div>
+                                 <button class="btn btn-primary btn-green" type="submit">SAVE</button>
+                            </div>
+                         </form>
+                         </div>
                     </div>
                 </div>
             </div>
