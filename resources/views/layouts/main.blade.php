@@ -10,8 +10,10 @@
         <title>ForeverWeLove</title>
         <!-- Bootstrap Core CSS -->
         <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
         <!-- Custom CSS -->
         <link href="{{url('css/custom.css')}}" rel="stylesheet">
+        <link href="{{url('css/bootstrap-select.css')}}" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -36,6 +38,7 @@
         <script src="{{url('js/jquery-1.11.1.js')}}"></script>
         <script src="{{url('js/bootstrap.min.js')}}"></script>
         <script src="{{url('js/jquery.validate.js')}}"></script>
+        <script src="{{url('js/bootstrap-select.js')}}"></script>
         <script src="{{url('js/custom.js')}}"></script>
         <script src="{{url('js/script.js')}}"></script>
         @yield('script')

@@ -10,10 +10,13 @@
                 </div>
 
             </div>
+            <div class="description">
+                <em>Answering these profile questions will help other users find you in search results and help us to find you more accurate matches. Answer all questions below to complete this step.</em>
+            </div>
             <div class="address-update-heading">
                 <h1>Your Basics:</h1>
             </div>
-            <div class="signup-page-outer">
+            <div class="signup-page-outer edit-profile-page-setting">
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="gender">First Name: </label>
@@ -28,7 +31,7 @@
                         </select>
                     </div>
                     <hr class="seperate-line">
-                    <div class="form-group">
+                    <div class="form-group edit-profile-page">
                         <label for="dob">Date of birth: </label>
                         <select class="form-control" name="dob_month">
                             <option value="01">January</option>
@@ -49,8 +52,9 @@
                             <option value="{{$i}}">{{$i}}</option>
                             @endfor
                         </select>
-                        <span>* To protect your privacy we only store your month and year of birth</span>
+                        
                     </div>
+                    <div class="text-center">* To protect your privacy we only store your month and year of birth</div>
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="country">Country</label>
@@ -291,9 +295,11 @@
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
-                        <label for="have_pets">Do you have pets? : </label>
+                        <label for="have_pets" class="pets-label">Do you have pets? : </label>
                         @foreach($form_layout[22] as $row)
+                        <div class="pets-section">
                         <input type="checkbox" name="have_pets" value="{{$row['value']}}" />{{$row['label']}}
+                        </div>
                         @endforeach
                         </select>
                     </div>
@@ -364,9 +370,13 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="relationship">Relationship you're looking for : </label>
+
                         @foreach($form_layout[28] as $row)
+                          <div class="pets-section">
                         <input type="checkbox" name="relationship" value="{{$row['value']}}" />{{$row['label']}}
+                        </div>
                         @endforeach
+                        
                         </select>
                     </div>
                     <div class="address-update-heading">
@@ -394,7 +404,7 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="languages">Languages : </label>
-                        <select class="form-control" name="languages" multiple="" size="12">
+                        <select class="selectpicker" name="languages" multiple>
                             <option value="0">--Please Select--</option>
                             @foreach($languages as $row)
                             <option value="{{$row->id}}">{{$row->name}}</option>
@@ -479,7 +489,7 @@
                         <textarea class="form-control" name="partner"></textarea>
                     </div>
                     <hr class="seperate-line">
-                    <div class="button-inner text-center">
+                    <div class="button-inner text-center email-address">
                         <button class="btn btn-primary btn-green" type="submit">SAVE</button>
                     </div>
                 </form>

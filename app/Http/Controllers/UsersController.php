@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -13,35 +14,35 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Languages;
+use App\Models\UserPersonality;
 
 class UsersController extends UtilityController {
 
     public function __construct() {
         
     }
-    
-    public function getLogin(){
+
+    public function getLogin() {
         if (Auth::check()) {
             return Redirect::to('users/account-settings');
-        }else{
+        } else {
             return view('users.login');
         }
     }
-    
-    public function getSignup(){
+
+    public function getSignup() {
         if (Auth::check()) {
             return Redirect::to('users/account-settings');
-        }else{
+        } else {
             $countries = Country::get();
-            return view('users.signup')->with('countries',$countries);
+            return view('users.signup')->with('countries', $countries);
         }
     }
-    
-    
-    public function postLogin(){
-       
-         $user = new User();
-         $inputs = Input::all();
+
+    public function postLogin() {
+
+        $user = new User();
+        $inputs = Input::all();
         $rules = array(
             'email' => 'required|email|exists:users,email',
             'password' => 'required|min:6|max:12'
@@ -58,10 +59,9 @@ class UsersController extends UtilityController {
                 return Redirect::to('login')->with('errors', $message);
             }
         }
-          
     }
-    
-    public function postSignup(){
+
+    public function postSignup() {
         $user = new User();
         $inputs = Input::all();
         //dd($inputs);
@@ -81,18 +81,18 @@ class UsersController extends UtilityController {
             //echo "error";
             return Redirect::to('signup')->with('errors', $validator->errors()->all())->withInput();
         } else {
-            $pwd=Hash::make($inputs['password']);
-            
-            $user = array('first_name'=>$inputs['first_name'],
-                            'password'=>$pwd,
-                            'email'=>$inputs['email'],
-                            'gender'=>$inputs['gender'],
-                            'age'=>$inputs['age'],
-                            'country'=>$inputs['country'],
-                            'state'=>$inputs['state'],
-                            'city'=>$inputs['city']
-                    );
-            
+            $pwd = Hash::make($inputs['password']);
+
+            $user = array('first_name' => $inputs['first_name'],
+                'password' => $pwd,
+                'email' => $inputs['email'],
+                'gender' => $inputs['gender'],
+                'age' => $inputs['age'],
+                'country' => $inputs['country'],
+                'state' => $inputs['state'],
+                'city' => $inputs['city']
+            );
+
             User::insert($user);
             if (Auth::attempt(['email' => $inputs['email'], 'password' => $inputs['password']], false)) {
                 return Redirect::to('users/account-settings')->with('success', 'login successfully!!!');
@@ -103,38 +103,39 @@ class UsersController extends UtilityController {
             return Redirect::to('users/account-settings')->with('success', 'SignUp successfully!!!');
         }
     }
-    public function index()
-    {
-        $countries = DB::table("countries")->lists("name","id");
-        return view('index',compact('countries'));
+
+    public function index() {
+        $countries = DB::table("countries")->lists("name", "id");
+        return view('index', compact('countries'));
     }
-    public function getState($country_id){
+
+    public function getState($country_id) {
         $response = array();
-        $states = State::where('country_id',$country_id)->get();
-        if(!$states->isEmpty()){
+        $states = State::where('country_id', $country_id)->get();
+        if (!$states->isEmpty()) {
             $response['status'] = 1;
             $response['states'] = $states;
-        }else{
+        } else {
             $response['status'] = 0;
             $response['states'] = '';
         }
         return response()->json($response);
     }
-    
-    public function getCity($state_id){
+
+    public function getCity($state_id) {
         $response = array();
-        $cities = City::where('state_id',$state_id)->get();
-        if(!$cities->isEmpty()){
+        $cities = City::where('state_id', $state_id)->get();
+        if (!$cities->isEmpty()) {
             $response['status'] = 1;
             $response['cities'] = $cities;
-        }else{
+        } else {
             $response['status'] = 0;
             $response['cities'] = '';
         }
         return response()->json($response);
     }
-    
-    public function postFbsignup(){
+
+    public function postFbsignup() {
         $inputs = Input::all();
         $rules = array(
             'email' => 'email|unique:users,email',
@@ -144,8 +145,8 @@ class UsersController extends UtilityController {
         if ($validator->fails()) {
             $response['status'] = 0;
             $response['errors'] = $validator->errors()->first();
-        }else{
-            $user = array('first_name'=>$inputs['first_name'],'email'=>isset($inputs['email'])?$inputs['email']:'','gender'=>$inputs['gender'],'facebook_id'=>$inputs['facebook_id']);
+        } else {
+            $user = array('first_name' => $inputs['first_name'], 'email' => isset($inputs['email']) ? $inputs['email'] : '', 'gender' => $inputs['gender'], 'facebook_id' => $inputs['facebook_id']);
             $user_id = User::insertGetId($user);
             if (Auth::loginUsingId($user_id, true)) {
                 $response['status'] = 1;
@@ -157,8 +158,8 @@ class UsersController extends UtilityController {
         }
         return response()->json($response);
     }
-    
-    public function postFblogin(){
+
+    public function postFblogin() {
         $inputs = Input::all();
         $rules = array(
             'facebook_id' => 'required|exists:users,facebook_id'
@@ -167,8 +168,8 @@ class UsersController extends UtilityController {
         if ($validator->fails()) {
             $response['status'] = 0;
             $response['errors'] = $validator->errors()->first();
-        }else{
-            $user = User::where('facebook_id',$inputs['facebook_id'])->first();
+        } else {
+            $user = User::where('facebook_id', $inputs['facebook_id'])->first();
             if (Auth::loginUsingId($user->user_id, true)) {
                 $response['status'] = 1;
                 $response['redirect_url'] = url('comingsoon');
@@ -179,70 +180,68 @@ class UsersController extends UtilityController {
         }
         return response()->json($response);
     }
-    
+
     public function getLogout() {
         Auth::logout();
         Session::flush();
         return Redirect::to('login');
     }
-    
-    public function getProfileSettings(){
+
+    public function getProfileSettings() {
         return view('users.profile-settings');
     }
-     public function getAccountSettings(){
+
+    public function getAccountSettings() {
         return view('users.account-settings');
     }
-    
-    public function getBilling(){
+
+    public function getBilling() {
         return view('users.billing');
     }
-    public function getNotification(){
+
+    public function getNotification() {
         return view('users.notification');
     }
-     public function getResetPassword(){
+
+    public function getResetPassword() {
         return view('users.reset-password');
     }
-    
-     public function postAccountSettings(){
-         $user = new User();
+
+    public function postAccountSettings() {
+        $user = new User();
         $inputs = Input::all();
-        
-        $rules= array('email' => 'required|email|unique:users,email');
+
+        $rules = array('email' => 'required|email|unique:users,email');
         $validator = Validator::make($inputs, $rules);
         if ($validator->fails()) {
-           
+
             return Redirect::to('users/account-settings')->with('errors', $validator->errors()->all())->withInput();
-        }
-        else
-        {
-            $affectedRows = User::where('user_id', '=', Auth::user()->user_id )->update(array('email' => $inputs['email']));
-            
+        } else {
+            $affectedRows = User::where('user_id', '=', Auth::user()->user_id)->update(array('email' => $inputs['email']));
+
             $message = trans('messages.email_id changed');
-                $status = 'success';
-            
+            $status = 'success';
         }
         return Redirect::to('users/account-settings')->with($status, $message);
     }
-    public function postResetPassword(){
+
+    public function postResetPassword() {
         $user = new User();
         $inputs = Input::all();
-        
-        $rules= array('newpassword' => 'required|min:6|max:12|same:confirmpassword'
-                       //'confirmpassword' => 'required|min:6|max:12'
-                        );
+
+        $rules = array('newpassword' => 'required|min:6|max:12|same:confirmpassword'
+                //'confirmpassword' => 'required|min:6|max:12'
+        );
         $validator = Validator::make($inputs, $rules);
         if ($validator->fails()) {
-           
+
             return Redirect::to('users/reset-password')->with('errors', $validator->errors()->all())->withInput();
-        }
-        else
-        {
-            $pwd=Hash::make($inputs['newpassword']);
-            $affectedRows = User::where('user_id', '=', Auth::user()->user_id )->update(array('password' => $pwd));
-            
+        } else {
+            $pwd = Hash::make($inputs['newpassword']);
+            $affectedRows = User::where('user_id', '=', Auth::user()->user_id)->update(array('password' => $pwd));
+
             $message = trans('messages.password changed');
-                $status = 'success';
-            
+            $status = 'success';
         }
         return Redirect::to('users/reset-password')->with($status, $message);
     }
@@ -293,11 +292,67 @@ class UsersController extends UtilityController {
         return Redirect::to('users/notification')->with($status, $message);
     }
         
-    public function getEditProfile(){
+   
+
+
+    public function getEditProfile() {
         $form_layout = $this->getProfileForm();
         $countries = Country::get();
         $languages = Languages::get();
-        return view('users.edit-profile')->with('countries',$countries)->with('languages',$languages)->with('form_layout',$form_layout);
+        return view('users.edit-profile')->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
     }
-    
+
+    public function getEditMatch() {
+
+        $form_layout = $this->getProfileForm();
+        $countries = Country::get();
+        $languages = Languages::get();
+        return view('users.edit-match')->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
+    }
+
+    public function getEditInterest() {
+        
+        return view('users.edit-interest');
+    }
+
+    public function getEditPersonality() {
+        $user_per = UserPersonality::where('user_id',Auth::user()->user_id)->first();
+        return view('users.edit-personality')->with('user_per',$user_per);
+    }
+
+    public function getEditTags() {
+        return view('users.edit-tags');
+    }
+
+    public function getVerifyProfile() {
+        return view('users.verify-profile');
+    }
+
+    public function getImbra() {
+        return view('users.imbra');
+    }
+
+    public function getEditPhotos() {
+        return view('users.edit-photos');
+    }
+
+    public function postEditPersonality() {
+        $inputs = Input::all();
+        $user_per = UserPersonality::firstOrNew(array('user_id' => Auth::user()->user_id));
+        $user_per->fav_movie = $inputs['fav_movie'];
+        $user_per->fav_book = $inputs['fav_book'];
+        $user_per->typeof_food = $inputs['typeof_food'];
+        $user_per->music = $inputs['music'];
+        $user_per->hobby_intrst = $inputs['hobby_intrst'];
+        $user_per->dress_apprce = $inputs['dress_apprce'];
+        $user_per->sence_of_humar = $inputs['sence_of_humar'];
+        $user_per->personality = $inputs['personality'];
+        $user_per->travel = $inputs['travel'];
+        $user_per->adaptive = $inputs['adaptive'];
+        $user_per->romantic_wkend = $inputs['romantic_wkend'];
+        $user_per->perfect_match = $inputs['perfect_match'];        
+        $user_per->save();
+        return Redirect::to('users/edit-personality')->with('success',trans('messages.personality_updated'));
+    }
+
 }
