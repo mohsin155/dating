@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-md-9">
                             <div class="col-md-1 pd-t-10">
-                                <input type="radio" name="platimun" value="{{$price->pricing_id}}" {{$i==1?'checked':''}}>
+                                <input type="radio" name="platinum" value="{{$price->pricing_id}}" {{$i==1?'checked':''}}>
                             </div>
                             <div class="col-md-8">
                                 <strong>

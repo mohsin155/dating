@@ -15,11 +15,14 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Languages;
 use App\Models\UserPersonality;
+use App\Models\Tags;
+use Illuminate\Support\Facades\DB;
+use App\Models\UserTags;
 
 class UsersController extends UtilityController {
 
     public function __construct() {
-        
+        $this->middleware('auth', ['except' => ['getSignup', 'postSignup', 'getLogin', 'postLogin','getState','getCity','postFbsignup','postFblogin']]);
     }
 
     public function getLogin() {
@@ -271,7 +274,8 @@ class UsersController extends UtilityController {
     }
 
     public function getEditTags() {
-        return view('users.edit-tags');
+        $tags = UserTags::where('user_id',Auth::user()->user_id)->get();
+        return view('users.edit-tags')->with('tags',$tags);
     }
 
     public function getVerifyProfile() {
@@ -305,4 +309,21 @@ class UsersController extends UtilityController {
         return Redirect::to('users/edit-personality')->with('success',trans('messages.personality_updated'));
     }
 
+    public function getTags(){
+        $inputs = Input::all();
+        $tags = Tags::select(DB::raw('tag_id as id,name as label,name as value'))->where('name','like','%'.$inputs["term"].'%')->get();
+        return response()->json($tags);
+    }
+    
+    public function getAddTags(){
+        $inputs = Input::all();
+        $id = UserTags::insertGetId(array('tag'=>$inputs['keyword'],'user_id'=>Auth::user()->user_id));
+        return response()->json(array('tag_id'=>$id));
+    }
+    
+    public function getDeleteTags(){
+        $inputs = Input::all();
+        $id = UserTags::where(array('user_tag_id'=>$inputs['tag_id'],'user_id'=>Auth::user()->user_id))->delete();
+        return;;
+    }
 }
