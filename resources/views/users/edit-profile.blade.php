@@ -16,11 +16,23 @@
             <div class="address-update-heading">
                 <h1>Your Basics:</h1>
             </div>
+         
             <div class="signup-page-outer edit-profile-page-setting">
-                <form class="form-inline">
+                  <form name="edit-profile" class="form-inline" id="edit-profile" method="post" action="{{url('users/edit-profile')}}">
+                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                            @if(!empty($errors) && count($errors)>0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors as $messages)
+                                            <li> {{$messages}} </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+               
                     <div class="form-group">
-                        <label for="gender">First Name: </label>
-                        <input name="first_name" value=""/>
+                        <label for="name">First Name: </label>
+                        <input type="text" name="first_name" value=""/>
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
@@ -57,7 +69,7 @@
                     <div class="text-center">* To protect your privacy we only store your month and year of birth</div>
                     <hr class="seperate-line">
                     <div class="form-group">
-                        <label for="age">Country</label>
+                        <label for="country">Country</label>
                         <select class="form-control" id="country" name="country">
                             <option value="0">--Please Select--</option>
                             @foreach($countries as $country)
@@ -146,7 +158,7 @@
                         <label for="weight">Weight : </label>
                         <select class="form-control" name="weight">
                             <option value="0">--Please Select--</option>
-                            @for($i=140;$i<220;$i++)
+                            @for($i=40;$i<220;$i++)
                             <option value="{{$i}}">{{$i}}kg</option>
                             @endfor
                         </select>
@@ -184,7 +196,7 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="best_feature">My best feature : </label>
-                        <select class="form-control" name="facial_hair">
+                        <select class="form-control" name="best_feature">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[11] as $row)
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
@@ -246,7 +258,7 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="have_children">Do you have children? : </label>
-                        <select class="form-control" name="children">
+                        <select class="form-control" name="have_children">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[17] as $row)
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
@@ -266,7 +278,7 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="oldest_child">Oldest Child : </label>
-                        <select class="form-control" name="no_children">
+                        <select class="form-control" name="oldest_child">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[19] as $row)
                             <option value="{{$row['value']}}">{{$row['label']}}</option>

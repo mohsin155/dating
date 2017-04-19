@@ -18,6 +18,7 @@ use App\Models\UserPersonality;
 use App\Models\Tags;
 use Illuminate\Support\Facades\DB;
 use App\Models\UserTags;
+use App\Models\UserProfile;
 
 class UsersController extends UtilityController {
 
@@ -248,6 +249,55 @@ class UsersController extends UtilityController {
         }
         return Redirect::to('users/reset-password')->with($status, $message);
     }
+    
+     public function postNotification(){
+        $user = new User();
+        $inputs = Input::all();
+       $rules = array(
+            'email_newmessages' => 'required',
+           'email_interest' => 'required',
+           'email_instantmsg' => 'required',
+           'email_offers' => 'required',
+           'email_promotions' => 'required',
+           'realtime_messages' => 'required',
+           'realtime_interest' => 'required',
+           'realtime_viewprofile' => 'required',
+           'realtime_fav' => 'required',
+           'realtime_matches' => 'required'
+           );
+           
+       $validator = Validator::make($inputs, $rules);
+        if ($validator->fails()) {
+           
+            return Redirect::to('users/notification')->with('errors', $validator->errors()->all())->withInput();
+        }
+        else
+        {
+             $email_notification = array(
+            'email_newmessages' => $inputs['email_newmessages'],
+           'email_interest' => $inputs['email_interest'],
+           'email_instantmsg' => $inputs['email_instantmsg'],
+           'email_offers' => $inputs['email_offers'],
+           'email_promotions' => $inputs['email_promotions'],
+              
+           'realtime_messages' => $inputs['realtime_messages'],
+           'realtime_interest' => $inputs['realtime_interest'],
+           'realtime_viewprofile' => $inputs['realtime_viewprofile'],
+           'realtime_fav' => $inputs['realtime_fav'],
+           'realtime_matches' => $inputs['realtime_matches']
+           );
+             
+             $email_value= serialize($email_notification);
+            
+              $affectedRows = User::where('user_id', '=', Auth::user()->user_id )->update(array('email_notifications' => $email_value));
+            $message = trans('messages.notification updated');
+                $status = 'success';
+        }
+        return Redirect::to('users/notification')->with($status, $message);
+    }
+        
+   
+
 
     public function getEditProfile() {
         $form_layout = $this->getProfileForm();
@@ -257,6 +307,7 @@ class UsersController extends UtilityController {
     }
 
     public function getEditMatch() {
+
         $form_layout = $this->getProfileForm();
         $countries = Country::get();
         $languages = Languages::get();
@@ -307,6 +358,134 @@ class UsersController extends UtilityController {
         $user_per->perfect_match = $inputs['perfect_match'];        
         $user_per->save();
         return Redirect::to('users/edit-personality')->with('success',trans('messages.personality_updated'));
+    }
+    
+    
+    public function postEditProfile(){
+            $user = new UserProfile();
+        $inputs = Input::all();
+       $rules = array(
+            'first_name' =>'required',
+                     'gender' =>'required',
+                    'dob_month' =>'required',
+                    'dob_year' =>'required',
+                    'country' =>'required',
+                    'state' =>'required',
+                    'city' =>'required',
+                    'hair_color' =>'required',
+                    'hair_length' =>'required',
+                    'hair_type' =>'required',
+                    'eye_color' =>'required',
+                    'eye_wear' =>'required',
+                    'height' =>'required',
+                    'weight' =>'required',
+                    'body_type' =>'required',
+                    'ethnicity' =>'required',
+                    'facial_hair' =>'required',
+                    'best_feature' =>'required',
+                    'body_art' =>'required',
+                    'appearance' =>'required',
+                    'drink' =>'required',
+                    'smoke' =>'required',
+                    'marital_status' =>'required',
+                    'have_children'  =>'required',
+                    'no_children' =>'required',
+                    'oldest_child' =>'required',
+                    'youngest_child'=>'required',
+                    'more_child' =>'required',
+                    'have_pets' =>'required',
+                    'occupation' =>'required',
+                    'employment' =>'required',
+                    'income' =>'required',
+                    'home_type' =>'required',
+                    'living_situation' =>'required',
+                    'relocate' =>'required',
+                    'relationship' =>'required',
+                    'nationality' =>'required',
+                    'education'  =>'required',
+                    'languages' =>'required',
+                    'english_ability' =>'required',
+                    'portugese_ability'  =>'required',
+                    'spanish_ability'   =>'required',
+                    'religion'=>'required',
+                    'religious_values' =>'required',
+                    'star_sign' =>'required',
+                    'profile_heading' =>'required',
+                    'about_yourself' =>'required',
+                    'partner' =>'required'
+           );
+           
+       $validator = Validator::make($inputs, $rules);
+        if ($validator->fails()) {
+           
+            return Redirect::to('users/edit-profile')->with('errors', $validator->errors()->all())->withInput();
+        }
+        else
+        {
+             $profile_data = array(
+                 'user_id'=>Auth::user()->user_id,
+                 'first_name' =>$inputs['first_name'],
+                     'gender' =>$inputs['gender'],
+                    'dob_month' =>$inputs['dob_month'],
+                    'dob_year' =>$inputs['dob_year'],
+                    'country' =>$inputs['country'],
+                    'state' =>$inputs['state'],
+                    'city' =>$inputs['city'],
+                    'hair_color' =>$inputs['hair_color'],
+                    'hair_length' =>$inputs['hair_length'],
+                    'hair_type' =>$inputs['hair_type'],
+                    'eye_color' =>$inputs['eye_color'],
+                    'eye_wear' =>$inputs['eye_wear'],
+                    'height' =>$inputs['height'],
+                    'weight' =>$inputs['weight'],
+                    'body_type' =>$inputs['body_type'],
+                    'ethnicity' =>$inputs['ethnicity'],
+                    'facial_hair' =>$inputs['facial_hair'],
+                    'best_feature' =>$inputs['best_feature'],
+                    'body_art' =>$inputs['body_art'],
+                    'appearance' =>$inputs['appearance'],
+                    'drink' =>$inputs['drink'],
+                    'smoke' =>$inputs['smoke'],
+                    'marital_status' =>$inputs['marital_status'],
+                    'have_children'  =>$inputs['have_children'],
+                    'no_children' =>$inputs['no_children'],
+                    'oldest_child' =>$inputs['oldest_child'],
+                    'youngest_child'=>$inputs['youngest_child'],
+                    'more_child' =>$inputs['more_child'],
+                    'have_pets' =>$inputs['have_pets'],
+                    'occupation' =>$inputs['occupation'],
+                    'employment' =>$inputs['employment'],
+                    'income' =>$inputs['income'],
+                    'home_type' =>$inputs['home_type'],
+                    'living_situation' =>$inputs['living_situation'],
+                    'relocate' =>$inputs['relocate'],
+                    'relationship' =>$inputs['relationship'],
+                    'nationality' =>$inputs['nationality'],
+                    'education'  =>$inputs['education'],
+                    'languages' =>$inputs['languages'],
+                    'english_ability' =>$inputs['english_ability'],
+                    'portugese_ability'  =>$inputs['portugese_ability'],
+                    'spanish_ability'   =>$inputs['spanish_ability'],
+                    'religion'=>$inputs['religion'],
+                    'religious_values' =>$inputs[ 'religious_values'],
+                    'star_sign' =>$inputs['star_sign'],
+                    'profile_heading' =>$inputs['profile_heading'],
+                    'about_yourself' =>$inputs['about_yourself'],
+                    'partner' =>$inputs['partner']
+                    
+                    
+            
+           );
+             
+            
+            
+              $affectedRows = UserProfile::insert($profile_data);
+             
+            $message = trans('messages.profile updated');
+                $status = 'success';
+        }
+        return Redirect::to('users/edit-profile')->with($status, $message);
+    
     }
 
     public function getTags(){
