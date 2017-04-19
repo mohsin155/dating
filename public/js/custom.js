@@ -154,4 +154,77 @@ if ($("#change-email").length > 0) {
 
 $(document).on('click', '#upload-file',function(e){
    $('#uploadForm2').trigger('click');
-})
+});
+var increment = 0;
+$("body").on('change', '#uploadForm2', function(e) {
+    
+    if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        var cur = this;
+        var target = e.dataTransfer || e.target,
+        file = target && target.files && target.files[0],
+        options = {
+            canvas: true
+        };
+        if (!file) {
+        return;
+    }
+        var size = parseFloat(file.size / 1024).toFixed(2);
+        var fileType = file["type"];
+        var ValidImageTypes = ["image/png", "image/PNG", "image/jpg", "image/jpeg", "image/JPEG", "image/JPG"];
+        if ($.inArray(fileType, ValidImageTypes) < 0) {
+            // invalid file type code goes here.
+            reader.onload = function(e) {
+                //alert('Only .jpg,.png,.JPG,.PNG,.gif,.GIF,.jpeg,.JPEG, .mp4 type of files are allowed.');
+                $("#image_error").html('<label class="error">Only .jpg,.png,.JPG,.PNG,.jpeg,.JPEG,type of files are allowed.</label>');
+                $(this).val('');
+                //$('.DocumentList li:last-child').remove();
+                return false;
+            };
+
+
+        } else {
+
+            reader.onload = function(e) {
+                if (size > 10240) {
+                    //alert('File size greater than 10MB not allowed');
+                    $("#image_error").html('<label class="error">File size greater than 10MB not allowed</label>');
+                    $(this).val('');
+                    return false;
+                }
+                
+                newimage = e.target.result;
+                $('.photobg').each(function(index, value) {
+                    console.log(index)
+                    console.log(increment)
+                    if(index==increment){
+                    $(this).find('.photo').css('background-image', 'url(' + newimage + ')');
+                    $(this).find('.replace').removeClass('hide');
+                    }
+                });
+                increment++;
+                $(this).val('');
+
+            }
+
+        }
+        reader.readAsDataURL(this.files[0]);
+    } else {
+        alert('hi')
+    }
+});
+
+$("body").on('click', '.photoOptions', function(e) {
+    $(this).closest('.photobg').find('.photooverlay').toggle();
+});
+$("body").on('click', '.delete-photo', function(e) {
+    var defaultimage = 'image/Affinity Photo 2.gif';
+    console.log(defaultimage);
+    $(this).closest('.photobg').find('.photo').css('background-image', '');
+    $(this).closest('.photobg').find('.photo').css('background-image', 'url(' + defaultimage + ')'); 
+    $(this).closest('.photobg').find('.photooverlay').css('display','none');
+    $(this).closest('.photobg').find('.replace').addClass('hide');
+    $('#uploadForm2').val('');
+    increment--;
+});
+
