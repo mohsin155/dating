@@ -16,11 +16,23 @@
             <div class="address-update-heading">
                 <h1>Your Basics:</h1>
             </div>
+         
             <div class="signup-page-outer edit-profile-page-setting">
-                <form class="form-inline">
+                  <form name="edit-profile" class="form-inline" id="edit-profile" method="post" action="{{url('users/edit-profile')}}">
+                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                            @if(!empty($errors) && count($errors)>0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors as $messages)
+                                            <li> {{$messages}} </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+               
                     <div class="form-group">
-                        <label for="gender">First Name: </label>
-                        <input name="first_name" value=""/>
+                        <label for="name">First Name: </label>
+                        <input type="text" name="first_name" value=""/>
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
