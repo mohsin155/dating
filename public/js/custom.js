@@ -227,4 +227,10 @@ $("body").on('click', '.delete-photo', function(e) {
     $('#uploadForm2').val('');
     increment--;
 });
+$("body").on('click', '.dropdown-menu li a', function(e) {
+    var imgsrc = $(this).find('img').attr('src');
+    $('li.dropdown').find('a img:first').attr('src','');
+     $('li.dropdown').find('a img:first').attr('src',imgsrc);
+});
+
 

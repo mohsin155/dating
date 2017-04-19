@@ -1517,6 +1517,20 @@ a[id='addNewPhoto'] {
 .photooverlay li a:hover {
     background-color: #eee;
 }
+.nav-custom>li>a {
+    padding: 0px 92px;
+    display: initial;
+}
+.nav>li>a:hover, .nav>li>a:focus {
+    background: none;
+}
+.nav-custom .caret  {
+        margin-left: 9px;
+        border-top: 4px solid #000;
+}
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+    background: none;
+}
 /*------------END Edit Setting Page CSS --------------------- */
 /***************************
  MEDIA QUERIES

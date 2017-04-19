@@ -78,9 +78,14 @@ window.fbAsyncInit = function () {
                         <div class="col-md-4 header_logo text-right"><!--<img src="image/apache_pb2.png" />--></div>
                     </div>
                     <div class="navbar col-md-12 pd-0">
-                        <div class="col-md-10 link_color"><a href="#" class="link_color">Home</a> | <a href="{{url('/signup')}}" >Join Free Now</a> | <a href="#">Testinomials</a></div>
+                        <div class="col-md-10 link_color pd-10"><a href="#" class="link_color">Home</a> | <a href="{{url('/signup')}}" >Join Free Now</a> | <a href="#">Testinomials</a></div>
                         <div class="col-md-2 text-right pd-0"><!--<img src="image/flag_English.gif" /><img src="image/arrowdown.png" class="pd-l-10" />--><!-- Use CSS to replace link text with flag icons -->  
-                            <ul>
+                            <nav class="navbar">
+                            <ul class="nav navbar-nav nav-custom">
+                                <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <img src="image/flags/english.gif" alt="" />
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
                                 <li><a href="javascript:;" id="English" onclick="translate(this.id);"><span>English </span>
                                         <img src="image/flags/english.gif" alt="" /></a> </li>
                                 <li><a href="javascript:;" id="German" onclick="translate(this.id);"><span>German </span>
@@ -105,6 +110,9 @@ window.fbAsyncInit = function () {
                                         </span>
                                         <img src="image/flags/swedish.gif" alt="" /></a> </li>
                             </ul>
+                                </li>
+                            </ul>
+                            </nav>
                             <div id="google_translate_element" style="display:none;"></div>
                         </div>
                     </div>
