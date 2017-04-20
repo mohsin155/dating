@@ -310,10 +310,9 @@
                         <label for="have_pets" class="pets-label">Do you have pets? : </label>
                         @foreach($form_layout[22] as $row)
                         <div class="pets-section">
-                        <input type="checkbox" name="have_pets" value="{{$row['value']}}" />{{$row['label']}}
+                        <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" />{{$row['label']}}
                         </div>
                         @endforeach
-                        </select>
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
@@ -385,7 +384,7 @@
 
                         @foreach($form_layout[28] as $row)
                           <div class="pets-section">
-                        <input type="checkbox" name="relationship" value="{{$row['value']}}" />{{$row['label']}}
+                        <input type="checkbox" name="relationship[]" value="{{$row['value']}}" />{{$row['label']}}
                         </div>
                         @endforeach
                         
@@ -416,7 +415,7 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="languages">Languages : </label>
-                        <select class="selectpicker" name="languages" multiple>
+                        <select class="selectpicker" name="languages[]" multiple>
                             <option value="0">--Please Select--</option>
                             @foreach($languages as $row)
                             <option value="{{$row->id}}">{{$row->name}}</option>
