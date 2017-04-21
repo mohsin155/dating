@@ -19,6 +19,7 @@ use App\Models\Tags;
 use Illuminate\Support\Facades\DB;
 use App\Models\UserTags;
 use App\Models\UserProfile;
+use App\Models\UserPhotos;
 
 class UsersController extends UtilityController {
 
@@ -338,7 +339,9 @@ class UsersController extends UtilityController {
     }
 
     public function getEditPhotos() {
-        return view('users.edit-photos');
+        $photos = UserPhotos::where('user_id',Auth::user()->user_id)->get();
+        $image_path = public_path().'/uploads/'.Auth::user()->user_id;
+        return view('users.edit-photos')->with('photos',$photos)->with('image_path',$image_path);
     }
 
     public function postEditPersonality() {
@@ -503,6 +506,20 @@ class UsersController extends UtilityController {
     public function getDeleteTags(){
         $inputs = Input::all();
         $id = UserTags::where(array('user_tag_id'=>$inputs['tag_id'],'user_id'=>Auth::user()->user_id))->delete();
-        return;;
+        return;
+    }
+    
+    public function postEditPhotos() {
+        $inputs = Input::file('uploadForm');
+        if(!empty($inputs)){
+            $user_id = Auth::user()->user_id;
+            $destinationPath = public_path().'/uploads/'.Auth::user()->user_id;
+            $fileName = Input::file('uploadForm')->getClientOriginalName();
+            $extension = Input::file('uploadForm')->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            Input::file('uploadForm')->move($destinationPath, $fileName);
+            UserPhotos::insert(array('user_id'=>$user_id,'photo_name'=>$fileName));
+        }
+        return Redirect::to('users/edit-photos');
     }
 }

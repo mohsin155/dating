@@ -8,25 +8,21 @@
                 <div>
                     <h1>Upload a photo</h1>
                 </div>
-
             </div>
-
             <div class="email-address signup-page-outer">
                 <div class="photo-upload-section text-center">
                     <h3 class="pcOrFacebook">From your computer</h3>
                     <div class="button-inner text-center">
                         <button class="btn btn-primary btn-green" type="button" id="upload-file">+ Choose File</button>
                     </div>
-                    <form class="mx-auto block col-4 center" name="uploadPhotoForm" action="#" method="post" enctype="multipart/form-data">
-
+                    <form class="mx-auto block col-4 center upload_photo" name="uploadPhotoForm" action="" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <input type="file" name="uploadForm" value="uploadForm" id="uploadForm2" accept="image/jpeg,image/gif,image/png,image/bmp" class="hide">
                     </form>
                 </div>
             </div>
-            <div class="sectionHeading clearfix"><h2 style="width:300px">Photo Guidelines</h2><a href="#" class="addNewPhoto right" id="addNewPhoto">Can't upload photos? Try these alternatives »</a></div>
+            <div class="sectionHeading clearfix"><h2 style="width:300px">Photo Guidelines</h2><!--<a href="#" class="addNewPhoto right" id="addNewPhoto">Can't upload photos? Try these alternatives »</a>--></div>
             <div class="guidelines clearfix">
-
-
                 <div class="left"><img src="{{url('image/personality.jpg')}}" class="guidelinepic" width="80" height="80"><img src="{{url('image/fullbody.jpg')}}"  class="guidelinepic" width="80" height="80"></div>
                 <p style="padding-bottom:5px"><strong>How to choose the right gallery photos:</strong></p>
                 <div class="guideline left">
@@ -45,7 +41,6 @@
                         <li>DOES NOT contain nudity</li>
                     </ul>
                 </div>
-
             </div>
         </div>
         <div class="roundedContainer">
@@ -53,141 +48,59 @@
                 <div class="mainHeading clearfix"><h1>Manage Photos</h1></div>
                 <ul>
                     <li>
-
                         <p><strong>You can add 3 more photos to your gallery.</strong> Use the uploader options above to add more photos to your profile.</p>
-
                     </li>
                 </ul>
             </div>     
-
             <div class="errormsg clearfix">
                 <strong class="left">Pending photos should be processed within 12 hours. You cannot re-order photos while they are pending approval. </strong>
             </div>
-
             <form method="post" action="" id="managePhotosForm">
-
                 <div class="photos clearfix ui-sortable" id="sortable" unselectable="on">
-
-                    <div class="photobg profilePhoto" id="p_1" data-id="ui.position">
+                    <?php $i = 1;?>
+                    @foreach($photos as $photo)
+                    <div class="photobg profilePhoto" id="p_{{$i}}" data-id="ui.position">
                         <div class="photoHeading"><span class="primaryTitle">Primary Photo</span></div>
-
                         <div class="photooverlay" id="photoOverlay_1" style="display:none;">
                             <ul>
-                                <li><a href="JavaScript:void(0);" class="delete-photo">Delete</a></li><li>
+                                <li><a href="{{url('users/delete-image')}}/{{$photo->photo_id]}}" class="delete-photo">Delete</a></li><li>
                                 </li><li><a href="#" class="replace-photo">Replace</a></li>
-
                                 <li><a href="#">Unhide</a></li>
-
                             </ul>
                         </div>
-
                         <a title="click to enlarge photo" id="photoid_1" class="enlargePhoto">
-                            <span class="photo " >
-
+                            <span class="photo " ><img src="../uploads/1/{{$photo->photo_name}}" width="100%" height="100%" />
                             </span>
                         </a>
-                        <div class="replace hide">
-
+                        <div class="replace">
                             <a href="JavaScript:void(0);" data-photooverlayid="photoOverlay_1" class="photoOptions">Edit Photo</a>
-
                         </div>
                         <input name="photoOrder" type="hidden" value="1">
                     </div>
-
-                    <div class="photobg"  id="p_2" data-id="ui.position">
+                    <?php $i++;?>
+                    @endforeach
+                    @for(;$i<=5;$i++)
+                    <div class="photobg"  id="p_{{$i}}" data-id="ui.position">
                         <div class="photoHeading"><span class="primaryTitle"></span></div>
-
                         <div class="photooverlay" id="photoOverlay_2" style="display:none;">
                             <ul>
                                 <li><a href="JavaScript:void(0);" data-number="2" class="delete-photo">Delete</a></li><li>
                                 </li><li><a href="#" class="replace-photo">Replace</a></li>
-
                             </ul>
                         </div>
-
                         <a title="click to enlarge photo" id="photoid_2" class="enlargePhoto" href="" data-status="2" data-modaltitle="Photo 2">
                             <span class="photo " >
                                 <div class="status pending hide">hidden</div>
                             </span>
                         </a>
                         <div class="replace hide">
-
                             <a href="JavaScript:void(0);" data-photooverlayid="photoOverlay_2" class="photoOptions">Edit Photo</a>
-
                         </div>
                         <input name="photoOrder" type="hidden" value="2">
                     </div>
-
-                    <div class="photobg"  id="p_3" data-id="ui.position">
-                        <div class="photoHeading"><span class="primaryTitle"></span></div>
-
-                        <div class="photooverlay" id="photoOverlay_3" style="display:none;">
-                            <ul>
-                                <li><a href="JavaScript:void(0);" class="delete-photo">Delete</a></li><li>
-                                </li><li><a href="#" class="replace-photo">Replace</a></li>
-
-                            </ul>
-                        </div>
-
-                        <a title="click to enlarge photo" id="photoid_3" class="enlargePhoto" href="" data-status="0" data-modaltitle="Photo 3">
-                            <span class="photo " >
-
-                            </span>
-                        </a>
-                        <div class="replace hide">
-                            <a href="JavaScript:void(0);" data-photooverlayid="photoOverlay_3" class="photoOptions">Edit Photo</a>    
-
-                        </div>
-                        <input name="photoOrder" type="hidden" value="3">
-                    </div>
-
-                    <div class="photobg" id="p_4">
-                        <div class="photoHeading"><span class="primaryTitle"></span></div>
-
-                        <div class="photooverlay" id="photoOverlay_4" style="display:none;">
-                            <ul>
-                                <li><a href="JavaScript:void(0);" class="delete-photo" data-replaceurl="#" data-number="4">Delete</a></li><li>
-                                </li><li><a href="#" class="replace-photo">Replace</a></li>
-
-                            </ul>
-                        </div>
-
-                        <a title="click to enlarge photo" id="photoid_4" class="enlargePhoto" href="" data-status="0" data-modaltitle="Photo 4">
-                            <span class="photo " >
-
-                            </span>
-                        </a>
-                        <div class="replace hide">
-                            <a href="JavaScript:void(0);" data-photooverlayid="photoOverlay_4" class="photoOptions">Edit Photo</a>    
-                        </div>
-                        <input name="photoOrder" type="hidden" value="4">
-                    </div>
-
-                    <div class="photobg"  id="p_5">
-                        <div class="photoHeading"><span class="primaryTitle"></span></div>
-
-                        <div class="photooverlay" id="photoOverlay_5" style="display:none;">
-                            <ul>
-                                <li><a  class="delete-photo" data-number="5">Delete</a></li><li>
-                                </li><li><a href="#" class="replace-photo">Replace</a></li>
-
-                            </ul>
-                        </div>
-
-                        <a title="click to enlarge photo" id="photoid_5" class="enlargePhoto" href="" data-status="0" data-modaltitle="Photo 5">
-                            <span class="photo " >
-
-                            </span>
-                        </a>
-                        <div class="replace hide">
-                            <a href="JavaScript:void(0);" data-photooverlayid="photoOverlay_5" class="photoOptions">Edit Photo</a>    
-                        </div>
-                        <input name="photoOrder" type="hidden" value="5">
-                    </div>
-
-
+                    @endfor
+                    
                 </div>
-
             </form>
         </div>
     </div>

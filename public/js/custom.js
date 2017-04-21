@@ -192,8 +192,8 @@ $("body").on('change', '#uploadForm2', function(e) {
                     $(this).val('');
                     return false;
                 }
-                
-                newimage = e.target.result;
+                $('.upload_photo').submit();
+                /*newimage = e.target.result;
                 $('.photobg').each(function(index, value) {
                     console.log(index)
                     console.log(increment)
@@ -203,7 +203,7 @@ $("body").on('change', '#uploadForm2', function(e) {
                     }
                 });
                 increment++;
-                $(this).val('');
+                $(this).val('');*/
 
             }
 
@@ -218,14 +218,16 @@ $("body").on('click', '.photoOptions', function(e) {
     $(this).closest('.photobg').find('.photooverlay').toggle();
 });
 $("body").on('click', '.delete-photo', function(e) {
-    var defaultimage = 'image/Affinity Photo 2.gif';
-    console.log(defaultimage);
-    $(this).closest('.photobg').find('.photo').css('background-image', '');
-    $(this).closest('.photobg').find('.photo').css('background-image', 'url(' + defaultimage + ')'); 
-    $(this).closest('.photobg').find('.photooverlay').css('display','none');
-    $(this).closest('.photobg').find('.replace').addClass('hide');
-    $('#uploadForm2').val('');
-    increment--;
+    confirm("Are you sure want to delete this image?");
+    
+//    var defaultimage = 'image/Affinity Photo 2.gif';
+//    console.log(defaultimage);
+//    $(this).closest('.photobg').find('.photo').css('background-image', '');
+//    $(this).closest('.photobg').find('.photo').css('background-image', 'url(' + defaultimage + ')'); 
+//    $(this).closest('.photobg').find('.photooverlay').css('display','none');
+//    $(this).closest('.photobg').find('.replace').addClass('hide');
+//    $('#uploadForm2').val('');
+//    increment--;
 });
 $("body").on('click', '.dropdown-menu li a', function(e) {
     var imgsrc = $(this).find('img').attr('src');
