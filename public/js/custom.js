@@ -240,10 +240,17 @@ $("body").on('click', '.dropdown-menu li a', function(e) {
 
 $(document).on('click','.icon-setting',function(){
     $('.up_caret').toggleClass('hide');
-    
+    $('.other-details .sidemenu .submenu').removeClass('submenuShow');
     
 });
 $(document).on('click',function(){
     $('.up_caret').addClass('hide');
-    
+   // $('.other-details .sidemenu .submenu').removeClass('submenuShow');
+});
+$(document).on('click', '.img-menu', function(){
+    $('.other-details .sidemenu .submenu').addClass('submenuShow');
+});
+
+$(document).on('click', '.dropdown-toggle', function(){
+    $('.other-details .sidemenu .submenu').removeClass('submenuShow');
 });
