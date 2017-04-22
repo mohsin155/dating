@@ -78,7 +78,7 @@ window.fbAsyncInit = function () {
                         <div class="col-md-4 header_logo text-right"><!--<img src="image/apache_pb2.png" />--></div>
                     </div>
                     <div class="navbar col-md-12 pd-0">
-                        <div class="col-md-10 link_color pd-10"><a href="#" class="link_color">Home</a> | <a href="{{url('/signup')}}" >Join Free Now</a> | <a href="#">Testinomials</a></div>
+                        <div class="col-md-10 link_color pd-10"><a href="#" class="link_color">Home</a> | <a href="{{url('/signup')}}" >Join Free Now</a> | <a href="#">Testimonials</a></div>
                         <div class="col-md-2 text-right pd-0"><!--<img src="image/flag_English.gif" /><img src="image/arrowdown.png" class="pd-l-10" />--><!-- Use CSS to replace link text with flag icons -->  
                             <nav class="navbar">
                             <ul class="nav navbar-nav nav-custom">
@@ -86,27 +86,27 @@ window.fbAsyncInit = function () {
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <img src="image/flags/english.gif" alt="" />
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-                                <li><a href="javascript:;" id="English" onclick="translate(this.id);"><span>English </span>
+                                <li><a href="javascript:;" id="English" onclick="translate(this.id);"><span></span>
                                         <img src="image/flags/english.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="German" onclick="translate(this.id);"><span>German </span>
+                                <li><a href="javascript:;" id="German" onclick="translate(this.id);"><span></span>
                                         <img src="image/flags/german.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Italian" onclick="translate(this.id);"><span>Italian
+                                <li><a href="javascript:;" id="Italian" onclick="translate(this.id);"><span>
                                         </span>
                                         <img src="image/flags/italian.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Danish" onclick="translate(this.id);"><span>Danish </span>
+                                <li><a href="javascript:;" id="Danish" onclick="translate(this.id);"><span></span>
                                         <img src="image/flags/danish.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Norwegian" onclick="translate(this.id);"><span>Norwegian </span>
+                                <li><a href="javascript:;" id="Norwegian" onclick="translate(this.id);"><span></span>
                                         <img src="image/flags/norwegian.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Dutch" onclick="translate(this.id);"><span>Dutch
+                                <li><a href="javascript:;" id="Dutch" onclick="translate(this.id);"><span>
                                         </span>
                                         <img src="image/flags/dutch.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="French" onclick="translate(this.id);"><span>French
+                                <li><a href="javascript:;" id="French" onclick="translate(this.id);"><span>
                                         </span>
                                         <img src="image/flags/french.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Portugese" onclick="translate(this.id);"><span>Portugese
+                                <li><a href="javascript:;" id="Portugese" onclick="translate(this.id);"><span>
                                         </span>
                                         <img src="image/flags/portugese.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Swedish" onclick="translate(this.id);"><span>Swedish
+                                <li><a href="javascript:;" id="Swedish" onclick="translate(this.id);"><span>
                                         </span>
                                         <img src="image/flags/swedish.gif" alt="" /></a> </li>
                             </ul>

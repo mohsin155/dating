@@ -218,7 +218,9 @@ $("body").on('click', '.photoOptions', function(e) {
     $(this).closest('.photobg').find('.photooverlay').toggle();
 });
 $("body").on('click', '.delete-photo', function(e) {
-    confirm("Are you sure want to delete this image?");
+    if(!confirm("Are you sure want to delete this photo?")){
+        e.preventDefault();
+    }
     
 //    var defaultimage = 'image/Affinity Photo 2.gif';
 //    console.log(defaultimage);

@@ -9,7 +9,21 @@
                     <h1>Upload a photo</h1>
                 </div>
             </div>
+            @if(session()->has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li> {{session()->get('success')}} </li>
+                </ul>
+            </div>
+            @endif
             <div class="email-address signup-page-outer">
+                <?php $photo_id = 0;?>
+                @if(!empty($sel_photo))
+                <div class="formContainer">
+                    <img src="{{$image_path}}{{$sel_photo->photo_name}}" height="130px" width="130px"/>
+                </div>
+                <?php $photo_id = $sel_photo->photo_id;?>
+                @endif
                 <div class="photo-upload-section text-center">
                     <h3 class="pcOrFacebook">From your computer</h3>
                     <div class="button-inner text-center">
@@ -17,6 +31,7 @@
                     </div>
                     <form class="mx-auto block col-4 center upload_photo" name="uploadPhotoForm" action="" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                        <input type="hidden" name="photo_id" value="{{$photo_id}}" />
                         <input type="file" name="uploadForm" value="uploadForm" id="uploadForm2" accept="image/jpeg,image/gif,image/png,image/bmp" class="hide">
                     </form>
                 </div>
@@ -48,28 +63,28 @@
                 <div class="mainHeading clearfix"><h1>Manage Photos</h1></div>
                 <ul>
                     <li>
-                        <p><strong>You can add 3 more photos to your gallery.</strong> Use the uploader options above to add more photos to your profile.</p>
+                        <p><strong>You can add {{5-count($photos)}} more photos to your gallery.</strong> Use the uploader options above to add more photos to your profile.</p>
                     </li>
                 </ul>
             </div>     
-            <div class="errormsg clearfix">
+            <!--<div class="errormsg clearfix">
                 <strong class="left">Pending photos should be processed within 12 hours. You cannot re-order photos while they are pending approval. </strong>
-            </div>
+            </div>-->
             <form method="post" action="" id="managePhotosForm">
                 <div class="photos clearfix ui-sortable" id="sortable" unselectable="on">
                     <?php $i = 1;?>
                     @foreach($photos as $photo)
                     <div class="photobg profilePhoto" id="p_{{$i}}" data-id="ui.position">
-                        <div class="photoHeading"><span class="primaryTitle">Primary Photo</span></div>
+                        @if($i == 1)<div class="photoHeading"><span class="primaryTitle">Primary Photo</span></div>@endif
                         <div class="photooverlay" id="photoOverlay_1" style="display:none;">
                             <ul>
-                                <li><a href="{{url('users/delete-image')}}/{{$photo->photo_id]}}" class="delete-photo">Delete</a></li><li>
-                                </li><li><a href="#" class="replace-photo">Replace</a></li>
-                                <li><a href="#">Unhide</a></li>
+                                <li><a href="{{url('users/delete-image')}}/{{$photo->photo_id}}" class="delete-photo">Delete</a></li><li>
+                                </li><li><a href="{{url('users/edit-photos')}}/{{$photo->photo_id}}" class="replace-photo">Replace</a></li>
+                                <!--<li><a href="#">Unhide</a></li>-->
                             </ul>
                         </div>
                         <a title="click to enlarge photo" id="photoid_1" class="enlargePhoto">
-                            <span class="photo " ><img src="../uploads/1/{{$photo->photo_name}}" width="100%" height="100%" />
+                            <span class="photo " ><img src="{{$image_path}}{{$photo->photo_name}}" width="100%" height="100%" />
                             </span>
                         </a>
                         <div class="replace">

@@ -285,10 +285,10 @@
                 <div class="securityicons">
 
                     <!-- START Thawte image -->
-                    <div class="thawte"><script type="text/javascript" src="https://seal.thawte.com/getthawteseal?host_name=www.LatinAmericanCupid.com&amp;size=L&amp;lang=en"></script><a href="https://sealinfo.thawte.com/thawtesplash?form_file=fdf/thawtesplash.fdf&amp;dn=WWW.LATINAMERICANCUPID.COM&amp;lang=en" tabindex="-1" onmousedown="return v_mDown(event);" target="THAWTE_Splash"><img name="seal" border="true" src="https://seal.thawte.com/getthawteseal?at=0&amp;sealid=1&amp;dn=WWW.LATINAMERICANCUPID.COM&amp;lang=en&amp;gmtoff=-330" oncontextmenu="return false;" alt="Click to Verify - This site has chosen a thawte SSL Certificate to improve Web site security"></a></div>
+                    <!--<div class="thawte"><script type="text/javascript" src="https://seal.thawte.com/getthawteseal?host_name=www.LatinAmericanCupid.com&amp;size=L&amp;lang=en"></script><a href="https://sealinfo.thawte.com/thawtesplash?form_file=fdf/thawtesplash.fdf&amp;dn=WWW.LATINAMERICANCUPID.COM&amp;lang=en" tabindex="-1" onmousedown="return v_mDown(event);" target="THAWTE_Splash"><img name="seal" border="true" src="https://seal.thawte.com/getthawteseal?at=0&amp;sealid=1&amp;dn=WWW.LATINAMERICANCUPID.COM&amp;lang=en&amp;gmtoff=-330" oncontextmenu="return false;" alt="Click to Verify - This site has chosen a thawte SSL Certificate to improve Web site security"></a></div>-->
                     <!-- END Thawth CODE -->
                     <!-- START SCANALERT CODE -->
-                    <div class="right"><a target="_blank" href="https://www.scanalert.com/RatingVerify?ref=www.LatinAmericanCupid.com"><img width="94" height="54" border="0" src="//images.scanalert.com/meter/www.LatinAmericanCupid.com/13.gif" alt="HACKER SAFE certified sites prevent over 99.9% of hacker crime." oncontextmenu="alert('Copying Prohibited by Law - HACKER SAFE is a Trademark of ScanAlert'); return false;" class="right"></a></div>
+                    <!--<div class="right"><a target="_blank" href="https://www.scanalert.com/RatingVerify?ref=www.LatinAmericanCupid.com"><img width="94" height="54" border="0" src="//images.scanalert.com/meter/www.LatinAmericanCupid.com/13.gif" alt="HACKER SAFE certified sites prevent over 99.9% of hacker crime." oncontextmenu="alert('Copying Prohibited by Law - HACKER SAFE is a Trademark of ScanAlert'); return false;" class="right"></a></div>-->
                     <!-- END SCANALERT CODE -->
 
                 </div>
@@ -420,15 +420,15 @@
       </div>
       <div class="modal-body">
           <p><strong>Automatic Renewal - Continuous Service</strong><br>
-          There is nothing worse than losing touch with a potential match when all you want to do is continue your conversation! To avoid this interruption, your membership on LatinAmericanCupid.com will be automatically renewed. After your initial membership period expires, your membership will be automatically renewed for an additional equivalent period, at the same price. Your credit/debit card will be automatically charged.</p>
+          There is nothing worse than losing touch with a potential match when all you want to do is continue your conversation! To avoid this interruption, your membership on Foreverwelove.com will be automatically renewed. After your initial membership period expires, your membership will be automatically renewed for an additional equivalent period, at the same price. Your credit/debit card will be automatically charged.</p>
           <p><strong>Billing Details</strong><br>
-          The charge on your billing statement or card will appear as "LatinAmericanCupid.com Southport AU". You are being billed by Cupid Media Pty Ltd, Suite 2502, 5 Lawson Street, Southport, QLD 4215, Australia. Your billing currency is USD.
+          The charge on your billing statement or card will appear as "Foreverwelove.com". You are being billed by Foreverwelove address. Your billing currency is USD.
           </p>
           <p><strong>Cancel Any Time</strong><br>
           We don't want to interrupt your conversations so we offer a continuous service. However, if you want to discontinue the service, you can opt out of auto renewal at any time. Simply select 'Billing' from the Settings menu to change your billing preferences.
           </p>
           <p><strong>Customer Service</strong><br>
-              Need more help or information? Feel free to contact our customer service team at<br>team@LatinAmericanCupid.com.
+              Need more help or information? Feel free to contact our customer service team at<br>team@foreverwelove.com.
           </p>
       </div>
 

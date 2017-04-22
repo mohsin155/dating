@@ -44,6 +44,7 @@ class PaymentController extends UtilityController {
         if ($subs != null) {
             $amount = $subs->amount;
             $data = ['VERSION' => '108.0',
+                'LOCALECODE'=>'en_US',
                 'METHOD'=> 'SetExpressCheckout',
                 'PAYMENTREQUEST_0_PAYMENTACTION' => 'SALE',
                 'PAYMENTREQUEST_0_AMT' => $amount,
@@ -53,7 +54,7 @@ class PaymentController extends UtilityController {
                 'L_PAYMENTREQUEST_0_DESC0' => $package_name,
                 'L_PAYMENTREQUEST_0_AMT0' => $amount,
                 'L_PAYMENTREQUEST_0_QTY0' => '1',
-                'RETURNURL' => url('payment/success'),
+                'RETURNURL' => url('payment/complete'),
                 'CANCELURL' => url('payment/subscription')];
             $responseNvp = $this->paypalRequest($data);
             //dd($responseNvp);
@@ -101,6 +102,11 @@ class PaymentController extends UtilityController {
         }
 
         return $nvp;
+    }
+    
+    public function getComplete(){
+        $inputs = Input::all();
+        dd($inputs);
     }
 
 }

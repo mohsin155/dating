@@ -1531,6 +1531,10 @@ a[id='addNewPhoto'] {
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
     background: none;
 }
+
+.active-grey{
+    background-color : #c5c5c5 !important;
+}
 /*------------END Edit Setting Page CSS --------------------- */
 /***************************
  MEDIA QUERIES
