@@ -1518,7 +1518,7 @@ a[id='addNewPhoto'] {
     background-color: #eee;
 }
 .nav-custom>li>a {
-    padding: 0px 92px;
+    padding: 0px 0px;
     display: initial;
 }
 .nav>li>a:hover, .nav>li>a:focus {
@@ -1534,6 +1534,9 @@ a[id='addNewPhoto'] {
 
 .active-grey{
     background-color : #c5c5c5 !important;
+}
+.dropdown-menu{
+    min-width : auto !important;
 }
 /*------------END Edit Setting Page CSS --------------------- */
 /***************************
