@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\UserTags;
 use App\Models\UserProfile;
 use App\Models\UserInterest;
+use App\Models\UserMatch;
 
 class UsersController extends UtilityController {
 
@@ -304,7 +305,9 @@ class UsersController extends UtilityController {
         $form_layout = $this->getProfileForm();
         $countries = Country::get();
         $languages = Languages::get();
-        return view('users.edit-profile')->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
+        $profile_data= UserProfile::where('user_id',Auth::user()->user_id) ->first();
+        //print_r($profile_data);
+        return view('users.edit-profile')->with('countries', $countries)->with('profile_data', $profile_data)->with('languages', $languages)->with('form_layout', $form_layout);
     }
 
     public function getEditMatch() {
@@ -458,4 +461,62 @@ class UsersController extends UtilityController {
         $user_intr->save();
         return Redirect::to('users/edit-interest')->with('success',trans('messages.userinterest_updated'));
     }
+    public function postEditMatch(){
+        
+        $inputs = Input::all();
+       
+     $user_match = UserMatch::firstOrNew(array('user_id' => Auth::user()->user_id));
+        
+        $user_match->gender = $inputs['gender'];
+        $user_match->min_age = $inputs['min_age'];
+        $user_match->max_age = $inputs['max_age'];
+        $user_match->country = $inputs['country'];
+        $user_match->state = $inputs['state'];
+        $user_match->city = $inputs['city'];
+        $user_match->min_height = $inputs['min_height'];
+        $user_match->max_height = $inputs['max_height'];
+        $user_match->min_weight = $inputs['min_weight'];
+        $user_match->max_weight = $inputs['max_weight'];
+        $user_match->hair_color = serialize($inputs['hair_color']);
+        $user_match->hair_length = serialize($inputs['hair_length']);
+        $user_match->hair_type = serialize($inputs['hair_type']);
+        $user_match->eye_color = serialize($inputs['eye_color']);
+        $user_match->eye_wear = serialize($inputs['eye_wear']);
+        $user_match->body_type = serialize($inputs['body_type']);
+        $user_match->ethnicity = serialize($inputs['ethnicity']);
+        $user_match->best_feature = serialize($inputs['best_feature']);
+        $user_match->body_art = serialize($inputs['body_art']);
+        $user_match->appearance = serialize($inputs['appearance']);
+        $user_match->drink = serialize($inputs['drink']);
+        $user_match->smoke = serialize($inputs['smoke']);
+         $user_match->marital_status = serialize($inputs['marital_status']);
+        $user_match->have_children = serialize($inputs['have_children']);
+        $user_match->no_children = $inputs['no_children'];
+        $user_match->oldest_child = $inputs['oldest_child'];
+        $user_match->youngest_child = $inputs['youngest_child'];
+        $user_match->more_child = serialize($inputs['more_child']);
+        $user_match->have_pets = serialize($inputs['have_pets']);
+        $user_match->occupation = serialize($inputs['occupation']);
+        $user_match->employment = serialize($inputs['employment']);
+        $user_match->income = $inputs['income'];
+        $user_match->home_type = serialize($inputs['home_type']);
+        $user_match->living_situation = serialize($inputs['living_situation']);
+        $user_match->relocate = serialize($inputs['relocate']);
+        $user_match->relationship = serialize($inputs['relationship']);
+        $user_match->nationality = serialize($inputs['nationality']);
+        $user_match->education = serialize($inputs['education']);
+        $user_match->languages = serialize($inputs['languages']);
+        $user_match->english_ability = $inputs['english_ability'];
+        $user_match->portugese_ability = $inputs['portugese_ability'];
+        $user_match->spanish_ability = $inputs['spanish_ability'];
+        $user_match->religion = serialize($inputs['religion']);
+        $user_match->religious_values = serialize($inputs['religious_values']);
+        $user_match->home_type = serialize($inputs['home_type']);
+        $user_match->living_situation = serialize($inputs['living_situation']);
+        $user_match->star_sign = serialize($inputs['star_sign']);
+       
+         $user_match->save();
+        return Redirect::to('users/edit-match')->with('success',trans('messages.match_updated'));
+    }
+
 }

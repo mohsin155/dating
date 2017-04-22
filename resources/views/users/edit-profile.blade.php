@@ -32,20 +32,20 @@
                
                     <div class="form-group">
                         <label for="name">First Name: </label>
-                        <input type="text" name="first_name" value=""/>
+                        <input type="text" name="first_name" >
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="gender">I am: </label>
-                        <select class="form-control" name="gender">
+                        <select class="form-control" name="gender" >
                             <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="female">Female</option>     
                         </select>
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group edit-profile-page">
                         <label for="dob">Date of birth: </label>
-                        <select class="form-control" name="dob_month">
+                        <select class="form-control" name="dob_month" >
                             <option value="01">January</option>
                             <option value="02">February</option>
                             <option value="03">March</option>
@@ -59,7 +59,7 @@
                             <option value="11">November</option>
                             <option value="12">December</option>
                         </select>
-                        <select class="form-control" name="dob_year">
+                        <select class="form-control" name="dob_year" >
                             @for($i=1912;$i<=date('Y',strtotime('now'));$i++)
                             <option value="{{$i}}">{{$i}}</option>
                             @endfor
@@ -70,7 +70,7 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="country">Country</label>
-                        <select class="form-control" id="country" name="country">
+                        <select class="form-control" id="country" name="country" >
                             <option value="0">--Please Select--</option>
                             @foreach($countries as $country)
                             <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif>{{$country->name}}</option>
@@ -487,17 +487,17 @@
                     </div>
                     <div class="form-group">
                         <label for="profile_heading">Your profile heading : </label>
-                        <input type="text" class="form-control" name="profile_heading" />
+                        <input type="text" class="form-control" name="profile_heading" value="{{is_null($profile_data)?'':$profile_data->profile_heading}}"/>
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="about_yourself">A little about yourself : </label>
-                        <textarea class="form-control" name="about_yourself"></textarea>
+                        <textarea class="form-control" name="about_yourself">{{is_null($profile_data)?'':$profile_data->about_yourself}}</textarea>
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="partner">What you're looking for in a partner : </label>
-                        <textarea class="form-control" name="partner"></textarea>
+                        <textarea class="form-control" name="partner">{{is_null($profile_data)?'':$profile_data->partner}}</textarea>
                     </div>
                     <hr class="seperate-line">
                     <div class="button-inner text-center email-address">
