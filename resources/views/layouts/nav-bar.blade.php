@@ -5,7 +5,7 @@
             <div class="logo"></div>
             <ul class="menu">
 
-                <li id="menu1">
+                <!--<li id="menu1">
 
                     <a href="#">2,514 Members Online</a>
                 </li>
@@ -24,7 +24,7 @@
 
                     </a>
                 </li>
-                <li id="menu5" class="dropdown">
+                <!--<li id="menu5" class="dropdown">
 
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Activity <b class="caret"></b></a>
 
@@ -186,13 +186,13 @@
                         <li><a href="#"><p>Block List</p></a></li>
                     </ul>
 
-                </li>
+                </li>-->
 
             </ul>   
             <div class="other-details">
                 <ul class="sidemenu">
                     <li id="menu6">
-                        <img src="{{url('image/nophoto_Male.gif')}}" alt="no image" width="25" height="30" border="0" class="img-menu">
+                        <img src="{{Utility::getUserImage()}}" alt="no image" width="25" height="30" border="0" class="img-menu">
 
                         <ul class="submenu" style="margin-left: -513px;">
                             <li>
@@ -200,17 +200,17 @@
                                     <div class="col_2_1 bg-grey colLeftSty">
                                         <h3>Edit Profile</h3>
                                         <ul class="list_unstyled">
-                                            <li><a href="#" class="clearfix">Profile</a></li>
-                                            <li><a id="evtGAddPhotoMemberHeader" href="#">Photos</a></li>
-                                            <li><a href="#" class="clearfix">Matches</a></li>
-                                            <li><a href="#" class="clearfix">Hobbies &amp; Interests</a></li>
-                                            <li><a href="#" class="clearfix">Personality Questions</a></li>
+                                            <li><a href="{{url('users/edit-profile')}}" class="clearfix">Profile</a></li>
+                                            <li><a id="evtGAddPhotoMemberHeader" href="{{url('users/edit-photos')}}">Photos</a></li>
+                                            <li><a href="{{url('users/edit-match')}}" class="clearfix">Matches</a></li>
+                                            <li><a href="{{url('users/edit-interest')}}" class="clearfix">Hobbies &amp; Interests</a></li>
+                                            <li><a href="{{url('users/edit-personality')}}" class="clearfix">Personality Questions</a></li>
 
-                                            <li><a href="#" class="clearfix">Verify Questions</a></li>
+                                            <li><a href="{{url('users/verify-profile')}}" class="clearfix">Verify Questions</a></li>
 
-                                            <li><a href="#" class="clearfix">CupidTags</a></li>  
+                                            <li><a href="{{url('users/edit-tags')}}" class="clearfix">CupidTags</a></li>  
 
-                                            <li><a href="#" class="clearfix">IMBRA</a></li>
+                                            <li><a href="{{url('users/imbra')}}" class="clearfix">IMBRA</a></li>
 
                                         </ul>
                                     </div>
@@ -218,11 +218,11 @@
                                         <div class="myprofile clearfix">
                                             <div class="pic">       	
 
-                                                <img src="{{url('image/nophoto_Male.gif')}}" height="70" border="0">
+                                                <img src="{{Utility::getUserImage()}}" height="70" border="0">
 
                                             </div>
                                             <span class="myprofiletext">
-                                                <h1>Hi Shadan</h1>
+                                                <h1>Hi {{Auth::user()->first_name}}</h1>
                                                 <a href="#">View My Profile</a> 
                                             </span> 
                                         </div>
@@ -254,20 +254,20 @@
 
                         <ul class="dropdown-menu dropdown-menu-header">
                             <li>Account Settings</li>
-                            <li><a href="#">Email Address</a></li>
-                            <li><a href="#">Password</a></li>
-                            <li><a href="#">Profile Settings</a></li>
-                            <li><a href="#">Billing</a></li>
-                            <li><a href="#">Notifications</a></li>
+                            <li><a href="{{url('users/account-settings')}}">Email Address</a></li>
+                            <li><a href="{{url('users/reset-password')}}">Password</a></li>
+                            <li><a href="{{url('users/profile-settings')}}">Profile Settings</a></li>
+                            <li><a href="{{url('users/billing')}}">Billing</a></li>
+                            <li><a href="{{url('users/notification')}}">Notifications</a></li>
                             <li class="line"></li>
                             <li><a href="#">Help</a></li>
                             <li>
-                                <a href="#" id="evtGUpgradeMemberHeaderSubNav">
+                                <a href="{{url('payment/subscription')}}" id="evtGUpgradeMemberHeaderSubNav">
                                     Upgrade Membership
                                 </a>
                             </li>
 
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="{{url('users/logout')}}">Logout</a></li>
                         </ul>
 
                     </li>

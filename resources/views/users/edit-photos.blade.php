@@ -32,7 +32,7 @@
                     <form class="mx-auto block col-4 center upload_photo" name="uploadPhotoForm" action="" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <input type="hidden" name="photo_id" value="{{$photo_id}}" />
-                        <input type="file" name="uploadForm" value="uploadForm" id="uploadForm2" accept="image/jpeg,image/gif,image/png,image/bmp" class="hide">
+                        <input type="file" name="uploadForm" value="uploadForm" id="uploadForm2" accept="image/jpeg,image/gif,image/png,image/bmp,image/jpg" class="hide">
                     </form>
                 </div>
             </div>

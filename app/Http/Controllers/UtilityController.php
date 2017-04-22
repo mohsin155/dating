@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AppearanceMaster;
+use App\Models\UserPhotos;
+use Illuminate\Support\Facades\Auth;
 
 class UtilityController extends Controller {
 
@@ -36,4 +38,14 @@ class UtilityController extends Controller {
         return $form_data;
     }
 
+    public static function getUserImage(){
+        $user_id = Auth::user()->user_id;
+        $photo = UserPhotos::where('user_id',$user_id)->orderBy('created_at','asc')->first();
+        if(!is_null($photo)){
+            $image = url('uploads').'/'.$user_id.'/'.$photo->photo_name;
+        }else{
+            $image = url('image/nophoto_Male.gif');
+        }
+        return $image;
+    }
 }
