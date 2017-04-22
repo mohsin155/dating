@@ -811,13 +811,115 @@ ul.menu li a {
 }
 .other-details {
     float: right;
+     width: 400px;
 }
-ul.sidemenu {
+
+    ul.sidemenu {
     list-style: none;
-    padding: 0;
-    float: right;
-    padding-right: 5px;
+    padding-top: 8px;
+    display: table;
     font: 1em 'Roboto', sans-serif;
+}
+#menu6, #menu7 {
+    display: table-cell;
+    padding-left: 10px;
+}
+.activity-dropdown-menu-left {
+    width: 200px;
+    left: -182px;
+    top: 43px;
+    background-color: #eee;
+    float: left;
+    height: 300px;
+}
+.activity-dropdown-menu-left .activity-dropdown-menu-left-heading {
+    font-weight: 600;
+    padding-left: 8px;
+    margin-bottom: 8px;
+}
+.activity-dropdown-menu-right {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.activity-dropdown-menu-right {
+    display: inline-block;
+    float: right;
+    width: 350px;
+    height: 300px;
+    top: -3px;
+    left: 99%;
+    border-radius: 0px;
+}
+ul.activity-dropdown-menu-left li {
+    width: 100%;
+}
+ul.activity-dropdown-menu-left li a {
+    /* padding: 0px 10px; */
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 0.9em;
+}
+.activity-dropdown-menu-right .menuactivitytext {
+    margin-left: 49px;
+}
+.activity-dropdown-menu-left a:link, .activity-dropdown-menu-left a:visited {
+    color: #666;
+}
+.menuactivitypic img {
+    margin-top: -50px;
+}
+ul.activity-dropdown-menu-left li p {
+    margin: -5px 15px 0px 0px;
+}
+a, a:hover, a:visited {
+    text-decoration: underline;
+    font-weight: 500;
+    text-decoration: none;
+}
+#menu7 .icon-setting {
+    background-image: url(../image/icon_settings.png);
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 30px;
+    padding-top: 14px;
+    display: table-cell;
+}
+#menu7 .dropdown-menu {
+    top: 35px;
+    left: -155px;
+    min-width: 200px;
+    border: none;
+    background-color: #eee;
+}
+.dropdown-menu-header li:first-child {
+    font-weight: 600;
+    padding-left: 18px;
+    margin-bottom: 8px;
+}
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.up_caret {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-bottom: 9px solid #eee;
+    border-left: 10px solid transparent;
+    border-top: 0 dotted;
+    border-right: 10px solid transparent;
+    content: "";
+    margin-bottom: 8px;
+    margin-top: -5px;
+    right: 4px;
 }
 /*------------End Header CSS --------------------- */
 
