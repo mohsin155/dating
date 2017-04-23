@@ -38,8 +38,19 @@
                     <div class="form-group">
                         <label for="gender">I am: </label>
                         <select class="form-control" name="gender" >
+                            @if($profile_data->gender=="male"){
+                                 <option value="male" selected="selected">Male</option>
+                                 <option value="female">Female</option> 
+                            }
+                            @elseif($profile_data->gender=="female"){
+                                 <option value="male">Male</option>
+                                 <option value="female" selected="selected">Female</option>
+                            }
+                            @else{
                             <option value="male">Male</option>
-                            <option value="female">Female</option>     
+                            <option value="female">Female</option>   
+                            }
+                            @endif
                         </select>
                     </div>
                     <hr class="seperate-line">
@@ -99,7 +110,13 @@
                         <select class="form-control" name="hair_color">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[1] as $row)
-                            <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            @if($row['value']==$profile_data->hair_color){
+                                <option value="{{$profile_data->hair_color}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
+                            <option value="{{$row['value']}}">{{$row['label']}}</option>  
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -109,7 +126,13 @@
                         <select class="form-control" name="hair_length">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[2] as $row)
+                            @if($row['value']==$profile_data->hair_length){
+                                <option value="{{$profile_data->hair_length}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -119,7 +142,13 @@
                         <select class="form-control" name="hair_type">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[3] as $row)
+                            @if($row['value']==$profile_data->hair_type){
+                                <option value="{{$profile_data->hair_type}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -129,7 +158,13 @@
                         <select class="form-control" name="eye_color">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[4] as $row)
+                             @if($row['value']==$profile_data->eye_color){
+                                <option value="{{$profile_data->eye_color}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -139,7 +174,13 @@
                         <select class="form-control" name="eye_wear">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[5] as $row)
+                            @if($row['value']==$profile_data->eye_wear){
+                                <option value="{{$profile_data->eye_wear}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -149,7 +190,13 @@
                         <select class="form-control" name="height">
                             <option value="0">--Please Select--</option>
                             @for($i=140;$i<220;$i++)
+                            @if($i==$profile_data->height){
+                                <option value="{{$profile_data->height}}" selected="selected">{{$i}}cm</option>
+                                }
+                               @else{
                             <option value="{{$i}}">{{$i}}cm</option>
+                            }
+                            @endif
                             @endfor
                         </select>
                     </div>
@@ -159,7 +206,13 @@
                         <select class="form-control" name="weight">
                             <option value="0">--Please Select--</option>
                             @for($i=40;$i<220;$i++)
+                            @if($i==$profile_data->weight){
+                                <option value="{{$profile_data->weight}}" selected="selected">{{$i}}</option>
+                                }
+                               @else{
                             <option value="{{$i}}">{{$i}}kg</option>
+                            }
+                            @endif
                             @endfor
                         </select>
                     </div>
@@ -169,7 +222,13 @@
                         <select class="form-control" name="body_type">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[8] as $row)
+                            @if($row['value']==$profile_data->body_type){
+                                <option value="{{$profile_data->body_type}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -179,7 +238,13 @@
                         <select class="form-control" name="ethnicity">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[9] as $row)
+                            @if($row['value']==$profile_data->ethnicity){
+                                <option value="{{$profile_data->ethnicity}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -189,7 +254,13 @@
                         <select class="form-control" name="facial_hair">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[10] as $row)
+                            @if($row['value']==$profile_data->facial_hair){
+                                <option value="{{$profile_data->facial_hair}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -199,7 +270,13 @@
                         <select class="form-control" name="best_feature">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[11] as $row)
+                            @if($row['value']==$profile_data->best_feature){
+                                <option value="{{$profile_data->best_feature}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -209,7 +286,13 @@
                         <select class="form-control" name="body_art">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[12] as $row)
+                            @if($row['value']==$profile_data->body_art){
+                                <option value="{{$profile_data->body_art}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -219,7 +302,13 @@
                         <select class="form-control" name="appearance">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[13] as $row)
+                            @if($row['value']==$profile_data->appearance){
+                                <option value="{{$profile_data->appearance}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -231,7 +320,13 @@
                         <select class="form-control" name="drink">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[14] as $row)
+                             @if($row['value']==$profile_data->drink){
+                                <option value="{{$profile_data->drink}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -241,7 +336,13 @@
                         <select class="form-control" name="smoke">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[15] as $row)
+                             @if($row['value']==$profile_data->smoke){
+                                <option value="{{$profile_data->smoke}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -251,7 +352,13 @@
                         <select class="form-control" name="marital_status">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[16] as $row)
+                            @if($row['value']==$profile_data->marital_status){
+                                <option value="{{$profile_data->marital_status}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -261,7 +368,13 @@
                         <select class="form-control" name="have_children">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[17] as $row)
+                            @if($row['value']==$profile_data->have_children){
+                                <option value="{{$profile_data->have_children}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -271,7 +384,13 @@
                         <select class="form-control" name="no_children">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[18] as $row)
+                            @if($row['value']==$profile_data->no_children){
+                                <option value="{{$profile_data->no_children}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -281,7 +400,13 @@
                         <select class="form-control" name="oldest_child">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[19] as $row)
+                            @if($row['value']==$profile_data->oldest_child){
+                                <option value="{{$profile_data->oldest_child}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -291,7 +416,13 @@
                         <select class="form-control" name="youngest_child">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[20] as $row)
+                            @if($row['value']==$profile_data->youngest_child){
+                                <option value="{{$profile_data->youngest_child}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -301,7 +432,13 @@
                         <select class="form-control" name="more_child">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[21] as $row)
+                            @if($row['value']==$profile_data->more_child){
+                                <option value="{{$profile_data->more_child}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -310,7 +447,13 @@
                         <label for="have_pets" class="pets-label">Do you have pets? : </label>
                         @foreach($form_layout[22] as $row)
                         <div class="pets-section">
+                            @if($row['value']==$profile_data->have_pets){
+                            <input type="checkbox" name="have_pets[]" value="{{$profile_data->have_pets}}" checked="checked">{{$row['label']}}</option>
+                                }
+                               @else{
                         <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" />{{$row['label']}}
+                        }
+                        @endif
                         </div>
                         @endforeach
                     </div>
@@ -320,7 +463,13 @@
                         <select class="form-control" name="occupation">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[23] as $row)
+                            @if($row['value']==$profile_data->occupation){
+                                <option value="{{$profile_data->occupation}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -330,7 +479,13 @@
                         <select class="form-control" name="employment">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[24] as $row)
+                            @if($row['value']==$profile_data->employment){
+                                <option value="{{$profile_data->employment}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -354,7 +509,13 @@
                         <select class="form-control" name="home_type">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[25] as $row)
+                            @if($row['value']==$profile_data->home_type){
+                                <option value="{{$profile_data->home_type}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -364,7 +525,13 @@
                         <select class="form-control" name="living_situation">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[26] as $row)
+                            @if($row['value']==$profile_data->living_situation){
+                                <option value="{{$profile_data->living_situation}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -374,7 +541,13 @@
                         <select class="form-control" name="relocate">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[27] as $row)
+                            @if($row['value']==$profile_data->relocate){
+                                <option value="{{$profile_data->relocate}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -384,7 +557,13 @@
 
                         @foreach($form_layout[28] as $row)
                           <div class="pets-section">
+                              @if($row['value']==$profile_data->relationship){
+                              <input type="checkbox" name="relationship[]" value="{{$profile_data->relationship}}" checked="checked">{{$row['label']}}</option>
+                                }
+                               @else{
                         <input type="checkbox" name="relationship[]" value="{{$row['value']}}" />{{$row['label']}}
+                        }
+                        @endif
                         </div>
                         @endforeach
                         
@@ -398,7 +577,13 @@
                         <select class="form-control" name="nationality">
                             <option value="0">--Please Select--</option>
                             @foreach($countries as $country)
+                           @if($country->id==$profile_data->nationality){
+                                <option value="{{$profile_data->nationality}}" selected="selected">{{$country->name}}</option>
+                                }
+                               @else{
                             <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif>{{$country->name}}</option>
+                           }
+                           @endif
                             @endforeach
                         </select>
                     </div>
@@ -408,7 +593,13 @@
                         <select class="form-control" name="education">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[29] as $row)
+                            @if($row['value']==$profile_data->education){
+                                <option value="{{$profile_data->education}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -418,7 +609,13 @@
                         <select class="selectpicker" name="languages[]" multiple>
                             <option value="0">--Please Select--</option>
                             @foreach($languages as $row)
+                            @if($row['value']==$profile_data->languages){
+                                <option value="{{$profile_data->languages}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row->id}}">{{$row->name}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -428,7 +625,13 @@
                         <select class="form-control" name="english_ability">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[30] as $row)
+                            @if($row['value']==$profile_data->english_ability){
+                                <option value="{{$profile_data->english_ability}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -438,7 +641,13 @@
                         <select class="form-control" name="portugese_ability">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[31] as $row)
+                            @if($row['value']==$profile_data->portugese_ability){
+                                <option value="{{$profile_data->portugese_ability}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -448,7 +657,13 @@
                         <select class="form-control" name="spanish_ability">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[32] as $row)
+                            @if($row['value']==$profile_data->spanish_ability){
+                                <option value="{{$profile_data->spanish_ability}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -458,7 +673,13 @@
                         <select class="form-control" name="religion">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[33] as $row)
+                            @if($row['value']==$profile_data->religion){
+                                <option value="{{$profile_data->religion}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -468,7 +689,13 @@
                         <select class="form-control" name="religious_values">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[34] as $row)
+                            @if($row['value']==$profile_data->religious_values){
+                                <option value="{{$profile_data->religious_values}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -478,7 +705,13 @@
                         <select class="form-control" name="star_sign">
                             <option value="0">--Please Select--</option>
                             @foreach($form_layout[35] as $row)
+                            @if($row['value']==$profile_data->star_sign){
+                                <option value="{{$profile_data->star_sign}}" selected="selected">{{$row['label']}}</option>
+                                }
+                               @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            }
+                            @endif
                             @endforeach
                         </select>
                     </div>

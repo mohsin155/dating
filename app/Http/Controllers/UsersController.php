@@ -301,7 +301,7 @@ class UsersController extends UtilityController {
         $countries = Country::get();
         $languages = Languages::get();
         $profile_data= UserProfile::where('user_id',Auth::user()->user_id) ->first();
-        //print_r($profile_data);
+       // print_r($profile_data);
         return view('users.edit-profile')->with('countries', $countries)->with('profile_data', $profile_data)->with('languages', $languages)->with('form_layout', $form_layout);
     }
 
