@@ -115,10 +115,10 @@
 .mr-t25 {
     margin-top: -25px;
 }
-.mr-r-10 {
-    margin-right: 10px;
-}
 
+.mr-r-10 {
+    margin-right: 10px !important;
+}
 .mr-r-20 {
     margin-right: 20px;
 }
@@ -1003,7 +1003,7 @@ a, a:hover, a:visited {
 .address-update-container .email-address {
          background-color: #fff;
 }
-.email-address input,  .email-address button, .notification button {
+.email-address input,  .email-address button, .notification button, .criminal-history button {
     width: 250px;
 } 
 
@@ -1822,6 +1822,240 @@ a[id='addNewPhoto'] {
 .dropdown-menu{
     min-width : auto !important;
 }
+/** Latesh css **/
+.profile-warning {
+    background-image: url(../image/icon_notverifiedwarning.png);
+    width: 15px;
+    background-repeat: no-repeat;
+    height: 15px;
+    position: absolute;
+    right: 0px;
+    top: 14px;
+}
+.profile-tick {
+    background-image: url(../image/icon_verified.png);
+    width: 15px;
+    background-repeat: no-repeat;
+    height: 15px;
+    position: absolute;
+    right: 0px;
+    top: 14px;
+}
+.nav-tabs a span {
+    margin-left:-10px;
+}
+#profile-bar {
+   padding: 14px 15px;
+    background-color: #ccc;
+}
+#profileCompletionExpand {
+    margin-top: -9px;
+    background-color: #555;
+    color: #fff;
+    border-radius: 5px;
+    padding: 0px 5px;
+    width: 90px;
+    text-decoration: none;
+    height: 15px;
+    font-size: 12px;
+    float: right;
+    margin-right: -351px;
+}
+.profilebartext {
+    display: block;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 11px;
+}
+#profilecompletionbar {
+  float: right;
+    width: 250px;
+    height: 15px;
+    border: solid 2px #555;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-right: 121px;
+    margin-top: -8px;
+}
+#profilecompletionlevel {
+   width: 0%;
+    height: 12px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background: #777777;
+    background: -moz-linear-gradient(top, #777 0%, #555 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #777), color-stop(100%, #555));
+    background: -webkit-linear-gradient(top, #777 0%, #555 100%);
+    background: -o-linear-gradient(top, #777 0%, #555 100%);
+    background: -ms-linear-gradient(top, #777 0%, #555 100%);
+    background: linear-gradient(to bottom, #777777 0%,#555555 100%);
+    text-align: center;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', endColorstr='#555555',GradientType=0 )
+}
+.address-update-outer{
+    padding:7px 30px;
+    margin-bottom: -10px;
+}
+.your-information{
+    margin: 15px;
+    border: 1px solid #acabab;
+    /* background-color: #ccc; */
+    margin-top: -15px;
+    border-color: #000;
+    min-height: 110px;
+  
+}
+.your-information h1{
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 2px 30px;
+    background-color: #f1f1f1;
+}
+.your-information-heading-image {
+    float: right;
+    margin-top: -17px;
+   padding-right: 26px;
+}
+.your-information-heading-right{
+   float: right;
+   color: #d00303;
+    margin-top: -17px;
+    padding-right: 45px;
+    font-weight:700;
+}
+.your-info {
+    display:table;
+    padding:7px 30px;
+    width: 100%;
+}
+.your-info .your-info-row1,.your-info .your-info-row2 {
+    display:table-row; 
+}
+.your-info-col1, .your-info-col2,.your-info-col3, .your-info-col4 {
+      display:table-cell; 
+      width:50%;
+      padding:2px 10px;
+      padding: 7px 0px;
+}
+
+.your-info-row2 select {
+    background: #f6f6f6;
+    border-radius: 3px;
+    font: 12px Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    padding-left: 2px;
+   width: 72px !important;
+   height: 20px !important;
+}
+.your-info input{
+    margin-left:25px;
+}
+.combo
+{
+    margin-left: 15px;
+}
+#dob_m{
+    margin-left: 15px;
+}
+
+#dob_d{
+    width:41px !important
+   
+}
+#dob_y{
+    width:55px !important;
+    margin-left:3px;
+}
+.criminal-listing-ul{
+    list-style-type: none;
+    padding: 7px 30px;
+}
+.criminalhistory {
+   list-style-type: none;
+   margin-left:-40px;
+  
+   
+}
+.criminal-listing-ul label{
+    font-weight:normal;
+        margin-left: 5px;
+    margin-right: 10px;    
+}
+.imbraText, .cupidText, .verifyText {
+    line-height: 1.6em;
+    padding-bottom: 10px;
+}
+.imbraText 
+.criminal-history{
+    margin: 15px;
+    border: 1px solid #acabab;
+    margin-top: -15px;
+    border-color: #000;
+    min-height: 700px;
+
+}
+.residenceInfo, .marriageHistory {
+    width: 400px;
+}
+.childrenAge, .residenceInfo, .marriageHistory {
+    background-color: #eee;
+}
+.formContainer tbody tr:nth-child(even) {
+    background: #f5f5f5;
+}
+table.childrenAge, table.residenceInfo, table.marriageHistory {
+    border: #aaa 1px solid;
+}
+.formContainer td, .formContainer th {
+    padding: 5px 0 5px 30px;
+    border-bottom: 1px solid #e9e9e9;
+    text-align: left;
+}
+.criminal-history h1{
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 2px 30px;
+    background-color: #f1f1f1;
+}
+.maritalStatus{
+    width:250px;
+}
+.martial-status li:first-child{
+    list-style-type: none;
+    margin-left: -40px;
+    
+}
+.martial-status li:not(:first-child){
+    list-style-type: none;
+    padding-top: 5px;
+  
+}
+#childAge{
+    height: 21px!important;
+    padding: 2px 7px;
+    width: 111px !important;
+    margin-bottom: 8px;
+    margin-top:-5px;
+}
+.martial-status h1{
+    padding-left:7px;
+}
+ .residenceInfo
+{
+    border: #aaa 1px solid;
+   
+}
+
+
+/* END Latesh CSS */
 /*------------END Edit Setting Page CSS --------------------- */
 /***************************
  MEDIA QUERIES

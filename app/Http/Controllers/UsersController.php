@@ -543,5 +543,8 @@ class UsersController extends UtilityController {
          $user_match->save();
         return Redirect::to('users/edit-match')->with('success',trans('messages.match_updated'));
     }
+    public function getEmbra(){
+        return view('html.embra');
+    }
 
 }
