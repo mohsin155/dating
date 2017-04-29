@@ -339,7 +339,9 @@ class UsersController extends UtilityController {
         $countries = Country::get();
         return view('users.imbra')->with('countries', $countries);
     }
-
+     public function getListing() {
+        return view('users.listing');
+    }
     public function getEditPhotos($id = 0) {
         $photos = UserPhotos::where('user_id', Auth::user()->user_id)->get();
         $sel_photo = null;
@@ -576,5 +578,5 @@ class UsersController extends UtilityController {
         $user_imbra->save();
         return Redirect::to('users/imbra')->with('success',trans('messages.record_updated'));
     }
-
+    
 }
