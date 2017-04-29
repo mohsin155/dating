@@ -32,7 +32,7 @@
                
                     <div class="form-group">
                         <label for="name">First Name: </label>
-                        <input type="text" name="first_name" >
+                        <input type="text" name="first_name"  value="{{is_null($profile_data)?'':$profile_data->first_name}}">
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
@@ -57,8 +57,26 @@
                     <div class="form-group edit-profile-page">
                         <label for="dob">Date of birth: </label>
                         <select class="form-control" name="dob_month" >
-                            <option value="01">January</option>
+                            @if($profile_data->dob_month=="01")
+                            <option value="01" selected>January</option>
                             <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                           @endif
+                           @if($profile_data->dob_month=="02")
+                            <option value="02" selected>February</option>
+                           @endif
+                            <option value="02">February</option>
+                            
                             <option value="03">March</option>
                             <option value="04">April</option>
                             <option value="05">May</option>
@@ -72,7 +90,11 @@
                         </select>
                         <select class="form-control" name="dob_year" >
                             @for($i=1912;$i<=date('Y',strtotime('now'));$i++)
-                            <option value="{{$i}}">{{$i}}</option>
+                            @if($profile_data->dob_year==$i)
+                            <option value="{{$i}}" selected="selected">{{$i}}</option>
+                            @else
+                             <option value="{{$i}}">{{$i}}</option>
+                             @endif
                             @endfor
                         </select>
                         
@@ -445,15 +467,15 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="have_pets" class="pets-label">Do you have pets? : </label>
+                        
                         @foreach($form_layout[22] as $row)
                         <div class="pets-section">
-                            @if($row['value']==$profile_data->have_pets){
-                            <input type="checkbox" name="have_pets[]" value="{{$profile_data->have_pets}}" checked="checked">{{$row['label']}}</option>
-                                }
-                               @else{
-                        <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" />{{$row['label']}}
-                        }
-                        @endif
+                            @if(is_array(unserialize($profile_data->have_pets)) && in_array($row['value'],unserialize($profile_data->have_pets)))
+                            <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" />{{$row['label']}}
+                         
+                         @endif
                         </div>
                         @endforeach
                     </div>
@@ -557,12 +579,10 @@
 
                         @foreach($form_layout[28] as $row)
                           <div class="pets-section">
-                              @if($row['value']==$profile_data->relationship){
-                              <input type="checkbox" name="relationship[]" value="{{$profile_data->relationship}}" checked="checked">{{$row['label']}}</option>
-                                }
-                               @else{
-                        <input type="checkbox" name="relationship[]" value="{{$row['value']}}" />{{$row['label']}}
-                        }
+                              @if(is_array(unserialize($profile_data->relationship)) && in_array($row['value'],unserialize($profile_data->relationship)))
+                              <input type="checkbox" name="relationship[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                               @else
+                             <input type="checkbox" name="relationship[]" value="{{$row['value']}}" />{{$row['label']}}
                         @endif
                         </div>
                         @endforeach
@@ -609,12 +629,10 @@
                         <select class="selectpicker" name="languages[]" multiple>
                             <option value="0">--Please Select--</option>
                             @foreach($languages as $row)
-                            @if($row['value']==$profile_data->languages){
-                                <option value="{{$profile_data->languages}}" selected="selected">{{$row['label']}}</option>
-                                }
-                               @else{
-                            <option value="{{$row->id}}">{{$row->name}}</option>
-                            }
+                            @if(is_array(unserialize($profile_data->languages)) && in_array($row->id,unserialize($profile_data->languages)))
+                                <option value="{{$row->id}}" selected="selected">{{$row->name}}</option>   
+                               @else
+                            <option value="{{$row->id}}">{{$row->name}}</option> 
                             @endif
                             @endforeach
                         </select>

@@ -22,6 +22,7 @@ use App\Models\UserProfile;
 use App\Models\UserPhotos;
 use App\Models\UserInterest;
 use App\Models\UserMatch;
+use App\Models\UserImbra;
 
 class UsersController extends UtilityController {
 
@@ -310,7 +311,9 @@ class UsersController extends UtilityController {
         $form_layout = $this->getProfileForm();
         $countries = Country::get();
         $languages = Languages::get();
-        return view('users.edit-match')->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
+        $match_data= UserMatch::where('user_id',Auth::user()->user_id) ->first();
+        //print_r($match_data);
+        return view('users.edit-match')->with('countries', $countries)->with('match_data', $match_data)->with('languages', $languages)->with('form_layout', $form_layout);
     }
 
     public function getEditInterest() {
@@ -333,7 +336,8 @@ class UsersController extends UtilityController {
     }
 
     public function getImbra() {
-        return view('users.imbra');
+        $countries = Country::get();
+        return view('users.imbra')->with('countries', $countries);
     }
 
     public function getEditPhotos($id = 0) {
@@ -527,7 +531,7 @@ class UsersController extends UtilityController {
         $user_match->home_type = serialize($inputs['home_type']);
         $user_match->living_situation = serialize($inputs['living_situation']);
         $user_match->relocate = serialize($inputs['relocate']);
-        $user_match->relationship = serialize($inputs['relationship']);
+        
         $user_match->nationality = serialize($inputs['nationality']);
         $user_match->education = serialize($inputs['education']);
         $user_match->languages = serialize($inputs['languages']);
@@ -543,8 +547,34 @@ class UsersController extends UtilityController {
          $user_match->save();
         return Redirect::to('users/edit-match')->with('success',trans('messages.match_updated'));
     }
-    public function getEmbra(){
-        return view('html.embra');
+   
+    public function postImbra() {
+         $inputs = Input::all();
+          $user_imbra = UserImbra::firstOrNew(array('user_id' => Auth::user()->user_id));
+        
+        $user_imbra->first_name = $inputs['first_name'];
+        $user_imbra->last_name = $inputs['last_name'];
+        $user_imbra->middle_initial = $inputs['middle_initial'];
+        $user_imbra->dob_month = $inputs['dob_month'];
+        $user_imbra->dob_day = $inputs['dob_day'];
+        $user_imbra->dob_year = $inputs['dob_year'];
+        $user_imbra->court_order = serialize($inputs['court_order']);
+        $user_imbra->prosecution_ref = serialize($inputs['prosecution_ref']);
+        $user_imbra->drugs_alcohol = $inputs['drugs_alcohol'];
+        $user_imbra->criminal_history = serialize($inputs['criminal_history']);
+        $user_imbra->currently_married = $inputs['currently_married'];
+        $user_imbra->previously_married = $inputs['previously_married'];
+        //$user_imbra->mar_month = $inputs['mar_day'];
+        //$user_imbra->mar_day = $inputs['mar_day'];
+        //$user_imbra->mar_year = $inputs['mar_year'];
+       // $user_imbra->terminated_reason = $inputs['terminated_reason'];
+        $user_imbra->alien_sponsored = $inputs['alien_sponsored'];
+        $user_imbra->child_age = $inputs['child_age'];
+        $user_imbra->country = $inputs['country'];
+        $user_imbra->state = $inputs['state'];
+         
+        $user_imbra->save();
+        return Redirect::to('users/imbra')->with('success',trans('messages.record_updated'));
     }
 
 }

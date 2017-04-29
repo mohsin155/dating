@@ -32,8 +32,20 @@
                      <div class="form-group">
                         <label for="gender">I'm seeking a: </label>
                         <select class="form-control" name="gender" >
+                             @if($match_data->gender=="male"){
+                                 <option value="male" selected="selected">Male</option>
+                                 <option value="female">Female</option> 
+                            }
+                            @elseif($match_data->gender=="female"){
+                                 <option value="male">Male</option>
+                                 <option value="female" selected="selected">Female</option>
+                            }
+                            @else{
                             <option value="male">Male</option>
-                            <option value="female">Female</option> 
+                            <option value="female">Female</option>   
+                            }
+                            @endif
+                                 
                         </select>
                     </div>
                     <hr class="seperate-line">
@@ -42,14 +54,22 @@
                          <select class="form-control" name="min_age" >
                              <option value="0">----</option>
                             @for($i=18;$i<=90;$i++)
+                            @if($match_data->min_age==$i){
+                            <option value="{{$i}}"  selected="selected">{{$i}}</option>
+                            @else
                             <option value="{{$i}}">{{$i}}</option>
+                            @endif
                             @endfor
                         </select>
                         and 
                         <select class="form-control" name="max_age" >
                             <option value="0">----</option>
                             @for($i=18;$i<=90;$i++)
-                            <option value="{{$i}}">{{$i}}</option>
+                            @if($match_data->max_age==$i){
+                             <option value="{{$i}}"  selected="selected">{{$i}}</option>
+                             @else
+                             <option value="{{$i}}">{{$i}}</option>
+                             @endif
                             @endfor
                         </select>
                         
@@ -87,14 +107,22 @@
                         <select class="form-control" name="min_height">
                             <option value="155">155cm</option>
                             @for($i=140;$i<220;$i++)
-                            <option value="{{$i}}">{{$i}}cm</option>
+                              @if($match_data->min_height==$i){
+                             <option value="{{$i}}"  selected="selected">{{$i}}</option>
+                             @else
+                             <option value="{{$i}}">{{$i}}</option>
+                             @endif
                             @endfor
                         </select>
                         and
                         <select class="form-control" name="max_height">
                             <option value="155">155cm</option>
                             @for($i=140;$i<220;$i++)
-                            <option value="{{$i}}">{{$i}}cm</option>
+                             @if($match_data->max_height==$i){
+                             <option value="{{$i}}"  selected="selected">{{$i}}</option>
+                             @else
+                             <option value="{{$i}}">{{$i}}</option>
+                             @endif
                             @endfor
                         </select>
                     </div>
@@ -104,14 +132,22 @@
                         <select class="form-control" name="min_weight">
                             <option value="any">Any</option>
                             @for($i=40;$i<220;$i++)
-                            <option value="{{$i}}">{{$i}}kg</option>
+                            @if($match_data->min_weight==$i){
+                             <option value="{{$i}}"  selected="selected">{{$i}}</option>
+                             @else
+                             <option value="{{$i}}">{{$i}}</option>
+                             @endif
                             @endfor
                         </select>
                         and
                          <select class="form-control" name="max_weight">
                            <option value="any">Any</option>
                             @for($i=40;$i<220;$i++)
-                            <option value="{{$i}}">{{$i}}kg</option>
+                             @if($match_data->max_weight==$i){
+                             <option value="{{$i}}"  selected="selected">{{$i}}</option>
+                             @else
+                             <option value="{{$i}}">{{$i}}</option>
+                             @endif
                             @endfor
                         </select>
                     </div>
@@ -121,7 +157,11 @@
                             <input type="checkbox" name="body_type[]" value="any" checked="true" />Any
                             @foreach($form_layout[8] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="body_type[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->body_type)) && in_array($row['value'],unserialize($match_data->body_type)))
+                            <input type="checkbox" name="body_type[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="body_type[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -133,7 +173,11 @@
                             <input type="checkbox" name="ethnicity[]" value="any" checked="true" />Any
                             @foreach($form_layout[9] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="ethnicity[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->ethnicity)) && in_array($row['value'],unserialize($match_data->ethnicity)))
+                            <input type="checkbox" name="ethnicity[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="ethnicity[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -145,7 +189,11 @@
                             <input type="checkbox" name="appearance[]" value="any" checked="true" />Any
                             @foreach($form_layout[13] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="appearance[]" value="{{$row['value']}}" />{{$row['label']}}
+                             @if(is_array(unserialize($match_data->appearance)) && in_array($row['value'],unserialize($match_data->appearance)))
+                            <input type="checkbox" name="appearance[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="appearance[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -158,7 +206,11 @@
                             <input type="checkbox" name="hair_color[]" value="any" checked="true" />Any
                             @foreach($form_layout[1] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="hair_color[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->hair_color)) && in_array($row['value'],unserialize($match_data->hair_color)))
+                            <input type="checkbox" name="hair_color[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="hair_color[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -172,7 +224,11 @@
                        
                             @foreach($form_layout[2] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="hair_length[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->hair_length)) && in_array($row['value'],unserialize($match_data->hair_length)))
+                            <input type="checkbox" name="hair_length[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="hair_length[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -183,7 +239,11 @@
                             <input type="checkbox" name="hair_type[]" value="any" checked="true" />Any
                             @foreach($form_layout[3] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="hair_type[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->hair_type)) && in_array($row['value'],unserialize($match_data->hair_type)))
+                            <input type="checkbox" name="hair_type[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="hair_type[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -195,7 +255,11 @@
                             <input type="checkbox" name="eye_color[]" value="any" checked="true" />Any
                             @foreach($form_layout[4] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="eye_color[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->eye_color)) && in_array($row['value'],unserialize($match_data->eye_color)))
+                            <input type="checkbox" name="eye_color[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="eye_color[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -206,7 +270,11 @@
                             <input type="checkbox" name="eye_wear[]" value="any" checked="true" />Any
                             @foreach($form_layout[5] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="eye_wear[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->eye_wear)) && in_array($row['value'],unserialize($match_data->eye_wear)))
+                            <input type="checkbox" name="eye_wear[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="eye_wear[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -217,7 +285,11 @@
                             <input type="checkbox" name="best_feature[]" value="any" checked="true" />Any
                             @foreach($form_layout[11] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="best_feature[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->best_feature)) && in_array($row['value'],unserialize($match_data->best_feature)))
+                            <input type="checkbox" name="best_feature[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="best_feature[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -228,7 +300,11 @@
                             <input type="checkbox" name="body_art[]" value="any" checked="true" />Any
                             @foreach($form_layout[12] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="body_art[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->body_art)) && in_array($row['value'],unserialize($match_data->body_art)))
+                            <input type="checkbox" name="body_art[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="body_art[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -243,7 +319,11 @@
                             <input type="checkbox" name="smoke[]" value="any" checked="true" />Any
                             @foreach($form_layout[15] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="smoke[]" value="{{$row['value']}}" />{{$row['label']}}
+                             @if(is_array(unserialize($match_data->smoke)) && in_array($row['value'],unserialize($match_data->smoke)))
+                            <input type="checkbox" name="smoke[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="smoke[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -254,7 +334,11 @@
                             <input type="checkbox" name="drink[]" value="any" checked="true" />Any
                             @foreach($form_layout[14] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="drink[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->drink)) && in_array($row['value'],unserialize($match_data->drink)))
+                            <input type="checkbox" name="drink[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="drink[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -265,7 +349,11 @@
                             <input type="checkbox" name="relocate[]" value="any" checked="true" />Any
                             @foreach($form_layout[27] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="relocate[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->relocate)) && in_array($row['value'],unserialize($match_data->relocate)))
+                            <input type="checkbox" name="relocate[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="relocate[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -276,7 +364,11 @@
                             <input type="checkbox" name="marital_status[]" value="any" checked="true" />Any
                             @foreach($form_layout[16] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="marital_status[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->marital_status)) && in_array($row['value'],unserialize($match_data->marital_status)))
+                            <input type="checkbox" name="marital_status[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="marital_status[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -288,7 +380,11 @@
                             <input type="checkbox" name="have_children[]" value="any" checked="true" />Any
                             @foreach($form_layout[17] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="have_children[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->have_children)) && in_array($row['value'],unserialize($match_data->have_children)))
+                            <input type="checkbox" name="have_children[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="have_children[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -489,7 +585,11 @@
                         <input type="checkbox" name="religious_values[]" value="any" checked="true"/>Any
                         @foreach($form_layout[34] as $row)
                         <div class="pets-section">
-                        <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" />{{$row['label']}}
+                        @if(is_array(unserialize($match_data->religious_values)) && in_array($row['value'],unserialize($match_data->religious_values)))
+                            <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                         </div>
                         @endforeach
                     </div>			
@@ -499,7 +599,11 @@
                         <input type="checkbox" name="star_sign[]" value="any" checked="true"/>Any
                         @foreach($form_layout[35] as $row)
                         <div class="pets-section">
-                        <input type="checkbox" name="star_sign[]" value="{{$row['value']}}" />{{$row['label']}}
+                         @if(is_array(unserialize($match_data->star_sign)) && in_array($row['value'],unserialize($match_data->star_sign)))
+                            <input type="checkbox" name="star_sign[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="star_sign[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                         </div>
                         @endforeach
                     </div>			
