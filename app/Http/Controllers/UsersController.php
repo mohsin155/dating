@@ -335,7 +335,9 @@ class UsersController extends UtilityController {
     public function getImbra() {
         return view('users.imbra');
     }
-
+     public function getListing() {
+        return view('users.listing');
+    }
     public function getEditPhotos($id = 0) {
         $photos = UserPhotos::where('user_id', Auth::user()->user_id)->get();
         $sel_photo = null;
@@ -546,5 +548,5 @@ class UsersController extends UtilityController {
     public function getEmbra(){
         return view('html.embra');
     }
-
+    
 }
