@@ -206,11 +206,11 @@
                                             <li><a href="{{url('users/edit-interest')}}" class="clearfix">Hobbies &amp; Interests</a></li>
                                             <li><a href="{{url('users/edit-personality')}}" class="clearfix">Personality Questions</a></li>
 
-                                            <li><a href="{{url('users/verify-profile')}}" class="clearfix">Verify Questions</a></li>
+                                            <li><a href="#" class="clearfix">Verify Questions</a></li>
 
                                             <li><a href="{{url('users/edit-tags')}}" class="clearfix">CupidTags</a></li>  
 
-                                            <li><a href="{{url('users/imbra')}}" class="clearfix">IMBRA</a></li>
+                                            <li><a href="#" class="clearfix">IMBRA</a></li>
 
                                         </ul>
                                     </div>

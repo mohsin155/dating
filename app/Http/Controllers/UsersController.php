@@ -48,7 +48,7 @@ class UsersController extends UtilityController {
     }
 
     public function postLogin() {
-
+        try{
         $user = new User();
         $inputs = Input::all();
         $rules = array(
@@ -66,6 +66,9 @@ class UsersController extends UtilityController {
                 $message[] = trans('messages.login_fail');
                 return Redirect::to('login')->with('errors', $message);
             }
+        }
+        } catch (\Exception $e){
+            echo $e;exit;
         }
     }
 
