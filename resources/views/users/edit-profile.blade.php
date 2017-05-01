@@ -28,6 +28,13 @@
                                             @endforeach
                                         </ul>
                                     </div>
+                                   
+                                     @elseif(session('success'))
+                                        <div class="alert alert-success">
+                                            <div class="updateconf">
+                                                <p><h1>Your Profile Has Been Updated Sucessfully</h1></p>
+                                            </div>
+                                    </div>
                                     @endif
                
                     <div class="form-group">
@@ -38,56 +45,28 @@
                     <div class="form-group">
                         <label for="gender">I am: </label>
                         <select class="form-control" name="gender" >
-                            @if($profile_data->gender=="male"){
-                                 <option value="male" selected="selected">Male</option>
-                                 <option value="female">Female</option> 
-                            }
-                            @elseif($profile_data->gender=="female"){
-                                 <option value="male">Male</option>
-                                 <option value="female" selected="selected">Female</option>
-                            }
-                            @else{
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>   
-                            }
-                            @endif
+                                 <option value="male" @if($profile_data->gender=="male") selected @endif>Male</option>
+                                 <option value="female" @if($profile_data->gender=="female") selected @endif>Female</option> 
                         </select>
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group edit-profile-page">
                         <label for="dob">Date of birth: </label>
-                        <select class="form-control" name="dob_month" >
-                            @if($profile_data->dob_month=="01")
-                            <option value="01" selected>January</option>
-                            <option value="02">February</option>
-                            <option value="03">March</option>
-                            <option value="04">April</option>
-                            <option value="05">May</option>
-                            <option value="06">June</option>
-                            <option value="07">July</option>
-                            <option value="08">August</option>
-                            <option value="09">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
+                        <select class="form-control" name="dob_month" > 
+                            <option value="01" @if($profile_data->dob_month==1) selected @endif>January</option>
+                            <option value="02" @if($profile_data->dob_month==2) selected @endif>February</option>
+                            <option value="03" @if($profile_data->dob_month==3) selected @endif>March</option>
+                            <option value="04" @if($profile_data->dob_month==4) selected @endif>April</option>
+                            <option value="05" @if($profile_data->dob_month==5) selected @endif>May</option>
+                            <option value="06" @if($profile_data->dob_month==6) selected @endif>June</option>
+                            <option value="07" @if($profile_data->dob_month==7) selected @endif>July</option>
+                            <option value="08" @if($profile_data->dob_month==8) selected @endif>August</option>
+                            <option value="09" @if($profile_data->dob_month==9) selected @endif>September</option>
+                            <option value="10" @if($profile_data->dob_month==10) selected @endif>October</option>
+                            <option value="11" @if($profile_data->dob_month==11) selected @endif>November</option>
+                            <option value="12" @if($profile_data->dob_month==12) selected @endif>December</option>
                         </select>
-                           @endif
-                           @if($profile_data->dob_month=="02")
-                            <option value="02" selected>February</option>
-                           @endif
-                            <option value="02">February</option>
-                            
-                            <option value="03">March</option>
-                            <option value="04">April</option>
-                            <option value="05">May</option>
-                            <option value="06">June</option>
-                            <option value="07">July</option>
-                            <option value="08">August</option>
-                            <option value="09">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
+                           
                         <select class="form-control" name="dob_year" >
                             @for($i=1912;$i<=date('Y',strtotime('now'));$i++)
                             @if($profile_data->dob_year==$i)
@@ -106,7 +85,7 @@
                         <select class="form-control" id="country" name="country" >
                             <option value="0">--Please Select--</option>
                             @foreach($countries as $country)
-                            <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif>{{$country->name}}</option>
+                            <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif @if($country->id==$profile_data->country)) selected @endif>{{$country->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -114,7 +93,7 @@
                     <div class="form-group">
                         <label for="State/Province">State/Province</label>
                         <select class="form-control" id="state" name="state">
-                            <option value="0">--Please Select--</option>
+                            <option value="0">--Please Select--</option>      
                         </select>
                     </div>
                     <hr class="seperate-line">
@@ -515,14 +494,14 @@
                     <div class="form-group">
                         <label for="income">Annual Income : </label>
                         <select class="form-control" name="income">
-                            <option value="0">--Please Select--</option>
-                            <option value="1">$0 - $30,000 (USD)</option>
-                            <option value="2">$30,001 - $60,000 (USD)</option>
-                            <option value="3">$60,001 - $120,000 (USD)</option>
-                            <option value="4">$120,001 - $180,000 (USD)</option>
-                            <option value="5">$180,001 - $240,000 (USD)</option>
-                            <option value="6">$240,001 - $600,000+ (USD)</option>
-                            <option value="7">Prefer not to say</option>
+                            <option value="0" @if($profile_data->income==0) selected @endif>--Please Select--</option>
+                            <option value="1" @if($profile_data->income==1) selected @endif>$0 - $30,000 (USD)</option>
+                            <option value="2" @if($profile_data->income==2) selected @endif>$30,001 - $60,000 (USD)</option>
+                            <option value="3" @if($profile_data->income==3) selected @endif>$60,001 - $120,000 (USD)</option>
+                            <option value="4" @if($profile_data->income==4) selected @endif>$120,001 - $180,000 (USD)</option>
+                            <option value="5" @if($profile_data->income==5) selected @endif>$180,001 - $240,000 (USD)</option>
+                            <option value="6" @if($profile_data->income==6) selected @endif>$240,001 - $600,000+ (USD)</option>
+                            <option value="7" @if($profile_data->income==7) selected @endif>Prefer not to say</option>
                         </select>
                     </div>
                     <hr class="seperate-line">
