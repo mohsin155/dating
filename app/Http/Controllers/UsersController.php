@@ -320,8 +320,10 @@ class UsersController extends UtilityController {
     }
 
     public function getEditInterest() {
-
-        return view('users.edit-interest');
+            $interest_data= UserInterest::where('user_id',Auth::user()->user_id) ->first();
+            //print_r($interest_data);
+            $data=unserialize($interest_data['interest']);
+        return view('users.edit-interest')->with('data',$data);
     }
 
     public function getEditPersonality() {
@@ -581,5 +583,7 @@ class UsersController extends UtilityController {
         $user_imbra->save();
         return Redirect::to('users/imbra')->with('success',trans('messages.record_updated'));
     }
+    
+    
     
 }

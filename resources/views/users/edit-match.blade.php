@@ -28,7 +28,17 @@
                                             @endforeach
                                         </ul>
                                     </div>
+                            @elseif(session('success'))
+                                        <div class="alert alert-success">
+                                        
+                                            <div class="updateconf">
+                                                <p><h1>Your match criteria has been updated</h1></p>
+                                            </div>
+
+                                         
+                                    </div>
                                     @endif
+                                   
                      <div class="form-group">
                         <label for="gender">I'm seeking a: </label>
                         <select class="form-control" name="gender" >
@@ -471,7 +481,7 @@
                     <div class="form-group">
                         <label for="income">Annual Income (or above): </label>
                         <select class="form-control" name="income">
-                            <option value="0">--Please Select--</option>
+                            <option value="0">Any</option>
                             <option value="1">$0 - $30,000 (USD)</option>
                             <option value="2">$30,001 - $60,000 (USD)</option>
                             <option value="3">$60,001 - $120,000 (USD)</option>
