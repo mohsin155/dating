@@ -1801,6 +1801,9 @@ a[id='addNewPhoto'] {
 .photooverlay li a:hover {
     background-color: #eee;
 }
+.nav-custom {
+    float: right;
+}
 .nav-custom>li>a {
     padding: 0px 0px;
     display: initial;
@@ -2420,6 +2423,35 @@ table.childrenAge, table.residenceInfo, table.marriageHistory {
 }
 /*------------END lisiting Page CSS --------------------- */
 /*------------END Edit Setting Page CSS --------------------- */
+
+/*------------Search Page CSS --------------------- */
+.search-menu .nav-tabs {
+        padding: 10px 0 0 10px;
+}
+.search-menu .nav-tabs>li.active>a {
+    font-size: 12.5px;
+}
+.accordion-inner h3, .accordion-inner h3:focus, .accordion-inner h3:active {
+    background-color: #FAF7F8;
+    color: #000;
+     padding: 10px 15px !important;
+     outline: 0;
+}
+
+.accordion-inner .ui-state-active, .accordion-inner .ui-state-active:hover {
+      border: 1px solid #FAF7F8;
+    background: #FAF7F8;  
+    outline: 0;
+}
+
+.accordion-inner .ui-widget-content {
+    border: none;
+    height: auto !important;
+}
+.accordion-inner .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-radius: 0px;
+}
+/*------------END Search page CSS --------------------- */
 /***************************
  MEDIA QUERIES
 ***************************/
