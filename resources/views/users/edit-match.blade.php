@@ -91,7 +91,7 @@
                         <select class="form-control" id="country" name="country" >
                             <option value="0">--Please Select--</option>
                             @foreach($countries as $country)
-                            <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif>{{$country->name}}</option>
+                            <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif @if($country->id==$match_data->country)) selected @endif>{{$country->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -406,7 +406,12 @@
                             <option value="any">Any</option>
                             <option value="0">0</option>
                             @foreach($form_layout[18] as $row)
+                            @if($match_data->no_children==$row['value']){
+                            <option value="{{$row['value']}}" selected>{{$row['label']}}</option>
+                            }
+                            @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -417,7 +422,12 @@
                             <option value="any">Any</option>
                             <option value="0">0</option>
                             @foreach($form_layout[19] as $row)
+                            @if($match_data->oldest_child==$row['value']){
+                            <option value="{{$row['value']}}" selected>{{$row['label']}}</option>
+                            }
+                            @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -428,7 +438,12 @@
                             <option value="any">Any</option>
                             <option value="0">0</option>
                             @foreach($form_layout[20] as $row)
+                            @if($match_data->youngest_child==$row['value']){
+                            <option value="{{$row['value']}}" selected>{{$row['label']}}</option>
+                            }
+                            @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -438,7 +453,11 @@
                             <input type="checkbox" name="more_child[]" value="any" checked="true" />Any
                             @foreach($form_layout[21] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="more_child[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->more_child)) && in_array($row['value'],unserialize($match_data->more_child)))
+                            <input type="checkbox" name="more_child[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="more_child[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -451,7 +470,11 @@
                    
                         @foreach($form_layout[22] as $row)
                         <div class="pets-section">
-                        <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" />{{$row['label']}}
+                         @if(is_array(unserialize($match_data->have_pets)) && in_array($row['value'],unserialize($match_data->have_pets)))
+                            <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                         </div>
                         @endforeach
                     </div>
@@ -461,7 +484,11 @@
                             <input type="checkbox" name="occupation[]" value="any" checked="true" />Any
                             @foreach($form_layout[23] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="occupation[]" value="{{$row['value']}}" />{{$row['label']}}
+                             @if(is_array(unserialize($match_data->occupation)) && in_array($row['value'],unserialize($match_data->occupation)))
+                            <input type="checkbox" name="occupation[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="occupation[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -472,7 +499,11 @@
                             <input type="checkbox" name="employment[]" value="any" checked="true" />Any
                             @foreach($form_layout[24] as $row)
                             <div class="pets-section">
-                            <input type="checkbox" name="employment[]" value="{{$row['value']}}" />{{$row['label']}}
+                            @if(is_array(unserialize($match_data->employment)) && in_array($row['value'],unserialize($match_data->employment)))
+                            <input type="checkbox" name="employment[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
+                         @else
+                         <input type="checkbox" name="employment[]" value="{{$row['value']}}" />{{$row['label']}}  
+                         @endif
                             </div>
                             @endforeach
                         </select>
@@ -481,14 +512,15 @@
                     <div class="form-group">
                         <label for="income">Annual Income (or above): </label>
                         <select class="form-control" name="income">
-                            <option value="0">Any</option>
-                            <option value="1">$0 - $30,000 (USD)</option>
-                            <option value="2">$30,001 - $60,000 (USD)</option>
-                            <option value="3">$60,001 - $120,000 (USD)</option>
-                            <option value="4">$120,001 - $180,000 (USD)</option>
-                            <option value="5">$180,001 - $240,000 (USD)</option>
-                            <option value="6">$240,001 - $600,000+ (USD)</option>
-                            <option value="7">Prefer not to say</option>
+                            <option value="0" @if($match_data->income==0) selected @endif>Any</option>
+                            <option value="1" @if($match_data->income==1) selected @endif>$0 - $30,000 (USD)</option>
+                            <option value="2" @if($match_data->income==2) selected @endif>$30,001 - $60,000 (USD)</option>
+                            <option value="3" @if($match_data->income==3) selected @endif>$60,001 - $120,000 (USD)</option>
+                            <option value="4" @if($match_data->income==4) selected @endif>$120,001 - $180,000 (USD)</option>
+                            <option value="5" @if($match_data->income==5) selected @endif>$180,001 - $240,000 (USD)</option>
+                            <option value="6" @if($match_data->income==6) selected @endif>$240,001 - $600,000+ (USD)</option>
+                            <option value="7" @if($match_data->income==7) selected @endif>Prefer not to say</option>
+							
                         </select>
                     </div>
                     <hr class="seperate-line">
@@ -523,7 +555,14 @@
                         <select class="selectpicker" name="nationality[]" multiple>
                             <option value="any" selected="selected">Any</option>
                             @foreach($countries as $row)
+                           @if(is_array(unserialize($match_data->nationality)) && in_array($row->id,unserialize($match_data->nationality)))
+                           {
+                           <option  value="{{$row->id}}" selected>{{$row->name}}</option>
+                            }
+                            @else{
                             <option  value="{{$row->id}}">{{$row->name}}</option>
+                            @endif
+                            
                             @endforeach
                         </select>
                     </div>
@@ -532,9 +571,14 @@
                     <div class="form-group">
                         <label for="education">Education : </label>
                         <select class="form-control" name="education">
-                            <option value="any" selected="selected">Any</option>
+                            <option value="any" selected>Any</option>
                             @foreach($form_layout[29] as $row)
+                            @if($match_data->education==$row['value']){
+                            <option value="{{$row['value']}}" selected>{{$row['label']}}</option>
+                            }
+                            @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -545,7 +589,12 @@
                         <select class="form-control" name="english_ability">
                             <option value="any" selected="selected">Any</option>
                             @foreach($form_layout[30] as $row)
+                             @if($match_data->english_ability==$row['value']){
+                            <option value="{{$row['value']}}" selected>{{$row['label']}}</option>
+                            }
+                            @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -555,7 +604,12 @@
                         <select class="form-control" name="portugese_ability">
                             <option value="any" selected="selected">Any</option>
                             @foreach($form_layout[31] as $row)
+                             @if($match_data->portugese_ability==$row['value']){
+                            <option value="{{$row['value']}}" selected>{{$row['label']}}</option>
+                            }
+                            @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -565,7 +619,12 @@
                         <select class="form-control" name="spanish_ability">
                             <option value="any" selected="selected">Any</option>
                             @foreach($form_layout[32] as $row)
+                             @if($match_data->spanish_ability==$row['value']){
+                            <option value="{{$row['value']}}" selected>{{$row['label']}}</option>
+                            }
+                            @else{
                             <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -575,7 +634,13 @@
                         <select class="selectpicker" name="languages[]" multiple>
                             <option value="any" selected="selected">Any</option>
                             @foreach($languages as $row)
-                            <option value="{{$row->id}}">{{$row->name}}</option>
+                             @if(is_array(unserialize($match_data->languages)) && in_array($row->id,unserialize($match_data->languages)))
+                           {
+                           <option  value="{{$row->id}}" selected>{{$row->name}}</option>
+                            }
+                            @else{
+                            <option  value="{{$row->id}}">{{$row->name}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -585,7 +650,12 @@
                         <select class="form-control" name="religion">
                             <option value="any" selected="selected">Any</option>
                             @foreach($form_layout[33] as $row)
-                            <option value="{{$row['value']}}">{{$row['label']}}</option> 
+                             @if($match_data->religion==$row['value']){
+                            <option value="{{$row['value']}}" selected>{{$row['label']}}</option>
+                            }
+                            @else{
+                            <option value="{{$row['value']}}">{{$row['label']}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>

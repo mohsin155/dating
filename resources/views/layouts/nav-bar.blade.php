@@ -210,7 +210,7 @@
 
                                             <li><a href="{{url('users/edit-tags')}}" class="clearfix">CupidTags</a></li>  
 
-                                            <li><a href="#" class="clearfix">IMBRA</a></li>
+                                            <li><a href="{{url('users/imbra')}}" class="clearfix">IMBRA</a></li>
 
                                         </ul>
                                     </div>
