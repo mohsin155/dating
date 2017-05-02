@@ -320,7 +320,21 @@ class UsersController extends UtilityController {
             $interest_data= UserInterest::where('user_id',Auth::user()->user_id) ->first();
             //print_r($interest_data);
             $data=unserialize($interest_data['interest']);
+        if(empty($data))
+        {
+            $data=array(
+                'interestEntertainment'=>0,
+                'interestFood'=>0,
+                'interestMusic'=>0
+            
+            );
+           
+                return view('users.edit-interest')->with('data',$data);
+        }
+        else{
         return view('users.edit-interest')->with('data',$data);
+        }
+            
     }
 
     public function getEditPersonality() {
@@ -479,9 +493,9 @@ class UsersController extends UtilityController {
 
         $inputs = Input::all();
         $data = array(
-            'interestEntertainment' => $inputs['interestEntertainment'],
+            'interestEntertainment' =>$inputs['interestEntertainment'],
             'interestFood' => $inputs['interestFood'],
-            'interestMusic' => $inputs['interestMusic']
+            'interestMusic' =>$inputs['interestMusic']
         );
         $user_intrest = serialize($data);
         $user_intr = UserInterest::firstOrNew(array('user_id' => Auth::user()->user_id));
