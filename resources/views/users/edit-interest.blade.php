@@ -25,7 +25,7 @@
                                         </ul>
                                     </div>
                                     @endif
-                                   <?php print_r ($data); ?>
+                                   <?php print_r ($data);exit; ?>
                     <div class="form-group">
                         <label for="relationship">What do you do for fun / entertainment? : </label>
                     <div class="pets-section"><input name="interestEntertainment[]" id="interestEntertainment_393" type="checkbox" value="Antiques" @if(in_array("Antiques",$data)) checked @endif />Antiques</div>

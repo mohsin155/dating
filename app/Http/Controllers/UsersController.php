@@ -320,9 +320,18 @@ class UsersController extends UtilityController {
     }
 
     public function getEditInterest() {
-            $interest_data= UserInterest::where('user_id',Auth::user()->user_id) ->first();
-            //print_r($interest_data);
-            $data=unserialize($interest_data['interest']);
+        try{
+            $interest_data= UserInterest::where('user_id',Auth::user()->user_id)->first();
+            //dd($interest_data);
+            if(!empty($interest_data)){
+                $data=unserialize($interest_data['interest']);
+            }else{
+                $data = array();
+            }
+            //dd($data);
+        }catch(\Exception $e){
+            echo $e;exit;
+        }
         return view('users.edit-interest')->with('data',$data);
     }
 
