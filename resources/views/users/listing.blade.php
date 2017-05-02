@@ -323,4 +323,12 @@
             <a href="#" class="green-mid-button seemore-button">See all matches</a>
         </div> 
     </div>
+@section('script')
+<script>
+    $(document).ready(function () {
+       $('.content-wrapper').width('auto');
+       $('.content-wrapper').css('padding-left','0');
+    });
+</script>
+@endsection
 @endsection
