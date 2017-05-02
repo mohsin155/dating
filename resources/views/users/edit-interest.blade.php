@@ -31,8 +31,9 @@
                                             </div>
                                     </div>
                                     @endif
+
                                    <?php print_r($data);  ?>
-                    <div class="form-group">
+
                         <label for="relationship">What do you do for fun / entertainment? : </label>
                     <div class="pets-section"><input name="interestEntertainment[]" id="interestEntertainment_393" type="checkbox" value="Antiques" @if(!empty($data['interestEntertainment']) && in_array("Antiques",$data['interestEntertainment'])) checked @endif />Antiques</div>
 

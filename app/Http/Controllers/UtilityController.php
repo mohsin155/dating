@@ -48,4 +48,6 @@ class UtilityController extends Controller {
         }
         return $image;
     }
+    
+    //public static function 
 }

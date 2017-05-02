@@ -48,7 +48,7 @@ class UsersController extends UtilityController {
     }
 
     public function postLogin() {
-
+        try{
         $user = new User();
         $inputs = Input::all();
         $rules = array(
@@ -66,6 +66,9 @@ class UsersController extends UtilityController {
                 $message[] = trans('messages.login_fail');
                 return Redirect::to('login')->with('errors', $message);
             }
+        }
+        } catch (\Exception $e){
+            echo $e;exit;
         }
     }
 
@@ -317,6 +320,7 @@ class UsersController extends UtilityController {
     }
 
     public function getEditInterest() {
+
             $interest_data= UserInterest::where('user_id',Auth::user()->user_id) ->first();
             //print_r($interest_data);
             $data=unserialize($interest_data['interest']);
@@ -332,6 +336,20 @@ class UsersController extends UtilityController {
                 return view('users.edit-interest')->with('data',$data);
         }
         else{
+
+        try{
+            $interest_data= UserInterest::where('user_id',Auth::user()->user_id)->first();
+            //dd($interest_data);
+            if(!empty($interest_data)){
+                $data=unserialize($interest_data['interest']);
+            }else{
+                $data = array();
+            }
+            //dd($data);
+        }catch(\Exception $e){
+            echo $e;exit;
+        }
+
         return view('users.edit-interest')->with('data',$data);
         }
             
