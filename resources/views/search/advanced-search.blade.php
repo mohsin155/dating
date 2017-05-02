@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 <div class="content-wrapper-inner">
-    <div class="content-wrapper-settings">
+    <div class="content-wrapper-settings search-menu">
         @include('search.search-tabs')
         <div class="address-update-container">
             <div class="address-update-inner">
@@ -104,12 +104,15 @@
 
                     <div class="form-group">
                         <label for="searching_for">Searching For: </label>
-                        <input type="checkbox" name="relationship[]" value="" />Any
+                      
                         @foreach($form_layout[28] as $row)
                         <div class="pets-section">
                             <input type="checkbox" name="relationship[]" value="{{$row['value']}}" />{{$row['label']}}
                         </div>
                         @endforeach
+                          <div class="pets-section">
+                        <input type="checkbox" name="relationship[]" value="" />Any
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="last_active">Last Active : </label>
@@ -120,7 +123,7 @@
                     <div class="address-update-heading">
                         <h1>Their Appearance:</h1>
                     </div>
-                    <div id="accordion">
+                    <div id="accordion" class="accordion-inner">
                         <h3>Height</h3>
                         <div class="form-group">
                             <select class="form-control" name="min_height">
@@ -267,7 +270,7 @@
                     <div class="address-update-heading">
                         <h1>Their Lifestyle:</h1>
                     </div>
-                    <div id="accordion1">
+                    <div id="accordion1" class="accordion-inner">
                         <h3>Do they smoke? </h3>
                     <div class="form-group">
                         
@@ -437,7 +440,7 @@
                     <div class="address-update-heading">
                         <h1>Their Background / Cultural Values</h1>
                     </div>
-                    <div id="accordion2">
+                    <div id="accordion2" class="accordion-inner">
                     <h3>Nationality : </h3>
                     <div class="form-group">
                         
