@@ -32,7 +32,7 @@ class UsersController extends UtilityController {
 
     public function getLogin() {
         if (Auth::check()) {
-            return Redirect::to('users/account-settings');
+            return Redirect::to('users/listing');
         } else {
             return view('users.login');
         }
@@ -40,7 +40,7 @@ class UsersController extends UtilityController {
 
     public function getSignup() {
         if (Auth::check()) {
-            return Redirect::to('users/account-settings');
+            return Redirect::to('users/listing');
         } else {
             $countries = Country::get();
             return view('users.signup')->with('countries', $countries);
@@ -61,7 +61,7 @@ class UsersController extends UtilityController {
             return Redirect::to('/login')->with('errors', $validator->errors()->all())->withInput();
         } else {
             if (Auth::attempt(['email' => $inputs['email'], 'password' => $inputs['password']], false)) {
-                return Redirect::to('users/account-settings')->with('success', 'login successfully!!!');
+                return Redirect::to('users/listing')->with('success', 'login successfully!!!');
             } else {
                 $message[] = trans('messages.login_fail');
                 return Redirect::to('login')->with('errors', $message);
@@ -106,12 +106,12 @@ class UsersController extends UtilityController {
 
             User::insert($user);
             if (Auth::attempt(['email' => $inputs['email'], 'password' => $inputs['password']], false)) {
-                return Redirect::to('users/account-settings')->with('success', 'login successfully!!!');
+                return Redirect::to('users/listing')->with('success', 'login successfully!!!');
             } else {
                 $message[] = trans('messages.login_fail');
                 return Redirect::to('login')->with('errors', $message);
             }
-            return Redirect::to('users/account-settings')->with('success', 'SignUp successfully!!!');
+            return Redirect::to('users/listing')->with('success', 'SignUp successfully!!!');
         }
     }
 
@@ -320,20 +320,13 @@ class UsersController extends UtilityController {
     }
 
     public function getEditInterest() {
-        try{
-            $interest_data= UserInterest::where('user_id',Auth::user()->user_id)->first();
-            //dd($interest_data);
-            if(!empty($interest_data)){
-                $data=unserialize($interest_data['interest']);
-            }else{
-                $data = array();
-            }
-            //dd($data);
-        }catch(\Exception $e){
-            echo $e;exit;
+
+            $interest_data= UserInterest::where('user_id',Auth::user()->user_id) ->first();
+            //print_r($interest_data);
+            $data=unserialize($interest_data['interest']);   
+                return view('users.edit-interest')->with('data',$data);
         }
-        return view('users.edit-interest')->with('data',$data);
-    }
+        
 
     public function getEditPersonality() {
         $user_per = UserPersonality::where('user_id', Auth::user()->user_id)->first();
@@ -491,9 +484,9 @@ class UsersController extends UtilityController {
 
         $inputs = Input::all();
         $data = array(
-            'interestEntertainment' => $inputs['interestEntertainment'],
-            'interestFood' => $inputs['interestFood'],
-            'interestMusic' => $inputs['interestMusic']
+            'interestEntertainment' => isset($inputs['interestEntertainment'])?$inputs['interestEntertainment']:'',
+            'interestFood' => isset($inputs['interestFood'])?$inputs['interestFood']:'',
+            'interestMusic' => isset($inputs['interestMusic'])?$inputs['interestMusic']:''
         );
         $user_intrest = serialize($data);
         $user_intr = UserInterest::firstOrNew(array('user_id' => Auth::user()->user_id));
@@ -522,43 +515,43 @@ class UsersController extends UtilityController {
         $user_match->max_height = $inputs['max_height'];
         $user_match->min_weight = $inputs['min_weight'];
         $user_match->max_weight = $inputs['max_weight'];
-        $user_match->hair_color = serialize($inputs['hair_color']);
-        $user_match->hair_length = serialize($inputs['hair_length']);
-        $user_match->hair_type = serialize($inputs['hair_type']);
-        $user_match->eye_color = serialize($inputs['eye_color']);
-        $user_match->eye_wear = serialize($inputs['eye_wear']);
-        $user_match->body_type = serialize($inputs['body_type']);
-        $user_match->ethnicity = serialize($inputs['ethnicity']);
-        $user_match->best_feature = serialize($inputs['best_feature']);
-        $user_match->body_art = serialize($inputs['body_art']);
-        $user_match->appearance = serialize($inputs['appearance']);
-        $user_match->drink = serialize($inputs['drink']);
-        $user_match->smoke = serialize($inputs['smoke']);
-         $user_match->marital_status = serialize($inputs['marital_status']);
-        $user_match->have_children = serialize($inputs['have_children']);
+        $user_match->hair_color = serialize(isset($inputs['hair_color'])?$inputs['hair_color']:'');
+        $user_match->hair_length = serialize(isset($inputs['hair_length'])?$inputs['hair_length']:'');
+        $user_match->hair_type = serialize(isset($inputs['hair_type'])?$inputs['hair_type']:'');
+        $user_match->eye_color = serialize(isset($inputs['eye_color'])?$inputs['eye_color']:'');
+        $user_match->eye_wear = serialize(isset($inputs['eye_wear'])?$inputs['eye_wear']:'');
+        $user_match->body_type = serialize(isset($inputs['body_type'])?$inputs['body_type']:'');
+        $user_match->ethnicity = serialize(isset($inputs['ethnicity'])?$inputs['ethnicity']:'');
+        $user_match->best_feature = serialize(isset($inputs['best_feature'])?$inputs['best_feature']:'');
+        $user_match->body_art = serialize(isset($inputs['body_art'])?$inputs['body_art']:'');
+        $user_match->appearance = serialize(isset($inputs['appearance'])?$inputs['appearance']:'');
+        $user_match->drink = serialize(isset($inputs['drink'])?$inputs['drink']:'');
+        $user_match->smoke = serialize(isset($inputs['smoke'])?$inputs['smoke']:'');
+         $user_match->marital_status = serialize(isset($inputs['marital_status'])?$inputs['marital_status']:'');
+        $user_match->have_children = serialize(isset($inputs['have_children'])?$inputs['have_children']:'');
         $user_match->no_children = $inputs['no_children'];
         $user_match->oldest_child = $inputs['oldest_child'];
         $user_match->youngest_child = $inputs['youngest_child'];
-        $user_match->more_child = serialize($inputs['more_child']);
-        $user_match->have_pets = serialize($inputs['have_pets']);
-        $user_match->occupation = serialize($inputs['occupation']);
-        $user_match->employment = serialize($inputs['employment']);
+        $user_match->more_child = serialize(isset($inputs['more_child'])?$inputs['more_child']:'');
+        $user_match->have_pets = serialize(isset($inputs['have_pets'])?$inputs['have_pets']:'');
+        $user_match->occupation = serialize(isset($inputs['occupation'])?$inputs['occupation']:'');
+        $user_match->employment = serialize(isset($inputs['employment'])?$inputs['employment']:'');
         $user_match->income = $inputs['income'];
-        $user_match->home_type = serialize($inputs['home_type']);
-        $user_match->living_situation = serialize($inputs['living_situation']);
-        $user_match->relocate = serialize($inputs['relocate']);
+        $user_match->home_type = serialize(isset($inputs['home_type'])?$inputs['home_type']:'');
+        $user_match->living_situation = serialize(isset($inputs['living_situation'])?$inputs['living_situation']:'');
+        $user_match->relocate = serialize(isset($inputs['relocate'])?$inputs['relocate']:'');
         
-        $user_match->nationality = serialize($inputs['nationality']);
-        $user_match->education = serialize($inputs['education']);
-        $user_match->languages = serialize($inputs['languages']);
+        $user_match->nationality = serialize(isset($inputs['nationality'])?$inputs['nationality']:'');
+        $user_match->education = $inputs['education'];
+        $user_match->languages = serialize(isset($inputs['languages'])?$inputs['languages']:'');
         $user_match->english_ability = $inputs['english_ability'];
         $user_match->portugese_ability = $inputs['portugese_ability'];
         $user_match->spanish_ability = $inputs['spanish_ability'];
-        $user_match->religion = serialize($inputs['religion']);
-        $user_match->religious_values = serialize($inputs['religious_values']);
-        $user_match->home_type = serialize($inputs['home_type']);
-        $user_match->living_situation = serialize($inputs['living_situation']);
-        $user_match->star_sign = serialize($inputs['star_sign']);
+        $user_match->religion = $inputs['religion'];
+        $user_match->religious_values = serialize(isset($inputs['religious_values'])?$inputs['religious_values']:'');
+        $user_match->home_type = serialize(isset($inputs['home_type'])?$inputs['home_type']:'');
+        $user_match->living_situation = serialize(isset($inputs['living_situation'])?$inputs['living_situation']:'');
+        $user_match->star_sign = serialize(isset($inputs['star_sign'])?$inputs['star_sign']:'');
        
          $user_match->save();
         return Redirect::to('users/edit-match')->with('success',trans('messages.match_updated'));

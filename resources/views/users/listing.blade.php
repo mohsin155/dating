@@ -1,39 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">   
-    <head>
-        <link rel="icon" type="image/png" href="favicon.ico">
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>ForeverWeLove - Login</title>
-        <!-- Bootstrap Core CSS -->
-        <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link href="{{url('css/custom.css')}}" rel="stylesheet">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-                <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-        <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-        type="text/javascript"></script>
-        <script>
-function translate(lang) {
-
-    var $frame = $('.goog-te-menu-frame:first');
-    if (!$frame.size()) {
-        alert("Error: Could not find Google translate frame.");
-        return false;
-    }
-    $frame.contents().find('.goog-te-menu2-item span.text:contains(' + lang + ')').get(0).click();
-    return false;
-}
-        </script>
-    </head>
+@extends('layouts.main')
+@section('content')  
     <div class="responsive-main clearfix">
         <div id="column1" class="column1">
             <div class="column1-content clearfix">
@@ -355,4 +321,4 @@ function translate(lang) {
             <a href="#" class="green-mid-button seemore-button">See all matches</a>
         </div> 
     </div>
-</html>
+@endsection
