@@ -32,4 +32,13 @@ class SearchController extends UtilityController {
         return view('search.advanced-search')->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
     }
 
+    public function getKeyword() {
+        try{
+            $countries = Country::get();
+            $languages = Languages::get();
+        } catch (Exception $ex) {
+
+        }
+        return view('search.keywords')->with('countries', $countries)->with('languages', $languages);
+    }
 }
