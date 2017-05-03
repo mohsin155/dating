@@ -2452,6 +2452,444 @@ table.childrenAge, table.residenceInfo, table.marriageHistory {
     border-radius: 0px;
 }
 /*------------END Search page CSS --------------------- */
+
+/*------------Profile page CSS --------------------- */
+#bannerwrapper {
+    width: 990px;
+    margin: 0 auto;
+}
+#bannerpage {
+    background-color: #fff;
+}
+
+#bannerpage {
+    width: 800px;
+    float: left;
+}
+#main-content {
+    min-height: 350px;
+    padding: 5px 0;
+}
+#profilepage {
+    margin: 0 auto;
+    padding: 5px;
+    background: #fff;
+}
+.topleft {
+    float: left;
+    width: 470px;
+}
+#pic {
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    width: 470px;
+    height: 475px;
+    text-align: center;
+}
+.topright {
+    float: right;
+    width: 310px;
+}
+.profilebubble {
+    padding-right: 10px;
+    background-color: #fff;
+}
+.bubble {
+    float: left;
+    overflow: hidden;
+    width: 300px;
+    background: url(../image/bubble-bg.gif);
+}
+.bubble p {
+    display: block;
+    background: url(../image/bubble-top.gif) no-repeat right top;
+}
+#profileinfo {
+    padding: 5px 10px;
+}
+#profileinfo span {
+    font-weight: 700;
+    font-size: 16px;
+}
+.bubble span {
+    display: block;
+    padding: 7px 20px 8px 25px;
+   
+    color: #3B3B3B;
+    font-weight: 700;
+}
+#profileinfo span {
+    font-weight: 700;
+    font-size: 16px;
+}
+#profileinfo p {
+    padding-top: 0;
+    line-height: 1.5em;
+}
+.beige {
+    background-color: #f2f2e6;
+}
+.darkbeige {
+    background-color: #e7e7d8;
+}
+.profiletop {
+    padding: 5px 0 3px;
+}
+.addcomment {
+    float: right;
+}
+.addcomment a:link, .addcomment a:visited {
+    padding: 1px 5px 1px 25px;
+    border: 1px solid #999;
+    border-radius: 7px;
+    background: #fff url(../image/comment.jpg) no-repeat 5px center;
+    color: #333;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+
+.navmenu {
+    line-height: normal;
+    border-bottom: 2px solid #7f7d7e;
+    padding: 10px 0 0 10px;
+    position: relative;
+}
+.navtabs li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+.navtabs li.selected a {
+    background: #bdbabd;
+    background: -moz-linear-gradient(top, #bdbabd 0%, #8c8684 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #bdbabd), color-stop(100%, #8c8684));
+    background: -webkit-linear-gradient(top, #bdbabd 0%, #8c8684 100%);
+    background: -o-linear-gradient(top, #bdbabd 0%, #8c8684 100%);
+    background: -ms-linear-gradient(top, #bdbabd 0%, #8c8684 100%);
+    background: linear-gradient(to bottom, #bdbabd 0%,#8c8684 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdbabd', endColorstr='#8c8684',GradientType=0 );
+}
+
+.navtabs li.selected a span {
+    color: #fff;
+}
+.navtabs a span {
+    float: left;
+    display: block;
+    font-weight: 400;
+    color: #3B3B3B;
+}
+.navtabs a {
+    float: left;
+    margin: 0;
+    margin-right: 5px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+    padding: 5px;
+    border: 1px solid #888;
+    border-bottom: 0;
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #fff 0%, #e7e7e7 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #e7e7e7));
+    background: -webkit-linear-gradient(top, #fff 0%, #e7e7e7 100%);
+    background: -o-linear-gradient(top, #fff 0%, #e7e7e7 100%);
+    background: -ms-linear-gradient(top, #fff 0%, #e7e7e7 100%);
+    background: linear-gradient(to bottom, #ffffff 0%,#e7e7e7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e7e7e7',GradientType=0 );
+}
+.profile2 {
+    width: 790px;
+    background: #fff url(../image/bg_profile.gif) left top repeat-y;
+    height: 1300px;
+}
+.profileleft {
+    float: left;
+    width: 150px;
+}
+#buttons {
+    padding-top: 10px;
+    width: 135px;
+    margin: 0 auto 20px;
+}
+#cupidwords {
+    margin: 0 auto;
+    width: 135px;
+    background-color: #fff;
+}
+.profileright {
+    float: right;
+    width: 635px;
+    background-color: #fff;
+}
+
+.profiletext {
+    padding: 0;
+}
+.navmenu2 {
+    margin: 5px 0 10px;
+    border-bottom: solid 1px #aaa;
+    background-color: #e9e9e9;
+    height: 39px;
+}
+.profiletext p {
+    display: block;
+    padding: 7px 20px;
+    line-height: 1.5em;
+}
+.navmenu2 ul {
+    float: right;
+    margin: 10px 0 0 10px;
+}
+.navmenu2 p {
+        display: block;
+    float: left;
+    padding: 8px 20px;
+    font-weight: 700;
+    font-size: 13px;
+}
+.profiletext p {
+    display: block;
+    padding: 7px 20px;
+    line-height: 1.5em;
+}
+#profiledetailhdr {
+        margin-top: 8px;
+    height: 40px;
+    border-bottom: solid 1px #999;
+}
+.grey {
+    background-color: #e9e9e9;
+}
+#profiledetailhdr span {
+    float: left;
+    padding: 10px 15px;
+    width: 250px;
+    font-weight: 700;
+    font-style: italic;
+}
+#profiledetailhdr p {
+    float: left;
+    padding: 10px 15px;
+    width: 150px;
+    font-weight: 700;
+    font-style: italic;
+}
+#profiledetail {
+    padding: 0;
+}
+#profiledetail #table {
+    border-collapse: collapse;
+    border-bottom: solid 0 #e1e1cb;
+}
+#profiledetailhdr2 {
+    height: 30px;
+    border-bottom: solid 1px #999;
+    background-color: #fff;
+}
+#profiledetailhdr2 em {
+    display: block;
+    padding: 7px 15px;
+    width: 300px;
+    color: #40411a;
+    font-weight: 700;
+    font-style: italic;
+}
+#profiledetailhdr2 a:link, #profiledetailhdr2 a:visited {
+    color: #40411a;
+    text-decoration: none;
+}
+#td1 {
+    padding: 2px 10px;
+    border-bottom: solid 1px #e1e1cb;
+}
+.profiletext {
+    padding: 0;
+}
+#backtotop {
+    padding-right: 10px;
+    height: 30px;
+}
+#backtotop a:link, #backtotop a:visited {
+    display: block;
+    float: right;
+    padding: 3px 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #e9e9e9;
+    color: #333;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 11px;
+}
+/*------------END Profile page CSS --------------------- */
+
+/*---------------------Messaging CSS--------------------- */
+#mailpage {
+    min-height: 500px;
+}
+#leftbar {
+    float: left;
+    padding: 10px;
+    width: 160px;
+    text-align: center;
+}
+#mailnav {
+    border: 1px solid #999;
+    background-color: #fff;
+    text-align: left;
+    margin-bottom: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+#mailnav ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+#mailnav ul li {
+    display: block;
+    border-bottom: 1px solid #ddd;
+}
+#mailnav li a:link, #mailnav li a:visited {
+    display: block;
+    padding: 7px 5px 7px 35px;
+    color: #37362c;
+    text-decoration: none;
+    font-weight: 700;
+    background-color: #f9f9f9;
+}
+
+#leftbar a:link, #leftbar a:visited {
+    color: #333;
+    text-decoration: none;
+    font-size: 12px;
+}
+#mailnav .firstnav {
+    -moz-border-radius: 7px 7px 0 0;
+    -webkit-border-radius: 7px;
+    border-radius: 7px 7px 0 0;
+}
+
+#inbox-icon {
+    background: url(../image/icon-inbox.png) no-repeat 7px center;
+}
+
+#favorites-icon {
+    background: url(../image/favorites.png) no-repeat 15px center;
+}
+.new-folder-icon {
+    background: url(../image/add.png) no-repeat 7px center;
+}
+#sent-icon {
+    background: url(../image/icon-sent.png) no-repeat 7px center;
+}
+#trash-icon {
+    background: url(../image/icon-trash.png) no-repeat 7px center;
+}
+#mail-filtered-icon {
+    background: url(../image/icon-filtered.png) no-repeat 7px center;
+}
+#right {
+    float: right;
+    padding: 10px 10px 10px 0;
+    width: 610px;
+}
+#mail {
+    border: 1px solid #999;
+    background-color: #fff;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+}
+#mailboxhdr {
+    overflow: hidden;
+    border-bottom: 1px solid #fff;
+    background-color: #888;
+    color: #fff;
+    padding: 0 0 0 10px;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px;
+    border-radius: 5px 5px 0 0;
+    height: 30px;
+}
+#mailheading {
+    float: left;
+    display: table;
+    padding: 0 10px 0 0;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+}
+.mailheading-cell {
+    height: 30px;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#mailheading h1 {
+    float: left;
+    font-size: 14px;
+        margin-top: 0px;
+    margin-bottom: 0px;
+}
+#mailbox {
+    padding: 0;
+}
+.medgrey {
+    background-color: #aaa;
+}
+#mail input[type="button"] {
+    background-color: #777;
+    border: medium none;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 1em;
+    font-weight: 700;
+    margin: 0 auto;
+    padding: 2px 10px;
+    text-align: center;
+    text-decoration: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+#deleteChecked {
+    float: left;
+    margin-right: 50px;
+}
+.display {
+    float: left;
+    padding-top: 3px;
+    width: 200px;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+}
+.right {
+    float: right;
+}
+.filter-off {
+    float: left;
+    background-color: #C62828;
+    color: #fff;
+    font-size: 1em;
+    padding: 0 5px;
+    border: 1px solid #B71C1C;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+/*----------------End Messaging CSS -------------------- */
 /***************************
  MEDIA QUERIES
 ***************************/
