@@ -6,13 +6,13 @@
         <div class="address-update-container">
             <div class="address-update-inner">
                 <div>
-                    <h1>Keyword Search</h1>
+                    <h1>Cupid Tag</h1>
                 </div>
 
             </div>
             <div class="description">
                 <div class="form-group">
-                <label>Keyword : </label><input name="keyword" type="text" />
+                <label>Cupid Tag : </label><input name="keyword" type="text" />
                 </div>
             </div>
 
@@ -73,33 +73,16 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="country">Living in:</label>
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="{{url('users/account-settings')}}" class="active-grey">Country</a></li>
-                        </ul>
+                        
                         <select class="form-control" id="country" name="country" >
                             <option value="0">--Please Select--</option>
                             @foreach($countries as $country)
                             <option value="{{$country->id}}">{{$country->name}}</option>
                             @endforeach
                         </select>
-                        <select class="form-control" id="state" name="state">
-                            <option value="0">--Please Select--</option>
-                        </select>
-                        <select class="form-control" id="city" name="city">
-                            <option value="0">--Please Select--</option>
-                        </select>
-                    </div>
-                    <hr class="seperate-line">
-                    <!--<div class="form-group">
-                        <label for="State/Province">State/Province</label>
                         
                     </div>
                     <hr class="seperate-line">
-                    <div class="form-group">
-                        <label for="State/Province">City</label>
-                        
-                    </div>
-                    <hr class="seperate-line">-->
                     <div class="form-group">
                         <label for="has_photo">Has Photo: </label>
                         <div class="pets-section">
@@ -107,42 +90,17 @@
                         </div>
                     </div>
                     <hr class="seperate-line">
-                    <div class="form-group">
-                        <label for="searching_for">Searching For: </label>
-                      
-                        @foreach($form_layout[28] as $row)
-                        <div class="pets-section">
-                            <input type="checkbox" name="relationship[]" value="{{$row['value']}}" />{{$row['label']}}
-                        </div>
-                        @endforeach
-                          <div class="pets-section">
-                        <input type="checkbox" name="relationship[]" value="" />Any
-                        </div>
-                    </div>
-                    <hr class="seperate-line">
-                    <div class="form-group">
-                        <label for="last_active">Last Active : </label>
-                        <select class="form-control" name="last_active">
-                            <option value="">Any</option>
-                            <option value="7">within week</option>
-                            <option value="30">within 1 month</option>
-                            <option value="90">within 3 months</option>
-                            <option value="180">within 6 months</option>
-                            <option value="365">within year</option>
-                        </select>
-                    </div>
-                    <hr class="seperate-line">
-                    <div class="form-group">
-                        <label for="last_active">Sort results by : </label>
-                        <select class="form-control" name="sort_result">
-                            <option value="active">Last Active</option>
-                            <option value="photo">Photos First</option>
-                            <option value="newest">Newest Member</option>
-                        </select>
-                    </div>
+                    
+                    
                     <div class="button-inner text-center email-address">
                         <button class="btn btn-primary btn-green" type="submit">SAVE</button>
                     </div>
+                    <div class="address-update-heading">
+                        <h1>Popular CupidTag Cloud</h1>
+                    </div>
+                    @foreach($tags as $tag)
+                    {{$tag->name}}
+                    @endforeach
                 </form>
             </div>
         </div>
