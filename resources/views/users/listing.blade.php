@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')  
-    <div class="responsive-main clearfix">
+      <div class="responsive-main clearfix">
         <div id="column1" class="column1">
             <div class="column1-content clearfix">
                 <div class="profile relative overflow-hidden profile-background p2">
@@ -207,7 +207,8 @@
             </ul>
         </div>
             </div>
-        </div>
+         </div>
+          
         <div id="column2" class="column2">
             <div class="column2-content clearfix">
 
@@ -318,7 +319,16 @@
                 </div>
 
             </div>
+        
             <a href="#" class="green-mid-button seemore-button">See all matches</a>
         </div> 
     </div>
+@section('script')
+<script>
+    $(document).ready(function () {
+       $('.content-wrapper').width('auto');
+       $('.content-wrapper').css('padding-left','0');
+    });
+</script>
+@endsection
 @endsection
