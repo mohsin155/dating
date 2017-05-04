@@ -7,11 +7,11 @@
                     <div class="profile-overlay"></div>
                     <div class="heading relative text-center">
 
-                        <h1 class="white regular">Hi Shadan</h1>
+                        <h1 class="white regular">Hi <?php echo $profile_data->first_name; ?></h1>
                     </div>
                     <div class="pic my2">
 
-                        <a href="#" id="addPhotoLHSCol1"><div class="addphoto" title="The most effective way to get people to notice you is to add a photo. Add A Photo Now"></div></a>
+                        <a href="{{url('users/edit-photos')}}" id="addPhotoLHSCol1"><div class="addphoto" title="The most effective way to get people to notice you is to add a photo. Add A Photo Now"></div></a>
 
 
                     </div>
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="next-step relative mt1">
-                        <a href="#" class="green-mid-button"> Upload a photo to your profile </a>
+                        <a href="{{url('users/edit-photos')}}" class="green-mid-button"> Upload a photo to your profile </a>
                     </div>
 
                 </div>
@@ -79,18 +79,14 @@
                         <a href="#" class="advanced">Advanced Search</a> 
                     </div>
                     <form action="#" method="post">
+                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <ul>
                             <li>
                                 <label>I am:</label>
 
                                 <select name="gender" id="gender" class="selectpicker">
-
-
-                                    <option value="253" selected="">Male</option>
-
-
-                                    <option value="254">Female</option>
-
+                                    <option value="male" @if(empty($profile_data) && $profile_data->gender=="male") selected @endif>Male</option>
+                                    <option value="female" @if(empty($profile_data) && $profile_data->gender=="female") selected @endif>Female</option> 
                                 </select>
 
                             </li>
@@ -98,15 +94,8 @@
                                 <label>Seeking</label>
 
                                 <select name="gender_w" id="gender">
-
-                                    <option value="-1">Any</option>
-
-
-                                    <option value="253">Male</option>
-
-
-                                    <option value="254" selected="">Female</option>
-
+                                    <option value="male" @if(empty($profile_data) && $profile_data->gender=="female") selected @endif>Male</option>
+                                    <option value="female" @if(empty($profile_data) && $profile_data->gender=="male") selected @endif>Female</option>
                                 </select>
 
                             </li>
@@ -114,64 +103,41 @@
                                 <label>Age:</label>
 
                                 <select name="age_min" id="age_min">
-
-                                    <option value="-1" selected="">-</option>
-
-
-                                    <option value="18">18</option>
-
-
-                                    <option value="19">19</option>
-
+                                    <option value="0">-</option>
+                                    @for($i=18;$i<=90;$i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
                                 </select>
                                 to 
                                 <select name="age_max" id="age_max">
-
-                                    <option value="-1" selected="">-</option>
-
-                                    <option value="18">18</option>
-
+                                    <option value="0">-</option>
+                                    @for($i=18;$i<=90;$i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                                </select>
                                 </select>
 
                             </li>
                             <li>
                                 <label>Country:</label>
-                                <select name="countryLive" id="r_country">
-                                    <option value="-1">Any Country</option>
-                                    <optgroup label="Popular">
-
-                                        <option value="12">Argentina</option>
-
-                                        <option value="30">Brazil</option>
-
-                                        <option value="43">Chile</option>
-
-                                        <option value="48">Colombia</option>
-
-                                        <option value="50">Costa Rica</option>
-
-                                    </optgroup>
-                                    <optgroup label="All Countries">
-
-                                        <option value="4">Afghanistan</option>
-
-                                        <option value="7">Albania</option>
-
+                                <select name="country" id="country">
+                                    <option value="0">Any Country</option>
+                                        @foreach($countries as $country)
+                                        <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif >{{$country->name}}</option>
+                                        @endforeach
                                 </select>
-                                kms 
-                                <input type="hidden" name="distanceUnit" value="kms">
-
                             </li>
                             <li>
-
-                                <label>&nbsp;</label>
-
-                                <select name="cityLive" id="r_city">
-
-                                    <option value="-1">Any City</option>
-
+                                <label for="State/Province">State:</label>
+                                 <select class="form-control" id="state" name="state">
+                                    <option value="0">Any state</option>                                    
                                 </select>
-
+                            </li>
+                            <li>
+                             <label for="State/Province">City:</label>
+                                 <select class="form-control" id="city" name="city">
+                                    <option value="0">Any City</option>                                    
+                                </select>
                             </li>
                             <li>
                                 <label>Photo:</label>
@@ -216,7 +182,7 @@
                     <div class="heading clearfix">
                         <h1>Recommended Matches</h1>
 
-                        <a href="#" class="green-light-button left">Improve Matches</a> 
+                        <a href="{{url('users/edit-match')}}" class="green-light-button left">Improve Matches</a> 
                         <a href="#" class="grey-light-button seematches">See all matches</a> 
                     </div>
                     <div class="member"> 
@@ -233,91 +199,8 @@
                         </span>
                         <p class="name" style="display: block;">ximena, 46</p>
                         <p class="location" style="display: block;">Cochabamba, Bolivia</p>
-
-                    </div> 
-                    <div class="member"> 
-                        <span class="memberpic">
-
-                            <a href="#" class="photo-display-popup" data-devicemode="1" name="ximena  -  46  -  Cochabamba, Bolivia" title="ximena  -  46  -  Cochabamba, Bolivia">
-<!--                         <p>2</p>-->
-                                <!--                            <div class="photo">
-                                                               
-                                                            </div>-->
-                                <img class="memberpic-border" width="125" height="136" src="https://cdn.latinamericancupid.com/memphoto/Photo1/small/283218.jpg">
-
-                            </a> 
-                        </span>
-                        <p class="name" style="display: block;">ximena, 46</p>
-                        <p class="location" style="display: block;">Cochabamba, Bolivia</p>
-
-                    </div> 
-                    <div class="member"> 
-                        <span class="memberpic">
-
-                            <a href="#" class="photo-display-popup" data-devicemode="1" name="ximena  -  46  -  Cochabamba, Bolivia" title="ximena  -  46  -  Cochabamba, Bolivia">
-<!--                         <p>2</p>-->
-                                <!--                            <div class="photo">
-                                                               
-                                                            </div>-->
-                                <img class="memberpic-border" width="125" height="136" src="https://cdn.latinamericancupid.com/memphoto/Photo1/small/283218.jpg">
-
-                            </a> 
-                        </span>
-                        <p class="name" style="display: block;">ximena, 46</p>
-                        <p class="location" style="display: block;">Cochabamba, Bolivia</p>
-
-
-                    </div> 
-                    <div class="member"> 
-                        <span class="memberpic">
-
-                            <a href="#" class="photo-display-popup" data-devicemode="1" name="ximena  -  46  -  Cochabamba, Bolivia" title="ximena  -  46  -  Cochabamba, Bolivia">
-<!--                         <p>2</p>-->
-                                <!--                            <div class="photo">
-                                                               
-                                                            </div>-->
-                                <img class="memberpic-border" width="125" height="136" src="https://cdn.latinamericancupid.com/memphoto/Photo1/small/283218.jpg">
-
-                            </a> 
-                        </span>
-                        <p class="name" style="display: block;">ximena, 46</p>
-                        <p class="location" style="display: block;">Cochabamba, Bolivia</p>
-
-                    </div> 
-                    <div class="member"> 
-                        <span class="memberpic">
-
-                            <a href="#" class="photo-display-popup" data-devicemode="1" name="ximena  -  46  -  Cochabamba, Bolivia" title="ximena  -  46  -  Cochabamba, Bolivia">
-<!--                         <p>2</p>-->
-                                <!--                            <div class="photo">
-                                                               
-                                                            </div>-->
-                                <img class="memberpic-border" width="125" height="136" src="https://cdn.latinamericancupid.com/memphoto/Photo1/small/283218.jpg">
-
-                            </a> 
-                        </span>
-                        <p class="name" style="display: block;">ximena, 46</p>
-                        <p class="location" style="display: block;">Cochabamba, Bolivia</p>
-
-                    </div> 
-                    <div class="member"> 
-                        <span class="memberpic">
-
-                            <a href="#" class="photo-display-popup" data-devicemode="1" name="ximena  -  46  -  Cochabamba, Bolivia" title="ximena  -  46  -  Cochabamba, Bolivia">
-<!--                         <p>2</p>-->
-                                <!--                            <div class="photo">
-                                                               
-                                                            </div>-->
-                                <img class="memberpic-border" width="125" height="136" src="https://cdn.latinamericancupid.com/memphoto/Photo1/small/283218.jpg">
-
-                            </a> 
-                        </span>
-                        <p class="name" style="display: block;">ximena, 46</p>
-                        <p class="location" style="display: block;">Cochabamba, Bolivia</p>
-
-                    </div> 
+                    </div>
                 </div>
-
             </div>
         
             <a href="#" class="green-mid-button seemore-button">See all matches</a>
@@ -328,6 +211,13 @@
     $(document).ready(function () {
        $('.content-wrapper').width('auto');
        $('.content-wrapper').css('padding-left','0');
+    });
+</script>
+@endsection
+@section('script')
+<script>
+    $(document).ready(function () {
+        $("select[name=country]").trigger("change");
     });
 </script>
 @endsection

@@ -347,7 +347,10 @@ class UsersController extends UtilityController {
         return view('users.imbra')->with('countries', $countries);
     }
      public function getListing() {
-        return view('users.listing');
+         $countries = Country::get();
+         $profile_data= UserProfile::where('user_id',Auth::user()->user_id) ->first();
+         $photos = UserPhotos::where('user_id', Auth::user()->user_id)->get();
+        return view('users.listing')->with('countries', $countries)->with('profile_data', $profile_data)->with('photos', $photos);
     }
     
      public function getMessaging() {
