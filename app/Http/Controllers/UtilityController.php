@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UtilityController extends Controller {
 
+    public $master_array = array();
     public function __construct() {
         
     }
@@ -49,5 +50,16 @@ class UtilityController extends Controller {
         return $image;
     }
     
-    //public static function 
+    public function getFormLabel($value){
+        return $this->master_array[$value];
+    }
+    
+    public function setMasterArray(){
+        $appear = AppearanceMaster::get();
+        foreach($appear as $row){
+            $appear_arr[$row->appearance_id] = $row->label;
+        }
+        $appear_arr['any'] = 'Any';
+        $this->master_array = $appear_arr;
+    }
 }

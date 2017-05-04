@@ -6,17 +6,12 @@
             <div id="profilepage">
                 <div class="profiletop">
                     <div class="topleft">
-
                         <div id="pic" class="loading" style="background:url(https://cdn.latinamericancupid.com/memphoto/photo1/big/283218.jpg) no-repeat center center">
                             <div id="videoDisplay"></div>
-
                         </div>
                         <div class="addcomment">
-
                             <a id="photoComment" class="photo-display-popup" href="#">Comment on photo</a>
-
                         </div>
-
                     </div>
                     <div class="topright">
                         <div class="profilebubble">
@@ -24,19 +19,14 @@
                                 <p><span>busco una buena persona para algo sincero</span></p>
                                 <div class="clear"></div>
                             </div>
-
                             <div class="clear"></div>
                         </div>
                         <div id="profileinfo">
                             <div>
                                 <span>Ximena (46)&nbsp;<img src="{{url('image/icon-standard.gif')}}" width="22" height="22"></span>
-
-
                                 <div class="clear"></div>
                             </div>
-                            <p>
-
-                                Female <strong style="color:#CCC">/</strong>
+                            <p>Female <strong style="color:#CCC">/</strong>
                                 Single 
 
                                 <strong style="color:#CCC">/</strong>  <strong style="color:#AAA;">ID: 283218</strong>
@@ -1106,26 +1096,26 @@
 
                             </div>
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
-			<tbody><tr>
-				<td colspan="3" height="10px" align="center"></td>
-			</tr>
-			<tr>
-				<td width="27%" align="center">
-					
-						<a href="#"><img src="{{url('image/btn-interest-up.gif')}}"  width="145" height="30" border="0" class="rollover"></a>
-					
-				</td>
-				<td width="24%" align="center">
-					
-						<a href="#"><img src="{{url('image/btn-mail-up.gif')}}"  width="145" height="30" border="0"></a>
-					
-				</td>
-				<td width="49%"><div id="backtotop"><a href="#">Back To Top &gt;&gt;</a></div></td>
-			</tr>
-			<tr>
-				<td colspan="3" align="center" height="10px"></td>
-			</tr>
-		</tbody></table>
+                                <tbody><tr>
+                                        <td colspan="3" height="10px" align="center"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="27%" align="center">
+
+                                            <a href="#"><img src="{{url('image/btn-interest-up.gif')}}"  width="145" height="30" border="0" class="rollover"></a>
+
+                                        </td>
+                                        <td width="24%" align="center">
+
+                                            <a href="#"><img src="{{url('image/btn-mail-up.gif')}}"  width="145" height="30" border="0"></a>
+
+                                        </td>
+                                        <td width="49%"><div id="backtotop"><a href="#">Back To Top &gt;&gt;</a></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" align="center" height="10px"></td>
+                                    </tr>
+                                </tbody></table>
                         </div>
                     </div>
 

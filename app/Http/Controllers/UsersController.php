@@ -349,9 +349,7 @@ class UsersController extends UtilityController {
      public function getListing() {
         return view('users.listing');
     }
-     public function getProfile() {
-        return view('users.profile');
-    }
+    
      public function getMessaging() {
         return view('users.messaging');
     }
@@ -592,6 +590,11 @@ class UsersController extends UtilityController {
         return Redirect::to('users/imbra')->with('success',trans('messages.record_updated'));
     }
     
-    
+    public function getProfile($id) {
+        $logged = Auth::user()->user_id;
+        $view_user = $id;
+        User;
+        return view('users.profile');
+    }
     
 }

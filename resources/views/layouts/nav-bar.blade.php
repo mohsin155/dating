@@ -4,30 +4,20 @@
         <div class="header-inner-content clearfix">
             <div class="logo"></div>
             <ul class="menu">
-
-                <!--<li id="menu1">
-
+                <li id="menu1">
                     <a href="#">2,514 Members Online</a>
                 </li>
                 <li id="menu2">
                     <a href="#">Matches</a>
                 </li>
                 <li id="menu3">
-                    <a href="#">Search</a>
+                    <a href="{{url('search/advance-search')}}">Search</a>
                 </li>
                 <li id="menu4">
-                    <a href="#">
-                        Messages 
-                        <span class="mynotificationCircle circle">
-                            30
-                        </span>
-
-                    </a>
+                    <a href="#">Messages<span class="mynotificationCircle circle">30</span></a>
                 </li>
-                <!--<li id="menu5" class="dropdown">
-
+                <li id="menu5" class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Activity <b class="caret"></b></a>
-
                     <ul class="dropdown-menu activity-dropdown-menu-left">
                         <li class="dropdown-submenu activity-dropdown-menu-left-heading">Activity Towards Me
                             <ul class="dropdown-menu activity-dropdown-menu-right">
@@ -46,9 +36,7 @@
                                         <span class="menuactivitypic">
                                             <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
                                         </span>
-                                    </a> 
-
-
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="#">
@@ -65,8 +53,6 @@
                                             <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
                                         </span>
                                     </a> 
-
-
                                 </li>
                                 <li>
                                     <a href="#">
@@ -83,8 +69,6 @@
                                             <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
                                         </span>
                                     </a> 
-
-
                                 </li>
                                 <li>
                                     <a href="#">
@@ -101,8 +85,6 @@
                                             <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
                                         </span>
                                     </a> 
-
-
                                 </li>
                                 <li>
                                     <a href="#">
@@ -119,8 +101,6 @@
                                             <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
                                         </span>
                                     </a> 
-
-
                                 </li>
                                 <li>
                                     <a href="#">
@@ -136,31 +116,21 @@
                                         <span class="menuactivitypic">
                                             <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
                                         </span>
-                                    </a> 
-
-
+                                    </a>
                                 </li>
-
-
-                            </ul> 
-
-
+                            </ul>
                         </li>
                         <li>
                             <a href="#" class="clearfix">
                                 <p>
                                     <span class="dropmenutext">Interested In Me</span>
-
                                 </p>
                             </a>
                         </li>
-
-
                         <li>
                             <a href="#" class="clearfix">
                                 <p>
                                     <span class="dropmenutext">I'm Their Favorite</span>
-
                                 </p>
                             </a>
                         </li>
@@ -168,16 +138,11 @@
                             <a href="#" style="border: 0;" class="clearfix">
                                 <p>
                                     <span class="dropmenutext">Viewed My Profile</span>
-
-                                    <span class="mynotificationCircle circle_sm">
-                                        5
-                                    </span>
-
+                                    <span class="mynotificationCircle circle_sm">5</span>
                                 </p>
                             </a>
                         </li>
                         <li>&nbsp;</li>
-
                         <li class="activity-dropdown-menu-left-heading">Activity From Me</li>
                         <li><a href="#"><p>My Interests</p></a></li>
                         <li><a href="#"><p>My Favorites</p></a></li>
@@ -185,9 +150,7 @@
                         <li class="line"></li>
                         <li><a href="#"><p>Block List</p></a></li>
                     </ul>
-
-                </li>-->
-
+                </li>
             </ul>   
             <div class="other-details">
                 <ul class="sidemenu">

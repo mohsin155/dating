@@ -6,13 +6,13 @@
         <div class="address-update-container">
             <div class="address-update-inner">
                 <div>
-                    <h1>Keyword Search</h1>
+                    <h1>First Name</h1>
                 </div>
 
             </div>
             <div class="description">
                 <div class="form-group">
-                <label>Keyword : </label><input name="keyword" type="text" />
+                <label>First Name : </label><input name="keyword" type="text" />
                 </div>
             </div>
 
@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <label for="country">Living in:</label>
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#" class="active-grey">Country</a></li>
+                            <li class="active"><a href="{{url('users/account-settings')}}" class="active-grey">Country</a></li>
                         </ul>
                         <select class="form-control" id="country" name="country" >
                             <option value="0">--Please Select--</option>
@@ -90,16 +90,6 @@
                         </select>
                     </div>
                     <hr class="seperate-line">
-                    <!--<div class="form-group">
-                        <label for="State/Province">State/Province</label>
-                        
-                    </div>
-                    <hr class="seperate-line">
-                    <div class="form-group">
-                        <label for="State/Province">City</label>
-                        
-                    </div>
-                    <hr class="seperate-line">-->
                     <div class="form-group">
                         <label for="has_photo">Has Photo: </label>
                         <div class="pets-section">
@@ -141,7 +131,7 @@
                         </select>
                     </div>
                     <div class="button-inner text-center email-address">
-                        <button class="btn btn-primary btn-green" type="submit">SAVE</button>
+                        <button class="btn btn-primary btn-green" type="submit">SUBMIT</button>
                     </div>
                 </form>
             </div>
