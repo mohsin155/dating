@@ -85,8 +85,8 @@
                                 <label>I am:</label>
 
                                 <select name="gender" id="gender" class="selectpicker">
-                                    <option value="male" @if($profile_data->gender=="male") selected @endif>Male</option>
-                                    <option value="female" @if($profile_data->gender=="female") selected @endif>Female</option> 
+                                    <option value="male" @if(empty($profile_data) && $profile_data->gender=="male") selected @endif>Male</option>
+                                    <option value="female" @if(empty($profile_data) && $profile_data->gender=="female") selected @endif>Female</option> 
                                 </select>
 
                             </li>
@@ -94,8 +94,8 @@
                                 <label>Seeking</label>
 
                                 <select name="gender_w" id="gender">
-                                    <option value="male" @if($profile_data->gender=="female") selected @endif>Male</option>
-                                    <option value="female" @if($profile_data->gender=="male") selected @endif>Female</option>
+                                    <option value="male" @if(empty($profile_data) && $profile_data->gender=="female") selected @endif>Male</option>
+                                    <option value="female" @if(empty($profile_data) && $profile_data->gender=="male") selected @endif>Female</option>
                                 </select>
 
                             </li>
@@ -182,7 +182,7 @@
                     <div class="heading clearfix">
                         <h1>Recommended Matches</h1>
 
-                        <a href="#" class="green-light-button left">Improve Matches</a> 
+                        <a href="{{url('users/edit-match')}}" class="green-light-button left">Improve Matches</a> 
                         <a href="#" class="grey-light-button seematches">See all matches</a> 
                     </div>
                     <div class="member"> 
@@ -199,11 +199,8 @@
                         </span>
                         <p class="name" style="display: block;">ximena, 46</p>
                         <p class="location" style="display: block;">Cochabamba, Bolivia</p>
-
-                    </div> 
-                    
+                    </div>
                 </div>
-
             </div>
         
             <a href="#" class="green-mid-button seemore-button">See all matches</a>
