@@ -155,7 +155,7 @@
                             <input type="checkbox" name="body_type[]" value="any" checked="true" />Any
                             @foreach($form_layout[8] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->body_type)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->body_type)))
                             <input type="checkbox" name="body_type[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="body_type[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -171,7 +171,7 @@
                             <input type="checkbox" name="ethnicity[]" value="any" checked="true" />Any
                             @foreach($form_layout[9] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->ethnicity)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->ethnicity)))
                             <input type="checkbox" name="ethnicity[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="ethnicity[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -187,7 +187,7 @@
                             <input type="checkbox" name="appearance[]" value="any" checked="true" />Any
                             @foreach($form_layout[13] as $row)
                             <div class="pets-section">
-                             @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->appearance)))
+                             @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->appearance)))
                             <input type="checkbox" name="appearance[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="appearance[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -204,7 +204,7 @@
                             <input type="checkbox" name="hair_color[]" value="any" checked="true" />Any
                             @foreach($form_layout[1] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->hair_color)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->hair_color)))
                             <input type="checkbox" name="hair_color[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="hair_color[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -222,7 +222,7 @@
                        
                             @foreach($form_layout[2] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->hair_length)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->hair_length)))
                             <input type="checkbox" name="hair_length[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="hair_length[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -237,7 +237,7 @@
                             <input type="checkbox" name="hair_type[]" value="any" checked="true" />Any
                             @foreach($form_layout[3] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->hair_type)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->hair_type)))
                             <input type="checkbox" name="hair_type[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="hair_type[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -253,7 +253,7 @@
                             <input type="checkbox" name="eye_color[]" value="any" checked="true" />Any
                             @foreach($form_layout[4] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->eye_color)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->eye_color)))
                             <input type="checkbox" name="eye_color[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="eye_color[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -268,7 +268,7 @@
                             <input type="checkbox" name="eye_wear[]" value="any" checked="true" />Any
                             @foreach($form_layout[5] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->eye_wear)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->eye_wear)))
                             <input type="checkbox" name="eye_wear[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="eye_wear[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -283,7 +283,7 @@
                             <input type="checkbox" name="best_feature[]" value="any" checked="true" />Any
                             @foreach($form_layout[11] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->best_feature)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->best_feature)))
                             <input type="checkbox" name="best_feature[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="best_feature[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -298,7 +298,7 @@
                             <input type="checkbox" name="body_art[]" value="any" checked="true" />Any
                             @foreach($form_layout[12] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->body_art)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->body_art)))
                             <input type="checkbox" name="body_art[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="body_art[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -317,7 +317,7 @@
                             <input type="checkbox" name="smoke[]" value="any" checked="true" />Any
                             @foreach($form_layout[15] as $row)
                             <div class="pets-section">
-                             @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->smoke)))
+                             @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->smoke)))
                             <input type="checkbox" name="smoke[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="smoke[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -332,7 +332,7 @@
                             <input type="checkbox" name="drink[]" value="any" checked="true" />Any
                             @foreach($form_layout[14] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->drink)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->drink)))
                             <input type="checkbox" name="drink[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="drink[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -347,7 +347,7 @@
                             <input type="checkbox" name="relocate[]" value="any" checked="true" />Any
                             @foreach($form_layout[27] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->relocate)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->relocate)))
                             <input type="checkbox" name="relocate[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="relocate[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -362,7 +362,7 @@
                             <input type="checkbox" name="marital_status[]" value="any" checked="true" />Any
                             @foreach($form_layout[16] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->marital_status)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->marital_status)))
                             <input type="checkbox" name="marital_status[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="marital_status[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -378,7 +378,7 @@
                             <input type="checkbox" name="have_children[]" value="any" checked="true" />Any
                             @foreach($form_layout[17] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->have_children)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->have_children)))
                             <input type="checkbox" name="have_children[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="have_children[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -441,7 +441,7 @@
                             <input type="checkbox" name="more_child[]" value="any" checked="true" />Any
                             @foreach($form_layout[21] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->more_child)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->more_child)))
                             <input type="checkbox" name="more_child[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="more_child[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -458,7 +458,7 @@
                    
                         @foreach($form_layout[22] as $row)
                         <div class="pets-section">
-                         @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->have_pets)))
+                         @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->have_pets)))
                             <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -472,7 +472,7 @@
                             <input type="checkbox" name="occupation[]" value="any" checked="true" />Any
                             @foreach($form_layout[23] as $row)
                             <div class="pets-section">
-                             @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->occupation)))
+                             @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->occupation)))
                             <input type="checkbox" name="occupation[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="occupation[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -487,7 +487,7 @@
                             <input type="checkbox" name="employment[]" value="any" checked="true" />Any
                             @foreach($form_layout[24] as $row)
                             <div class="pets-section">
-                            @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->employment)))
+                            @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->employment)))
                             <input type="checkbox" name="employment[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="employment[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -507,7 +507,7 @@
                             <option value="4" @if(!empty($match_data) && $match_data->income==4) selected @endif>$120,001 - $180,000 (USD)</option>
                             <option value="5" @if(!empty($match_data) && $match_data->income==5) selected @endif>$180,001 - $240,000 (USD)</option>
                             <option value="6" @if(!empty($match_data) && $match_data->income==6) selected @endif>$240,001 - $600,000+ (USD)</option>
-                            <option value="7" @if(!mpty($match_data) && $match_data->income==7) selected @endif>Prefer not to say</option>
+                            <option value="7" @if(!empty($match_data) && $match_data->income==7) selected @endif>Prefer not to say</option>
 							
                         </select>
                     </div>
@@ -517,7 +517,7 @@
                             <input type="checkbox" name="home_type[]" value="any" checked="true" />Any
                             @foreach($form_layout[25] as $row)
                             <div class="pets-section">
-                                 @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->home_type)))
+                                 @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->home_type)))
                             <input type="checkbox" name="home_type[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="home_type[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -532,7 +532,7 @@
                             <input type="checkbox" name="living_situation[]" value="any" checked="true" />Any
                             @foreach($form_layout[26] as $row)
                             <div class="pets-section">
-                             @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->living_situation)))
+                             @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->living_situation)))
                             <input type="checkbox" name="living_situation[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="living_situation[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -551,7 +551,7 @@
                         <select class="selectpicker" name="nationality[]" multiple>
                             <option value="any" selected="selected">Any</option>
                             @foreach($countries as $row)
-                           @if(!empty($match_data)) && in_array($row->id,unserialize($match_data->nationality)))
+                           @if(!empty($match_data) && in_array($row->id,unserialize($match_data->nationality)))
                            {
                            <option  value="{{$row->id}}" selected>{{$row->name}}</option>
                             }
@@ -630,7 +630,7 @@
                         <select class="selectpicker" name="languages[]" multiple>
                             <option value="any" selected="selected">Any</option>
                             @foreach($languages as $row)
-                             @if(!empty($match_data)) && in_array($row->id,unserialize($match_data->languages)))
+                             @if(!empty($match_data) && in_array($row->id,unserialize($match_data->languages)))
                            {
                            <option  value="{{$row->id}}" selected>{{$row->name}}</option>
                             }
@@ -661,7 +661,7 @@
                         <input type="checkbox" name="religious_values[]" value="any" checked="true"/>Any
                         @foreach($form_layout[34] as $row)
                         <div class="pets-section">
-                        @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->religious_values)))
+                        @if(!empty($match_data)&& in_array($row['value'],unserialize($match_data->religious_values)))
                             <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" />{{$row['label']}}  
@@ -675,7 +675,7 @@
                         <input type="checkbox" name="star_sign[]" value="any" checked="true"/>Any
                         @foreach($form_layout[35] as $row)
                         <div class="pets-section">
-                         @if(!empty($match_data)) && in_array($row['value'],unserialize($match_data->star_sign)))
+                         @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->star_sign)))
                             <input type="checkbox" name="star_sign[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="star_sign[]" value="{{$row['value']}}" />{{$row['label']}}  
