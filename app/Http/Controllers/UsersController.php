@@ -522,7 +522,7 @@ class UsersController extends UtilityController {
         $user_match->max_height = $inputs['max_height'];
         $user_match->min_weight = $inputs['min_weight'];
         $user_match->max_weight = $inputs['max_weight'];
-        $user_match->hair_color = serialize(isset($inputs['hair_color'])?$inputs['hair_color']:'');
+        $user_match->hair_color = isset($inputs['hair_color'])?serialize($inputs['hair_color']):'';
         $user_match->hair_length = serialize(isset($inputs['hair_length'])?$inputs['hair_length']:'');
         $user_match->hair_type = serialize(isset($inputs['hair_type'])?$inputs['hair_type']:'');
         $user_match->eye_color = serialize(isset($inputs['eye_color'])?$inputs['eye_color']:'');
