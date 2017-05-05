@@ -136,6 +136,6 @@ $("#fblogin").on('click', function () {
 $("input[type=checkbox]").on('change',function(){
     var name = $(this).attr('name');
     if($(this).is(":checked") && $(this).val() == 'any'){
-        $('input[name="'+name+'"]').removeAttr('checked');
+        //$('input[name="'+name+'"]').removeAttr('checked');
     }
 });
