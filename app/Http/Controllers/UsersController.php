@@ -349,8 +349,10 @@ class UsersController extends UtilityController {
      public function getListing() {
          $countries = Country::get();
          $profile_data= UserProfile::where('user_id',Auth::user()->user_id) ->first();
-         $photos = UserPhotos::where('user_id', Auth::user()->user_id)->get();
-        return view('users.listing')->with('countries', $countries)->with('profile_data', $profile_data)->with('photos', $photos);
+         $photos = UserPhotos::where('user_id', Auth::user()->user_id)->first();
+         $image_path = url('uploads').'/' . Auth::user()->user_id.'/';
+        // print_r ($photos); exit;
+        return view('users.listing')->with('countries', $countries)->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
     }
      public function getProfile() {
         return view('users.profile');
