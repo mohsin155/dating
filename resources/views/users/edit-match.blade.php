@@ -661,7 +661,7 @@
                         <input type="checkbox" name="religious_values[]" value="any" checked="true"/>Any
                         @foreach($form_layout[34] as $row)
                         <div class="pets-section">
-                        @if(!empty($match_data)&& in_array($row['value'],unserialize($match_data->religious_values)))
+                        @if(!empty($match_data) && in_array($row['value'],unserialize($match_data->religious_values)))
                             <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" />{{$row['label']}}  

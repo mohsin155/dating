@@ -446,10 +446,9 @@
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="have_pets" class="pets-label">Do you have pets? : </label>
-                        
                         @foreach($form_layout[22] as $row)
                         <div class="pets-section">
-                            @if(!empty($profile_data)) && in_array($row['value'],unserialize($profile_data->have_pets)))
+                            @if((!empty($profile_data) && !empty(unserialize($profile_data->have_pets))) && in_array($row['value'],unserialize($profile_data->have_pets)))
                             <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                          @else
                          <input type="checkbox" name="have_pets[]" value="{{$row['value']}}" />{{$row['label']}}
@@ -558,7 +557,7 @@
 
                         @foreach($form_layout[28] as $row)
                           <div class="pets-section">
-                              @if(!empty($profile_data) && in_array($row['value'],unserialize($profile_data->relationship)))
+                              @if(!empty($profile_data) && !empty(unserialize($profile_data->relationship)) && in_array($row['value'],unserialize($profile_data->relationship)))
                               <input type="checkbox" name="relationship[]" value="{{$row['value']}}" checked="checked" />{{$row['label']}}
                                @else
                              <input type="checkbox" name="relationship[]" value="{{$row['value']}}" />{{$row['label']}}
@@ -608,7 +607,7 @@
                         <select class="selectpicker" name="languages[]" multiple>
                             <option value="0">--Please Select--</option>
                             @foreach($languages as $row)
-                            @if(!empty($profile_data)) && in_array($row->id,unserialize($profile_data->languages)))
+                            @if(!empty($profile_data) && !empty(unserialize($profile_data->languages)) && in_array($row->id,unserialize($profile_data->languages)))
                                 <option value="{{$row->id}}" selected="selected">{{$row->name}}</option>   
                                @else
                             <option value="{{$row->id}}">{{$row->name}}</option> 

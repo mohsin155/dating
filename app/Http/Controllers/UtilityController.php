@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\AppearanceMaster;
 use App\Models\UserPhotos;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Languages;
 
 class UtilityController extends Controller {
 
+    public $master_array = array();
+    public $languages_array = array();
     public function __construct() {
         
     }
@@ -49,5 +52,39 @@ class UtilityController extends Controller {
         return $image;
     }
     
-    //public static function 
+    public function getFormLabel($value){
+        if(isset($this->master_array[$value])){
+            return $this->master_array[$value];
+        }else{
+            return $value;
+        }
+    }
+    
+    public function setMasterArray(){
+        $appear = AppearanceMaster::get();
+        foreach($appear as $row){
+            $appear_arr[$row->appearance_id] = $row->label;
+        }
+        $appear_arr['any'] = 'Any';
+        $appear_arr['0'] = 'No answer';
+        $appear_arr[''] = 'No answer';
+        $this->master_array = $appear_arr;
+    }
+    
+    public function setLanguagesArray(){
+        $language = Languages::get();
+        foreach($language as $row){
+            $language_arr[$row->id] = $row->name;
+        }
+        $language_arr[''] = 'No answer';
+        $this->languages_array = $language_arr;
+    }
+    
+    public function getLanguageName($value){
+        if(isset($this->languages_array[$value])){
+            return $this->languages_array[$value];
+        }else{
+            return $value;
+        }
+    }
 }

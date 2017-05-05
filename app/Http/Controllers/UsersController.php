@@ -28,6 +28,8 @@ class UsersController extends UtilityController {
 
     public function __construct() {
         $this->middleware('auth', ['except' => ['getSignup', 'postSignup', 'getLogin', 'postLogin', 'getState', 'getCity', 'postFbsignup', 'postFblogin']]);
+        $this->setLanguagesArray();
+        $this->setMasterArray();
     }
 
     public function getLogin() {
@@ -354,9 +356,7 @@ class UsersController extends UtilityController {
         // print_r ($photos); exit;
         return view('users.listing')->with('countries', $countries)->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
     }
-     public function getProfile() {
-        return view('users.profile');
-    }
+    
      public function getMessaging() {
         return view('users.messaging');
     }
@@ -597,6 +597,52 @@ class UsersController extends UtilityController {
         return Redirect::to('users/imbra')->with('success',trans('messages.record_updated'));
     }
     
+    public function getProfile($id) {
+        $logged = Auth::user()->user_id;
+        $view_user = $id;
+        $user = new User;
+        $user_details = $user->getUserDetails($view_user);
+        $user_details['hair_color'] = $this->master_array[$user_details['hair_color']];
+        $user_details['hair_length'] = $this->master_array[$user_details['hair_length']];
+        $user_details['hair_type'] = $this->master_array[$user_details['hair_type']];
+        $user_details['eye_color'] = $this->master_array[$user_details['eye_color']];
+        $user_details['eye_wear'] = $this->master_array[$user_details['eye_wear']];
+        $user_details['body_type'] = $this->master_array[$user_details['body_type']];
+        $user_details['ethnicity'] = $this->master_array[$user_details['ethnicity']];
+        $user_details['facial_hair'] = $this->master_array[$user_details['facial_hair']];
+        $user_details['best_feature'] = $this->master_array[$user_details['best_feature']];
+        $user_details['body_art'] = $this->master_array[$user_details['body_art']];
+        $user_details['appearance'] = $this->master_array[$user_details['appearance']];
+        $user_details['drink'] = $this->master_array[$user_details['drink']];
+        $user_details['smoke'] = $this->master_array[$user_details['smoke']];
+        $user_details['marital_status'] = $this->master_array[$user_details['marital_status']];
+        $user_details['have_children'] = $this->master_array[$user_details['have_children']];
+        $user_details['more_child'] = $this->master_array[$user_details['more_child']];
+        $user_details['occupation'] = $this->master_array[$user_details['occupation']];
+        $user_details['employment'] = $this->master_array[$user_details['employment']];
+        $user_details['home_type'] = $this->master_array[$user_details['home_type']];
+        $user_details['living_situation'] = $this->master_array[$user_details['living_situation']];
+        $user_details['relocate'] = $this->master_array[$user_details['relocate']];
+        $user_details['education'] = $this->master_array[$user_details['education']];
+        $user_details['english_ability'] = $this->master_array[$user_details['english_ability']];
+        $user_details['portugese_ability'] = $this->master_array[$user_details['portugese_ability']];
+        $user_details['spanish_ability'] = $this->master_array[$user_details['spanish_ability']];
+        $user_details['religion'] = $this->master_array[$user_details['religion']];
+        $user_details['religious_values'] = $this->master_array[$user_details['religious_values']];
+        $user_details['star_sign'] = $this->master_array[$user_details['star_sign']];
+        
+        if(!empty($user_details['have_pets']))
+        $user_details['have_pets'] = implode(array_map(array($this, 'getFormLabel'),unserialize($user_details['have_pets'])?unserialize($user_details['have_pets']):array()),',');
+        if(!empty($user_details['relationship']))
+        $user_details['relationship'] = implode(array_map(array($this, 'getFormLabel'),unserialize($user_details['relationship'])?unserialize($user_details['relationship']):array()),',');
+        $languages = implode(array_map(array($this, 'getLanguageName'),unserialize($user_details['languages'])?unserialize($user_details['languages']):array()),',');
+        $user_details['languages'] = $languages;
+        //dd($user_details);
+        $match_details = $user->getMatchDetails($logged);
+        //dd($match_details);
+        $image_path = url('uploads').'/' . Auth::user()->user_id.'/';
+        return view('users.profile')->with('match_details', $match_details)->with('user_details', $user_details)->with('image_path',$image_path);
+    }
     
     
 }
