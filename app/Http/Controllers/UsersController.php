@@ -354,8 +354,10 @@ class UsersController extends UtilityController {
          $profile_data= UserProfile::where('user_id',Auth::user()->user_id) ->first();
          $photos = UserPhotos::where('user_id', Auth::user()->user_id)->first();
          $image_path = url('uploads').'/' . Auth::user()->user_id.'/';
-        // print_r ($photos); exit;
-        return view('users.listing')->with('countries', $countries)->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
+         $users= User::select('users.user_id','users.first_name','users.age','users.state','users.country','user_photos.photo_name',DB::raw("(select countries.name  from countries where countries.id=users.country)as country_name ") ,DB::raw("(select states.name from states where states.country_id=users.country AND states.id=users.state ) as state_name "))->join('user_photos','users.user_id','=','user_photos.user_id')->where('users.user_id', '!=',Auth::user()->user_id)->get();
+          // print_r($users);exit;
+         $states= State::get();
+        return view('users.listing')->with('countries', $countries)->with('states', $states)->with('users', $users)->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
     }
     
      public function getMessaging() {
