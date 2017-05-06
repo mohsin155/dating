@@ -94,8 +94,8 @@
                                 <label>I am:</label>
 
                                 <select name="gender" id="gender" class="selectpicker">
-                                    <option value="male" @if(empty($profile_data) && $profile_data->gender=="male") selected @endif>Male</option>
-                                    <option value="female" @if(empty($profile_data) && $profile_data->gender=="female") selected @endif>Female</option> 
+                                    <option value="male" @if(!empty($profile_data) && $profile_data->gender=="male") selected @endif>Male</option>
+                                    <option value="female" @if(!empty($profile_data) && $profile_data->gender=="female") selected @endif>Female</option> 
                                 </select>
 
                             </li>
@@ -103,8 +103,8 @@
                                 <label>Seeking</label>
 
                                 <select name="gender_w" id="gender">
-                                    <option value="male" @if(empty($profile_data) && $profile_data->gender=="female") selected @endif>Male</option>
-                                    <option value="female" @if(empty($profile_data) && $profile_data->gender=="male") selected @endif>Female</option>
+                                    <option value="male" @if(!empty($profile_data) && $profile_data->gender=="female") selected @endif>Male</option>
+                                    <option value="female" @if(!empty($profile_data) && $profile_data->gender=="male") selected @endif>Female</option>
                                 </select>
 
                             </li>
@@ -195,19 +195,18 @@
                         <a href="#" class="grey-light-button seematches">See all matches</a> 
                     </div>
                     <div class="member"> 
+                        @foreach($users as $user)
                         <span class="memberpic">
-
-                            <a href="#" class="photo-display-popup" data-devicemode="1" name="ximena  -  46  -  Cochabamba, Bolivia" title="ximena  -  46  -  Cochabamba, Bolivia">
-<!--                         <p>2</p>-->
-                                <!--                            <div class="photo">
-                                                               
-                                                            </div>-->
-                                <img class="memberpic-border" width="125" height="136" src="https://cdn.latinamericancupid.com/memphoto/Photo1/small/283218.jpg">
+                                
+                            <a href="#" class="photo-display-popup" data-devicemode="1" name="member" title="member">
+                                  
+                                <img class="memberpic-border" width="125" height="136" src="{{url('uploads').'/' . $user->user_id.'/'}}{{$user->photo_name}}">
 
                             </a> 
                         </span>
-                        <p class="name" style="display: block;">ximena, 46</p>
-                        <p class="location" style="display: block;">Cochabamba, Bolivia</p>
+                        <p class="name" style="display: block;">{{$user->first_name}}, {{$user->age}}</p>
+                        <p class="location" style="display: block;">{{$user->state_name}}, {{$user->country_name}}</p>
+                        @endforeach
                     </div>
                 </div>
             </div>
