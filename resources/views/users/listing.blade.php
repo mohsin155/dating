@@ -10,9 +10,18 @@
                         <h1 class="white regular">Hi <?php echo $profile_data->first_name; ?></h1>
                     </div>
                     <div class="pic my2">
-
+                       
+                        @if(!empty($photos)){
+                         <a title="click to enlarge photo" id="addPhotoLHSCol1" class="enlargePhoto">
+                             
+                            <div class="addphoto" ><img src="{{$image_path}}{{$photos->photo_name}}" width="100%" height="100%" />
+                            
+                            </div>
+                        </a>
+                        }
+                        @else
                         <a href="{{url('users/edit-photos')}}" id="addPhotoLHSCol1"><div class="addphoto" title="The most effective way to get people to notice you is to add a photo. Add A Photo Now"></div></a>
-
+                        @endif
 
                     </div>
                     <div class="member-benefits relative mt1">
