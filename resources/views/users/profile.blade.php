@@ -171,14 +171,15 @@
                                         <td>
                                             <table width="135" border="0" cellpadding="0" cellspacing="0">
 
-                                                <tbody><tr>
+                                                <tbody>
+                                                    <!--<tr>
                                                         <td id="tdprofile"><a href="#">Giving</a></td>
                                                         <td width="29" align="center" valign="middle" id="tdprofile2"><a href="#" class="assignCupidWordLink"><img src="{{url('image/btn-cross.gif')}}" border="0" id="addCupidWordImage1645"></a></td>
                                                     </tr>
 
                                                     <tr>
                                                         <td id="tdprofile" colspan="2" style="text-align:right"></td>
-                                                    </tr>
+                                                    </tr>-->
 
                                                 </tbody></table>
                                         </td>

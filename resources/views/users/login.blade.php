@@ -86,7 +86,7 @@ window.fbAsyncInit = function () {
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <img src="image/flags/english.gif" alt="" />
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-                                <li><a href="javascript:;" id="English" onclick="translate(this.id);"><span></span>
+                                <li><a href="javascript:;" id="English" onclick="translate(this.id);">English<span></span>
                                         <img src="image/flags/english.gif" alt="" /></a> </li>
                                 <li><a href="javascript:;" id="German" onclick="translate(this.id);"><span></span>
                                         <img src="image/flags/german.gif" alt="" /></a> </li>

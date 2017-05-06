@@ -1,8 +1,8 @@
 <div class="header">
-    <div class="top-header"></div>
+    <!--<div class="top-header"></div>-->
     <div class="header-inner">
         <div class="header-inner-content clearfix">
-            <div class="logo"></div>
+            <div class="logo"><a href="{{url('users/listing')}}"><img src="{{url('image')}}/Logo.jpg" border="0" height="35" width="160" alt="logo"/></a></div>
             <ul class="menu">
                 <li id="menu1">
                     <a href="#">2,514 Members Online</a>
@@ -186,7 +186,7 @@
                                             </div>
                                             <span class="myprofiletext">
                                                 <h1>Hi {{Auth::user()->first_name}}</h1>
-                                                <a href="#">View My Profile</a> 
+                                                <a href="{{url('users/profile')}}/{{Auth::user()->user_id}}">View My Profile</a> 
                                             </span> 
                                         </div>
                                         <div class="myinfo clearfix">
