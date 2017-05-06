@@ -63,6 +63,7 @@ class UsersController extends UtilityController {
             return Redirect::to('/login')->with('errors', $validator->errors()->all())->withInput();
         } else {
             if (Auth::attempt(['email' => $inputs['email'], 'password' => $inputs['password']], false)) {
+                User::where('user_id',Auth::user()->user_id)->update(array('last_login'=>date('Y-m-d H:i:s')));
                 return Redirect::to('users/listing')->with('success', 'login successfully!!!');
             } else {
                 $message[] = trans('messages.login_fail');
@@ -353,8 +354,8 @@ class UsersController extends UtilityController {
          $profile_data= UserProfile::where('user_id',Auth::user()->user_id) ->first();
          $photos = UserPhotos::where('user_id', Auth::user()->user_id)->first();
          $image_path = url('uploads').'/' . Auth::user()->user_id.'/';
-         $users= User::select('users.user_id','users.first_name','users.age','users.state','users.country','user_photos.photo_name',DB::raw("(select countries.name  from countries where countries.id=users.country)as country_name ") ,DB::raw("(select states.name from states where states.country_id=users.country AND states.id=users.state ) as state_name "))->join('user_photos','users.user_id','=','user_photos.user_id')->get();
-        
+         $users= User::select('users.user_id','users.first_name','users.age','users.state','users.country','user_photos.photo_name',DB::raw("(select countries.name  from countries where countries.id=users.country)as country_name ") ,DB::raw("(select states.name from states where states.country_id=users.country AND states.id=users.state ) as state_name "))->join('user_photos','users.user_id','=','user_photos.user_id')->where('users.user_id', '!=',Auth::user()->user_id)->get();
+          // print_r($users);exit;
          $states= State::get();
         return view('users.listing')->with('countries', $countries)->with('states', $states)->with('users', $users)->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
     }
@@ -600,6 +601,7 @@ class UsersController extends UtilityController {
     }
     
     public function getProfile($id) {
+        $search = new SearchController();
         $logged = Auth::user()->user_id;
         $view_user = $id;
         $user = new User;
@@ -640,11 +642,18 @@ class UsersController extends UtilityController {
         $languages = implode(array_map(array($this, 'getLanguageName'),unserialize($user_details['languages'])?unserialize($user_details['languages']):array()),',');
         $user_details['languages'] = $languages;
         //dd($user_details);
-        $match_details = $user->getMatchDetails($logged);
-        //dd($match_details);
+        $match_details = $user->getMatchDetails($view_user);
+        if(!empty($match_details)){
+            $match_value = $search->getMatchData($match_details);
+        }else{
+            $match_value = array();
+        }
+        //dd($match_value);
         $image_path = url('uploads').'/' . Auth::user()->user_id.'/';
-        return view('users.profile')->with('match_details', $match_details)->with('user_details', $user_details)->with('image_path',$image_path);
+        return view('users.profile')->with('match_details', $match_value)->with('user_details', $user_details)->with('image_path',$image_path);
     }
     
-    
+    public function matchDetailsValue($match_details){
+        
+    }
 }

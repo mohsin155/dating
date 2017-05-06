@@ -7,7 +7,7 @@
                     <div class="profile-overlay"></div>
                     <div class="heading relative text-center">
 
-                        <h1 class="white regular">Hi <?php echo $profile_data->first_name; ?></h1>
+                        <h1 class="white regular">Hi <?php if(!empty($profile_data))echo $profile_data->first_name; ?></h1>
                     </div>
                     <div class="pic my2">
                        
@@ -194,8 +194,9 @@
                         <a href="{{url('users/edit-match')}}" class="green-light-button left">Improve Matches</a> 
                         <a href="#" class="grey-light-button seematches">See all matches</a> 
                     </div>
+                    @foreach($users as $user)
                     <div class="member"> 
-                        @foreach($users as $user)
+                        
                         <span class="memberpic">
                                 
                             <a href="#" class="photo-display-popup" data-devicemode="1" name="member" title="member">
@@ -206,8 +207,9 @@
                         </span>
                         <p class="name" style="display: block;">{{$user->first_name}}, {{$user->age}}</p>
                         <p class="location" style="display: block;">{{$user->state_name}}, {{$user->country_name}}</p>
-                        @endforeach
+                        
                     </div>
+                    @endforeach
                 </div>
             </div>
         

@@ -31,16 +31,16 @@
                                 <strong style="color:#CCC">/</strong>  <strong style="color:#AAA;">ID: {{$user_details['user_id']}}</strong>
                                 <br>
 
-                                Cochabamba, Cochabamba, Bolivia
+                                {{$user_details['city_name']}}, {{$user_details['state_name']}}, {{$user_details['country_name']}}
                                 <br>
 
                                 <strong>Seeking:</strong>
                                 Male 40 - 60 living in Algeria 
                                 <br>
                                 <strong>For:</strong>
-                                Penpal, Friendship, Romance / Dating, Marriage 
+                                {{$user_details['relationship']}} 
                                 <br>
-                                <strong>Last active:</strong> 4 months ago</p>
+                                <strong>Last active:</strong> {{humanTiming($user_details['last_login'])}}</p>
                         </div>
                         <div id="quickview">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" id="table2">
@@ -216,7 +216,7 @@
                                 </span>
                                 <img src="{{url('image/icon-matchme-rtl.gif')}}" width="85" height="35" border="0" class="left">
                                 <p>
-                                    She's Looking For 
+                                    @if($user_details['gender']=='male') He's @else She's @endif Looking For 
                                 </p>
                                 <img src="{{url('image/icon-matchthem-rtl.gif')}}" width="85" height="35" border="0" class="left">
                                 <div class="clear"></div>
@@ -236,8 +236,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_23" align="left">
-
-                                                Male 
+                                                {{$match_details['gender']}}
                                             </td>
 
                                         </tr>
@@ -252,8 +251,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_1" align="left">
-
-                                                30 - 40 
+                                                {{$match_details['min_age']}} - {{$match_details['max_age']}}
                                             </td>
 
                                         </tr>
@@ -263,11 +261,9 @@
 
                                             </td>
                                             <td id="td1" width="31%" class="ag_11">
-                                                Chiclayo, Lambayeque, Peru 
+                                                {{$user_details['city_name']}}, {{$user_details['state_name']}}, {{$user_details['country_name']}}
                                             </td>
-
                                             <td id="td1" width="36%" class="ag_11" align="left">
-
                                                 Peru 
                                             </td>
 
@@ -282,7 +278,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_48" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['relocate']}}</em>
                                             </td>
 
                                         </tr>
@@ -297,7 +293,7 @@
                                                 {{$user_details['hair_color']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_24" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['haircolor']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -309,7 +305,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_25" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['hair_length']}}</em>
                                             </td>
 
                                         </tr>
@@ -322,7 +318,7 @@
                                                 {{$user_details['hair_type']}} 
                                             </td>
                                             <td id="td1" width="36%" class="ag_26" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['hair_type']}}</em>
                                             </td>
 
                                         </tr>
@@ -335,7 +331,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_20" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['eye_color']}}</em>
                                             </td>
 
                                         </tr>
@@ -348,49 +344,41 @@
                                                 {{$user_details['eye_wear']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_21" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['eye_wear']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td id="td1" width="21%" align="left" class="beige">Height:</td>
                                             <td id="td1" width="1%" align="center" class="beige">
-
                                             </td>
                                             <td id="td1" width="31%" class="ag_27">
                                                 {{$user_details['height']}} (cm) 
                                             </td>
-
                                             <td id="td1" width="36%" class="ag_27" align="left">
-
-                                                5'11" (180 cm) - 6'1" (185 cm) 
+                                               {{$match_details['min_height']}} (cm) - {{$match_details['max_height']}} (cm)
                                             </td>
-
                                         </tr>
                                         <tr>
                                             <td id="td1" width="21%" align="left" class="beige">Weight:</td>
                                             <td id="td1" width="1%" align="center" class="beige">
-
                                             </td>
                                             <td id="td1" width="31%" class="ag_53">
                                                 {{$user_details['weight']}} (kg) 
                                             </td>
-
                                             <td id="td1" width="36%" class="ag_53" align="left">
-
-                                                70 kg (154 lb) - 80 kg (176 lb) 
+                                                {{$match_details['min_weight']}} (kg) - {{$match_details['max_weight']}} (kg)
                                             </td>
 
                                         </tr>
                                         <tr>
                                             <td id="td1" width="21%" align="left" class="beige">Body style:</td>
                                             <td id="td1" width="1%" align="center" class="beige">
-
                                             </td>
                                             <td id="td1" width="31%" class="ag_5">
                                                 {{$user_details['body_type']}} 
                                             </td>
                                             <td id="td1" width="36%" class="ag_5" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['body']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -403,7 +391,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_18" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['ethnicity']}}</em>
                                             </td>
 
                                         </tr>
@@ -418,7 +406,7 @@
 
                                             </td>
                                             <td id="td1" width="36%" class="ag_22" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['facial_hair']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -430,7 +418,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_3" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['best_feature']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -442,7 +430,7 @@
                                                 {{$user_details['body_art']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_4" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['body_art']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -454,7 +442,7 @@
                                                 {{$user_details['appearance']}} 
                                             </td>
                                             <td id="td1" width="36%" class="ag_2" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['appearance']}}</em>
                                             </td>
 
                                         </tr>
@@ -471,8 +459,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_15" align="left">
-
-                                                Occasionally drink 
+                                                {{$match_details['drink']}}
                                             </td>
 
                                         </tr>
@@ -486,8 +473,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_51" align="left">
-
-                                                Occasionally smoke 
+                                                {{$match_details['smoke']}}
                                             </td>
 
                                         </tr>
@@ -501,8 +487,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_37" align="left">
-
-                                                Single 
+                                                {{$match_details['marital_status']}}
                                             </td>
 
                                         </tr>
@@ -516,7 +501,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_6" align="left">
-                                                No 
+                                                {{$match_details['have_children']}}
                                             </td>
 
                                         </tr>
@@ -534,7 +519,7 @@
                                             <td id="td1" width="36%" class="ag_7" align="left">
 
 
-                                                <em>Any</em>
+                                                <em>{{$match_details['no_children']}}</em>
 
                                             </td>
 
@@ -548,40 +533,31 @@
                                                 <em>{{$user_details['oldest_child']}}</em>
                                             </td>
                                             <td id="td1" width="36%" class="ag_8" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['old_child']}}</em>
                                             </td>
 
                                         </tr>
                                         <tr class="collapsable">
                                             <td id="td1" width="21%" align="left" class="beige">Youngest child:</td>
                                             <td id="td1" width="1%" align="center" class="beige">
-
                                             </td>
                                             <td id="td1" width="31%" class="ag_10">
-
                                                 <em>{{$user_details['youngest_child']}}</em>
-
                                             </td>
-
                                             <td id="td1" width="36%" class="ag_10" align="left">
-
-
-                                                <em>Any</em>
-
+                                                <em>{{$match_details['min_age']}}</em>
                                             </td>
-
                                         </tr>
                                         <tr>
                                             <td id="td1" width="21%" align="left" class="beige">Want (more) children:</td>
                                             <td id="td1" width="1%" align="center" class="beige">
-
                                             </td>
                                             <td id="td1" width="31%" class="ag_9">
                                                 {{$user_details['more_child']}} 
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_9" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['more_child']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -593,7 +569,7 @@
                                                 {{$user_details['have_pets']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_41" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['have_pets']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -604,7 +580,7 @@
                                                 {{$user_details['occupation']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_40" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['occupation']}}</em>
                                             </td>
 
                                         </tr>
@@ -617,7 +593,7 @@
                                                 {{$user_details['employment']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_17" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['employement']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -628,7 +604,7 @@
                                                 {{$user_details['income']}} 
                                             </td>
                                             <td id="td1" width="36%" class="ag_29" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['income']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -639,7 +615,7 @@
                                                 {{$user_details['home_type']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_28" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['home_type']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -650,7 +626,7 @@
                                                 {{$user_details['living_situation']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_36" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['living_situation']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -666,7 +642,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_38" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['nationality']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -679,8 +655,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_16" align="left">
-
-                                                High School, Vocational College, Bachelors Degree, Masters Degree, PhD or Doctorate 
+                                                {{$match_details['eduction']}}
                                             </td>
 
                                         </tr>
@@ -696,7 +671,7 @@
                                             <td id="td1" width="36%" class="ag_35" align="left">
 
 
-                                                <em>Any</em>
+                                                <em>{{$match_details['languages']}}</em>
 
                                             </td>
 
@@ -711,7 +686,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_69" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['postugese_ability']}}</em>
                                             </td>
 
                                         </tr>
@@ -725,7 +700,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_71" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['spanish_ability']}}</em>
                                             </td>
 
                                         </tr>
@@ -739,7 +714,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_45" align="left">
-                                                Christian - Catholic 
+                                                {{$match_details['religion']}}
                                             </td>
 
                                         </tr>
@@ -753,7 +728,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_47" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['religious_values']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -766,7 +741,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_52" align="left">
-                                                <em>Any</em>
+                                                <em>{{$match_details['star_sign']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -852,7 +827,7 @@
 
                                     <ul class="navtabs">
                                         <li class="translation-tab selected"><a href=""><span class="translation-link">English</span></a></li>
-                                        <li class="original-tab"><a href=""><span class="original-link">Original Spanish</span></a></li>
+                                        <!--<li class="original-tab"><a href=""><span class="original-link">Original Spanish</span></a></li>-->
                                     </ul>
 
                                     <div class="clear"></div>
@@ -861,10 +836,10 @@
 
 
                                 <div class="originalText" style="display: none;">
-                                    <p>bueno me gustaria conocer a alguien q sea super divertido,  qsea sincero, y sobretodo q tenga mis mismos gustos. </p><p></p>
+                                    <p></p>{{$user_details['partner']}}<p></p>
                                 </div>
                                 <div class="translatedText">
-                                    <p>Good me gustaria to know someone q be super amusing, qsea sincere, and above all q have my same inclinations. </p><p></p>
+                                    <p>{{$user_details['partner']}}</p><p></p>
                                 </div>
                             </div>
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">

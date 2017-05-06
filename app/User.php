@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Utility\Utility;
 use Illuminate\Database\Eloquent;
+use Illuminate\Support\Facades\DB;
+use App\Models\UserMatch;
 class User extends Authenticatable
 {
     /**
@@ -32,13 +34,15 @@ class User extends Authenticatable
     }
     
     public function getUserDetails($user_id){
-        $result = User::with('photos')->leftJoin('user_profile as p','users.user_id','=','p.user_id')->where('users.user_id',$user_id)->first()->toArray();
-        //dd($result);
+        $result = User::select(DB::raw('users.*,p.*,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+                ->with('photos')->leftJoin('user_profile as p','users.user_id','=','p.user_id')
+                ->where('users.user_id',$user_id)->first()->toArray();
         return $result;
     }
     
     public function getMatchDetails($user_id){
-        $result = User::leftJoin('user_match as m','users.user_id','=','m.user_id')->where('users.user_id',$user_id)->first();
+        $result = UserMatch::where('user_id',$user_id)->first();
+        //$result = User::leftJoin('user_match as m','users.user_id','=','m.user_id')->where('users.user_id',$user_id)->first();
         return $result;
     }
 }
