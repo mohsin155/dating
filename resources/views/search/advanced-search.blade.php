@@ -194,10 +194,11 @@
 
                         <h3>Hair Length : {{!empty($user_match)?$user_match->hair_length:'Any'}}</h3>
                         <div class="form-group">
+                            <div class="hair-length pull-left">
                             <input type="checkbox" name="hair_length[]" value="any" checked="true" />Any
-
+                            </div>
                             @foreach($form_layout[2] as $row)
-                            <div class="pets-section">
+                            <div class="hair-length pull-left">
                                 <input type="checkbox" name="hair_length[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -205,21 +206,24 @@
                         </div>
                         <h3>Hair Type : {{!empty($user_match)?$user_match->hair_type:'Any'}}</h3>
                         <div class="form-group">
-
+                            <div class="hair-length pull-left">
                             <input type="checkbox" name="hair_type[]" value="any" checked="true" />Any
+                            </div>
                             @foreach($form_layout[3] as $row)
-                            <div class="pets-section">
+                            <div class="hair-length pull-left">
                                 <input type="checkbox" name="hair_type[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
                         </div>
                         <h3>Hair Color : {{!empty($user_match)?$user_match->hair_color:'Any'}}</h3>
-                        <div class="form-group">
+                         <div class="form-group">
+                        <div class="hair-length pull-left">
 
                             <input type="checkbox" name="hair_color[]" value="any" checked="true" />Any
+                        </div>
                             @foreach($form_layout[1] as $row)
-                            <div class="pets-section">
+                            <div class="hair-length pull-left">
                                 <input type="checkbox" name="hair_color[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -227,9 +231,11 @@
                         </div>
                         <h3>Eye Color : {{!empty($user_match)?$user_match->eye_color:'Any'}}</h3>
                         <div class="form-group">
+                            <div class="hair-length pull-left">
                             <input type="checkbox" name="eye_color[]" value="any" checked="true" />Any
+                            </div>
                             @foreach($form_layout[4] as $row)
-                            <div class="pets-section">
+                            <div class="hair-length pull-left">
                                 <input type="checkbox" name="eye_color[]" value="{{$row['value']}}" />{{$row['label']}} 
                             </div>
                             @endforeach
@@ -237,10 +243,11 @@
                         </div>
                         <h3>Eye Wear : {{!empty($user_match)?$user_match->eye_wear:'Any'}}</h3>
                         <div class="form-group">
-
+                            <div class="hair-length pull-left">
                             <input type="checkbox" name="eye_wear[]" value="any" checked="true" />Any
+                            </div>
                             @foreach($form_layout[5] as $row)
-                            <div class="pets-section">
+                            <div class="hair-length pull-left">
                                 <input type="checkbox" name="eye_wear[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -291,10 +298,11 @@
                         </div>
                         <h3>Their ethnicity is mostly : {{!empty($user_match)?$user_match->ethnicity:'Any'}}</h3>
                         <div class="form-group">
-
+                             <div class="hair-length pull-left">
                             <input type="checkbox" name="ethnicity[]" value="any" checked="true" />Any
+                             </div>
                             @foreach($form_layout[9] as $row)
-                            <div class="pets-section">
+                            <div class="hair-length pull-left">
                                 <input type="checkbox" name="ethnicity[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -303,10 +311,11 @@
 
                         <h3>Their best feature : {{!empty($user_match)?$user_match->best_feature:'Any'}}</h3>
                         <div class="form-group">
-
+                             <div class="hair-length pull-left">
                             <input type="checkbox" name="best_feature[]" value="any" checked="true" />Any
+                             </div>
                             @foreach($form_layout[11] as $row)
-                            <div class="pets-section">
+                          <div class="hair-length pull-left">
                                 <input type="checkbox" name="best_feature[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -314,10 +323,11 @@
                         </div>
                         <h3>Body art : {{!empty($user_match)?$user_match->body_art:'Any'}}</h3>
                         <div class="form-group">
-
+                             <div class="hair-length pull-left">
                             <input type="checkbox" name="body_art[]" value="any" checked="true" />Any
+                             </div>
                             @foreach($form_layout[12] as $row)
-                            <div class="pets-section">
+                            <div class="hair-length pull-left">
                                 <input type="checkbox" name="body_art[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -326,10 +336,11 @@
 
                         <h3>Consider their appearance as : {{!empty($user_match)?$user_match->appearance:'Any'}}</h3>
                         <div class="form-group">
-
+                             <div class="hair-length pull-left">
                             <input type="checkbox" name="appearance[]" value="any" checked="true" />Any
+                             </div>
                             @foreach($form_layout[13] as $row)
-                            <div class="pets-section">
+                              <div class="hair-length pull-left">
                                 <input type="checkbox" name="appearance[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -343,10 +354,11 @@
                     <div id="accordion1" class="accordion-inner">
                         <h3>Do they drink? </h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="drink[]" value="any" checked="true" />Any
+                              </div>
                             @foreach($form_layout[14] as $row)
-                            <div class="pets-section">
+                             <div class="hair-length pull-left">
                                 <input type="checkbox" name="drink[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -354,10 +366,11 @@
                         </div>
                         <h3>Do they smoke? : {{!empty($user_match)?$user_match->smoke:'Any'}}</h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="smoke[]" value="any" checked="true" />Any
+                              </div>
                             @foreach($form_layout[15] as $row)
-                            <div class="pets-section">
+                              <div class="hair-length pull-left">
                                 <input type="checkbox" name="smoke[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -365,20 +378,22 @@
                         </div>
                         <h3>Marital Status : {{!empty($user_match)?$user_match->marital_status:'Any'}}</h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="marital_status[]" value="any" checked="true" />Any
+                              </div>
                             @foreach($form_layout[16] as $row)
-                            <div class="pets-section">
+                              <div class="hair-length pull-left">
                                 <input type="checkbox" name="marital_status[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
                         <h3>Do they have children? : {{!empty($user_match)?$user_match->have_children:'Any'}}</h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="have_children[]" value="any" checked="true" />Any
+                              </div>
                             @foreach($form_layout[17] as $row)
-                            <div class="pets-section">
+                              <div class="hair-length pull-left">
                                 <input type="checkbox" name="have_children[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -418,10 +433,11 @@
                         </div>
                         <h3>Do they want more children? : {{!empty($user_match)?$user_match->more_child:'Any'}}</h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="more_child[]" value="any" checked="true" />Any
+                              </div>
                             @foreach($form_layout[21] as $row)
-                            <div class="pets-section">
+                              <div class="hair-length pull-left">
                                 <input type="checkbox" name="more_child[]" value="{{$row['value']}}" />{{$row['label']}}
                             </div>
                             @endforeach
@@ -431,7 +447,7 @@
                         <div class="form-group">
 
                             @foreach($form_layout[23] as $row)
-                            <div class="pets-section">
+                              <div class="hair-length pull-left">
                                 <input type="checkbox" name="occupation[]" value="{{$row['value']}}" />{{$row['label']}}
                             </div>
                             @endforeach
@@ -439,10 +455,11 @@
                         </div>
                         <h3>Employment status : {{!empty($user_match)?$user_match->employment:'Any'}}</h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="employment[]" value="any" checked="true" />Any
+                              </div>
                             @foreach($form_layout[24] as $row)
-                            <div class="pets-section">
+                              <div class="hair-length pull-left">
                                 <input type="checkbox" name="employment[]" value="{{$row['value']}}" />{{$row['label']}}
                             </div>
                             @endforeach
@@ -464,10 +481,11 @@
                         </div>
                         <h3> Home type : {{!empty($user_match)?$user_match->home_type:'Any'}}</h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="home_type[]" value="any" checked="true" />Any
+                              </div>
                             @foreach($form_layout[25] as $row)
-                            <div class="pets-section">
+                              <div class="hair-length pull-left">
                                 <input type="checkbox" name="home_type[]" value="{{$row['value']}}" />{{$row['label']}}
                             </div>
                             @endforeach
@@ -475,10 +493,11 @@
                         </div>
                         <h3>Living situation : {{!empty($user_match)?$user_match->living_situation:'Any'}}</h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="living_situation[]" value="any" checked="true" />Any
+                              </div>
                             @foreach($form_layout[26] as $row)
-                            <div class="pets-section">
+                              <div class="hair-length pull-left">
                                 <input type="checkbox" name="living_situation[]" value="{{$row['value']}}" />{{$row['label']}}
                             </div>
                             @endforeach
@@ -486,10 +505,11 @@
                         </div>
                         <h3>Willing to relocate : {{!empty($user_match)?$user_match->relocate:'Any'}}</h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="relocate[]" value="any" checked="true" />Any
+                              </div>
                             @foreach($form_layout[27] as $row)
-                            <div class="pets-section">
+                              <div class="hair-length pull-left">
                                 <input type="checkbox" name="relocate[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -571,20 +591,22 @@
                         </div>
                         <h3 class="religious-label">Religious values : {{!empty($user_match)?$user_match->religious_values:'Any'}}</h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="religious_values[]" value="any" checked="true"/>Any
+                              </div>
                             @foreach($form_layout[34] as $row)
-                            <div class="pets-section">
+                             <div class="hair-length pull-left">
                                 <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
                         <h3 class="star-label">Star sign : {{!empty($user_match)?$user_match->star_sign:'Any'}}</h3>
                         <div class="form-group">
-
+                              <div class="hair-length pull-left">
                             <input type="checkbox" name="star_sign[]" value="any" checked="true"/>Any
+                              </div>
                             @foreach($form_layout[35] as $row)
-                            <div class="pets-section">
+                             <div class="hair-length pull-left">
                                 <input type="checkbox" name="star_sign[]" value="{{$row['value']}}" />{{$row['label']}}  
                             </div>
                             @endforeach
@@ -636,7 +658,6 @@ $(document).ready(function () {
        $('.tab-pane:first').addClass('active');
     }
     else {
-        console.log('bye')
           $('.tab-pane').removeClass('in');
           $('.tab-pane').removeClass('active');
           $('.tab-pane:last').addClass('in');

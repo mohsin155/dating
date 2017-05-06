@@ -885,6 +885,15 @@ a, a:hover, a:visited {
     top: -16px;
     position: relative;
 }
+@-moz-document url-prefix() {
+    #menu7 .icon-setting {
+        top: -10px;
+    }
+    #menu6 img {
+         position: relative;
+         top: -20px;
+    }
+}
 #menu7 .dropdown-menu {
     top: 35px;
     left: -155px;
@@ -1531,7 +1540,7 @@ padding-bottom: 2px;
     float: right;
     width: 280px;
 }
-.pets-section input[type="checkbox"] {
+.pets-section input[type="checkbox"],  .hair-length  input[type="checkbox"] {
     margin-right: 10px;
 }
 .tag-profile {
@@ -2122,6 +2131,12 @@ table.childrenAge, table.residenceInfo, table.marriageHistory {
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
+.hair-length {
+    width: 200px;
+}
+.addphoto img {
+    border-radius: 50%;
+}
 .column1-content .member-benefits {
     color: #fff;
 }
@@ -2420,6 +2435,17 @@ table.childrenAge, table.residenceInfo, table.marriageHistory {
 .seemore-button {
     width: 70%;
     margin: 10px auto;
+}
+.greyShinyButton {
+    background-color: #777;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+.greyShinyButton a:link, .greyShinyButton a:visited {
+    color: white !important;
+    text-decoration: none;
 }
 /*------------END lisiting Page CSS --------------------- */
 /*------------END Edit Setting Page CSS --------------------- */
@@ -2734,6 +2760,12 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
 .profileleft {
     float: left;
     width: 150px;
+}
+.label-single label {
+     width: 150px;
+}
+.label-single input {
+    width: 36%;
 }
 #buttons {
     padding-top: 10px;

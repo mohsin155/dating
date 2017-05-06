@@ -12,9 +12,14 @@
             <div class="address-update-heading">
                 <h1>You have 0 saved searches</h1>
             </div>
-            <div class="button-inner text-center email-address">
+<!--            <div class="button-inner text-center email-address">
                 <a href='{{url('search/add-search')}}' class="btn btn-primary">Create a new saved search</a>
-            </div>
+            </div>-->
+            <div class="text-center button mr-t-20 mr-b-20">
+                        
+	<span class="greyShinyButton"><a href="{{url('search/add-search')}}" style="color:#fff">Create a new saved search</a></span>
+                        
+                    </div>
         </div>
     </div>
 </div>
