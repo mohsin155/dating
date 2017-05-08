@@ -20,6 +20,7 @@
             <div class="signup-page-outer edit-profile-page-setting">
                   <form name="edit-match" class="form-inline" id="edit-match" method="post" action="{{url('users/edit-match')}}">
                             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                            <?php //print_r($match_data); dd($match_data);exit; ?>
                             @if(!empty($errors) && count($errors)>0)
                                     <div class="alert alert-danger">
                                         <ul>

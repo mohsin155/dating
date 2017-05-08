@@ -33,7 +33,9 @@
                                     @elseif(session('success'))
                                         <div class="alert alert-success">
                                         <ul>
-                                            <li> {{session('success')}} </li>
+                                            <div class="updateconf">
+                                                <p><h1>Successfully Updated!</h1></p>
+                                            </div>
                                         </ul>
                                     </div>
                                     @endif
