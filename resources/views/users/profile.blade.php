@@ -237,7 +237,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_23" align="left">
-                                                {{$match_details['gender']}}
+                                                {{(empty($match_details))?'Any':$match_details['gender']}}
                                             </td>
 
                                         </tr>
@@ -252,7 +252,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_1" align="left">
-                                                {{$match_details['min_age']}} - {{$match_details['max_age']}}
+                                                {{(empty($match_details))?'Any':$match_details['min_age']}} - {{(empty($match_details))?'Any':$match_details['max_age']}}
                                             </td>
 
                                         </tr>
@@ -279,7 +279,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_48" align="left">
-                                                <em>{{$match_details['relocate']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['relocate']}}</em>
                                             </td>
 
                                         </tr>
@@ -294,7 +294,7 @@
                                                 {{$user_details['hair_color']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_24" align="left">
-                                                <em>{{$match_details['haircolor']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['haircolor']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -306,7 +306,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_25" align="left">
-                                                <em>{{$match_details['hair_length']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['hair_length']}}</em>
                                             </td>
 
                                         </tr>
@@ -319,7 +319,7 @@
                                                 {{$user_details['hair_type']}} 
                                             </td>
                                             <td id="td1" width="36%" class="ag_26" align="left">
-                                                <em>{{$match_details['hair_type']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['hair_type']}}</em>
                                             </td>
 
                                         </tr>
@@ -332,7 +332,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_20" align="left">
-                                                <em>{{$match_details['eye_color']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['eye_color']}}</em>
                                             </td>
 
                                         </tr>
@@ -345,7 +345,7 @@
                                                 {{$user_details['eye_wear']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_21" align="left">
-                                                <em>{{$match_details['eye_wear']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['eye_wear']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -356,7 +356,7 @@
                                                 {{$user_details['height']}} (cm) 
                                             </td>
                                             <td id="td1" width="36%" class="ag_27" align="left">
-                                               {{$match_details['min_height']}} (cm) - {{$match_details['max_height']}} (cm)
+                                               {{(empty($match_details))?'Any':$match_details['min_height']}} (cm) - {{(empty($match_details))?'Any':$match_details['max_height']}} (cm)
                                             </td>
                                         </tr>
                                         <tr>
@@ -367,7 +367,7 @@
                                                 {{$user_details['weight']}} (kg) 
                                             </td>
                                             <td id="td1" width="36%" class="ag_53" align="left">
-                                                {{$match_details['min_weight']}} (kg) - {{$match_details['max_weight']}} (kg)
+                                                {{(empty($match_details))?'Any':$match_details['min_weight']}} (kg) - {{(empty($match_details))?'Any':$match_details['max_weight']}} (kg)
                                             </td>
 
                                         </tr>
@@ -379,7 +379,7 @@
                                                 {{$user_details['body_type']}} 
                                             </td>
                                             <td id="td1" width="36%" class="ag_5" align="left">
-                                                <em>{{$match_details['body']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['body']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -392,7 +392,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_18" align="left">
-                                                <em>{{$match_details['ethnicity']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['ethnicity']}}</em>
                                             </td>
 
                                         </tr>
@@ -407,7 +407,7 @@
 
                                             </td>
                                             <td id="td1" width="36%" class="ag_22" align="left">
-                                                <em>{{$match_details['facial_hair']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['facial_hair']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -419,7 +419,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_3" align="left">
-                                                <em>{{$match_details['best_feature']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['best_feature']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -431,7 +431,7 @@
                                                 {{$user_details['body_art']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_4" align="left">
-                                                <em>{{$match_details['body_art']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['body_art']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -443,7 +443,7 @@
                                                 {{$user_details['appearance']}} 
                                             </td>
                                             <td id="td1" width="36%" class="ag_2" align="left">
-                                                <em>{{$match_details['appearance']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['appearance']}}</em>
                                             </td>
 
                                         </tr>
@@ -460,7 +460,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_15" align="left">
-                                                {{$match_details['drink']}}
+                                                {{(empty($match_details))?'Any':$match_details['drink']}}
                                             </td>
 
                                         </tr>
@@ -474,7 +474,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_51" align="left">
-                                                {{$match_details['smoke']}}
+                                                {{(empty($match_details))?'Any':$match_details['smoke']}}
                                             </td>
 
                                         </tr>
@@ -488,7 +488,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_37" align="left">
-                                                {{$match_details['marital_status']}}
+                                                {{(empty($match_details))?'Any':$match_details['marital_status']}}
                                             </td>
 
                                         </tr>
@@ -502,7 +502,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_6" align="left">
-                                                {{$match_details['have_children']}}
+                                                {{(empty($match_details))?'Any':$match_details['have_children']}}
                                             </td>
 
                                         </tr>
@@ -520,7 +520,7 @@
                                             <td id="td1" width="36%" class="ag_7" align="left">
 
 
-                                                <em>{{$match_details['no_children']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['no_children']}}</em>
 
                                             </td>
 
@@ -534,7 +534,7 @@
                                                 <em>{{$user_details['oldest_child']}}</em>
                                             </td>
                                             <td id="td1" width="36%" class="ag_8" align="left">
-                                                <em>{{$match_details['old_child']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['old_child']}}</em>
                                             </td>
 
                                         </tr>
@@ -546,7 +546,7 @@
                                                 <em>{{$user_details['youngest_child']}}</em>
                                             </td>
                                             <td id="td1" width="36%" class="ag_10" align="left">
-                                                <em>{{$match_details['min_age']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['min_age']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -558,7 +558,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_9" align="left">
-                                                <em>{{$match_details['more_child']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['more_child']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -570,7 +570,7 @@
                                                 {{$user_details['have_pets']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_41" align="left">
-                                                <em>{{$match_details['have_pets']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['have_pets']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -581,7 +581,7 @@
                                                 {{$user_details['occupation']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_40" align="left">
-                                                <em>{{$match_details['occupation']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['occupation']}}</em>
                                             </td>
 
                                         </tr>
@@ -594,7 +594,7 @@
                                                 {{$user_details['employment']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_17" align="left">
-                                                <em>{{$match_details['employement']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['employement']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -605,7 +605,7 @@
                                                 {{$user_details['income']}} 
                                             </td>
                                             <td id="td1" width="36%" class="ag_29" align="left">
-                                                <em>{{$match_details['income']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['income']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -616,7 +616,7 @@
                                                 {{$user_details['home_type']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_28" align="left">
-                                                <em>{{$match_details['home_type']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['home_type']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -627,7 +627,7 @@
                                                 {{$user_details['living_situation']}}
                                             </td>
                                             <td id="td1" width="36%" class="ag_36" align="left">
-                                                <em>{{$match_details['living_situation']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['living_situation']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -643,7 +643,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_38" align="left">
-                                                <em>{{$match_details['nationality']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['nationality']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -656,7 +656,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_16" align="left">
-                                                {{$match_details['eduction']}}
+                                                {{(empty($match_details))?'Any':$match_details['eduction']}}
                                             </td>
 
                                         </tr>
@@ -672,7 +672,7 @@
                                             <td id="td1" width="36%" class="ag_35" align="left">
 
 
-                                                <em>{{$match_details['languages']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['languages']}}</em>
 
                                             </td>
 
@@ -687,7 +687,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_69" align="left">
-                                                <em>{{$match_details['postugese_ability']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['postugese_ability']}}</em>
                                             </td>
 
                                         </tr>
@@ -701,7 +701,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_71" align="left">
-                                                <em>{{$match_details['spanish_ability']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['spanish_ability']}}</em>
                                             </td>
 
                                         </tr>
@@ -715,7 +715,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_45" align="left">
-                                                {{$match_details['religion']}}
+                                                {{(empty($match_details))?'Any':$match_details['religion']}}
                                             </td>
 
                                         </tr>
@@ -729,7 +729,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_47" align="left">
-                                                <em>{{$match_details['religious_values']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['religious_values']}}</em>
                                             </td>
                                         </tr>
                                         <tr>
@@ -742,7 +742,7 @@
                                             </td>
 
                                             <td id="td1" width="36%" class="ag_52" align="left">
-                                                <em>{{$match_details['star_sign']}}</em>
+                                                <em>{{(empty($match_details))?'Any':$match_details['star_sign']}}</em>
                                             </td>
                                         </tr>
                                         <tr>

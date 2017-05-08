@@ -196,18 +196,13 @@
                     </div>
                     @foreach($users as $user)
                     <div class="member"> 
-                        
                         <span class="memberpic">
-                                
-                            <a href="#" class="photo-display-popup" data-devicemode="1" name="member" title="member">
-                                  
+                            <a href="{{url('users/profile')}}/{{$user->user_id}}" class="photo-display-popup" data-devicemode="1" name="member" title="member">
                                 <img class="memberpic-border" width="125" height="136" src="{{url('uploads').'/' . $user->user_id.'/'}}{{$user->photo_name}}">
-
                             </a> 
                         </span>
                         <p class="name" style="display: block;">{{$user->first_name}}, {{$user->age}}</p>
                         <p class="location" style="display: block;">{{$user->state_name}}, {{$user->country_name}}</p>
-                        
                     </div>
                     @endforeach
                 </div>

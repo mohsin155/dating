@@ -602,7 +602,7 @@ class UsersController extends UtilityController {
     
     public function getProfile($id) {
         $search = new SearchController();
-        $logged = Auth::user()->user_id;
+        $logged = $id;
         $view_user = $id;
         $user = new User;
         $user_details = $user->getUserDetails($view_user);

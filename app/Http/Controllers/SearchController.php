@@ -151,5 +151,85 @@ class SearchController extends UtilityController {
         $user_match->star_sign = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->star_sign)), ','));
         return $user_match;
     }
+    
+    public function postSearch(){
+        $inputs = Input::all();
+        if(isset($inputs['body_type']) && !empty($inputs['body_type'])){
+            
+        }
+        if(isset($inputs['ethnicity']) && !empty($inputs['ethnicity'])){
+            
+        }
+        if(isset($inputs['appearance']) && !empty($inputs['appearance'])){
+            
+        }
+        if(isset($inputs['hair_color']) && !empty($inputs['hair_color'])){
+            
+        }
+        if(isset($inputs['hair_length']) && !empty($inputs['hair_length'])){
+            
+        }
+        if(isset($inputs['hair_type']) && !empty($inputs['hair_type'])){
+            
+        }
+        if(isset($inputs['eye_color']) && !empty($inputs['eye_color'])){
+            
+        }
+        if(isset($inputs['eye_wear']) && !empty($inputs['eye_wear'])){
+            
+        }
+        if(isset($inputs['best_feature']) && !empty($inputs['best_feature'])){
+            
+        }
+        if(isset($inputs['body_art']) && !empty($inputs['body_art'])){
+            
+        }
+        if(isset($inputs['smoke']) && !empty($inputs['smoke'])){
+            
+        }
+        if(isset($inputs['drink']) && !empty($inputs['drink'])){
+            
+        }
+        if(isset($inputs['relocate']) && !empty($inputs['relocate'])){
+            
+        }
+        if(isset($inputs['marital_status']) && !empty($inputs['marital_status'])){
+            
+        }
+        if(isset($inputs['have_children']) && !empty($inputs['have_children'])){
+            
+        }
+        if(isset($inputs['more_child']) && !empty($inputs['more_child'])){
+            
+        }
+        if(isset($inputs['have_pets']) && !empty($inputs['have_pets'])){
+            
+        }
+        if(isset($inputs['occupation']) && !empty($inputs['occupation'])){
+            
+        }
+        if(isset($inputs['employment']) && !empty($inputs['employment'])){
+            
+        }
+        if(isset($inputs['home_type']) && !empty($inputs['home_type'])){
+            
+        }
+        if(isset($inputs['living_situation']) && !empty($inputs['living_situation'])){
+            
+        }
+        if(isset($inputs['nationality']) && !empty($inputs['nationality'])){
+            
+        }
+        if(isset($inputs['languages']) && !empty($inputs['languages'])){
+            
+        }
+        if(isset($inputs['religious_values']) && !empty($inputs['religious_values'])){
+            
+        }
+        if(isset($inputs['star_sign']) && !empty($inputs['star_sign'])){
+            
+        }
+        
+    }
 
 }

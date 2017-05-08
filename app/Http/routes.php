@@ -31,3 +31,8 @@ Route::controllers([
 
 Route::get('/state/{id}','UsersController@getState');
 Route::get('/city/{id}','UsersController@getCity');
+Route::get('/updateapp', function()
+{
+    \Artisan::call('dump-autoload');
+    echo 'dump-autoload complete';
+});

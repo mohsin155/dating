@@ -4,11 +4,12 @@ $("body").on('change', 'select[name=country]', function () {
 $("body").on('change', 'select[name=state]', function () {
     country.getCity($(this).val());
 });
+
 var country = {
     getState: function (country_id) {
         $.ajax({
             type: 'GET',
-            url: 'state/' + country_id,
+            url: '../users/state/' + country_id,
             async: false,
             dataType: 'json',
             success: function (data) {
@@ -31,7 +32,7 @@ var country = {
     getCity: function (state_id) {
         $.ajax({
             type: 'GET',
-            url: 'city/' + state_id,
+            url: '../users/city/' + state_id,
             async: false,
             dataType: 'json',
             success: function (data) {

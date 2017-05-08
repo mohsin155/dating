@@ -79,7 +79,7 @@
                              <ul class="tabsPanel nav" id="countriesTabsPanel">
  
                                  <li class="active">Single Country</a</li>
-                            <li>Multiple Countries</li>
+                            <!--<li>Multiple Countries</li>-->
                             </ul>
 
                                 <div class="tab-content">
@@ -87,62 +87,39 @@
 
                                     <fieldset>
                                         <label class="questionLabel">Living in:</label>
-                                        <select name="countryLive" id="r_country">
-
-                                        <option value="-1">Any Country</option>
-
+                                        <select name="country" id="country">
+                                            <option value="any">Any Country</option>
+                                            @foreach($countries as $country)
+                                            <option value="{{$country->id}}">{{$country->name}}</option>
+                                            @endforeach
                                         </select>
                                     </fieldset>
 
                                     <fieldset>
                                         <label class="questionLabel"></label>
 
-                                        <select name="stateLive" id="r_state">
-
-                                            <option value="-1">Any State</option>
-
+                                        <select name="state" id="state">
+                                            <option value="any">Any State</option>
                                         </select>
-
                                     </fieldset>
-
                                     <input type="hidden" name="distanceUnit" value="kms">
-
-
                                     <fieldset>
                                         <label class="questionLabel"></label>within
-
                                         <select name="livingWithinRadius" id="livingWithinRadius" disabled="disabled">
                                             <option value="-1">-</option>
-
                                             <option value="50">50</option>
-
                                             <option value="100">100</option>
-
                                             <option value="250">250</option>
-
                                             <option value="500">500</option>
-
                                         </select>
-
                                         <span class="divider">kms</span>
-
                                         <span class="divider">of</span>
-
-
-                                        <select name="cityLive" id="r_city">
-
-                                            <option value="-1">Any City</option>
-
+                                        <select name="city" id="city">
+                                            <option value="any">Any City</option>
                                         </select>
-
                                     </fieldset>
-
-
                                     <input type="hidden" name="countrySearchType" value="1">
                                 </div>
-
-                                
-
                                 <div id="menu2" class="tabsPanel_content tab-pane fade" role="tabpanel">
                                     <fieldset>
                                         <div id="countryMultiSelectTree">
@@ -150,8 +127,6 @@
                                             <label class="itemisedQuestion"><strong>Click on a region or country to select</strong></label>
                                                 <label class="questionLabel">&nbsp;</label>  
                                             <div id="tree-container"></div>
-                                        
-
                                         </div>
                                     </fieldset>
                                     <input type="hidden" name="countrySearchType" value="4" disabled="disabled">
@@ -168,7 +143,7 @@
                             <input type="checkbox" name="has_photo" value="1" checked="" />Yes, only show profiles with a photo.
                         </div>
                     </div>
-
+                    <hr class="seperate-line">
                     <div class="form-group search-for">
                         <label for="searching_for" class="pull-left">Searching For: </label>
                         <div class="pets-section pull-left">
