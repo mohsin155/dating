@@ -151,11 +151,17 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
+                <input type="hidden" name="user_id" value="{{$user_details['user_id']}}" />
                 <div class="profile2">
                     <div class="profileleft">
                         <div id="buttons">
-                            <a href="#"><img src="{{url('image/btn-favorites-up.gif')}}" width="135" height="30" border="0" id="favorites-btn" class="rollover"></a>
-                            <br><br>
+                            <a href="javascript:void(0);">
+                               @if(!empty($user_details['favourite_id']))
+                               <img src="{{url('image/btn-favorites-select.gif')}}" width="135" height="30" border="0" id="favorites-rem" class="rollover"></a>
+                               @else 
+                               <img src="{{url('image/btn-favorites-up.gif')}}" width="135" height="30" border="0" id="favorites-btn" class="rollover"></a>
+                               @endif
+                               <br><br>
                             <a href="#"><img src="{{url('image/btn-blockuser-up.gif')}}"  width="135" height="30" border="0" id="blockuser-btn" class="rollover" style="margin-top:3px"></a>
                             <a href="#" class=""><img src="{{url('image/btn-report-up.gif')}}" name="report" width="135" height="30" border="0" id="report-btn" class="rollover" style="margin-top:3px"></a>
                         </div>
@@ -869,6 +875,7 @@
     </div>
 </div>    
 <!-- jQuery -->
+<input name="basepath" value="{{url('/')}}" />
 @endsection
 @section('script')
 <script>
@@ -876,5 +883,13 @@
         var src = $(this).attr('src');
         $("#pic").css("background","url("+src+") no-repeat center center");
     });
+    $('#favorites-btn').on('click',function(){
+        $(".bg-loader").addClass("show");
+        users.addFavourite();
+    });
+    $('#favorites-rem').on('click',function(){
+        $(".bg-loader").addClass("show");
+        users.removeFavourite();
+    })
 </script>
 @endsection

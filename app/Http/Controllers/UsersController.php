@@ -23,6 +23,7 @@ use App\Models\UserPhotos;
 use App\Models\UserInterest;
 use App\Models\UserMatch;
 use App\Models\UserImbra;
+use App\Models\UserFavourite;
 
 class UsersController extends UtilityController {
 
@@ -605,7 +606,7 @@ class UsersController extends UtilityController {
         $logged = $id;
         $view_user = $id;
         $user = new User;
-        $user_details = $user->getUserDetails($view_user);
+        $user_details = $user->getUserDetails($view_user,Auth::user()->user_id);
         $user_details['hair_color'] = $this->master_array[$user_details['hair_color']];
         $user_details['hair_length'] = $this->master_array[$user_details['hair_length']];
         $user_details['hair_type'] = $this->master_array[$user_details['hair_type']];
@@ -655,5 +656,18 @@ class UsersController extends UtilityController {
     
     public function matchDetailsValue($match_details){
         
+    }
+    
+    public function getAddFavourite($id){
+        $user_id = Auth::user()->user_id;
+        $favourite = UserFavourite::updateOrCreate(['favourite_to' => $id, 'favourite_by' => $user_id], ['favourite_to' => $id, 'favourite_by' => $user_id]);
+        $favourite->save();
+        return response()->json(array('status'=>1));
+    }
+    
+    public function getRemoveFavourite($id){
+        $user_id = Auth::user()->user_id;
+        $favourite = UserFavourite::where(['favourite_to' => $id, 'favourite_by' => $user_id])->delete();
+        return response()->json(array('status'=>1));
     }
 }

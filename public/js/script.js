@@ -101,6 +101,44 @@ var users = {
                 $(".bg-loader").removeClass("show");
             }
         });
+    },
+    addFavourite: function (response) {
+        var id = $("input[name=user_id]").val();
+        var basepath = $("input[name=basepath]").val();
+        $.ajax({
+            type: 'GET',
+            url: basepath+'/users/add-favourite/'+id,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.status==0){
+                    
+                }else{
+                    $('#favorites-btn').attr('src',basepath+'/image/btn-favorites-select.gif');
+                    $('#favorites-btn').attr('id','favourites-rem');
+                }
+                $(".bg-loader").removeClass("show");
+            }
+        });
+    },
+    removeFavourite: function (response) {
+        var id = $("input[name=user_id]").val();
+        var basepath = $("input[name=basepath]").val();
+        $.ajax({
+            type: 'GET',
+            url: basepath+'/users/remove-favourite/'+id,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.status==0){
+                    
+                }else{
+                    $('#favorites-rem').attr('src',basepath+'/image/btn-favorites-up.gif');
+                    $('#favorites-rem').attr('id','favourites-btn');
+                }
+                $(".bg-loader").removeClass("show");
+            }
+        });
     }
 }
 
@@ -132,11 +170,4 @@ $("#fblogin").on('click', function () {
             console.log('User cancelled login or did not fully authorize.');
         }
     });
-});
-
-$("input[type=checkbox]").on('change',function(){
-    var name = $(this).attr('name');
-    if($(this).is(":checked") && $(this).val() == 'any'){
-        //$('input[name="'+name+'"]').removeAttr('checked');
-    }
 });

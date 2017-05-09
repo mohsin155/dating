@@ -87,13 +87,13 @@
                         <h1>Search</h1>
                         <a href="#" class="advanced">Advanced Search</a> 
                     </div>
-                    <form action="#" method="post">
+                    <form action="{{url('search/search-match')}}" method="post">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <ul>
                             <li>
                                 <label>I am:</label>
 
-                                <select name="gender" id="gender" class="selectpicker">
+                                <select name="my_gender" >
                                     <option value="male" @if(!empty($profile_data) && $profile_data->gender=="male") selected @endif>Male</option>
                                     <option value="female" @if(!empty($profile_data) && $profile_data->gender=="female") selected @endif>Female</option> 
                                 </select>
@@ -101,12 +101,10 @@
                             </li>
                             <li>
                                 <label>Seeking</label>
-
-                                <select name="gender_w" id="gender">
+                                <select name="gender">
                                     <option value="male" @if(!empty($profile_data) && $profile_data->gender=="female") selected @endif>Male</option>
                                     <option value="female" @if(!empty($profile_data) && $profile_data->gender=="male") selected @endif>Female</option>
                                 </select>
-
                             </li>
                             <li>
                                 <label>Age:</label>
@@ -150,13 +148,13 @@
                             </li>
                             <li>
                                 <label>Photo:</label>
-                                <input type="checkbox" checked="checked" value="1" id="hasPhoto" name="hasPhoto">
+                                <input type="checkbox" checked="checked" value="1" id="hasPhoto" name="photo">
                                 yes, profile with a photo 
                             </li>
                             <li>
                                 <label>Last active:</label>
-                                <select name="lastActive">
-                                    <option value="-1">Any</option>
+                                <select name="last_login">
+                                    <option value="">Any</option>
                                     <option value="7">within week</option>
                                     <option value="31">within 1 month</option>
                                     <option value="92">within 3 months</option>
