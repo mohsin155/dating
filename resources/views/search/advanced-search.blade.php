@@ -8,7 +8,7 @@
                 <div>
                     <h1>Advance Search</h1>
                     <div class="contentContainerHeaderActionLink">
-                        <a href="#">Clear Form</a>
+                        <a href="#" >Clear Form</a>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="signup-page-outer edit-profile-page-setting">
-                <form name="edit-match" class="form-inline" id="edit-match" method="post" action="{{url('users/edit-match')}}">
+                <form name="advanced-search" class="form-inline" id="edit-match" method="post" action="{{url('search/advanced-search')}}">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     @if(!empty($errors) && count($errors)>0)
                     <div class="alert alert-danger">
@@ -31,19 +31,20 @@
                     <div class="alert alert-success">
 
                         <div class="updateconf">
-                            <p><h1>Your match criteria has been updated</h1></p>
+                            <p><h1>Your search has been saved</h1></p>
                         </div>
 
 
                     </div>
                     @endif
-                    <div class="form-group">
+                 <!--   <div class="form-group">
                         <label for="gender">I'm a: </label>
                         <select class="form-control" name="gender" >
                             <option value="male" <?php echo (!empty($user_match) && $user_match->gender == 'male') ? 'selected' : ''; ?>>Male</option>
                             <option value="female" <?php echo (!empty($user_match) && $user_match->gender == 'female') ? 'selected' : ''; ?>>Female</option>
                         </select>
-                    </div>               
+                    </div>      
+                 -->
                     <div class="form-group">
                         <label for="gender">I'm seeking a: </label>
                         <select class="form-control" name="seeking" >
@@ -87,21 +88,19 @@
 
                                     <fieldset>
                                         <label class="questionLabel">Living in:</label>
-                                        <select name="countryLive" id="r_country">
-
-                                        <option value="-1">Any Country</option>
-
-                                        </select>
+                                            <select class="form-control" id="country" name="country" >
+                                                <option value="0">Any country</option>
+                                                @foreach($countries as $country)
+                                                <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif @if(!empty($user_match) && $country->id==$user_match->country)) selected @endif>{{$country->name}}</option>
+                                                @endforeach
+                                            </select>
                                     </fieldset>
 
                                     <fieldset>
-                                        <label class="questionLabel"></label>
-
-                                        <select name="stateLive" id="r_state">
-
-                                            <option value="-1">Any State</option>
-
-                                        </select>
+                                         <label for="State/Province">State/Province</label>
+                        <select class="form-control" id="state" name="state">
+                            <option value="0">Any State</option>
+                        </select>
 
                                     </fieldset>
 
@@ -111,7 +110,7 @@
                                     <fieldset>
                                         <label class="questionLabel"></label>within
 
-                                        <select name="livingWithinRadius" id="livingWithinRadius" disabled="disabled">
+                                        <select name="livingWithinRadius" id="livingWithinRadius" >
                                             <option value="-1">-</option>
 
                                             <option value="50">50</option>
@@ -129,9 +128,9 @@
                                         <span class="divider">of</span>
 
 
-                                        <select name="cityLive" id="r_city">
+                                        <select name="city" id="city">
 
-                                            <option value="-1">Any City</option>
+                                            <option value="0">Any City</option>
 
                                         </select>
 
@@ -185,6 +184,11 @@
                         <label for="last_active">Last Active : </label>
                         <select class="form-control" name="last_active">
                             <option value="">Any</option>
+                            <option value="">within week</option>
+                            <option value="">within 1 month</option>
+                            <option value="">within 3 month</option>
+                            <option value="">within 6 month</option>
+                            <option value="">within year</option>
                         </select>
                     </div>
                     <div class="address-update-heading">
@@ -628,6 +632,11 @@
 @endsection
 @section('script')
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(document).ready(function () {
+        $("select[name=country]").trigger("change");
+    });
+</script>
 <script>
 $(document).ready(function () {
     $("select[name=country]").trigger("change");
