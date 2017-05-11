@@ -88,25 +88,25 @@ window.fbAsyncInit = function () {
         <ul class="dropdown-menu">
                                 <li><a href="javascript:;" id="English" onclick="translate(this.id);">English<span></span>
                                         <img src="image/flags/english.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="German" onclick="translate(this.id);"><span></span>
+                                <li><a href="javascript:;" id="German" onclick="translate(this.id);">Deutsch<span></span>
                                         <img src="image/flags/german.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Italian" onclick="translate(this.id);"><span>
+                                <li><a href="javascript:;" id="Italian" onclick="translate(this.id);">Italiano<span>
                                         </span>
                                         <img src="image/flags/italian.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Danish" onclick="translate(this.id);"><span></span>
+                                <li><a href="javascript:;" id="Danish" onclick="translate(this.id);">Dansk<span></span>
                                         <img src="image/flags/danish.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Norwegian" onclick="translate(this.id);"><span></span>
+                                <li><a href="javascript:;" id="Norwegian" onclick="translate(this.id);">Norsk<span></span>
                                         <img src="image/flags/norwegian.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Dutch" onclick="translate(this.id);"><span>
+                                <li><a href="javascript:;" id="Dutch" onclick="translate(this.id);">Nederlands<span>
                                         </span>
                                         <img src="image/flags/dutch.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="French" onclick="translate(this.id);"><span>
+                                <li><a href="javascript:;" id="French" onclick="translate(this.id);">Français<span>
                                         </span>
                                         <img src="image/flags/french.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Portugese" onclick="translate(this.id);"><span>
+                                <li><a href="javascript:;" id="Portugese" onclick="translate(this.id);">Português<span>
                                         </span>
                                         <img src="image/flags/portugese.gif" alt="" /></a> </li>
-                                <li><a href="javascript:;" id="Swedish" onclick="translate(this.id);"><span>
+                                <li><a href="javascript:;" id="Swedish" onclick="translate(this.id);">Svenska<span>
                                         </span>
                                         <img src="image/flags/swedish.gif" alt="" /></a> </li>
                             </ul>
@@ -217,6 +217,7 @@ window.fbAsyncInit = function () {
                 <div class="cssload-loader"></div>
             </div>
         </div>
+        <input name="basepath" type="hidden" value="{{url('/')}}" />
         <!-- jQuery -->
         <script src="{{url('js/jquery-1.11.1.js')}}"></script>
         <script src="{{url('js/bootstrap.min.js')}}"></script>

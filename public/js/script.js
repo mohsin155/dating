@@ -4,11 +4,13 @@ $("body").on('change', 'select[name=country]', function () {
 $("body").on('change', 'select[name=state]', function () {
     country.getCity($(this).val());
 });
+
 var country = {
     getState: function (country_id) {
+        var basepath = $("input[name=basepath]").val();
         $.ajax({
             type: 'GET',
-            url: 'state/' + country_id,
+            url: basepath+'/users/state/' + country_id,
             async: false,
             dataType: 'json',
             success: function (data) {
@@ -29,9 +31,10 @@ var country = {
         });
     },
     getCity: function (state_id) {
+        var basepath = $("input[name=basepath]").val();
         $.ajax({
             type: 'GET',
-            url: 'city/' + state_id,
+            url: basepath+'/users/city/' + state_id,
             async: false,
             dataType: 'json',
             success: function (data) {
@@ -56,9 +59,10 @@ var country = {
 var users = {
     fbsignup: function (response) {
         var token = $("input[name=_token]").val();
+        var basepath = $("input[name=basepath]").val();
         $.ajax({
             type: 'POST',
-            url: 'users/fbsignup',
+            url: basepath+'/users/fbsignup',
             data: {
                 'first_name': response.first_name,
                 'gender': response.gender,
@@ -81,9 +85,10 @@ var users = {
     },
     fblogin: function (response) {
         var token = $("input[name=_token]").val();
+        var basepath = $("input[name=basepath]").val();
         $.ajax({
             type: 'POST',
-            url: 'users/fblogin',
+            url: basepath+'/users/fblogin',
             data: {
                 'facebook_id': response.id,
                 '_token': token
@@ -96,6 +101,44 @@ var users = {
                     $(".fberror").removeClass('hide').addClass('show').html('<li>'+data.errors+'</li>');
                 }else{
                     window.location.href = data.redirect_url;
+                }
+                $(".bg-loader").removeClass("show");
+            }
+        });
+    },
+    addFavourite: function (response) {
+        var id = $("input[name=user_id]").val();
+        var basepath = $("input[name=basepath]").val();
+        $.ajax({
+            type: 'GET',
+            url: basepath+'/users/add-favourite/'+id,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.status==0){
+                    
+                }else{
+                    $('#favorites-btn').attr('src',basepath+'/image/btn-favorites-select.gif');
+                    $('#favorites-btn').attr('id','favourites-rem');
+                }
+                $(".bg-loader").removeClass("show");
+            }
+        });
+    },
+    removeFavourite: function (response) {
+        var id = $("input[name=user_id]").val();
+        var basepath = $("input[name=basepath]").val();
+        $.ajax({
+            type: 'GET',
+            url: basepath+'/users/remove-favourite/'+id,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.status==0){
+                    
+                }else{
+                    $('#favorites-rem').attr('src',basepath+'/image/btn-favorites-up.gif');
+                    $('#favorites-rem').attr('id','favourites-btn');
                 }
                 $(".bg-loader").removeClass("show");
             }
@@ -131,11 +174,4 @@ $("#fblogin").on('click', function () {
             console.log('User cancelled login or did not fully authorize.');
         }
     });
-});
-
-$("input[type=checkbox]").on('change',function(){
-    var name = $(this).attr('name');
-    if($(this).is(":checked") && $(this).val() == 'any'){
-        //$('input[name="'+name+'"]').removeAttr('checked');
-    }
 });

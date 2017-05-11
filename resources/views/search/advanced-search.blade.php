@@ -17,7 +17,7 @@
             </div>
 
             <div class="signup-page-outer edit-profile-page-setting">
-                <form name="advanced-search" class="form-inline" id="edit-match" method="post" action="{{url('search/advanced-search')}}">
+                <form name="edit-match" class="form-inline" id="edit-match" method="post" action="{{url('search/search-match')}}">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     @if(!empty($errors) && count($errors)>0)
                     <div class="alert alert-danger">
@@ -39,7 +39,7 @@
                     @endif
                  <!--   <div class="form-group">
                         <label for="gender">I'm a: </label>
-                        <select class="form-control" name="gender" >
+                        <select class="form-control" name="my_gender" >
                             <option value="male" <?php echo (!empty($user_match) && $user_match->gender == 'male') ? 'selected' : ''; ?>>Male</option>
                             <option value="female" <?php echo (!empty($user_match) && $user_match->gender == 'female') ? 'selected' : ''; ?>>Female</option>
                         </select>
@@ -47,7 +47,7 @@
                  -->
                     <div class="form-group">
                         <label for="gender">I'm seeking a: </label>
-                        <select class="form-control" name="seeking" >
+                        <select class="form-control" name="gender" >
                             <option value="male" <?php echo (!empty($user_match) && $user_match->gender == 'male') ? 'selected' : ''; ?>>Male</option>
                             <option value="female" <?php echo (!empty($user_match) && $user_match->gender == 'female') ? 'selected' : ''; ?>>Female</option>
                         </select>
@@ -56,14 +56,14 @@
                     <div class="form-group edit-profile-page">
                         <label for="age_btw">Aged between: </label>
                         <select class="form-control" name="min_age" >
-                            <option value="0">----</option>
+                            <option value="">----</option>
                             @for($i=18;$i<=90;$i++)
                             <option value="{{$i}}" <?php echo (!empty($user_match) && $user_match->min_age == $i) ? 'selected' : ''; ?>>{{$i}}</option>
                             @endfor
                         </select>
                         and 
                         <select class="form-control" name="max_age" >
-                            <option value="0">----</option>
+                            <option value="">----</option>
                             @for($i=18;$i<=90;$i++)
                             <option value="{{$i}}" <?php echo (!empty($user_match) && $user_match->max_age == $i) ? 'selected' : ''; ?>>{{$i}}</option>
                             @endfor
@@ -80,7 +80,7 @@
                              <ul class="tabsPanel nav" id="countriesTabsPanel">
  
                                  <li class="active">Single Country</a</li>
-                            <li>Multiple Countries</li>
+                            <!--<li>Multiple Countries</li>-->
                             </ul>
 
                                 <div class="tab-content">
@@ -88,60 +88,39 @@
 
                                     <fieldset>
                                         <label class="questionLabel">Living in:</label>
-                                            <select class="form-control" id="country" name="country" >
-                                                <option value="0">Any country</option>
-                                                @foreach($countries as $country)
-                                                <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif @if(!empty($user_match) && $country->id==$user_match->country)) selected @endif>{{$country->name}}</option>
-                                                @endforeach
-                                            </select>
+                                        <select name="country" id="country">
+                                            <option value="">Any Country</option>
+                                            @foreach($countries as $country)
+                                            <option value="{{$country->id}}">{{$country->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </fieldset>
 
                                     <fieldset>
-                                         <label for="State/Province">State/Province</label>
-                        <select class="form-control" id="state" name="state">
-                            <option value="0">Any State</option>
-                        </select>
+                                        <label class="questionLabel"></label>
 
+                                        <select name="state" id="state">
+                                            <option value="">Any State</option>
+                                        </select>
                                     </fieldset>
-
                                     <input type="hidden" name="distanceUnit" value="kms">
-
-
                                     <fieldset>
                                         <label class="questionLabel"></label>within
-
-                                        <select name="livingWithinRadius" id="livingWithinRadius" >
+                                        <select name="livingWithinRadius" id="livingWithinRadius" disabled="disabled">
                                             <option value="-1">-</option>
-
                                             <option value="50">50</option>
-
                                             <option value="100">100</option>
-
                                             <option value="250">250</option>
-
                                             <option value="500">500</option>
-
                                         </select>
-
                                         <span class="divider">kms</span>
-
                                         <span class="divider">of</span>
-
-
                                         <select name="city" id="city">
-
-                                            <option value="0">Any City</option>
-
+                                            <option value="">Any City</option>
                                         </select>
-
                                     </fieldset>
-
-
                                     <input type="hidden" name="countrySearchType" value="1">
                                 </div>
-
-                                
-
                                 <div id="menu2" class="tabsPanel_content tab-pane fade" role="tabpanel">
                                     <fieldset>
                                         <div id="countryMultiSelectTree">
@@ -149,8 +128,6 @@
                                             <label class="itemisedQuestion"><strong>Click on a region or country to select</strong></label>
                                                 <label class="questionLabel">&nbsp;</label>  
                                             <div id="tree-container"></div>
-                                        
-
                                         </div>
                                     </fieldset>
                                     <input type="hidden" name="countrySearchType" value="4" disabled="disabled">
@@ -167,11 +144,11 @@
                             <input type="checkbox" name="has_photo" value="1" checked="" />Yes, only show profiles with a photo.
                         </div>
                     </div>
-
+                    <hr class="seperate-line">
                     <div class="form-group search-for">
                         <label for="searching_for" class="pull-left">Searching For: </label>
                         <div class="pets-section pull-left">
-                            <input type="checkbox" name="relationship[]" value="" />Any
+                            <input type="checkbox" name="relationship[]" value="" checked="" />Any
                         </div>
                         @foreach($form_layout[28] as $row)
                         <div class="pets-section pull-left">
@@ -199,11 +176,11 @@
                         <h3>Hair Length : {{!empty($user_match)?$user_match->hair_length:'Any'}}</h3>
                         <div class="form-group">
                             <div class="hair-length pull-left">
-                            <input type="checkbox" name="hair_length[]" value="any" checked="true" />Any
+                                <input type="checkbox" name="hair_length[]" value="" checked=""/>Any
                             </div>
                             @foreach($form_layout[2] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="hair_length[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="hair_length[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['hair_length']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -211,11 +188,11 @@
                         <h3>Hair Type : {{!empty($user_match)?$user_match->hair_type:'Any'}}</h3>
                         <div class="form-group">
                             <div class="hair-length pull-left">
-                            <input type="checkbox" name="hair_type[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="hair_type[]" value="" checked="true" />Any
                             </div>
                             @foreach($form_layout[3] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="hair_type[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="hair_type[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['hair_type']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -224,11 +201,11 @@
                          <div class="form-group">
                         <div class="hair-length pull-left">
 
-                            <input type="checkbox" name="hair_color[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="hair_color[]" value="" checked="true" />Any
                         </div>
                             @foreach($form_layout[1] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="hair_color[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="hair_color[]" value="{{$row['value']}}"  {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['hair_color']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -236,11 +213,11 @@
                         <h3>Eye Color : {{!empty($user_match)?$user_match->eye_color:'Any'}}</h3>
                         <div class="form-group">
                             <div class="hair-length pull-left">
-                            <input type="checkbox" name="eye_color[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="eye_color[]" value="" checked="true" />Any
                             </div>
                             @foreach($form_layout[4] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="eye_color[]" value="{{$row['value']}}" />{{$row['label']}} 
+                                <input type="checkbox" name="eye_color[]" value="{{$row['value']}}"  {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['eye_color']))?'checked':''}} />{{$row['label']}} 
                             </div>
                             @endforeach
                             </select>
@@ -248,11 +225,11 @@
                         <h3>Eye Wear : {{!empty($user_match)?$user_match->eye_wear:'Any'}}</h3>
                         <div class="form-group">
                             <div class="hair-length pull-left">
-                            <input type="checkbox" name="eye_wear[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="eye_wear[]" value="" checked="true" />Any
                             </div>
                             @foreach($form_layout[5] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="eye_wear[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="eye_wear[]" value="{{$row['value']}}"  {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['eye_wear']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -262,40 +239,41 @@
                             <select class="form-control" name="min_height">
                                 <option value="155">155cm</option>
                                 @for($i=140;$i<220;$i++)
-                                <option value="{{$i}}">{{$i}}</option>
+                                <option value="{{$i}}"  {{!empty($user_match) && $i==$user_match->getOriginal()['min_height']?'selected':''}} >{{$i}}</option>
                                 @endfor
                             </select>
                             and
                             <select class="form-control" name="max_height">
                                 <option value="155">155cm</option>
                                 @for($i=140;$i<220;$i++)
-                                <option value="{{$i}}">{{$i}}</option>
+                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['max_height']?'selected':''}} >{{$i}}</option>
                                 @endfor
                             </select>
                         </div>
                         <h3>Weight : {{!empty($user_match)?$user_match->min_weight:'Any'}}</h3>
                         <div class="form-group">
+                            <?php //echo $user_match->getOriginal()['min_weight'];exit;?>
                             <select class="form-control" name="min_weight">
                                 <option value="any">Any</option>
                                 @for($i=40;$i<220;$i++)
-                                <option value="{{$i}}">{{$i}}</option>
+                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['min_weight']?'selected':''}} >{{$i}}</option>
                                 @endfor
                             </select>
                             and
                             <select class="form-control" name="max_weight">
                                 <option value="any">Any</option>
                                 @for($i=40;$i<220;$i++)
-                                <option value="{{$i}}">{{$i}}</option>
+                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['max_weight']?'selected':''}} >{{$i}}</option>
                                 @endfor
                             </select>
                         </div>
                         <h3>Body type : {{!empty($user_match)?$user_match->body_type:'Any'}}</h3>
                         <div class="form-group">
-                            <input type="checkbox" name="body_type[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="body_type[]" value="" checked="true" />Any
                             @foreach($form_layout[8] as $row)
                             <div class="pets-section">
 
-                                <input type="checkbox" name="body_type[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="body_type[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['body_type']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -303,11 +281,11 @@
                         <h3>Their ethnicity is mostly : {{!empty($user_match)?$user_match->ethnicity:'Any'}}</h3>
                         <div class="form-group">
                              <div class="hair-length pull-left">
-                            <input type="checkbox" name="ethnicity[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="ethnicity[]" value="" checked="true" />Any
                              </div>
                             @foreach($form_layout[9] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="ethnicity[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="ethnicity[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['ethnicity']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -316,11 +294,11 @@
                         <h3>Their best feature : {{!empty($user_match)?$user_match->best_feature:'Any'}}</h3>
                         <div class="form-group">
                              <div class="hair-length pull-left">
-                            <input type="checkbox" name="best_feature[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="best_feature[]" value="" checked="true" />Any
                              </div>
                             @foreach($form_layout[11] as $row)
                           <div class="hair-length pull-left">
-                                <input type="checkbox" name="best_feature[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="best_feature[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['best_feature']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -328,11 +306,11 @@
                         <h3>Body art : {{!empty($user_match)?$user_match->body_art:'Any'}}</h3>
                         <div class="form-group">
                              <div class="hair-length pull-left">
-                            <input type="checkbox" name="body_art[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="body_art[]" value="" checked="true" />Any
                              </div>
                             @foreach($form_layout[12] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="body_art[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="body_art[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['body_art']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -341,11 +319,11 @@
                         <h3>Consider their appearance as : {{!empty($user_match)?$user_match->appearance:'Any'}}</h3>
                         <div class="form-group">
                              <div class="hair-length pull-left">
-                            <input type="checkbox" name="appearance[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="appearance[]" value="" checked="true" />Any
                              </div>
                             @foreach($form_layout[13] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="appearance[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="appearance[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['appearance']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -359,11 +337,11 @@
                         <h3>Do they drink? </h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="drink[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="drink[]" value="" checked="true" />Any
                               </div>
                             @foreach($form_layout[14] as $row)
                              <div class="hair-length pull-left">
-                                <input type="checkbox" name="drink[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="drink[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['drink']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -371,11 +349,11 @@
                         <h3>Do they smoke? : {{!empty($user_match)?$user_match->smoke:'Any'}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="smoke[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="smoke[]" value="" checked="true" />Any
                               </div>
                             @foreach($form_layout[15] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="smoke[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="smoke[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['smoke']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -383,22 +361,22 @@
                         <h3>Marital Status : {{!empty($user_match)?$user_match->marital_status:'Any'}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="marital_status[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="marital_status[]" value="" checked="true" />Any
                               </div>
                             @foreach($form_layout[16] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="marital_status[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="marital_status[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['marital_status']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
                         <h3>Do they have children? : {{!empty($user_match)?$user_match->have_children:'Any'}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="have_children[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="have_children[]" value="" checked="true" />Any
                               </div>
                             @foreach($form_layout[17] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="have_children[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="have_children[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['have_children']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
@@ -409,7 +387,7 @@
                                 <option value="any">Any</option>
                                 <option value="0">0</option>
                                 @foreach($form_layout[18] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['no_children']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -420,7 +398,7 @@
                                 <option value="any">Any</option>
                                 <option value="0">0</option>
                                 @foreach($form_layout[20] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['youngest_child']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -431,18 +409,18 @@
                                 <option value="any">Any</option>
                                 <option value="0">0</option>
                                 @foreach($form_layout[19] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['oldest_child']?'checked':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <h3>Do they want more children? : {{!empty($user_match)?$user_match->more_child:'Any'}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="more_child[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="more_child[]" value="" checked="true" />Any
                               </div>
                             @foreach($form_layout[21] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="more_child[]" value="{{$row['value']}}" />{{$row['label']}}
+                                <input type="checkbox" name="more_child[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['more_child']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
                             </select>
@@ -452,7 +430,7 @@
 
                             @foreach($form_layout[23] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="occupation[]" value="{{$row['value']}}" />{{$row['label']}}
+                                <input type="checkbox" name="occupation[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['occupation']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
                             </select>
@@ -460,11 +438,11 @@
                         <h3>Employment status : {{!empty($user_match)?$user_match->employment:'Any'}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="employment[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="employment[]" value="" checked="true" />Any
                               </div>
                             @foreach($form_layout[24] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="employment[]" value="{{$row['value']}}" />{{$row['label']}}
+                                <input type="checkbox" name="employment[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['employment']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
                             </select>
@@ -474,23 +452,23 @@
 
                             <select class="form-control" name="income">
                                 <option value="0">Any</option>
-                                <option value="1">$0 - $30,000 (USD)</option>
-                                <option value="2">$30,001 - $60,000 (USD)</option>
-                                <option value="3">$60,001 - $120,000 (USD)</option>
-                                <option value="4">$120,001 - $180,000 (USD)</option>
-                                <option value="5">$180,001 - $240,000 (USD)</option>
-                                <option value="6">$240,001 - $600,000+ (USD)</option>
-                                <option value="7">Prefer not to say</option>
+                                <option value="1" {{!empty($user_match) && $user_match->getOriginal()['income']==1?'selected':''}}>$0 - $30,000 (USD)</option>
+                                <option value="2" {{!empty($user_match) && $user_match->getOriginal()['income']==2?'selected':''}} >$30,001 - $60,000 (USD)</option>
+                                <option value="3" {{!empty($user_match) && $user_match->getOriginal()['income']==3?'selected':''}}>$60,001 - $120,000 (USD)</option>
+                                <option value="4" {{!empty($user_match) && $user_match->getOriginal()['income']==4?'selected':''}}>$120,001 - $180,000 (USD)</option>
+                                <option value="5" {{!empty($user_match) && $user_match->getOriginal()['income']==5?'selected':''}}>$180,001 - $240,000 (USD)</option>
+                                <option value="6" {{!empty($user_match) && $user_match->getOriginal()['income']==6?'selected':''}}>$240,001 - $600,000+ (USD)</option>
+                                <option value="7" {{!empty($user_match) && $user_match->getOriginal()['income']==7?'selected':''}}>Prefer not to say</option>
                             </select>
                         </div>
                         <h3> Home type : {{!empty($user_match)?$user_match->home_type:'Any'}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="home_type[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="home_type[]" value="" checked="true" />Any
                               </div>
                             @foreach($form_layout[25] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="home_type[]" value="{{$row['value']}}" />{{$row['label']}}
+                                <input type="checkbox" name="home_type[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['home_type']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
                             </select>
@@ -498,11 +476,11 @@
                         <h3>Living situation : {{!empty($user_match)?$user_match->living_situation:'Any'}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="living_situation[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="living_situation[]" value="" checked="true" />Any
                               </div>
                             @foreach($form_layout[26] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="living_situation[]" value="{{$row['value']}}" />{{$row['label']}}
+                                <input type="checkbox" name="living_situation[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['living_situation']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
                             </select>
@@ -510,11 +488,11 @@
                         <h3>Willing to relocate : {{!empty($user_match)?$user_match->relocate:'Any'}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="relocate[]" value="any" checked="true" />Any
+                            <input type="checkbox" name="relocate[]" value="" checked="true" />Any
                               </div>
                             @foreach($form_layout[27] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="relocate[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="relocate[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['relocate']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
@@ -527,9 +505,9 @@
                         <div class="form-group">
 
                             <select class="selectpicker" name="nationality[]" multiple>
-                                <option value="any" selected="selected">Any</option>
+                                <option value="" selected="selected">Any</option>
                                 @foreach($countries as $row)
-                                <option  value="{{$row->id}}">{{$row->name}}</option>
+                                <option  value="{{$row->id}}" {{!empty($user_match) && $row->id==$user_match->getOriginal()['nationality']?'selected':''}} >{{$row->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -537,9 +515,9 @@
                         <div class="form-group">
 
                             <select class="form-control" name="education">
-                                <option value="any" selected="selected">Any</option>
+                                <option value="" selected="selected">Any</option>
                                 @foreach($form_layout[29] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['education']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -547,9 +525,9 @@
                         <div class="form-group">
 
                             <select class="form-control" name="english_ability">
-                                <option value="any" selected="selected">Any</option>
+                                <option value="" selected="selected">Any</option>
                                 @foreach($form_layout[30] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['english_ability']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -557,9 +535,9 @@
                         <div class="form-group">
 
                             <select class="form-control" name="portugese_ability">
-                                <option value="any" selected="selected">Any</option>
+                                <option value="" selected="selected">Any</option>
                                 @foreach($form_layout[31] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['portugese_ability']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -567,9 +545,9 @@
                         <div class="form-group">
 
                             <select class="form-control" name="spanish_ability">
-                                <option value="any" selected="selected">Any</option>
+                                <option value="" selected="selected">Any</option>
                                 @foreach($form_layout[32] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['spanish_ability']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -577,9 +555,9 @@
                         <div class="form-group">
 
                             <select class="selectpicker" name="languages[]" multiple>
-                                <option value="any" selected="selected">Any</option>
+                                <option value="" selected="selected">Any</option>
                                 @foreach($languages as $row)
-                                <option value="{{$row->id}}">{{$row->name}}</option>
+                                <option value="{{$row->id}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['languages']?'selected':''}} >{{$row->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -587,31 +565,31 @@
                         <div class="form-group">
 
                             <select class="form-control" name="religion">
-                                <option value="any" selected="selected">Any</option>
+                                <option value="" selected="selected">Any</option>
                                 @foreach($form_layout[33] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option> 
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['religion']?'selected':''}} >{{$row['label']}}</option> 
                                 @endforeach
                             </select>
                         </div>
                         <h3 class="religious-label">Religious values : {{!empty($user_match)?$user_match->religious_values:'Any'}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="religious_values[]" value="any" checked="true"/>Any
+                            <input type="checkbox" name="religious_values[]" value="" checked="true"/>Any
                               </div>
                             @foreach($form_layout[34] as $row)
                              <div class="hair-length pull-left">
-                                <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['religious_values']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
                         <h3 class="star-label">Star sign : {{!empty($user_match)?$user_match->star_sign:'Any'}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="star_sign[]" value="any" checked="true"/>Any
+                            <input type="checkbox" name="star_sign[]" value="" checked="true"/>Any
                               </div>
                             @foreach($form_layout[35] as $row)
                              <div class="hair-length pull-left">
-                                <input type="checkbox" name="star_sign[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="star_sign[]" value="{{$row['value']}}"  {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['star_sign']))?'checked':''}}/>{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
@@ -673,7 +651,7 @@ $(document).ready(function () {
            $('.tab-pane:last').addClass('active');
     }
     });
-});
+
 
             var mockData = [];
             mockData.push({
@@ -767,7 +745,26 @@ $(document).ready(function () {
             $('#tree-container').highCheckTree({
                 data: mockData
             });
-
+$("input[type=checkbox]").on('click',function(e){
+    var name = $(this).attr('name');
+    
+    if($(this).is(":checked") && $(this).val() == ''){
+        console.log(name);
+        $('input[name="'+name+'"]').prop('checked',false);
+        //$('input[name="'+name+'"]').each(function () {
+          //  $(this).removeAttr('checked');
+        //});
+        $(this).prop('checked',true);
+    }else if($(this).is(":checked") && $(this).val() != ''){
+        $('input[name="'+name+'"][value=""]').prop('checked',false);
+    }else if($(this).not(":checked") && $(this).val() == ''){
+        e.preventDefault();
+    }
+});
+//$("input[type=checkbox]").each(function(){
+   // $(this).trigger('change');
+//});
+});
 </script>
 
 @endsection

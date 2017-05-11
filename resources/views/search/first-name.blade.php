@@ -71,7 +71,7 @@
                     </div>
 
                     <hr class="seperate-line">
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="country">Living in:</label>
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="{{url('users/account-settings')}}" class="active-grey">Country</a></li>
@@ -88,7 +88,83 @@
                         <select class="form-control" id="city" name="city">
                             <option value="0">--Please Select--</option>
                         </select>
-                    </div>
+                    </div>-->
+                    <div class="form-group">
+                        <div class="tabsPanel_container formContainer">
+                            <div class="tabsPanel_container">
+
+                             <ul class="tabsPanel nav" id="countriesTabsPanel">
+ 
+                                 <li class="active">Single Country</li>
+                                  <!--<li>Multiple Countries</li>-->
+                            </ul>
+
+                                <div class="tab-content">
+                                <div id="menu1" class="tab-pane fade in active tabsPanel_content" role="tabpanel">
+
+                                    <fieldset>
+                                        <label class="questionLabel">Living in:</label>
+                                        <select class="form-control" id="country" name="country" >
+                                            <option value="0">--Please Select--</option>
+                                            @foreach($countries as $country)
+                                            <option value="{{$country->id}}">{{$country->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <label class="questionLabel"></label>
+                                        <select class="form-control" id="state" name="state">
+                                            <option value="0">--Please Select--</option>
+                                        </select>
+                                    </fieldset>
+
+                                    <input type="hidden" name="distanceUnit" value="kms">
+
+
+                                    <fieldset>
+                                        <label class="questionLabel"></label>within
+
+                                        <select name="livingWithinRadius" id="livingWithinRadius" disabled="disabled">
+                                            <option value="-1">-</option>
+
+                                            <option value="50">50</option>
+
+                                            <option value="100">100</option>
+
+                                            <option value="250">250</option>
+
+                                            <option value="500">500</option>
+
+                                        </select>
+
+                                        <span class="divider">kms</span>
+
+                                        <span class="divider">of</span>
+                                        <select class="form-control" id="city" name="city">
+                                            <option value="0">--Please Select--</option>
+                                        </select>
+                                    </fieldset>
+                                    <input type="hidden" name="countrySearchType" value="1">
+                                </div>
+                                <div id="menu2" class="tabsPanel_content tab-pane fade" role="tabpanel">
+                                    <fieldset>
+                                        <div id="countryMultiSelectTree">
+                                            <label class="questionLabel">Living in:</label>
+                                            <label class="itemisedQuestion"><strong>Click on a region or country to select</strong></label>
+                                                <label class="questionLabel">&nbsp;</label>  
+                                            <div id="tree-container"></div>
+                                        
+
+                                        </div>
+                                    </fieldset>
+                                    <input type="hidden" name="countrySearchType" value="4" disabled="disabled">
+                                </div>
+                                </div>    
+                            </div>
+                        </div>
+
+                    </div>  
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="has_photo">Has Photo: </label>

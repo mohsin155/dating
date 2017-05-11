@@ -23,6 +23,7 @@ use App\Models\UserPhotos;
 use App\Models\UserInterest;
 use App\Models\UserMatch;
 use App\Models\UserImbra;
+use App\Models\UserFavourite;
 
 class UsersController extends UtilityController {
 
@@ -363,6 +364,9 @@ class UsersController extends UtilityController {
      public function getMessaging() {
         return view('users.messaging');
     }
+     public function getMatches() {
+        return view('users.matches');
+    }
     public function getEditPhotos($id = 0) {
         $photos = UserPhotos::where('user_id', Auth::user()->user_id)->get();
         $sel_photo = null;
@@ -393,7 +397,6 @@ class UsersController extends UtilityController {
     }
 
     public function postEditProfile() {
-
         $inputs = Input::all();
         $have_pet = isset($inputs['have_pets']) ? $inputs['have_pets'] : '';
         $pets = serialize($have_pet);
@@ -401,15 +404,16 @@ class UsersController extends UtilityController {
         $rel = serialize($relation);
         $language = isset($inputs['languages']) ? $inputs['languages'] : '';
         $lang = serialize($language);
-
+        $user = User::find(Auth::user()->user_id);
+        $user->first_name = $inputs['first_name'];
+        $user->gender = $inputs['gender'];
+        $user->dob_month = $inputs['dob_month'];
+        $user->dob_year = $inputs['dob_year'];
+        $user->country = $inputs['country'];
+        $user->state = $inputs['state'];
+        $user->city = $inputs['city'];
+        $user->save();
         $user_profile = UserProfile::firstOrNew(array('user_id' => Auth::user()->user_id));
-        $user_profile->first_name = $inputs['first_name'];
-        $user_profile->gender = $inputs['gender'];
-        $user_profile->dob_month = $inputs['dob_month'];
-        $user_profile->dob_year = $inputs['dob_year'];
-        $user_profile->country = $inputs['country'];
-        $user_profile->state = $inputs['state'];
-        $user_profile->city = $inputs['city'];
         $user_profile->hair_color = $inputs['hair_color'];
         $user_profile->hair_length = $inputs['hair_length'];
         $user_profile->hair_type = $inputs['hair_type'];
@@ -602,10 +606,10 @@ class UsersController extends UtilityController {
     
     public function getProfile($id) {
         $search = new SearchController();
-        $logged = Auth::user()->user_id;
+        $logged = $id;
         $view_user = $id;
         $user = new User;
-        $user_details = $user->getUserDetails($view_user);
+        $user_details = $user->getUserDetails($view_user,Auth::user()->user_id);
         $user_details['hair_color'] = $this->master_array[$user_details['hair_color']];
         $user_details['hair_length'] = $this->master_array[$user_details['hair_length']];
         $user_details['hair_type'] = $this->master_array[$user_details['hair_type']];
@@ -655,5 +659,18 @@ class UsersController extends UtilityController {
     
     public function matchDetailsValue($match_details){
         
+    }
+    
+    public function getAddFavourite($id){
+        $user_id = Auth::user()->user_id;
+        $favourite = UserFavourite::updateOrCreate(['favourite_to' => $id, 'favourite_by' => $user_id], ['favourite_to' => $id, 'favourite_by' => $user_id]);
+        $favourite->save();
+        return response()->json(array('status'=>1));
+    }
+    
+    public function getRemoveFavourite($id){
+        $user_id = Auth::user()->user_id;
+        $favourite = UserFavourite::where(['favourite_to' => $id, 'favourite_by' => $user_id])->delete();
+        return response()->json(array('status'=>1));
     }
 }
