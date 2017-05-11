@@ -123,10 +123,8 @@ class SearchController extends UtilityController {
         $languages = Languages::get();
         $user_id = Auth::user()->user_id;
         $user_search = UserSearch::where('user_id', $user_id)->first();
-        //dd($user_match);
-        if (!empty($user_search)) {
-            $this->getSearchData($user_search);
-        }
+        
+       
         return view('search.add-search')->with('user_search', $user_search)->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
     }
 
@@ -424,37 +422,30 @@ class SearchController extends UtilityController {
         return view('search.advanced-search')->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
     }
     
- public function getSearchData($user_search) {
-      /*  $this->setMasterArray();
-        $user_search->body_type = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->body_type)), ','));
-        $user_search->ethnicity = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->ethnicity)), ','));
-        $user_search->appearance = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->appearance)), ','));
-        $user_search->hair_color = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->hair_color)), ','));
-        $user_search->hair_length = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->hair_length)), ','));
-        $user_search->hair_type = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->hair_type)), ','));
-        $user_search->eye_color = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->eye_color)), ','));
-        $user_search->eye_wear = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->eye_wear)), ','));
-        $user_search->best_feature = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->best_feature)), ','));
-        $user_search->body_art = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->body_art)), ','));
-        $user_search->smoke = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->smoke)), ','));
-        $user_search->drink = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->drink)), ','));
-        $user_search->relocate = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->relocate)), ','));
-        $user_search->marital_status = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->marital_status)), ','));
-        $user_search->have_children = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->have_children)), ','));
-        $user_search->more_child = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->more_child)), ','));
-        $user_search->have_pets = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->have_pets)), ','));
-        $user_search->occupation = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->occupation)), ','));
-        $user_search->employment = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->employment)), ','));
-        $user_search->home_type = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->home_type)), ','));
-        $user_search->living_situation = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->living_situation)), ','));
-        $user_search->nationality = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->nationality)), ','));
-        //$user_search->education = unserialize($user_search->education);
-        $user_search->languages = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->languages)), ','));
-        $user_search->religious_values = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->religious_values)), ','));
-        $user_search->star_sign = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_search->star_sign)), ','));
-       */ 
-        return $user_search;
-       
+ 
+    
+     public function getEditSearch($search_id) {
+        try {
+            $user_search = null;
+            $form_layout = $this->getProfileForm();
+            $countries = Country::get();
+            $languages = Languages::get();
+           
+            $user_search = UserSearch::where('search_id', $search_id)->first();
+            //dd($user_search);exit;
+            if (!empty($user_search)) {
+                $this->getMatchData($user_search);
+            }
+        } catch (\Exception $e) {
+            echo $e;
+            exit;
+        }
+        return view('search.edit-search')->with('user_search', $user_search)->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
+    }
+    
+    public function getDelete($search_id){
+        UserSearch::destroy($search_id);
+        return Redirect::to('search/saved-search')->with('success',trans('messages.search_deleted'));
     }
 
  }

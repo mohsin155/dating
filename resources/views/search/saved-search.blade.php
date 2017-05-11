@@ -20,8 +20,8 @@
                      <td>{{$search_data->search_name}}</td>
                  <td><a href="{{url('users/listing')}}">Run</a></td>
                      <td>Rename</td>
-                     <td>Edit</td>
-                     <td>Delete</td>
+                     <td><a href="{{url('search/edit-search').'/'.$search_data->search_id}}">Edit</a></td>
+                     <td><a href="{{url('search/delete').'/'.$search_data->search_id}}">Delete</a></td>
                  </tr>
                  @endforeach
              </table>
