@@ -11,11 +11,22 @@
             </div>
             
             <div class="address-update-heading">
-                <h1>You have 0 saved searches</h1>
+                <h1>You have <?php echo $cnt ?> saved searches</h1>
             </div>
-<!--            <div class="button-inner text-center email-address">
-                <a href='{{url('search/add-search')}}' class="btn btn-primary">Create a new saved search</a>
-            </div>-->
+         <div >
+             <table>
+                 @foreach($search_row as $search_data)
+                 <tr>
+                     <td>{{$search_data->search_name}}</td>
+                 <td><a href="{{url('users/listing')}}">Run</a></td>
+                     <td>Rename</td>
+                     <td>Edit</td>
+                     <td>Delete</td>
+                 </tr>
+                 @endforeach
+             </table>
+                
+            </div>
             <div class="text-center button mr-t-20 mr-b-20">
                         
 	<span class="greyShinyButton"><a href="{{url('search/add-search')}}" style="color:#fff">Create a new saved search</a></span>
