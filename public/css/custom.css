@@ -3309,7 +3309,178 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
 }
 /*----------------End Messaging CSS -------------------- */
 
+/*----------------Matches CSS -------------------- */
+.searchhdg {
+    padding: 10px 15px 10px 20px;
+}
+.searchhdg2 {
+    float: left;
+}
+.searchhdg2 h1 {
+    float: left;
+    padding-right: 10px;
+    font-size: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.searchhdg2 a:link, .searchhdg2 a:visited {
+    float: left;
+    margin-right: 3px;
+    padding: 2px 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #dcdcdc;
+    color: #333;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 11px;
+}
 
+.matchnav_matches {
+    float: right;
+    border: 1px solid #aaa;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.matches {
+    border-right: 1px solid #aaa;
+    -webkit-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+}
+.selectedTab {
+    float: left;
+    padding: 2px 5px;
+    background: #aaa;
+    background: -moz-linear-gradient(top, #aaa 0%, #777 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #aaa), color-stop(100%, #777));
+    background: -webkit-linear-gradient(top, #aaa 0%, #777 100%);
+    background: -o-linear-gradient(top, #aaa 0%, #777 100%);
+    background: -ms-linear-gradient(top, #aaa 0%, #777 100%);
+    background: linear-gradient(top, #aaa 0%, #777 100%);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 11px;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aaaaaa', endColorstr='#777777',GradientType=0 );
+}
+.matchicon {
+    float: left;
+    margin-right: 5px;
+}
+.matchnav_matches a:link, .matchnav_matches a:visited {
+    float: left;
+    padding: 2px 5px;
+    background: #fff;
+    background: -moz-linear-gradient(top, #fff 0%, #ddd 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #ddd));
+    background: -webkit-linear-gradient(top, #fff 0%, #ddd 100%);
+    background: -o-linear-gradient(top, #fff 0%, #ddd 100%);
+    background: -ms-linear-gradient(top, #fff 0%, #ddd 100%);
+    background: linear-gradient(top, #fff 0%, #ddd 100%);
+    color: #333;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 11px;
+   
+}
+.view {
+    padding: 5px 15px 5px 20px;
+    border-top: 1px solid #eee;
+    font-size: 11px;
+}
+.view h1 {
+    float: left;
+    padding: 2px 10px 0 0;
+    font-size: 13px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.memberships {
+    clear: both;
+    padding: 0 0 5px 15px;
+}
+.standardview {
+    float: left;
+    margin: 10px 15px 0 0;
+    padding: 0 0 0 10px;
+    width: 365px;
+    border: 1px solid #eee;
+}
+.platinuminfo, .goldinfo, .standardinfo {
+    float: left;
+    padding: 10px 0;
+    width: 365px;
+}
+.memberpic {
+    position: relative;
+    display: block;
+    float: left;
+    width: 125px;
+    height: 136px;
+    border: 1px solid #000;
+}
+.text {
+    float: left;
+    margin-left: 10px;
+    width: 200px;
+    height: 103px;
+    line-height: 1.4em;
+}
+.text p {
+    line-height: 1.4em;
+}
+.hdg1 {
+    font-weight: 700;
+}
+.text a:link, .text a:visited {
+    color: #333;
+    text-decoration: none;
+}
+.icons {
+    display: block;
+    float: left;
+    margin: 5px 0 0 5px;
+    padding: 3px 0;
+}
+.iconset {
+    float: left;
+    width: 135px;
+    padding-left: 0px;
+}
+.iconset li {
+    list-style: none;
+    display: block;
+    float: left;
+    margin-right: 1px;
+    width: 25px;
+    height: 25px;
+}
+.iconstandard {
+    background: url(../image/icon-set.gif) 25px 0;
+}
+.iconset a {
+    display: block;
+    float: left;
+    margin-right: 1px;
+    width: 25px;
+    height: 25px;
+}
+.iconmail {
+    background: url(../image/icon-set.gif) 0 -25px;
+}
+.iconinterest {
+    background: url(../image/icon-set.gif) 50px -25px;
+}
+.iconfavorites {
+    background: url(../image/icon-set.gif) 25px -25px;
+}
+.icononlinemobile, .icononlinemobileactive {
+    background: url(../image/icon-set.gif) 75px -75px;
+}
+/*----------------End Matches CSS -------------------- */
 /***************************
  MEDIA QUERIES
 ***************************/

@@ -364,6 +364,9 @@ class UsersController extends UtilityController {
      public function getMessaging() {
         return view('users.messaging');
     }
+     public function getMatches() {
+        return view('users.matches');
+    }
     public function getEditPhotos($id = 0) {
         $photos = UserPhotos::where('user_id', Auth::user()->user_id)->get();
         $sel_photo = null;
