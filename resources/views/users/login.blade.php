@@ -217,6 +217,7 @@ window.fbAsyncInit = function () {
                 <div class="cssload-loader"></div>
             </div>
         </div>
+        <input name="basepath" type="hidden" value="{{url('/')}}" />
         <!-- jQuery -->
         <script src="{{url('js/jquery-1.11.1.js')}}"></script>
         <script src="{{url('js/bootstrap.min.js')}}"></script>

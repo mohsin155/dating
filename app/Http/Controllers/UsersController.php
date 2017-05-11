@@ -394,7 +394,6 @@ class UsersController extends UtilityController {
     }
 
     public function postEditProfile() {
-
         $inputs = Input::all();
         $have_pet = isset($inputs['have_pets']) ? $inputs['have_pets'] : '';
         $pets = serialize($have_pet);
@@ -402,15 +401,16 @@ class UsersController extends UtilityController {
         $rel = serialize($relation);
         $language = isset($inputs['languages']) ? $inputs['languages'] : '';
         $lang = serialize($language);
-
+        $user = User::find(Auth::user()->user_id);
+        $user->first_name = $inputs['first_name'];
+        $user->gender = $inputs['gender'];
+        $user->dob_month = $inputs['dob_month'];
+        $user->dob_year = $inputs['dob_year'];
+        $user->country = $inputs['country'];
+        $user->state = $inputs['state'];
+        $user->city = $inputs['city'];
+        $user->save();
         $user_profile = UserProfile::firstOrNew(array('user_id' => Auth::user()->user_id));
-        $user_profile->first_name = $inputs['first_name'];
-        $user_profile->gender = $inputs['gender'];
-        $user_profile->dob_month = $inputs['dob_month'];
-        $user_profile->dob_year = $inputs['dob_year'];
-        $user_profile->country = $inputs['country'];
-        $user_profile->state = $inputs['state'];
-        $user_profile->city = $inputs['city'];
         $user_profile->hair_color = $inputs['hair_color'];
         $user_profile->hair_length = $inputs['hair_length'];
         $user_profile->hair_type = $inputs['hair_type'];

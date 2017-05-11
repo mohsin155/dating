@@ -7,9 +7,10 @@ $("body").on('change', 'select[name=state]', function () {
 
 var country = {
     getState: function (country_id) {
+        var basepath = $("input[name=basepath]").val();
         $.ajax({
             type: 'GET',
-            url: '../users/state/' + country_id,
+            url: basepath+'/users/state/' + country_id,
             async: false,
             dataType: 'json',
             success: function (data) {
@@ -30,9 +31,10 @@ var country = {
         });
     },
     getCity: function (state_id) {
+        var basepath = $("input[name=basepath]").val();
         $.ajax({
             type: 'GET',
-            url: '../users/city/' + state_id,
+            url: basepath+'/users/city/' + state_id,
             async: false,
             dataType: 'json',
             success: function (data) {
@@ -57,9 +59,10 @@ var country = {
 var users = {
     fbsignup: function (response) {
         var token = $("input[name=_token]").val();
+        var basepath = $("input[name=basepath]").val();
         $.ajax({
             type: 'POST',
-            url: 'users/fbsignup',
+            url: basepath+'/users/fbsignup',
             data: {
                 'first_name': response.first_name,
                 'gender': response.gender,
@@ -82,9 +85,10 @@ var users = {
     },
     fblogin: function (response) {
         var token = $("input[name=_token]").val();
+        var basepath = $("input[name=basepath]").val();
         $.ajax({
             type: 'POST',
-            url: 'users/fblogin',
+            url: basepath+'/users/fblogin',
             data: {
                 'facebook_id': response.id,
                 '_token': token

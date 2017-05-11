@@ -37,7 +37,7 @@
             @yield('content')
         </div>
         <!-- jQuery -->
-      
+      <input name="basepath" type="hidden"  value="{{url('/')}}" />
         <script src="{{url('js/jquery-3.2.1.min.js')}}"></script>
           <script src="{{url('js/bootstrap.min.js')}}"></script>
         <script src="{{url('js/jquery.validate.js')}}"></script>

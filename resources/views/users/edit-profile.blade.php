@@ -93,7 +93,9 @@
                     <div class="form-group">
                         <label for="State/Province">State/Province</label>
                         <select class="form-control" id="state" name="state">
-                            <option value="0">--Please Select--</option>      
+                           
+                            <option value="0">--Please Select--</option>  
+                              
                         </select>
                     </div>
                     <hr class="seperate-line">

@@ -9,6 +9,7 @@
                     <h1>Saved Searches</h1>
                 </div>
             </div>
+            
             <div class="address-update-heading">
                 <h1>You have 0 saved searches</h1>
             </div>

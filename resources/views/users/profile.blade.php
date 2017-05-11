@@ -6,7 +6,11 @@
             <div id="profilepage">
                 <div class="profiletop">
                     <div class="topleft">
+                        @if(!empty($user_details['photos']))
                         <div id="pic" class="loading" style="background:url({{$image_path.'/'.$user_details['photos'][0]['photo_name']}}) no-repeat center center">
+                            @else 
+                            <div id="pic" class="loading" style="background:url({{url('image/nophoto_Male.gif')}}) no-repeat center center">
+                            @endif
                             <div id="videoDisplay"></div>
                         </div>
                         <div class="addcomment">
@@ -875,7 +879,7 @@
     </div>
 </div>    
 <!-- jQuery -->
-<input name="basepath" value="{{url('/')}}" />
+
 @endsection
 @section('script')
 <script>

@@ -8,7 +8,7 @@
                 <div>
                     <h1>Advance Search</h1>
                     <div class="contentContainerHeaderActionLink">
-                        <a href="#">Clear Form</a>
+                        <a href="#" >Clear Form</a>
                     </div>
                 </div>
             </div>
@@ -31,19 +31,20 @@
                     <div class="alert alert-success">
 
                         <div class="updateconf">
-                            <p><h1>Your match criteria has been updated</h1></p>
+                            <p><h1>Your search has been saved</h1></p>
                         </div>
 
 
                     </div>
                     @endif
-                    <div class="form-group">
+                 <!--   <div class="form-group">
                         <label for="gender">I'm a: </label>
                         <select class="form-control" name="my_gender" >
                             <option value="male" <?php echo (!empty($user_match) && $user_match->gender == 'male') ? 'selected' : ''; ?>>Male</option>
                             <option value="female" <?php echo (!empty($user_match) && $user_match->gender == 'female') ? 'selected' : ''; ?>>Female</option>
                         </select>
-                    </div>               
+                    </div>      
+                 -->
                     <div class="form-group">
                         <label for="gender">I'm seeking a: </label>
                         <select class="form-control" name="gender" >
@@ -160,6 +161,11 @@
                         <label for="last_active">Last Active : </label>
                         <select class="form-control" name="last_active">
                             <option value="">Any</option>
+                            <option value="">within week</option>
+                            <option value="">within 1 month</option>
+                            <option value="">within 3 month</option>
+                            <option value="">within 6 month</option>
+                            <option value="">within year</option>
                         </select>
                     </div>
                     <div class="address-update-heading">
@@ -170,11 +176,11 @@
                         <h3>Hair Length : {{!empty($user_match)?$user_match->hair_length:'Any'}}</h3>
                         <div class="form-group">
                             <div class="hair-length pull-left">
-                            <input type="checkbox" name="hair_length[]" value="" checked="true" />Any
+                                <input type="checkbox" name="hair_length[]" value="" checked=""/>Any
                             </div>
                             @foreach($form_layout[2] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="hair_length[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="hair_length[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['hair_length']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -186,7 +192,7 @@
                             </div>
                             @foreach($form_layout[3] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="hair_type[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="hair_type[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['hair_type']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -199,7 +205,7 @@
                         </div>
                             @foreach($form_layout[1] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="hair_color[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="hair_color[]" value="{{$row['value']}}"  {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['hair_color']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -211,7 +217,7 @@
                             </div>
                             @foreach($form_layout[4] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="eye_color[]" value="{{$row['value']}}" />{{$row['label']}} 
+                                <input type="checkbox" name="eye_color[]" value="{{$row['value']}}"  {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['eye_color']))?'checked':''}} />{{$row['label']}} 
                             </div>
                             @endforeach
                             </select>
@@ -223,7 +229,7 @@
                             </div>
                             @foreach($form_layout[5] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="eye_wear[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="eye_wear[]" value="{{$row['value']}}"  {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['eye_wear']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -233,30 +239,31 @@
                             <select class="form-control" name="min_height">
                                 <option value="155">155cm</option>
                                 @for($i=140;$i<220;$i++)
-                                <option value="{{$i}}">{{$i}}</option>
+                                <option value="{{$i}}"  {{!empty($user_match) && $i==$user_match->getOriginal()['min_height']?'selected':''}} >{{$i}}</option>
                                 @endfor
                             </select>
                             and
                             <select class="form-control" name="max_height">
                                 <option value="155">155cm</option>
                                 @for($i=140;$i<220;$i++)
-                                <option value="{{$i}}">{{$i}}</option>
+                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['max_height']?'selected':''}} >{{$i}}</option>
                                 @endfor
                             </select>
                         </div>
                         <h3>Weight : {{!empty($user_match)?$user_match->min_weight:'Any'}}</h3>
                         <div class="form-group">
+                            <?php //echo $user_match->getOriginal()['min_weight'];exit;?>
                             <select class="form-control" name="min_weight">
                                 <option value="any">Any</option>
                                 @for($i=40;$i<220;$i++)
-                                <option value="{{$i}}">{{$i}}</option>
+                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['min_weight']?'selected':''}} >{{$i}}</option>
                                 @endfor
                             </select>
                             and
                             <select class="form-control" name="max_weight">
                                 <option value="any">Any</option>
                                 @for($i=40;$i<220;$i++)
-                                <option value="{{$i}}">{{$i}}</option>
+                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['max_weight']?'selected':''}} >{{$i}}</option>
                                 @endfor
                             </select>
                         </div>
@@ -266,7 +273,7 @@
                             @foreach($form_layout[8] as $row)
                             <div class="pets-section">
 
-                                <input type="checkbox" name="body_type[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="body_type[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['body_type']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -278,7 +285,7 @@
                              </div>
                             @foreach($form_layout[9] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="ethnicity[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="ethnicity[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['ethnicity']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -291,7 +298,7 @@
                              </div>
                             @foreach($form_layout[11] as $row)
                           <div class="hair-length pull-left">
-                                <input type="checkbox" name="best_feature[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="best_feature[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['best_feature']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -303,7 +310,7 @@
                              </div>
                             @foreach($form_layout[12] as $row)
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="body_art[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="body_art[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['body_art']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -316,7 +323,7 @@
                              </div>
                             @foreach($form_layout[13] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="appearance[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="appearance[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['appearance']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -334,7 +341,7 @@
                               </div>
                             @foreach($form_layout[14] as $row)
                              <div class="hair-length pull-left">
-                                <input type="checkbox" name="drink[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="drink[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['drink']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -346,7 +353,7 @@
                               </div>
                             @foreach($form_layout[15] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="smoke[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="smoke[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['smoke']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                             </select>
@@ -358,7 +365,7 @@
                               </div>
                             @foreach($form_layout[16] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="marital_status[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="marital_status[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['marital_status']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
@@ -369,7 +376,7 @@
                               </div>
                             @foreach($form_layout[17] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="have_children[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="have_children[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['have_children']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
@@ -380,7 +387,7 @@
                                 <option value="any">Any</option>
                                 <option value="0">0</option>
                                 @foreach($form_layout[18] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['no_children']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -391,7 +398,7 @@
                                 <option value="any">Any</option>
                                 <option value="0">0</option>
                                 @foreach($form_layout[20] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['youngest_child']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -402,7 +409,7 @@
                                 <option value="any">Any</option>
                                 <option value="0">0</option>
                                 @foreach($form_layout[19] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['oldest_child']?'checked':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -413,7 +420,7 @@
                               </div>
                             @foreach($form_layout[21] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="more_child[]" value="{{$row['value']}}" />{{$row['label']}}
+                                <input type="checkbox" name="more_child[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['more_child']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
                             </select>
@@ -423,7 +430,7 @@
 
                             @foreach($form_layout[23] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="occupation[]" value="{{$row['value']}}" />{{$row['label']}}
+                                <input type="checkbox" name="occupation[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['occupation']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
                             </select>
@@ -435,7 +442,7 @@
                               </div>
                             @foreach($form_layout[24] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="employment[]" value="{{$row['value']}}" />{{$row['label']}}
+                                <input type="checkbox" name="employment[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['employment']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
                             </select>
@@ -445,13 +452,13 @@
 
                             <select class="form-control" name="income">
                                 <option value="0">Any</option>
-                                <option value="1">$0 - $30,000 (USD)</option>
-                                <option value="2">$30,001 - $60,000 (USD)</option>
-                                <option value="3">$60,001 - $120,000 (USD)</option>
-                                <option value="4">$120,001 - $180,000 (USD)</option>
-                                <option value="5">$180,001 - $240,000 (USD)</option>
-                                <option value="6">$240,001 - $600,000+ (USD)</option>
-                                <option value="7">Prefer not to say</option>
+                                <option value="1" {{!empty($user_match) && $user_match->getOriginal()['income']==1?'selected':''}}>$0 - $30,000 (USD)</option>
+                                <option value="2" {{!empty($user_match) && $user_match->getOriginal()['income']==2?'selected':''}} >$30,001 - $60,000 (USD)</option>
+                                <option value="3" {{!empty($user_match) && $user_match->getOriginal()['income']==3?'selected':''}}>$60,001 - $120,000 (USD)</option>
+                                <option value="4" {{!empty($user_match) && $user_match->getOriginal()['income']==4?'selected':''}}>$120,001 - $180,000 (USD)</option>
+                                <option value="5" {{!empty($user_match) && $user_match->getOriginal()['income']==5?'selected':''}}>$180,001 - $240,000 (USD)</option>
+                                <option value="6" {{!empty($user_match) && $user_match->getOriginal()['income']==6?'selected':''}}>$240,001 - $600,000+ (USD)</option>
+                                <option value="7" {{!empty($user_match) && $user_match->getOriginal()['income']==7?'selected':''}}>Prefer not to say</option>
                             </select>
                         </div>
                         <h3> Home type : {{!empty($user_match)?$user_match->home_type:'Any'}}</h3>
@@ -461,7 +468,7 @@
                               </div>
                             @foreach($form_layout[25] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="home_type[]" value="{{$row['value']}}" />{{$row['label']}}
+                                <input type="checkbox" name="home_type[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['home_type']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
                             </select>
@@ -473,7 +480,7 @@
                               </div>
                             @foreach($form_layout[26] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="living_situation[]" value="{{$row['value']}}" />{{$row['label']}}
+                                <input type="checkbox" name="living_situation[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['living_situation']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
                             </select>
@@ -485,7 +492,7 @@
                               </div>
                             @foreach($form_layout[27] as $row)
                               <div class="hair-length pull-left">
-                                <input type="checkbox" name="relocate[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="relocate[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['relocate']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
@@ -500,7 +507,7 @@
                             <select class="selectpicker" name="nationality[]" multiple>
                                 <option value="" selected="selected">Any</option>
                                 @foreach($countries as $row)
-                                <option  value="{{$row->id}}">{{$row->name}}</option>
+                                <option  value="{{$row->id}}" {{!empty($user_match) && $row->id==$user_match->getOriginal()['nationality']?'selected':''}} >{{$row->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -510,7 +517,7 @@
                             <select class="form-control" name="education">
                                 <option value="" selected="selected">Any</option>
                                 @foreach($form_layout[29] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['education']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -520,7 +527,7 @@
                             <select class="form-control" name="english_ability">
                                 <option value="" selected="selected">Any</option>
                                 @foreach($form_layout[30] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['english_ability']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -530,7 +537,7 @@
                             <select class="form-control" name="portugese_ability">
                                 <option value="" selected="selected">Any</option>
                                 @foreach($form_layout[31] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['portugese_ability']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -540,7 +547,7 @@
                             <select class="form-control" name="spanish_ability">
                                 <option value="" selected="selected">Any</option>
                                 @foreach($form_layout[32] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option>
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['spanish_ability']?'selected':''}} >{{$row['label']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -550,7 +557,7 @@
                             <select class="selectpicker" name="languages[]" multiple>
                                 <option value="" selected="selected">Any</option>
                                 @foreach($languages as $row)
-                                <option value="{{$row->id}}">{{$row->name}}</option>
+                                <option value="{{$row->id}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['languages']?'selected':''}} >{{$row->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -560,7 +567,7 @@
                             <select class="form-control" name="religion">
                                 <option value="" selected="selected">Any</option>
                                 @foreach($form_layout[33] as $row)
-                                <option value="{{$row['value']}}">{{$row['label']}}</option> 
+                                <option value="{{$row['value']}}" {{!empty($user_match) && $row['value']==$user_match->getOriginal()['religion']?'selected':''}} >{{$row['label']}}</option> 
                                 @endforeach
                             </select>
                         </div>
@@ -571,7 +578,7 @@
                               </div>
                             @foreach($form_layout[34] as $row)
                              <div class="hair-length pull-left">
-                                <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="religious_values[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['religious_values']))?'checked':''}} />{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
@@ -582,7 +589,7 @@
                               </div>
                             @foreach($form_layout[35] as $row)
                              <div class="hair-length pull-left">
-                                <input type="checkbox" name="star_sign[]" value="{{$row['value']}}" />{{$row['label']}}  
+                                <input type="checkbox" name="star_sign[]" value="{{$row['value']}}"  {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['star_sign']))?'checked':''}}/>{{$row['label']}}  
                             </div>
                             @endforeach
                         </div>
@@ -603,6 +610,11 @@
 @endsection
 @section('script')
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(document).ready(function () {
+        $("select[name=country]").trigger("change");
+    });
+</script>
 <script>
 $(document).ready(function () {
     $("select[name=country]").trigger("change");
@@ -639,7 +651,7 @@ $(document).ready(function () {
            $('.tab-pane:last').addClass('active');
     }
     });
-});
+
 
             var mockData = [];
             mockData.push({
@@ -749,7 +761,10 @@ $("input[type=checkbox]").on('click',function(e){
         e.preventDefault();
     }
 });
-
+//$("input[type=checkbox]").each(function(){
+   // $(this).trigger('change');
+//});
+});
 </script>
 
 @endsection
