@@ -493,11 +493,7 @@ class SearchController extends UtilityController {
             $user_search = UserSearch::where('search_id', $search_id)->first();
             //dd($user_search);exit;
             if (!empty($user_search)) {
-<<<<<<< HEAD
                 $user_search=$this->getMatchData($user_search);
-=======
-                $user_search = $this->getMatchData($user_search);
->>>>>>> b714a2fef258adbbe461633c4188acdba028ec95
             }
         } catch (\Exception $e) {
             echo $e;
