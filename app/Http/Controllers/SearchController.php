@@ -33,7 +33,7 @@ class SearchController extends UtilityController {
             $languages = Languages::get();
             $user_id = Auth::user()->user_id;
             $user_match = UserMatch::where('user_id', $user_id)->first();
-            //dd($user_match);
+            //dd($user_match);exit;
             if (!empty($user_match)) {
                 $this->getMatchData($user_match);
             }
@@ -146,7 +146,7 @@ class SearchController extends UtilityController {
         $user_match->marital_status = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->marital_status)), ','));
         $user_match->have_children = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->have_children)), ','));
         $user_match->more_child = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->more_child)), ','));
-        $user_match->have_pets = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->have_pets)), ','));
+       // $user_match->have_pets = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->have_pets)), ','));
         $user_match->occupation = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->occupation)), ','));
         $user_match->employment = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->employment)), ','));
         $user_match->home_type = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->home_type)), ','));
@@ -434,7 +434,7 @@ class SearchController extends UtilityController {
             $user_search = UserSearch::where('search_id', $search_id)->first();
             //dd($user_search);exit;
             if (!empty($user_search)) {
-                $this->getMatchData($user_search);
+                $user_search=$this->getMatchData($user_search);
             }
         } catch (\Exception $e) {
             echo $e;
@@ -444,6 +444,7 @@ class SearchController extends UtilityController {
     }
     
     public function getDelete($search_id){
+        
         UserSearch::destroy($search_id);
         return Redirect::to('search/saved-search')->with('success',trans('messages.search_deleted'));
     }

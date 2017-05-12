@@ -427,7 +427,9 @@
                         </div>
                         <h3>Occupation : {{!empty($user_search)?$user_search->occupation:'Any'}}</h3>
                         <div class="form-group">
-
+                                <div class="hair-length pull-left">
+                            <input type="checkbox" name="occupation[]" value="" checked="true" />Any
+                              </div>
                             @foreach($form_layout[23] as $row)
                               <div class="hair-length pull-left">
                                 <input type="checkbox" name="occupation[]" value="{{$row['value']}}" {{!empty($user_search) && in_array($row['value'],unserialize($user_search->getOriginal()['occupation']))?'checked':''}} />{{$row['label']}}

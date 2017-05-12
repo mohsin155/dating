@@ -352,7 +352,9 @@
                     </div>
                     <h3>Occupation </h3>
                     <div class="form-group">
-                        
+                        <div class="hair-length pull-left">
+                            <input type="checkbox" name="occupation[]" value="" checked="true" />Any
+                              </div>
                         @foreach($form_layout[23] as $row)
                         <div class="pets-section">
                             <input type="checkbox" name="occupation[]" value="{{$row['value']}}" />{{$row['label']}}

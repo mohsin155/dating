@@ -19,9 +19,9 @@
                  <tr>
                      <td>{{$search_data->search_name}}</td>
                  <td><a href="{{url('users/listing')}}">Run</a></td>
-                     <td>Rename</td>
+                     <td><a href="{{url('search/rename').'/'.$search_data->search_id}}"  class="rename-confirm">Rename</a></td>
                      <td><a href="{{url('search/edit-search').'/'.$search_data->search_id}}">Edit</a></td>
-                     <td><a href="{{url('search/delete').'/'.$search_data->search_id}}">Delete</a></td>
+                     <td><a href="{{url('search/delete').'/'.$search_data->search_id}}"  class="delete-confirm">Delete</a></td>
                  </tr>
                  @endforeach
              </table>
@@ -35,5 +35,13 @@
         </div>
     </div>
 </div>
+@section('script')
+<script>
+    $(".delete-confirm").click(function(e) {
+    if (!confirm("Are you sure you want to permanently delete the saved search ? "))
+        e.preventDefault();
+});
+    </script>
+@endsection
 @endsection
         
