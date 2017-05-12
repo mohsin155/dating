@@ -889,11 +889,11 @@
     });
     $('#favorites-btn').on('click',function(){
         $(".bg-loader").addClass("show");
-        users.addFavourite();
+        users.addFavourite("#favorites-btn","profile");
     });
     $('#favorites-rem').on('click',function(){
         $(".bg-loader").addClass("show");
-        users.removeFavourite();
+        users.removeFavourite("#favorites-rem","profile");
     })
 </script>
 @endsection

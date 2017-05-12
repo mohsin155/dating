@@ -3477,6 +3477,10 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
 .iconfavorites {
     background: url(../image/icon-set.gif) 25px -25px;
 }
+
+.iconremfavorites {
+    background: url(../image/icon-set.gif) 25px -75px;
+}
 .icononlinemobile, .icononlinemobileactive {
     background: url(../image/icon-set.gif) 75px -75px;
 }
