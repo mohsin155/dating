@@ -37,6 +37,7 @@ class SearchController extends UtilityController {
             if (!empty($user_match)) {
                 $this->getMatchData($user_match);
             }
+            
         } catch (\Exception $e) {
             echo $e;
             exit;
@@ -97,9 +98,7 @@ class SearchController extends UtilityController {
 
     public function postAdvancedSearch() {
         try {
-
             $inputs = Input::all();
-
             $user_search = UserSearch::firstOrNew(array('user_id' => Auth::user()->user_id));
             if (!empty($inputs['search_name'])) {
                 $user_search->gender = $inputs['gender'];
@@ -163,21 +162,22 @@ class SearchController extends UtilityController {
     }
 
     public function getSavedSearch() {
-        return view('search.saved-search');
+        $search_row= UserSearch::select()->where('user_search.user_id', '=',Auth::user()->user_id)->get();
+        $cnt= count($search_row);
+       // print_r($search_row);echo $cnt;exit;
+        return view('search.saved-search')->with('cnt',$cnt)->with('search_row',$search_row);
     }
-
+   
     public function getAddSearch() {
-        $user_match = null;
+        $user_search = null;
         $form_layout = $this->getProfileForm();
         $countries = Country::get();
         $languages = Languages::get();
         $user_id = Auth::user()->user_id;
-        $user_match = UserMatch::where('user_id', $user_id)->first();
-        //dd($user_match);
-        if (!empty($user_match)) {
-            $this->getMatchData($user_match);
-        }
-        return view('search.add-search')->with('user_match', $user_match)->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
+        $user_search = UserSearch::where('user_id', $user_id)->first();
+        
+       
+        return view('search.add-search')->with('user_search', $user_search)->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
     }
 
     public function getMatchData($user_match) {
@@ -217,9 +217,12 @@ class SearchController extends UtilityController {
 
     public function postSearchMatch() {
         $inputs = Input::all();
+        $logged = Auth::user()->user_id;
         //dd($inputs);
-        $query = User::select(DB::raw('users.*,ph.photo_name'))
-                        ->leftJoin('user_profile as p', 'users.user_id', '=', 'p.user_id')->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id');
+        $query = User::select(DB::raw('f.favourite_id,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+                        ->leftJoin('user_profile as p', 'users.user_id', '=', 'p.user_id')
+                ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')->leftJoin('user_favourites as f','f.favourite_to','=','users.user_id')
+                ->whereRaw('f.favourite_by = "'.$logged.'" or f.favourite_by is null');
         if (isset($inputs['gender']) && !empty($inputs['gender'])) {
             $query = $query->where('users.gender', $inputs['gender']);
         }
@@ -373,6 +376,7 @@ class SearchController extends UtilityController {
             }
         }
         $result = $query->groupBy('users.user_id')->get();
+        //dd($result);
         return view('search.matches')->with('matches', $result);
     }
 
@@ -403,5 +407,105 @@ class SearchController extends UtilityController {
         }
         return response()->json($response);
     }
+    
+     public function postAddSearch() {
+        try {
+              
+        $inputs = Input::all();
+       
+    
+        if(!empty($inputs['search_name'])){
+            $search_data=array(
+                'user_id'=> Auth::user()->user_id,
+                'gender' =>$inputs['gender'],
+                'seeking' =>$inputs['seeking'],
+                'min_age' =>$inputs['min_age'],
+                'max_age' =>$inputs['max_age'],
+                 'country' =>$inputs['country'],
+                'state' =>$inputs['state'],
+                'city' =>$inputs['city'],
+                'has_photo' =>$inputs['has_photo'],
+                'relationship' => isset($inputs['relationship'])?serialize($inputs['relationship']):'',
+                'last_active' => $inputs['last_active'],
+                'hair_color' =>isset($inputs['hair_color'])?serialize($inputs['hair_color']):'',
+                'hair_length' => isset($inputs['hair_length'])?serialize($inputs['hair_length']):'',
+                'hair_type' => isset($inputs['hair_type'])?serialize($inputs['hair_type']):'',
+                'eye_color' => isset($inputs['eye_color'])?serialize($inputs['eye_color']):'',
+                'eye_wear' => isset($inputs['eye_wear'])?serialize($inputs['eye_wear']):'',
+                'min_height' => $inputs['min_height'],
+                'max_height' => $inputs['max_height'],
+                'min_weight' => $inputs['min_weight'],
+                'max_weight' => $inputs['max_weight'],
+                'body_type' => isset($inputs['body_type'])?serialize($inputs['body_type']):'',
+                'ethnicity' => isset($inputs['ethnicity'])?serialize($inputs['ethnicity']):'',
+                'best_feature' => isset($inputs['best_feature'])?serialize($inputs['best_feature']):'',
+                'body_art' => isset($inputs['body_art'])?serialize($inputs['body_art']):'',
+                'appearance' => isset($inputs['appearance'])?serialize($inputs['appearance']):'',
+                'drink' => isset($inputs['drink'])?serialize($inputs['drink']):'',
+                'smoke' => isset($inputs['smoke'])?serialize($inputs['smoke']):'',
+                'marital_status' => isset($inputs['marital_status'])?serialize($inputs['marital_status']):'',
+                'have_children' => isset($inputs['have_children'])?serialize($inputs['have_children']):'',
+                'no_children' => $inputs['no_children'],
+                'oldest_child' => $inputs['oldest_child'],
+                'youngest_child' => $inputs['youngest_child'],
+                'more_child' => isset($inputs['more_child'])?serialize($inputs['more_child']):'',
+                'occupation' => isset($inputs['occupation'])?serialize($inputs['occupation']):'',
+                'employment' => isset($inputs['employment'])?serialize($inputs['employment']):'',
+                'income' => $inputs['income'],
+                'home_type' => isset($inputs['home_type'])?serialize($inputs['home_type']):'',
+                'living_situation' => isset($inputs['living_situation'])?serialize($inputs['living_situation']):'',
+                'relocate' => isset($inputs['relocate'])?serialize($inputs['relocate']):'',
 
-}
+                'nationality' => isset($inputs['nationality'])?serialize($inputs['nationality']):'',
+                'education' => $inputs['education'],
+                'languages' => isset($inputs['languages'])?serialize($inputs['languages']):'',
+                'english_ability' => $inputs['english_ability'],
+                'portugese_ability' => $inputs['portugese_ability'],
+                'spanish_ability' => $inputs['spanish_ability'],
+                'religion' => $inputs['religion'],
+                'religious_values' => isset($inputs['religious_values'])?serialize($inputs['religious_values']):'',
+                'home_type' => isset($inputs['home_type'])?serialize($inputs['home_type']):'',
+                'living_situation' => isset($inputs['living_situation'])?serialize($inputs['living_situation']):'',
+                'star_sign' => isset($inputs['star_sign'])?serialize($inputs['star_sign']):'',
+               'search_name' => $inputs['search_name']
+                       );
+                       UserSearch::insert($search_data);
+                return Redirect::to('search/add-search')->with('success',trans('messages.search_saved'));
+        }
+        
+        } 
+        catch (\Exception $e) {
+            echo $e;
+            exit;
+        }
+        return view('search.advanced-search')->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
+    }
+    
+ 
+    
+     public function getEditSearch($search_id) {
+        try {
+            $user_search = null;
+            $form_layout = $this->getProfileForm();
+            $countries = Country::get();
+            $languages = Languages::get();
+           
+            $user_search = UserSearch::where('search_id', $search_id)->first();
+            //dd($user_search);exit;
+            if (!empty($user_search)) {
+                $user_search = $this->getMatchData($user_search);
+            }
+        } catch (\Exception $e) {
+            echo $e;
+            exit;
+        }
+        return view('search.edit-search')->with('user_search', $user_search)->with('countries', $countries)->with('languages', $languages)->with('form_layout', $form_layout);
+    }
+    
+    public function getDelete($search_id){
+        UserSearch::destroy($search_id);
+        return Redirect::to('search/saved-search')->with('success',trans('messages.search_deleted'));
+    }
+
+ }
+ 

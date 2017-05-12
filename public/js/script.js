@@ -106,8 +106,8 @@ var users = {
             }
         });
     },
-    addFavourite: function (response) {
-        var id = $("input[name=user_id]").val();
+    addFavourite: function (elem_id,page,id) {
+        //var id = $("input[name=user_id]").val();
         var basepath = $("input[name=basepath]").val();
         $.ajax({
             type: 'GET',
@@ -118,15 +118,21 @@ var users = {
                 if(data.status==0){
                     
                 }else{
-                    $('#favorites-btn').attr('src',basepath+'/image/btn-favorites-select.gif');
-                    $('#favorites-btn').attr('id','favourites-rem');
+                    if(page== 'profile'){
+                    $(elem_id).attr('src',basepath+'/image/btn-favorites-select.gif');
+                    $(elem_id).attr('id','favourites-rem');
+                }
+                if(page == 'search'){
+                        $(elem_id).removeClass("addfavorites").removeClass("iconfavorites");
+                        $(elem_id).addClass("remfavorites").addClass("iconremfavorites");
+                    }
                 }
                 $(".bg-loader").removeClass("show");
             }
         });
     },
-    removeFavourite: function (response) {
-        var id = $("input[name=user_id]").val();
+    removeFavourite: function (elem_id,page,id) {
+        //var id = $("input[name=user_id]").val();
         var basepath = $("input[name=basepath]").val();
         $.ajax({
             type: 'GET',
@@ -137,8 +143,14 @@ var users = {
                 if(data.status==0){
                     
                 }else{
-                    $('#favorites-rem').attr('src',basepath+'/image/btn-favorites-up.gif');
-                    $('#favorites-rem').attr('id','favourites-btn');
+                    if(page == 'profile'){
+                    $(elem_id).attr('src',basepath+'/image/btn-favorites-up.gif');
+                    $(elem_id).attr('id','favourites-btn');
+                    }
+                    if(page == 'search'){
+                        $(elem_id).removeClass("remfavorites").removeClass("iconremfavorites");
+                        $(elem_id).addClass("addfavorites").addClass("iconfavorites");
+                    }
                 }
                 $(".bg-loader").removeClass("show");
             }

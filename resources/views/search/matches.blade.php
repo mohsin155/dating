@@ -5,8 +5,8 @@
         <div id="main-content">
             <div class="searchhdg">
                 <div class="searchhdg2">
-                    <h1> My Matches
-                        <img src="{{asset('image/q-mark.gif')}}" title="Users on this page match the criteria you specified in your match settings. You can edit your match settings by clicking the 'Improve Matches' link." class="tipMe">
+                    <h1> Search Results
+                        <!--<img src="{{asset('image/q-mark.gif')}}" title="Users on this page match the criteria you specified in your match settings. You can edit your match settings by clicking the 'Improve Matches' link." class="tipMe">-->
                     </h1>
 
                     <a href="/match_registration.cfm">Improve Matches</a>
@@ -14,9 +14,10 @@
                 <div class="matchnav">
 
 
-                    <div class="matchnav_matches">
+                    <!--<div class="matchnav_matches">
                         <span class="matches selectedTab"><img src="{{asset('image/icon_mymatches.png')}}" class="matchicon">My Matches</span> <a href="#"><img border="0" src="{{asset('image/icon_mutualmatches.png')}}" class="matchicon">Mutual Matches</a> <a href="#" class="reverse"><img border="0" src="{{asset('image/icon_reversematches.png')}}" class="matchicon">Reverse Matches</a>
-                    </div>
+                    </div>-->
+                    
 
                     <div class="clear"></div>
 
@@ -32,7 +33,7 @@
 
                             <a href="javascript:void(0)" class="no-photo-display-popup">
 
-                                <img border="0" height="136px" width="125px" src="{{url('uploads')}}/{{Auth::user()->user_id}}{{$row->photo_name}}">
+                                <img border="0" height="136px" width="125px" src="{{url('uploads')}}/{{Auth::user()->user_id}}/{{$row->photo_name}}">
 
                             </a>
 
@@ -41,31 +42,35 @@
 
                             <p class="hdg1">
 
-                                <a href="#">Gessica (24)</a>
+                                <a href="#">{{$row->first_name}} ({{$row->age}})</a>
 
                             </p>
 
                             <p><span class="hdg2"></span>
-                                Ribeirão Prêto,
-
-                                São Paulo, Brazil
+                                {{$row->city_name}}, {{$row->state_name}}, {{$row->country_name}}
                                 <br>
                                 <strong>Seeking:</strong> Male 25 - 42<br>
 
-                                <strong>Last Login:</strong> 0 min ago</p>
+                                <strong>Last Login:</strong> {{humanTiming($row['last_login'])}}</p>
                         </div>
 
                         <span class="icons">
                             <ul class="iconset">
                                 <li class="iconstandard">
-                                    <a href="#" title="click here to view profile"></a>
+                                    <a href="{{url('users/profile')}}/{{$row->user_id}}" title="click here to view profile"></a>
                                 </li>
                                 <li class="iconmail">
                                     <a style="display:none;" data-sitetranslationpath="en" class="launchRegistrationModal" href="javascript: void(0);"></a>
-                                    <a href="#" title="Send Gessica a message" class="emailpopup" rel="8757906" memname="Gessica"></a>
+                                    <a href="#" title="Send {{$row->first_name}} a message" class="emailpopup" rel="" memname="{{$row->first_name}}"></a>
                                 </li>
-                                <li class="iconinterest sendinterest" name="070086E1CDC940B4459D0A" data-altclass="iconinterestsent" data-msid="8757906" data-imageurl="" data-name="Gessica"><a href="/en/memberrelationship/showinterest/070086E1CDC940B4529D0A" title="Show interest in Gessica"></a></li>
-                                <li class="iconfavorites addfavorites" name="070086E1CDC940B4459D0A" data-altclass="iconfavoritessent" data-imageurl="" data-name="Gessica"><a href="/en/memberrelationship/addfavorite/070086E1CDC940B4529D0A" title="Add Gessica to your favorites"></a></li>
+                                <li class="iconinterest sendinterest" name="" data-altclass="iconinterestsent" data-msid="" data-imageurl="" data-name="{{$row->first_name}}"><a href="javascript:;" title="Show interest in {{$row->first_name}}"></a></li>
+                                @if(!empty($row->favourite_id))
+                                <li class="iconremfavorites remfavorites" name="" data-altclass="iconfavoritessent" data-imageurl="" data-name="{{$row->first_name}}" data-id="{{$row->user_id}}">
+                                    <a href="javascript:;" title="Remove {{$row->first_name}} from your favorites"></a></li>
+                                @else
+                                <li class="iconfavorites addfavorites" name="" data-altclass="iconfavoritessent" data-imageurl="" data-name="{{$row->first_name}}" data-id="{{$row->user_id}}">
+                                    <a href="javascript:;" title="Add {{$row->first_name}} to your favorites"></a></li>
+                                @endif
                                 <li class="icononlinemobileactive">
                                     <a href="#" title="I'm Online - click to chat"></a>
                                 </li>
@@ -78,4 +83,16 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $('body').on('click','.addfavorites',function(){
+        //$(".bg-loader").addClass("show");
+        users.addFavourite(this,"search",$(this).attr('data-id'));
+    });
+    $('body').on('click','.remfavorites',function(){
+        //$(".bg-loader").addClass("show");
+        users.removeFavourite(this,"search",$(this).attr('data-id'));
+    })
+</script>
 @endsection

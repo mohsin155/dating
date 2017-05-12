@@ -156,9 +156,9 @@
                                 <select name="last_login">
                                     <option value="">Any</option>
                                     <option value="7">within week</option>
-                                    <option value="31">within 1 month</option>
-                                    <option value="92">within 3 months</option>
-                                    <option value="185">within 6 months</option>
+                                    <option value="30">within 1 month</option>
+                                    <option value="90">within 3 months</option>
+                                    <option value="180">within 6 months</option>
                                     <option value="365">within year</option>
                                 </select>
                             </li>
