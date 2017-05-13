@@ -161,7 +161,7 @@ class SearchController extends UtilityController {
     }
 
     public function getSavedSearch() {
-        $search_row = UserSearch::select()->where('user_search.user_id', '=', Auth::user()->user_id)->where('type',2)->get();
+        $search_row = UserSearch::select()->where('user_search.user_id', '=', Auth::user()->user_id)->where('type',1)->get();
         $cnt = count($search_row);
         // print_r($search_row);echo $cnt;exit;
         return view('search.saved-search')->with('cnt', $cnt)->with('search_row', $search_row);

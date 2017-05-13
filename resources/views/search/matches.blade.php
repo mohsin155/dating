@@ -49,6 +49,7 @@
                             <p><span class="hdg2"></span>
                                 {{$row->city_name}}, {{$row->state_name}}, {{$row->country_name}}
                                 <br>
+                                @if(!empty($row->seeking)
                                 <strong>Seeking:</strong> Male 25 - 42<br>
 
                                 <strong>Last Login:</strong> {{humanTiming($row['last_login'])}}</p>

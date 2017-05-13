@@ -33,6 +33,7 @@
 
                     </div>
                     @endif
+                    <input type="hidden" name="type" value="2" />
                     <div class="description label-single">
                         <div class="form-group">
                         <label>First Name : </label><input name="first_name" type="text" />

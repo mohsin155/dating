@@ -52,9 +52,10 @@ class User extends Authenticatable
     }
     
     public function searchResults($inputs,$logged){
-        $query = User::select(DB::raw('f.favourite_id,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
                 ->leftJoin('user_profile as p', 'users.user_id', '=', 'p.user_id')
                 ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
                 ->whereRaw('(f.favourite_by = "' . $logged . '" or f.favourite_by is null)');
         if(isset($inputs['keyword']) && !empty($inputs['keyword'])) {
             $query = $query->whereRaw('(users.first_name like "'.$inputs['keyword'].'%" or users.first_name like "'.$inputs['keyword'].'%")');

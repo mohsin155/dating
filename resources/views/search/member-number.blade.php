@@ -30,6 +30,7 @@
 
                     </div>
                     @endif
+                    <input type="hidden" name="type" value="2" />
                     <div class="description">
                         <div class="form-group">
                             <label>Member Number : </label><input name="member_number" type="text" />
