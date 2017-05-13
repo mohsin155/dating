@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="signup-page-outer edit-profile-page-setting">
-                <form name="edit-match" class="form-inline" id="edit-match" method="post" action="{{url('users/edit-match')}}">
+                <form name="edit-match" class="form-inline" id="edit-match" method="post" action="{{url('search/search-match')}}">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     @if(!empty($errors) && count($errors)>0)
                     <div class="alert alert-danger">
@@ -32,7 +32,7 @@
                     @endif
                     <div class="description">
                         <div class="form-group">
-                            <label>Member Number : </label><input name="keyword" type="text" />
+                            <label>Member Number : </label><input name="member_number" type="text" />
                         </div>
                     </div>
 
