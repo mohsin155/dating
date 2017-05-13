@@ -173,10 +173,10 @@
                     </div>
                     <div id="accordion" class="accordion-inner">
 
-                        <h3>Hair Length : {{!empty($user_match)?$user_match->hair_length:'Any'}}</h3>
+                        <h3>Hair Length : <?php $hl = !empty($user_match)?$user_match->hair_length:'Any';?>{{$hl}}</h3>
                         <div class="form-group">
                             <div class="hair-length pull-left">
-                                <input type="checkbox" name="hair_length[]" value="" checked=""/>Any
+                                <input type="checkbox" name="hair_length[]" value="" {{$hl=='Any'?'checked':''}} />Any
                             </div>
                             @foreach($form_layout[2] as $row)
                             <div class="hair-length pull-left">
@@ -185,10 +185,10 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Hair Type : {{!empty($user_match)?$user_match->hair_type:'Any'}}</h3>
+                        <h3>Hair Type : <?php $ht = !empty($user_match)?$user_match->hair_type:'Any';?>{{$ht}}</h3>
                         <div class="form-group">
                             <div class="hair-length pull-left">
-                            <input type="checkbox" name="hair_type[]" value="" checked="true" />Any
+                            <input type="checkbox" name="hair_type[]" value="" {{$hl=='Any'?'checked':''}} />Any
                             </div>
                             @foreach($form_layout[3] as $row)
                             <div class="hair-length pull-left">
@@ -197,11 +197,11 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Hair Color : {{!empty($user_match)?$user_match->hair_color:'Any'}}</h3>
+                        <h3>Hair Color : <?php $hc = empty($user_match)?$user_match->hair_color:'Any';?>{{$hc}}</h3>
                          <div class="form-group">
                         <div class="hair-length pull-left">
 
-                            <input type="checkbox" name="hair_color[]" value="" checked="true" />Any
+                            <input type="checkbox" name="hair_color[]" value="" {{$hc=='Any'?'checked':''}} />Any
                         </div>
                             @foreach($form_layout[1] as $row)
                             <div class="hair-length pull-left">
@@ -210,10 +210,10 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Eye Color : {{!empty($user_match)?$user_match->eye_color:'Any'}}</h3>
+                        <h3>Eye Color : <?php $ec = !empty($user_match)?$user_match->eye_color:'Any';?>{{$ec}}</h3>
                         <div class="form-group">
                             <div class="hair-length pull-left">
-                            <input type="checkbox" name="eye_color[]" value="" checked="true" />Any
+                            <input type="checkbox" name="eye_color[]" value="" {{$ec=='Any'?'checked':''}} />Any
                             </div>
                             @foreach($form_layout[4] as $row)
                             <div class="hair-length pull-left">
@@ -222,10 +222,10 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Eye Wear : {{!empty($user_match)?$user_match->eye_wear:'Any'}}</h3>
+                        <h3>Eye Wear : <?php $ew = !empty($user_match)?$user_match->eye_wear:'Any';?>{{$ew}}</h3>
                         <div class="form-group">
                             <div class="hair-length pull-left">
-                            <input type="checkbox" name="eye_wear[]" value="" checked="true" />Any
+                            <input type="checkbox" name="eye_wear[]" value="" {{$ew=='Any'?'checked':''}} />Any
                             </div>
                             @foreach($form_layout[5] as $row)
                             <div class="hair-length pull-left">
@@ -267,9 +267,9 @@
                                 @endfor
                             </select>
                         </div>
-                        <h3>Body type : {{!empty($user_match)?$user_match->body_type:'Any'}}</h3>
+                        <h3>Body type : <?php $bd = !empty($user_match)?$user_match->body_type:'Any';?>{{$bd}}</h3>
                         <div class="form-group">
-                            <input type="checkbox" name="body_type[]" value="" checked="true" />Any
+                            <input type="checkbox" name="body_type[]" value="" {{$bd=='Any'?'checked':''}}  />Any
                             @foreach($form_layout[8] as $row)
                             <div class="pets-section">
 
@@ -278,10 +278,10 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Their ethnicity is mostly : {{!empty($user_match)?$user_match->ethnicity:'Any'}}</h3>
+                        <h3>Their ethnicity is mostly : <?php $e = !empty($user_match)?$user_match->ethnicity:'Any';?>{{$e}}</h3>
                         <div class="form-group">
                              <div class="hair-length pull-left">
-                            <input type="checkbox" name="ethnicity[]" value="" checked="true" />Any
+                            <input type="checkbox" name="ethnicity[]" value="" {{$e=='Any'?'checked':''}} />Any
                              </div>
                             @foreach($form_layout[9] as $row)
                             <div class="hair-length pull-left">
@@ -291,10 +291,10 @@
                             </select>
                         </div>
 
-                        <h3>Their best feature : {{!empty($user_match)?$user_match->best_feature:'Any'}}</h3>
+                        <h3>Their best feature : <?php $bf = !empty($user_match)?$user_match->best_feature:'Any';?>{{$bf}}</h3>
                         <div class="form-group">
                              <div class="hair-length pull-left">
-                            <input type="checkbox" name="best_feature[]" value="" checked="true" />Any
+                            <input type="checkbox" name="best_feature[]" value="" {{$bf=='Any'?'checked':''}} />Any
                              </div>
                             @foreach($form_layout[11] as $row)
                           <div class="hair-length pull-left">
@@ -303,10 +303,10 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Body art : {{!empty($user_match)?$user_match->body_art:'Any'}}</h3>
+                        <h3>Body art : <?php $ba = !empty($user_match)?$user_match->body_art:'Any';?>{{$ba}}</h3>
                         <div class="form-group">
                              <div class="hair-length pull-left">
-                            <input type="checkbox" name="body_art[]" value="" checked="true" />Any
+                            <input type="checkbox" name="body_art[]" value="" {{$ba=='Any'?'checked':''}} />Any
                              </div>
                             @foreach($form_layout[12] as $row)
                             <div class="hair-length pull-left">
@@ -316,10 +316,10 @@
                             </select>
                         </div>
 
-                        <h3>Consider their appearance as : {{!empty($user_match)?$user_match->appearance:'Any'}}</h3>
+                        <h3>Consider their appearance as : <?php $ta = !empty($user_match)?$user_match->appearance:'Any';?>{{$ta}}</h3>
                         <div class="form-group">
                              <div class="hair-length pull-left">
-                            <input type="checkbox" name="appearance[]" value="" checked="true" />Any
+                            <input type="checkbox" name="appearance[]" value="" {{$ta=='Any'?'checked':''}} />Any
                              </div>
                             @foreach($form_layout[13] as $row)
                               <div class="hair-length pull-left">
@@ -331,13 +331,13 @@
                     </div>
 
                     <div class="address-update-heading">
-                        <h1>Their Lifestyle : {{!empty($user_match)?$user_match->drink:'Any'}}</h1>
+                        <h1>Their Lifestyle </h1>
                     </div>
                     <div id="accordion1" class="accordion-inner">
-                        <h3>Do they drink? </h3>
+                        <h3>Do they drink? : <?php $td = !empty($user_match)?$user_match->drink:'Any';?>{{$td}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="drink[]" value="" checked="true" />Any
+                            <input type="checkbox" name="drink[]" value="" {{$td=='Any'?'checked':''}} />Any
                               </div>
                             @foreach($form_layout[14] as $row)
                              <div class="hair-length pull-left">
@@ -346,10 +346,10 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Do they smoke? : {{!empty($user_match)?$user_match->smoke:'Any'}}</h3>
+                        <h3>Do they smoke? : <?php $ts = !empty($user_match)?$user_match->smoke:'Any';?>{{$td}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="smoke[]" value="" checked="true" />Any
+                            <input type="checkbox" name="smoke[]" value="" {{$td=='Any'?'checked':''}} />Any
                               </div>
                             @foreach($form_layout[15] as $row)
                               <div class="hair-length pull-left">
@@ -358,10 +358,10 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Marital Status : {{!empty($user_match)?$user_match->marital_status:'Any'}}</h3>
+                        <h3>Marital Status : <?php $ms = !empty($user_match)?$user_match->marital_status:'Any';?>{{$ms}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="marital_status[]" value="" checked="true" />Any
+                            <input type="checkbox" name="marital_status[]" value="" {{$ms=='Any'?'checked':''}} />Any
                               </div>
                             @foreach($form_layout[16] as $row)
                               <div class="hair-length pull-left">
@@ -369,10 +369,10 @@
                             </div>
                             @endforeach
                         </div>
-                        <h3>Do they have children? : {{!empty($user_match)?$user_match->have_children:'Any'}}</h3>
+                        <h3>Do they have children? : <?php $hc = !empty($user_match)?$user_match->have_children:'Any';?>{{$hc}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="have_children[]" value="" checked="true" />Any
+                            <input type="checkbox" name="have_children[]" value="" {{$hc=='Any'?'checked':''}}/>Any
                               </div>
                             @foreach($form_layout[17] as $row)
                               <div class="hair-length pull-left">
@@ -413,10 +413,10 @@
                                 @endforeach
                             </select>
                         </div>
-                        <h3>Do they want more children? : {{!empty($user_match)?$user_match->more_child:'Any'}}</h3>
+                        <h3>Do they want more children? : <?php $mc = !empty($user_match)?$user_match->more_child:'Any';?>{{$mc}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="more_child[]" value="" checked="true" />Any
+                            <input type="checkbox" name="more_child[]" value="" {{$mc=='Any'?'checked':''}} />Any
                               </div>
                             @foreach($form_layout[21] as $row)
                               <div class="hair-length pull-left">
@@ -425,7 +425,7 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Occupation : {{!empty($user_match)?$user_match->occupation:'Any'}}</h3>
+                        <h3>Occupation : <?php $oc = !empty($user_match)?$user_match->occupation:'Any';?>{{$oc}}</h3>
                         <div class="form-group">
 
                             @foreach($form_layout[23] as $row)
@@ -433,12 +433,11 @@
                                 <input type="checkbox" name="occupation[]" value="{{$row['value']}}" {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['occupation']))?'checked':''}} />{{$row['label']}}
                             </div>
                             @endforeach
-                            </select>
                         </div>
-                        <h3>Employment status : {{!empty($user_match)?$user_match->employment:'Any'}}</h3>
+                        <h3>Employment status : <?php $es = !empty($user_match)?$user_match->employment:'Any';?>{{$es}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="employment[]" value="" checked="true" />Any
+                            <input type="checkbox" name="employment[]" value="" {{$es=='Any'?'checked':''}} />Any
                               </div>
                             @foreach($form_layout[24] as $row)
                               <div class="hair-length pull-left">
@@ -461,10 +460,10 @@
                                 <option value="7" {{!empty($user_match) && $user_match->getOriginal()['income']==7?'selected':''}}>Prefer not to say</option>
                             </select>
                         </div>
-                        <h3> Home type : {{!empty($user_match)?$user_match->home_type:'Any'}}</h3>
+                        <h3> Home type : <?php $ht = !empty($user_match)?$user_match->home_type:'Any';?>{{$ht}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="home_type[]" value="" checked="true" />Any
+                            <input type="checkbox" name="home_type[]" value="" {{$ht=='Any'?'checked':''}} />Any
                               </div>
                             @foreach($form_layout[25] as $row)
                               <div class="hair-length pull-left">
@@ -473,10 +472,10 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Living situation : {{!empty($user_match)?$user_match->living_situation:'Any'}}</h3>
+                        <h3>Living situation : <?php $ls = !empty($user_match)?$user_match->living_situation:'Any';?>{{$ls}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="living_situation[]" value="" checked="true" />Any
+                            <input type="checkbox" name="living_situation[]" value="" {{$ls=='Any'?'checked':''}} />Any
                               </div>
                             @foreach($form_layout[26] as $row)
                               <div class="hair-length pull-left">
@@ -485,10 +484,10 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Willing to relocate : {{!empty($user_match)?$user_match->relocate:'Any'}}</h3>
+                        <h3>Willing to relocate : <?php $wr = !empty($user_match)?$user_match->relocate:'Any';?>{{$wr}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="relocate[]" value="" checked="true" />Any
+                            <input type="checkbox" name="relocate[]" value="" {{$wr=='Any'?'checked':''}} />Any
                               </div>
                             @foreach($form_layout[27] as $row)
                               <div class="hair-length pull-left">
@@ -571,10 +570,10 @@
                                 @endforeach
                             </select>
                         </div>
-                        <h3 class="religious-label">Religious values : {{!empty($user_match)?$user_match->religious_values:'Any'}}</h3>
+                        <h3 class="religious-label">Religious values : <?php $rv = !empty($user_match)?$user_match->religious_values:'Any';?>{{$rv}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="religious_values[]" value="" checked="true"/>Any
+                            <input type="checkbox" name="religious_values[]" value="" {{$rv=='Any'?'checked':''}}/>Any
                               </div>
                             @foreach($form_layout[34] as $row)
                              <div class="hair-length pull-left">
@@ -582,10 +581,10 @@
                             </div>
                             @endforeach
                         </div>
-                        <h3 class="star-label">Star sign : {{!empty($user_match)?$user_match->star_sign:'Any'}}</h3>
+                        <h3 class="star-label">Star sign : <?php $ss = !empty($user_match)?$user_match->star_sign:'Any';?>{{$ss}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
-                            <input type="checkbox" name="star_sign[]" value="" checked="true"/>Any
+                            <input type="checkbox" name="star_sign[]" value="" {{$ss=='Any'?'checked':''}}/>Any
                               </div>
                             @foreach($form_layout[35] as $row)
                              <div class="hair-length pull-left">
@@ -762,7 +761,7 @@ $("input[type=checkbox]").on('click',function(e){
     }
 });
 //$("input[type=checkbox]").each(function(){
-   // $(this).trigger('change');
+  //  $(this).trigger('click');
 //});
 });
 </script>
