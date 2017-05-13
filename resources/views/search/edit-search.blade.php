@@ -17,7 +17,7 @@
             </div>
 
             <div class="signup-page-outer edit-profile-page-setting">
-                <form name="edit-search" class="form-inline" id="edit-match" method="post" action="{{url('search/edit-search')}}">
+                <form name="edit-search" class="form-inline" id="edit-match" method="post" action="{{url('search/add-search')}}">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     @if(!empty($errors) && count($errors)>0)
                     <div class="alert alert-danger">
@@ -37,17 +37,17 @@
 
                     </div>
                     @endif
-                 <!--   <div class="form-group">
+                  <div class="form-group">
                         <label for="gender">I'm a: </label>
-                        <select class="form-control" name="my_gender" >
+                        <select class="form-control" name="gender" >
                             <option value="male" <?php echo (!empty($user_search) && $user_search->gender == 'male') ? 'selected' : ''; ?>>Male</option>
                             <option value="female" <?php echo (!empty($user_search) && $user_search->gender == 'female') ? 'selected' : ''; ?>>Female</option>
                         </select>
                     </div>      
-                 -->
+                 
                     <div class="form-group">
                         <label for="gender">I'm seeking a: </label>
-                        <select class="form-control" name="gender" >
+                        <select class="form-control" name="seeking" >
                             <option value="male" <?php echo (!empty($user_search) && $user_search->gender == 'male') ? 'selected' : ''; ?>>Male</option>
                             <option value="female" <?php echo (!empty($user_search) && $user_search->gender == 'female') ? 'selected' : ''; ?>>Female</option>
                         </select>
@@ -598,7 +598,7 @@
                     </div>
                     <div class="form-group">
                         <label>Save search:</label>
-                        <input type="text" name="search_name" value="" />
+                        <input type="text" name="search_name" value="{{is_null($user_search)?'':$user_search->search_name}}" />
                     </div>
                     <div class="button-inner text-center email-address">
                         <button class="btn btn-primary btn-green" type="submit">SAVE</button>

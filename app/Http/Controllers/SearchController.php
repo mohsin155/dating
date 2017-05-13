@@ -493,7 +493,6 @@ class SearchController extends UtilityController {
             $user_search = UserSearch::where('search_id', $search_id)->first();
             //dd($user_search);exit;
             if (!empty($user_search)) {
-
                 $user_search=$this->getMatchData($user_search);
 
             }
@@ -509,6 +508,8 @@ class SearchController extends UtilityController {
         UserSearch::destroy($search_id);
         return Redirect::to('search/saved-search')->with('success',trans('messages.search_deleted'));
     }
+    
+   
 
  }
  
