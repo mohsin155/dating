@@ -10,14 +10,10 @@
                 </div>
 
             </div>
-            <div class="description">
-                <div class="form-group">
-                <label>First Name : </label><input name="keyword" type="text" />
-                </div>
-            </div>
+            
 
             <div class="signup-page-outer edit-profile-page-setting">
-                <form name="edit-match" class="form-inline" id="edit-match" method="post" action="{{url('users/edit-match')}}">
+                <form name="edit-match" class="form-inline" id="edit-match" method="post" action="{{url('search/search-match')}}">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     @if(!empty($errors) && count($errors)>0)
                     <div class="alert alert-danger">
@@ -37,6 +33,12 @@
 
                     </div>
                     @endif
+                    <input type="hidden" name="type" value="2" />
+                    <div class="description label-single">
+                        <div class="form-group">
+                        <label>First Name : </label><input name="first_name" type="text" />
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="gender">I'm a: </label>
                         <select class="form-control" name="gender" >
@@ -173,17 +175,17 @@
                         </div>
                     </div>
                     <hr class="seperate-line">
-                    <div class="form-group">
-                        <label for="searching_for">Searching For: </label>
-                      
+                    <div class="form-group search-for">
+                        <label for="searching_for" class="pull-left">Searching For: </label>
+                        <div class="pets-section pull-left">
+                        <input type="checkbox" name="relationship[]" value="" />Any
+                        </div>
                         @foreach($form_layout[28] as $row)
-                        <div class="pets-section">
+                         <div class="pets-section pull-left">
                             <input type="checkbox" name="relationship[]" value="{{$row['value']}}" />{{$row['label']}}
                         </div>
                         @endforeach
-                          <div class="pets-section">
-                        <input type="checkbox" name="relationship[]" value="" />Any
-                        </div>
+                          
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">

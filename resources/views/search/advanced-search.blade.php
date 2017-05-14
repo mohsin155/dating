@@ -45,6 +45,7 @@
                         </select>
                     </div>      
                  -->
+                 <input type="hidden" name="type" value="2" />
                     <div class="form-group">
                         <label for="gender">I'm seeking a: </label>
                         <select class="form-control" name="gender" >

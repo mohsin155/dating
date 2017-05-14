@@ -17,7 +17,7 @@
             </div>
 
             <div class="signup-page-outer edit-profile-page-setting">
-                <form name="add-search" class="form-inline" id="edit-match" method="post" action="{{url('search/add-search')}}">
+                <form name="add-search" class="form-inline" id="edit-match" method="post" action="{{url('search/search-match')}}">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     @if(!empty($errors) && count($errors)>0)
                     <div class="alert alert-danger">
@@ -45,6 +45,7 @@
                         </select>
                     </div>      
                  -->
+                 <input type="hidden" name="type" value="2" />
                     <div class="form-group">
                         <label for="gender">I'm seeking a: </label>
                         <select class="form-control" name="gender" >
