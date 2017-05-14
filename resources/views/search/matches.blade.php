@@ -49,9 +49,9 @@
                             <p><span class="hdg2"></span>
                                 {{$row->city_name}}, {{$row->state_name}}, {{$row->country_name}}
                                 <br>
-                                @if(!empty($row->seeking)
-                                <strong>Seeking:</strong> Male 25 - 42<br>
-
+                                @if(!empty($row->seeking))
+                                <strong>Seeking:</strong> {{$row->gender}} {{!empty($row->min_age)? $row->min_age.' - ' :''}}{{!empty($row->max_age)? $row->max_age:''}}<br>
+                                @endif
                                 <strong>Last Login:</strong> {{humanTiming($row['last_login'])}}</p>
                         </div>
 
