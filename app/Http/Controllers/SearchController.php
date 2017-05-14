@@ -258,7 +258,7 @@ class SearchController extends UtilityController {
             $user_search = UserSearch::where('search_id', $search_id)->first();
             //dd($user_search);exit;
             if (!empty($user_search)) {
-                $user_search = $this->getMatchData($user_search);
+                $user_search=$this->getMatchData($user_search);
             }
         } catch (\Exception $e) {
             echo $e;
@@ -273,6 +273,9 @@ class SearchController extends UtilityController {
         return Redirect::to('search/saved-search')->with('success', trans('messages.search_deleted'));
     }
     
+<<<<<<< HEAD
+   
+=======
     public function saveAdvance($inputs){
         if (!empty($inputs['search_name'])) {
                 $search_name = $inputs['search_name'];
@@ -338,6 +341,7 @@ class SearchController extends UtilityController {
             $search_id = UserSearch::insertGetId($search_data);
             return $search_id;
     }
+>>>>>>> ceff9fa59237f0e8a0a3c7c7828a26a9dbe7d7e1
 
     public function saveSmallFilter($inputs){
         UserSearch::where(array('user_id'=> Auth::user()->user_id,'type'=>2))->delete();

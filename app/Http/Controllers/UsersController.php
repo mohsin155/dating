@@ -24,6 +24,7 @@ use App\Models\UserInterest;
 use App\Models\UserMatch;
 use App\Models\UserImbra;
 use App\Models\UserFavourite;
+use App\Models\UserBlock;
 
 class UsersController extends UtilityController {
 
@@ -671,6 +672,19 @@ class UsersController extends UtilityController {
     public function getRemoveFavourite($id){
         $user_id = Auth::user()->user_id;
         $favourite = UserFavourite::where(['favourite_to' => $id, 'favourite_by' => $user_id])->delete();
+        return response()->json(array('status'=>1));
+    }
+    
+    public function getAddBlock($id){
+        $user_id = Auth::user()->user_id;
+        $block = UserBlock::updateOrCreate(['block_to' => $id, 'block_by' => $user_id], ['block_to' => $id, 'block_by' => $user_id]);
+        $block->save();
+        return response()->json(array('status'=>1));
+    }
+    
+    public function getRemoveBlock($id){
+        $user_id = Auth::user()->user_id;
+        $block = UserBlock::where(['block_to' => $id, 'block_by' => $user_id])->delete();
         return response()->json(array('status'=>1));
     }
 }
