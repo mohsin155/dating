@@ -267,7 +267,8 @@ class SearchController extends UtilityController {
         return Redirect::to('search/saved-search')->with('success', trans('messages.search_deleted'));
     }
 
-    public function saveAdvance($inputs) {
+    
+    public function saveAdvance($inputs){
         if (!empty($inputs['search_name'])) {
             $search_name = $inputs['search_name'];
             $type = 1;

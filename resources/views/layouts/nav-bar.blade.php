@@ -216,6 +216,7 @@
                         <span class="caret up_caret hide"></span>
 
                         <ul class="dropdown-menu dropdown-menu-header">
+                            <div class="dropdown_1columns col_1 bg-grey colSty">
                             <li>Account Settings</li>
                             <li><a href="{{url('users/account-settings')}}">Email Address</a></li>
                             <li><a href="{{url('users/reset-password')}}">Password</a></li>
@@ -231,6 +232,7 @@
                             </li>
 
                             <li><a href="{{url('users/logout')}}">Logout</a></li>
+                            </div>
                         </ul>
 
                     </li>

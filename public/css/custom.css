@@ -826,7 +826,7 @@ ul.menu li a {
 }
 .activity-dropdown-menu-left {
     width: 200px;
-    left: -182px;
+    left: -130px;
     top: 43px;
     background-color: #eee;
     float: left;
@@ -900,6 +900,19 @@ a, a:hover, a:visited {
     min-width: 200px;
     border: none;
     background-color: #eee;
+}
+.col_1 {
+    width: 200px;
+    height: 100%;
+    float: left;
+    display: inline;
+    position: relative;
+    padding-bottom: 15px;
+}
+.colSty {
+    -moz-border-radius: 0 0 7px 7px;
+    -webkit-border-radius: 0;
+    border-radius: 0 0 7px 7px;
 }
 .dropdown-menu-header li:first-child {
     font-weight: 600;
@@ -1304,7 +1317,7 @@ ul.sidemenu li {
 }
 .myprofile>.myprofiletext {
     float: left;
-    padding: 5px 10px;
+    padding: 0px 15px;
 }
 .myprofiletext h1 {
     font-size: 1.1em;
@@ -1373,6 +1386,8 @@ ul.sidemenu li a {
     padding: 12px;
 /*    color: #fff;*/
     text-decoration: none;
+    padding-bottom: 0px;
+        color: #666;
 }
 .profile-button {
     text-decoration: none;
@@ -2285,6 +2300,25 @@ table.childrenAge, table.residenceInfo, table.marriageHistory {
     margin-top: 15px;
     width: 100%;
 }
+.column2-content .actionicons ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+.column2-content .actionicons .iconstandard {
+        background: transparent url('../image/icon-set.gif') repeat scroll 25px 0;
+}
+.column2-content .actionicons .iconmail {
+   background: transparent url('../image/icon-set.gif') repeat scroll 0 -25px;
+}
+.column2-content .actionicons .iconinterest {
+    background: transparent url('../image/icon-set.gif') repeat scroll 50px -25px;
+}
+.column2-content .actionicons .iconfavorites {
+     background: transparent url('../image/icon-set.gif') repeat scroll 25px -25px;
+}
+.column2-content .actionicons .iconoffline {
+    background: transparent url('../image/icon-set.gif') repeat scroll 25px -50px;
+}
 .column2-content .member .photo {
     background-color: #fff;
     border-radius: 5em;
@@ -2296,6 +2330,12 @@ table.childrenAge, table.residenceInfo, table.marriageHistory {
     position: absolute;
     right: 5px;
     bottom: 3px;
+}
+.column2-content .actionicons li {
+    width: 25px;
+    height: 25px;
+    margin-right: 1px;
+    float: left;
 }
 .column1-content .activity {
     border: 1px solid #aaa;
@@ -2676,8 +2716,21 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
     padding-top: 0;
     line-height: 1.5em;
 }
+#td3 {
+    padding: 2px 10px;
+    border-bottom: 1px solid #e7e7d8;
+}
 .beige {
     background-color: #f2f2e6;
+}
+#td2 {
+    padding: 2px 10px;
+}
+.matchesthem {
+    background-color: #e7e7d8;
+}
+#btns {
+    padding: 10px 0 6px 10px;
 }
 .darkbeige {
     background-color: #e7e7d8;
