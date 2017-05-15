@@ -120,7 +120,7 @@ var users = {
                 }else{
                     if(page== 'profile'){
                     $(elem_id).attr('src',basepath+'/image/btn-favorites-select.gif');
-                    $(elem_id).attr('id','favourites-rem');
+                    $(elem_id).attr('id','favorites-rem');
                 }
                 if(page == 'search'){
                         $(elem_id).removeClass("addfavorites").removeClass("iconfavorites");
@@ -145,11 +145,86 @@ var users = {
                 }else{
                     if(page == 'profile'){
                     $(elem_id).attr('src',basepath+'/image/btn-favorites-up.gif');
-                    $(elem_id).attr('id','favourites-btn');
+                    $(elem_id).attr('id','favorites-btn');
                     }
                     if(page == 'search'){
                         $(elem_id).removeClass("remfavorites").removeClass("iconremfavorites");
                         $(elem_id).addClass("addfavorites").addClass("iconfavorites");
+                    }
+                }
+                $(".bg-loader").removeClass("show");
+            }
+        });
+    },
+    blockUser: function (elem_id,page,id) {
+        //var id = $("input[name=user_id]").val();
+        var basepath = $("input[name=basepath]").val();
+        $.ajax({
+            type: 'GET',
+            url: basepath+'/users/block-user/'+id,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.status==0){
+                    
+                }else{
+                    if(page== 'profile'){
+                        $(elem_id).attr('src',basepath+'/image/btn-blockuser-select.gif');
+                        $(elem_id).attr('id','blockuser-rem');
+                    }
+                    if(page == 'search'){
+                        $(elem_id).removeClass("addfavorites").removeClass("iconfavorites");
+                        $(elem_id).addClass("remfavorites").addClass("iconremfavorites");
+                    }
+                }
+                $(".bg-loader").removeClass("show");
+            }
+        });
+    },
+    unblockUser: function (elem_id,page,id) {
+        //var id = $("input[name=user_id]").val();
+        var basepath = $("input[name=basepath]").val();
+        $.ajax({
+            type: 'GET',
+            url: basepath+'/users/remove-block/'+id,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.status==0){
+                    
+                }else{
+                    if(page == 'profile'){
+                    $(elem_id).attr('src',basepath+'/image/btn-blockuser-up.gif');
+                    $(elem_id).attr('id','blockuser-btn');
+                    }
+                    if(page == 'search'){
+                        $(elem_id).removeClass("remfavorites").removeClass("iconremfavorites");
+                        $(elem_id).addClass("addfavorites").addClass("iconfavorites");
+                    }
+                }
+                $(".bg-loader").removeClass("show");
+            }
+        });
+    },
+    addInterest: function (elem_id,page,id) {
+        //var id = $("input[name=user_id]").val();
+        var basepath = $("input[name=basepath]").val();
+        $.ajax({
+            type: 'GET',
+            url: basepath+'/users/add-interest/'+id,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.status==0){
+                    
+                }else{
+                    if(page== 'profile'){
+                    $(elem_id).attr('src',basepath+'/image/btn-interest-select.gif');
+                    $(elem_id).attr('id','interest-rem');
+                }
+                if(page == 'search'){
+                        $(elem_id).removeClass("sendinterest").removeClass("iconinterest");
+                        $(elem_id).addClass("iconreminterest");
                     }
                 }
                 $(".bg-loader").removeClass("show");

@@ -356,8 +356,8 @@ class UsersController extends UtilityController {
          $profile_data= UserProfile::where('user_id',Auth::user()->user_id) ->first();
          $photos = UserPhotos::where('user_id', Auth::user()->user_id)->first();
          $image_path = url('uploads').'/' . Auth::user()->user_id.'/';
-         $users= User::select('users.user_id','users.first_name','users.age','users.state','users.country','user_photos.photo_name',DB::raw("(select countries.name  from countries where countries.id=users.country)as country_name ") ,DB::raw("(select states.name from states where states.country_id=users.country AND states.id=users.state ) as state_name "))->join('user_photos','users.user_id','=','user_photos.user_id')->where('users.user_id', '!=',Auth::user()->user_id)->get();
-          // print_r($users);exit;
+         $users= User::select('users.user_id','users.first_name','users.age','users.state','users.country','user_photos.photo_name',DB::raw("(select countries.name  from countries where countries.id=users.country)as country_name ") ,DB::raw("(select states.name from states where states.country_id=users.country AND states.id=users.state ) as state_name "))->leftJoin('user_photos','users.user_id','=','user_photos.user_id')->where('users.user_id', '!=',Auth::user()->user_id)->groupBy('users.user_id')->get();
+           //print_r($users);exit;
          $states= State::get();
         return view('users.listing')->with('countries', $countries)->with('states', $states)->with('users', $users)->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
     }
@@ -675,16 +675,41 @@ class UsersController extends UtilityController {
         return response()->json(array('status'=>1));
     }
     
-    public function getAddBlock($id){
+    public function getBlockUser($id){
         $user_id = Auth::user()->user_id;
-        $block = UserBlock::updateOrCreate(['block_to' => $id, 'block_by' => $user_id], ['block_to' => $id, 'block_by' => $user_id]);
+        $block = UserBlock::updateOrCreate(['blocked_to' => $id, 'blocked_by' => $user_id], ['blocked_to' => $id, 'blocked_by' => $user_id]);
         $block->save();
         return response()->json(array('status'=>1));
     }
     
     public function getRemoveBlock($id){
         $user_id = Auth::user()->user_id;
-        $block = UserBlock::where(['block_to' => $id, 'block_by' => $user_id])->delete();
+        $block = UserBlock::where(['blocked_to' => $id, 'blocked_by' => $user_id])->delete();
         return response()->json(array('status'=>1));
+    }
+    
+    public function getMyFavourites(){
+        $user = new User();
+        $favourites = $user->getMyFavouritesList(Auth::user()->user_id);
+        return view('users.my-favourites')->with('favourites',$favourites);
+    }
+    
+    public function getMyBlocks(){
+        $user = new User();
+        $blocks = $user->getMyBlockedList(Auth::user()->user_id);
+        return view('users.my-block')->with('blocks',$blocks);
+    }
+    
+    public function getAddInterest($id){
+        $user_id = Auth::user()->user_id;
+        $block = UserInterest::updateOrCreate(['interest_to' => $id, 'interest_by' => $user_id], ['interest_to' => $id, 'interest_by' => $user_id]);
+        $block->save();
+        return response()->json(array('status'=>1));
+    }
+    
+    public function getMyInterest(){
+        $user = new User();
+        $interests = $user->getMyInterestList(Auth::user()->user_id);
+        return view('users.my-interest')->with('interests',$interests);
     }
 }

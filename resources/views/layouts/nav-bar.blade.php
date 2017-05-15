@@ -19,7 +19,7 @@
                 <li id="menu5" class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Activity <b class="caret"></b></a>
                     <ul class="dropdown-menu activity-dropdown-menu-left">
-                        <li class="dropdown-submenu activity-dropdown-menu-left-heading">Activity Towards Me
+                        <!--<li class="dropdown-submenu activity-dropdown-menu-left-heading">Activity Towards Me
                             <ul class="dropdown-menu activity-dropdown-menu-right">
                                 <li class="activity-dropdown-menu-left-heading">Recent Activity</li>
                                 <li>
@@ -119,7 +119,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="#" class="clearfix">
                                 <p>
@@ -144,11 +144,11 @@
                         </li>
                         <li>&nbsp;</li>
                         <li class="activity-dropdown-menu-left-heading">Activity From Me</li>
-                        <li><a href="#"><p>My Interests</p></a></li>
-                        <li><a href="#"><p>My Favorites</p></a></li>
+                        <li><a href="{{url('users/my-interest')}}"><p>My Interests</p></a></li>
+                        <li><a href="{{url('users/my-favourites')}}"><p>My Favorites</p></a></li>
                         <li><a href="#"><p>Profiles I Viewed</p></a></li>
                         <li class="line"></li>
-                        <li><a href="#"><p>Block List</p></a></li>
+                        <li><a href="{{url('users/my-blocks')}}"><p>Block List</p></a></li>
                     </ul>
                 </li>
             </ul>   

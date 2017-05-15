@@ -131,7 +131,13 @@
                                 </tbody></table>
                         </div>
                         <div id="btns">
-                            <a href="/en/memberRelationship/showInterest/0D0F80E4C5C129855684"><img src="https://cdn.latinamericancupid.com/assets/images/sitewide/en/btn-interest-up.gif" data-hover="https://cdn.latinamericancupid.com/assets/images/sitewide/en/btn-interest-ov.gif" width="145" height="30" border="0" name="0D0F80E4C5C129925684" id="interest-btn" class="rollover"></a>
+                            <a href="javascript:void:;">
+                                @if(!empty($user_details['interest_id']))
+                                <img src="{{url('image/btn-interest-select.gif')}}" data-hover="btn-interest-ov.gif" width="145" height="30" border="0" name="" id="" class="rollover">
+                                @else
+                                <img src="{{url('image/btn-interest-up.gif')}}" data-hover="btn-interest-ov.gif" width="145" height="30" border="0" name="" id="interest-btn" class="rollover">
+                                @endif
+                            </a>
                             <img style="display:none;" data-sitetranslationpath="en" src="https://cdn.latinamericancupid.com/assets/images/sitewide/en/btn-mail-up.gif" class="launchRegistrationModal" data-hover="https://cdn.latinamericancupid.com/assets/images/sitewide/en/btn-mail-ov.gif" width="145" height="30" border="0" id="mail-btn" name="283218">
                             <a href="/en/mail/showEmail?mid=283218" class="emailpopup" rel="283218" memname="Ximena"><img src="https://cdn.latinamericancupid.com/assets/images/sitewide/en/btn-mail-up.gif" data-hover="https://cdn.latinamericancupid.com/assets/images/sitewide/en/btn-mail-ov.gif" width="145" height="30" border="0" id="mail-btn" class="rollover" name="283218"></a>
                             <div class="clear"></div>
@@ -166,7 +172,13 @@
                                <img src="{{url('image/btn-favorites-up.gif')}}" width="135" height="30" border="0" id="favorites-btn" class="rollover"></a>
                                @endif
                                <br><br>
-                            <a href="#"><img src="{{url('image/btn-blockuser-up.gif')}}"  width="135" height="30" border="0" id="blockuser-btn" class="rollover" style="margin-top:3px"></a>
+                            <a href="javascript:void(0);">
+                                @if(!empty($user_details['block_id']))
+                                <img src="{{url('image/btn-blockuser-select.gif')}}"  width="135" height="30" border="0" id="blockuser-rem" class="rollover" style="margin-top:3px">
+                                @else
+                                <img src="{{url('image/btn-blockuser-up.gif')}}" width="135" height="30" border="0" id="blockuser-btn" class="rollover"></a>
+                                @endif
+                            </a>
                             <a href="#" class=""><img src="{{url('image/btn-report-up.gif')}}" name="report" width="135" height="30" border="0" id="report-btn" class="rollover" style="margin-top:3px"></a>
                         </div>
                         <div id="cupidwords">
@@ -887,13 +899,25 @@
         var src = $(this).attr('src');
         $("#pic").css("background","url("+src+") no-repeat center center");
     });
-    $('#favorites-btn').on('click',function(){
+    $('body').on('click','#favorites-btn',function(){
         $(".bg-loader").addClass("show");
         users.addFavourite("#favorites-btn","profile",$("input[name=user_id]").val());
     });
-    $('#favorites-rem').on('click',function(){
+    $('body').on('click','#favorites-rem',function(){
         $(".bg-loader").addClass("show");
         users.removeFavourite("#favorites-rem","profile",$("input[name=user_id]").val());
-    })
+    });
+    $('body').on('click','#blockuser-btn',function(){
+        $(".bg-loader").addClass("show");
+        users.blockUser("#blockuser-btn","profile",$("input[name=user_id]").val());
+    });
+    $('body').on('click','#blockuser-rem',function(){
+        $(".bg-loader").addClass("show");
+        users.unblockUser("#blockuser-rem","profile",$("input[name=user_id]").val());
+    });
+    $('body').on('click','#interest-btn',function(){
+        $(".bg-loader").addClass("show");
+        users.addInterest("#interest-btn","profile",$("input[name=user_id]").val());
+    });
 </script>
 @endsection

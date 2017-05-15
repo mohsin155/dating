@@ -89,6 +89,7 @@
                     </div>
                     <form action="{{url('search/search-match')}}" method="post">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                            <input type="hidden" name="type" value="2"/>
                         <ul>
                             <li>
                                 <label>I am:</label>
@@ -109,14 +110,14 @@
                             <li>
                                 <label>Age:</label>
 
-                                <select name="age_min" id="age_min">
+                                <select name="min_age" id="age_min">
                                     <option value="0">-</option>
                                     @for($i=18;$i<=90;$i++)
                                     <option value="{{$i}}">{{$i}}</option>
                                     @endfor
                                 </select>
                                 to 
-                                <select name="age_max" id="age_max">
+                                <select name="max_age" id="age_max">
                                     <option value="0">-</option>
                                     @for($i=18;$i<=90;$i++)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -153,7 +154,7 @@
                             </li>
                             <li>
                                 <label>Last active:</label>
-                                <select name="last_login">
+                                <select name="last_active">
                                     <option value="">Any</option>
                                     <option value="7">within week</option>
                                     <option value="30">within 1 month</option>
@@ -196,7 +197,11 @@
                     <div class="member"> 
                         <span class="memberpic">
                             <a href="{{url('users/profile')}}/{{$user->user_id}}" class="photo-display-popup" data-devicemode="1" name="member" title="member">
-                                <img class="memberpic-border" width="125" height="136" src="{{url('uploads').'/' . $user->user_id.'/'}}{{$user->photo_name}}">
+                                @if(!empty($user->photo_name))
+                                <img class="memberpic-border" width="128" height="134" src="{{url('uploads').'/' . $user->user_id.'/'}}{{$user->photo_name}}">
+                                @else
+                                <img class="memberpic-border" width="128" height="134" src="{{url('image/AffinityPhoto2.gif')}}" />
+                                @endif
                             </a> 
                         </span>
                         <p class="name" style="display: block;">{{$user->first_name}}, {{$user->age}}</p>

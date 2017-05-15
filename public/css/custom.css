@@ -3204,7 +3204,7 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
 }
 .name {
     display: table;
-    float: left;
+    /*float: left;*/
     padding-left: 7px;
     width: 170px;
 }
@@ -3345,7 +3345,7 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
     border-radius: 5px;
 }
 .matches {
-    border-right: 1px solid #aaa;
+    /*border-right: 1px solid #aaa;*/
     -webkit-border-radius: 4px 0 0 4px;
     -moz-border-radius: 4px 0 0 4px;
     border-radius: 4px 0 0 4px;
@@ -3420,7 +3420,7 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
     float: left;
     width: 125px;
     height: 136px;
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
 }
 .text {
     float: left;
@@ -3474,6 +3474,9 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
 .iconinterest {
     background: url(../image/icon-set.gif) 50px -25px;
 }
+.iconreminterest {
+    background: url(../image/icon-set.gif) 50px -75px;
+}
 .iconfavorites {
     background: url(../image/icon-set.gif) 25px -25px;
 }
@@ -3483,6 +3486,31 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
 }
 .icononlinemobile, .icononlinemobileactive {
     background: url(../image/icon-set.gif) 75px -75px;
+}
+
+#interestdiagram {
+    margin: 10px 15px 15px;
+    padding: 15px 20px;
+    border: solid 2px #ccc;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #000;
+    text-align: left;
+}
+
+.diagramtext {
+    float: right;
+    width: 220px;
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.4em;
+}
+.menu .line {
+    height: 1px;
+    margin: 5px;
+    width: 95%;
+    background-color: #ddd;
 }
 /*----------------End Matches CSS -------------------- */
 /***************************

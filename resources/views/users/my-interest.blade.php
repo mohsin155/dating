@@ -5,28 +5,36 @@
         <div id="main-content">
             <div class="searchhdg">
                 <div class="searchhdg2">
-                    <h1> Search Results
+                    <h1> Your favourites
                         <!--<img src="{{asset('image/q-mark.gif')}}" title="Users on this page match the criteria you specified in your match settings. You can edit your match settings by clicking the 'Improve Matches' link." class="tipMe">-->
                     </h1>
 
-                    <a href="/match_registration.cfm">Improve Matches</a>
                 </div>
                 <div class="matchnav">
-
-
                     <!--<div class="matchnav_matches">
                         <span class="matches selectedTab"><img src="{{asset('image/icon_mymatches.png')}}" class="matchicon">My Matches</span> <a href="#"><img border="0" src="{{asset('image/icon_mutualmatches.png')}}" class="matchicon">Mutual Matches</a> <a href="#" class="reverse"><img border="0" src="{{asset('image/icon_reversematches.png')}}" class="matchicon">Reverse Matches</a>
                     </div>-->
-                    
-
                     <div class="clear"></div>
-
                 </div>
                 <div class="clear"></div>
             </div>
             <div class="memberships">
-                @foreach($matches as $row)
-                 <div class="standardview">
+                @if($interests->isEmpty())
+                <div id="interestdiagram">
+                    <h1>You haven't shown interest in anyone yet</h1>
+                    <p><strong>Are you browsing through profiles on the site and see someone you're interested in? If you can't send a message yet, "Show Interest" in them instead!</strong></p>
+                    <div class="diagram">
+                        <img src="{{url('image/myinterest_face.gif')}}" class="image">
+                        <span class="or">or</span>
+                        <img src="{{url('image/myinterest_page.gif')}}" class="image">
+                        <span class="diagramtext">To show interest in a member, click on the <strong>'Show Interest'</strong> icon on their profile.</span>
+                    </div>
+                    <span class="btmtext">Make the first move! Show Interest in someone who fits your match criteria.<strong>It's FREE!</strong></span>
+                    <a class="buttonlink" href="#">View Matches Now!</a>
+                </div>
+                @else
+                @foreach($interests as $row)
+                <div class="standardview">
                     <div class="standardinfo" style="">
 
                         <span class="memberpic">
@@ -84,6 +92,7 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
             </div>
         </div>
     </div>
@@ -91,17 +100,13 @@
 @endsection
 @section('script')
 <script>
-    $('body').on('click','.addfavorites',function(){
+    $('body').on('click', '.addfavorites', function () {
         //$(".bg-loader").addClass("show");
-        users.addFavourite(this,"search",$(this).attr('data-id'));
+        users.addFavourite(this, "search", $(this).attr('data-id'));
     });
-    $('body').on('click','.remfavorites',function(){
+    $('body').on('click', '.remfavorites', function () {
         //$(".bg-loader").addClass("show");
-        users.removeFavourite(this,"search",$(this).attr('data-id'));
-    });
-    $('body').on('click','.sendinterest',function(){
-        //$(".bg-loader").addClass("show");
-        users.addInterest(this,"search",$(this).attr('data-id'));
-    });
+        users.removeFavourite(this, "search", $(this).attr('data-id'));
+    })
 </script>
 @endsection

@@ -3,20 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\UtilityController;
 use App\User;
 use App\Models\Country;
-use App\Models\State;
-use App\Models\City;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Languages;
 use App\Models\Tags;
 use App\Models\UserMatch;
-use Illuminate\Support\Facades\DB;
 use App\Models\UserSearch;
 
 class SearchController extends UtilityController {
@@ -161,7 +155,7 @@ class SearchController extends UtilityController {
     }
 
     public function getSavedSearch() {
-        $search_row = UserSearch::select()->where('user_search.user_id', '=', Auth::user()->user_id)->where('type',1)->get();
+        $search_row = UserSearch::select()->where('user_search.user_id', '=', Auth::user()->user_id)->where('type', 1)->get();
         $cnt = count($search_row);
         // print_r($search_row);echo $cnt;exit;
         return view('search.saved-search')->with('cnt', $cnt)->with('search_row', $search_row);
@@ -220,11 +214,11 @@ class SearchController extends UtilityController {
         $inputs = Input::all();
         $logged = Auth::user()->user_id;
         $search_id = $this->addSearch($inputs);
-        $search_data = UserSearch::where('search_id',$search_id)->first();
+        $search_data = UserSearch::where('search_id', $search_id)->first();
         $search_data = $this->getUnserializeData($search_data)->toArray();
         $user = new User();
         $result = $user->searchResults($search_data, $logged);
-        return view('search.matches')->with('matches',$result);
+        return view('search.matches')->with('matches', $result);
     }
 
     public function addSearch($inputs) {
@@ -258,7 +252,7 @@ class SearchController extends UtilityController {
             $user_search = UserSearch::where('search_id', $search_id)->first();
             //dd($user_search);exit;
             if (!empty($user_search)) {
-                $user_search=$this->getMatchData($user_search);
+                $user_search = $this->getMatchData($user_search);
             }
         } catch (\Exception $e) {
             echo $e;
@@ -272,106 +266,102 @@ class SearchController extends UtilityController {
         UserSearch::destroy($search_id);
         return Redirect::to('search/saved-search')->with('success', trans('messages.search_deleted'));
     }
-    
-<<<<<<< HEAD
-   
-=======
-    public function saveAdvance($inputs){
-        if (!empty($inputs['search_name'])) {
-                $search_name = $inputs['search_name'];
-                $type=1;
-            } else {
-                $search_name = 'demo';
-                $type = 2;
-            }
-        $search_data = array(
-                'user_id' => Auth::user()->user_id,
-                'gender' => $inputs['gender'],
-                //'seeking' =>$inputs['seeking'],
-                'min_age' => $inputs['min_age'],
-                'max_age' => $inputs['max_age'],
-                'country' => $inputs['country'],
-                'state' => $inputs['state'],
-                'city' => $inputs['city'],
-                'has_photo' => $inputs['has_photo'],
-                'relationship' => isset($inputs['relationship']) ? serialize($inputs['relationship']) : '',
-                'last_active' => $inputs['last_active'],
-                'hair_color' => isset($inputs['hair_color']) ? serialize($inputs['hair_color']) : '',
-                'hair_length' => isset($inputs['hair_length']) ? serialize($inputs['hair_length']) : '',
-                'hair_type' => isset($inputs['hair_type']) ? serialize($inputs['hair_type']) : '',
-                'eye_color' => isset($inputs['eye_color']) ? serialize($inputs['eye_color']) : '',
-                'eye_wear' => isset($inputs['eye_wear']) ? serialize($inputs['eye_wear']) : '',
-                'min_height' => $inputs['min_height'],
-                'max_height' => $inputs['max_height'],
-                'min_weight' => $inputs['min_weight'],
-                'max_weight' => $inputs['max_weight'],
-                'body_type' => isset($inputs['body_type']) ? serialize($inputs['body_type']) : '',
-                'ethnicity' => isset($inputs['ethnicity']) ? serialize($inputs['ethnicity']) : '',
-                'best_feature' => isset($inputs['best_feature']) ? serialize($inputs['best_feature']) : '',
-                'body_art' => isset($inputs['body_art']) ? serialize($inputs['body_art']) : '',
-                'appearance' => isset($inputs['appearance']) ? serialize($inputs['appearance']) : '',
-                'drink' => isset($inputs['drink']) ? serialize($inputs['drink']) : '',
-                'smoke' => isset($inputs['smoke']) ? serialize($inputs['smoke']) : '',
-                'marital_status' => isset($inputs['marital_status']) ? serialize($inputs['marital_status']) : '',
-                'have_children' => isset($inputs['have_children']) ? serialize($inputs['have_children']) : '',
-                'no_children' => $inputs['no_children'],
-                'oldest_child' => $inputs['oldest_child'],
-                'youngest_child' => $inputs['youngest_child'],
-                'more_child' => isset($inputs['more_child']) ? serialize($inputs['more_child']) : '',
-                'occupation' => isset($inputs['occupation']) ? serialize($inputs['occupation']) : '',
-                'employment' => isset($inputs['employment']) ? serialize($inputs['employment']) : '',
-                'income' => $inputs['income'],
-                'home_type' => isset($inputs['home_type']) ? serialize($inputs['home_type']) : '',
-                'living_situation' => isset($inputs['living_situation']) ? serialize($inputs['living_situation']) : '',
-                'relocate' => isset($inputs['relocate']) ? serialize($inputs['relocate']) : '',
-                'nationality' => isset($inputs['nationality']) ? serialize($inputs['nationality']) : '',
-                'education' => $inputs['education'],
-                'languages' => isset($inputs['languages']) ? serialize($inputs['languages']) : '',
-                'english_ability' => $inputs['english_ability'],
-                'portugese_ability' => $inputs['portugese_ability'],
-                'spanish_ability' => $inputs['spanish_ability'],
-                'religion' => $inputs['religion'],
-                'religious_values' => isset($inputs['religious_values']) ? serialize($inputs['religious_values']) : '',
-                'home_type' => isset($inputs['home_type']) ? serialize($inputs['home_type']) : '',
-                'living_situation' => isset($inputs['living_situation']) ? serialize($inputs['living_situation']) : '',
-                'star_sign' => isset($inputs['star_sign']) ? serialize($inputs['star_sign']) : '',
-                'search_name' => $search_name,
-                'type' => $type,
-            );
-            $search_id = UserSearch::insertGetId($search_data);
-            return $search_id;
-    }
->>>>>>> ceff9fa59237f0e8a0a3c7c7828a26a9dbe7d7e1
 
-    public function saveSmallFilter($inputs){
-        UserSearch::where(array('user_id'=> Auth::user()->user_id,'type'=>2))->delete();
+    public function saveAdvance($inputs) {
+        if (!empty($inputs['search_name'])) {
+            $search_name = $inputs['search_name'];
+            $type = 1;
+        } else {
+            $search_name = 'demo';
+            $type = 2;
+        }
         $search_data = array(
-                'user_id' => Auth::user()->user_id,
-                'gender' => $inputs['gender'],
-                //'seeking' =>$inputs['seeking'],
-                'min_age' => $inputs['min_age'],
-                'max_age' => $inputs['max_age'],
-                'country' => $inputs['country'],
-                'state' => $inputs['state'],
-                'city' => $inputs['city'],
-                'has_photo' => isset($inputs['has_photo'])?1:'',
-                'relationship' => isset($inputs['relationship']) ? serialize($inputs['relationship']) : '',
-                'last_active' => $inputs['last_active'],
-                'type' => 2,
-                'search_name' => 'demo');
-        if(isset($inputs['keyword']) && !empty($inputs['keyword'])) {
+            'user_id' => Auth::user()->user_id,
+            'gender' => $inputs['gender'],
+            //'seeking' =>$inputs['seeking'],
+            'min_age' => $inputs['min_age'],
+            'max_age' => $inputs['max_age'],
+            'country' => $inputs['country'],
+            'state' => $inputs['state'],
+            'city' => $inputs['city'],
+            'has_photo' => $inputs['has_photo'],
+            'relationship' => isset($inputs['relationship']) ? serialize($inputs['relationship']) : '',
+            'last_active' => $inputs['last_active'],
+            'hair_color' => isset($inputs['hair_color']) ? serialize($inputs['hair_color']) : '',
+            'hair_length' => isset($inputs['hair_length']) ? serialize($inputs['hair_length']) : '',
+            'hair_type' => isset($inputs['hair_type']) ? serialize($inputs['hair_type']) : '',
+            'eye_color' => isset($inputs['eye_color']) ? serialize($inputs['eye_color']) : '',
+            'eye_wear' => isset($inputs['eye_wear']) ? serialize($inputs['eye_wear']) : '',
+            'min_height' => $inputs['min_height'],
+            'max_height' => $inputs['max_height'],
+            'min_weight' => $inputs['min_weight'],
+            'max_weight' => $inputs['max_weight'],
+            'body_type' => isset($inputs['body_type']) ? serialize($inputs['body_type']) : '',
+            'ethnicity' => isset($inputs['ethnicity']) ? serialize($inputs['ethnicity']) : '',
+            'best_feature' => isset($inputs['best_feature']) ? serialize($inputs['best_feature']) : '',
+            'body_art' => isset($inputs['body_art']) ? serialize($inputs['body_art']) : '',
+            'appearance' => isset($inputs['appearance']) ? serialize($inputs['appearance']) : '',
+            'drink' => isset($inputs['drink']) ? serialize($inputs['drink']) : '',
+            'smoke' => isset($inputs['smoke']) ? serialize($inputs['smoke']) : '',
+            'marital_status' => isset($inputs['marital_status']) ? serialize($inputs['marital_status']) : '',
+            'have_children' => isset($inputs['have_children']) ? serialize($inputs['have_children']) : '',
+            'no_children' => $inputs['no_children'],
+            'oldest_child' => $inputs['oldest_child'],
+            'youngest_child' => $inputs['youngest_child'],
+            'more_child' => isset($inputs['more_child']) ? serialize($inputs['more_child']) : '',
+            'occupation' => isset($inputs['occupation']) ? serialize($inputs['occupation']) : '',
+            'employment' => isset($inputs['employment']) ? serialize($inputs['employment']) : '',
+            'income' => $inputs['income'],
+            'home_type' => isset($inputs['home_type']) ? serialize($inputs['home_type']) : '',
+            'living_situation' => isset($inputs['living_situation']) ? serialize($inputs['living_situation']) : '',
+            'relocate' => isset($inputs['relocate']) ? serialize($inputs['relocate']) : '',
+            'nationality' => isset($inputs['nationality']) ? serialize($inputs['nationality']) : '',
+            'education' => $inputs['education'],
+            'languages' => isset($inputs['languages']) ? serialize($inputs['languages']) : '',
+            'english_ability' => $inputs['english_ability'],
+            'portugese_ability' => $inputs['portugese_ability'],
+            'spanish_ability' => $inputs['spanish_ability'],
+            'religion' => $inputs['religion'],
+            'religious_values' => isset($inputs['religious_values']) ? serialize($inputs['religious_values']) : '',
+            'home_type' => isset($inputs['home_type']) ? serialize($inputs['home_type']) : '',
+            'living_situation' => isset($inputs['living_situation']) ? serialize($inputs['living_situation']) : '',
+            'star_sign' => isset($inputs['star_sign']) ? serialize($inputs['star_sign']) : '',
+            'search_name' => $search_name,
+            'type' => $type,
+        );
+        $search_id = UserSearch::insertGetId($search_data);
+        return $search_id;
+    }
+
+    public function saveSmallFilter($inputs) {
+        UserSearch::where(array('user_id' => Auth::user()->user_id, 'type' => 2))->delete();
+        $search_data = array(
+            'user_id' => Auth::user()->user_id,
+            'gender' => $inputs['gender'],
+            //'seeking' =>$inputs['seeking'],
+            'min_age' => $inputs['min_age'],
+            'max_age' => $inputs['max_age'],
+            'country' => $inputs['country'],
+            'state' => $inputs['state'],
+            'city' => $inputs['city'],
+            'has_photo' => isset($inputs['has_photo']) ? 1 : '',
+            'relationship' => isset($inputs['relationship']) ? serialize($inputs['relationship']) : '',
+            'last_active' => $inputs['last_active'],
+            'type' => 2,
+            'search_name' => 'demo');
+        if (isset($inputs['keyword']) && !empty($inputs['keyword'])) {
             $search_data['keyword'] = $inputs['keyword'];
         }
-        if(isset($inputs['first_name']) && !empty($inputs['first_name'])) {
+        if (isset($inputs['first_name']) && !empty($inputs['first_name'])) {
             $search_data['first_name'] = $inputs['first_name'];
         }
         $search_id = UserSearch::insertGetId($search_data);
         return $search_id;
     }
-    
-    public function getUnserializeData($search_data){
+
+    public function getUnserializeData($search_data) {
         $search_data->body_type = unserialize($search_data->body_type);
-        $search_data->ethnicity =  unserialize($search_data->ethnicity);
+        $search_data->ethnicity = unserialize($search_data->ethnicity);
         $search_data->appearance = unserialize($search_data->appearance);
         $search_data->hair_color = unserialize($search_data->hair_color);
         $search_data->hair_length = unserialize($search_data->hair_length);
@@ -397,4 +387,5 @@ class SearchController extends UtilityController {
         $search_data->star_sign = unserialize($search_data->star_sign);
         return $search_data;
     }
+
 }
