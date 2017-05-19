@@ -16,6 +16,8 @@
         <link href="{{url('css/bootstrap-select.css')}}" rel="stylesheet">
         <link href="{{url('css/jquery-ui.css')}}" rel="stylesheet">
          <link href="{{url('css/highCheckTree.css')}}" rel="stylesheet">
+           <link href="{{url('css/flexslider.css')}}" rel="stylesheet">
+           <link href="{{url('css/demo.css')}}" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -43,8 +45,10 @@
         <script src="{{url('js/jquery.validate.js')}}"></script>
         <script src="{{url('js/bootstrap-select.js')}}"></script>
          <script src="{{url('js/highchecktree.js')}}"></script>
+         
         <script src="{{url('js/custom.js')}}"></script>
         <script src="{{url('js/script.js')}}"></script>
+         <script src="{{url('js/jquery.flexslider.js')}}"></script>
         @yield('script')
     </body>
 </html>
