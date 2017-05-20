@@ -167,6 +167,10 @@
     margin: auto;
     float: none;
 }
+
+#advertisement-upgrade .modal-header {
+    border-bottom: none;
+}
 /****************************/
 
 body
@@ -3699,7 +3703,123 @@ button[id="addcomment"] {
     cursor: pointer;
     padding: 10px;
 }
+
+.modal-arrow-blue {
+    background-color: #34495e;
+}
+.modal-arrow {
+    position: relative;
+    border-radius: .25rem;
+}
+.px1 {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+.pb1 {
+    padding-bottom: .5rem;
+}
+.mb2 {
+    margin-bottom: 1rem;
+}
+.modal-icon-close {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.modal-white-fill {
+    color: #fff;
+    fill: #fff;
+}
+.modal-white-text {
+    color: #fff !important;
+}
+.modal-icon-large {
+    width: 105px;
+    height: 100px;
+}
+.modal-white-fill {
+    color: #fff;
+    fill: #fff;
+}
+.pt2 {
+    padding-top: 1rem;
+}
+
+
+.pb1 {
+    padding-bottom: .5rem;
+}
+.mx-auto {
+    margin-left: auto;
+}
+.mr-auto, .mx-auto {
+    margin-right: auto;
+}
+.mxn3 {
+    margin-left: -2rem;
+    margin-right: -2rem;
+}
+.mt3 {
+    margin-top: 2rem;
+}
+
+.list-reset {
+    list-style: none;
+    padding-left: 0;
+}
+.mb3 {
+    margin-bottom: 2rem;
+}
+.mb3 .col-md-10 {
+       padding-bottom: 30px; 
+}
+.benefit-icon {
+    fill: #565656;
+}
+.regular {
+    font-weight: 400;
+}
+.h3 {
+    font-size: 1.25rem;
+        margin-top: 0;
+}
+#advertisement-upgrade p {
+    font-size: 1rem;
+    color: #95989A;
+}
+
+.membership-type-gold {
+    fill: #DCBC0C;
+}
+.membership-type {
+    width: 10px;
+    height: auto;
+}
+.mx1 {
+    margin-right: .5rem;
+}
+.membership-type-platinum {
+    fill: #565C9F;
+}
+.membership-type {
+    width: 10px;
+    height: auto;
+}
+.px3 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
 /*----------------End Popup CSS -------------------- */
+
 
 
 
