@@ -379,6 +379,10 @@ class UsersController extends UtilityController {
      public function getMatches() {
         return view('users.matches');
     }
+        
+    public function getPopup() {
+        return view('users.popup-page');
+    }
     public function getEditPhotos($id = 0) {
         $photos = UserPhotos::where('user_id', Auth::user()->user_id)->get();
         $sel_photo = null;
