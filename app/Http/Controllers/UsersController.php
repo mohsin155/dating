@@ -25,6 +25,7 @@ use App\Models\UserMatch;
 use App\Models\UserImbra;
 use App\Models\UserFavourite;
 use App\Models\UserBlock;
+use App\Models\ShowInterest;
 
 class UsersController extends UtilityController {
 
@@ -352,14 +353,24 @@ class UsersController extends UtilityController {
         return view('users.imbra')->with('countries', $countries);
     }
      public function getListing() {
-         $countries = Country::get();
-         $profile_data= UserProfile::where('user_id',Auth::user()->user_id) ->first();
-         $photos = UserPhotos::where('user_id', Auth::user()->user_id)->first();
-         $image_path = url('uploads').'/' . Auth::user()->user_id.'/';
-         $users= User::select('users.user_id','users.first_name','users.age','users.state','users.country','user_photos.photo_name',DB::raw("(select countries.name  from countries where countries.id=users.country)as country_name ") ,DB::raw("(select states.name from states where states.country_id=users.country AND states.id=users.state ) as state_name "))->leftJoin('user_photos','users.user_id','=','user_photos.user_id')->where('users.user_id', '!=',Auth::user()->user_id)->groupBy('users.user_id')->get();
+        $logged_in = Auth::user()->user_id;
+        $countries = Country::get();
+        $profile_data= UserProfile::where('user_id',$logged_in) ->first();
+        $photos = UserPhotos::where('user_id', $logged_in)->first();
+        $image_path = url('uploads').'/' . $logged_in.'/';
+         //$users= User::select('users.user_id','users.first_name','users.age','users.state','users.country','user_photos.photo_name',DB::raw("(select countries.name  from countries where countries.id=users.country)as country_name ") ,DB::raw("(select states.name from states where states.country_id=users.country AND states.id=users.state ) as state_name "))->leftJoin('user_photos','users.user_id','=','user_photos.user_id')->where('users.user_id', '!=',Auth::user()->user_id)->groupBy('users.user_id')->get();
            //print_r($users);exit;
-         $states= State::get();
-        return view('users.listing')->with('countries', $countries)->with('states', $states)->with('users', $users)->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
+         //$states= State::get();
+        $match = UserMatch::where('user_id',$logged_in)->first();
+        if(!empty($match)){
+            $search = new SearchController();
+            $search_data = $search->getUnserializeData($match)->toArray();
+            $user = new User();
+            $result = $user->searchResults($search_data, $logged_in);
+        }else{
+            
+        }
+        return view('users.listing')->with('countries', $countries)->with('users', $result)->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
     }
     
      public function getMessaging() {
@@ -702,7 +713,7 @@ class UsersController extends UtilityController {
     
     public function getAddInterest($id){
         $user_id = Auth::user()->user_id;
-        $block = UserInterest::updateOrCreate(['interest_to' => $id, 'interest_by' => $user_id], ['interest_to' => $id, 'interest_by' => $user_id]);
+        $block = ShowInterest::updateOrCreate(['interest_to' => $id, 'interest_by' => $user_id], ['interest_to' => $id, 'interest_by' => $user_id]);
         $block->save();
         return response()->json(array('status'=>1));
     }
