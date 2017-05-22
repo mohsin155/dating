@@ -261,4 +261,17 @@ class User extends Authenticatable
         $result = $query->groupBy('users.user_id')->get();
         return $result;
     }
+    
+    public function getUserSummary($user_id, $logged){
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,si.interest_id,users.*,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+                ->with('photos')
+                ->leftJoin('user_profile as p', 'users.user_id', '=', 'p.user_id')
+                ->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                ->leftJoin('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
+                ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
+                ->whereRaw('(f.favourite_by = "' . $logged . '" or f.favourite_by is null)')
+                ->whereRaw('(si.interest_by = "' . $logged . '" or si.interest_by is null)')
+                ->where('users.user_id',$user_id)->first();
+        return $query;        
+    }
 }

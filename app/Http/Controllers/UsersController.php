@@ -727,4 +727,12 @@ class UsersController extends UtilityController {
         $interests = $user->getMyInterestList(Auth::user()->user_id);
         return view('users.my-interest')->with('interests',$interests);
     }
+    
+    public function getPopupProfile($user_id) {
+        $logged_in = Auth::user()->user_id;
+        $user = new User();
+        $user_details = $user->getUserSummary($user_id,$logged_in);
+        //dd($user_details);
+        return view('users.profile-popup')->with('user_details',$user_details);
+    }
 }

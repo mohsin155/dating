@@ -230,6 +230,20 @@ var users = {
                 $(".bg-loader").removeClass("show");
             }
         });
+    },
+    getProfile:function(user_id){
+        var basepath = $("input[name=basepath]").val();
+        $.ajax({
+            type: 'GET',
+            url: basepath+'/users/popup-profile/'+user_id,
+            async: false,
+            success: function (data) {
+                //alert(data);
+                $('.modal-profile').html(data);
+                $('.popup').trigger('click');
+                $(".bg-loader").removeClass("show");
+            }
+        });
     }
 }
 
@@ -262,3 +276,26 @@ $("#fblogin").on('click', function () {
         }
     });
 });
+
+$('#myModal').on('shown.bs.modal', function () {
+        $('#carousel').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            itemWidth: 210,
+            itemMargin: 5,
+            asNavFor: '#slider'
+        });
+
+        $('#slider').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            sync: "#carousel",
+            start: function (slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });

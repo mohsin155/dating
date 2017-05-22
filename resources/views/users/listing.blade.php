@@ -196,7 +196,7 @@
                                         @foreach($users as $user)
                                         <div class="member"> 
                                             <span class="memberpic">
-                                                <a href="{{url('users/profile')}}/{{$user->user_id}}" class="photo-display-popup" data-devicemode="1" name="member" title="member">
+                                                <a href="javascript:;" class="photo-display-popup" data-user="{{$user->user_id}}" data-devicemode="1" name="member" title="member">
                                                     @if(!empty($user->photo_name))
                                                     <img class="memberpic-border" width="128" height="134" src="{{url('uploads').'/' . $user->user_id.'/'}}{{$user->photo_name}}">
                                                         @else
@@ -390,22 +390,23 @@
                             @section('script')
                             <script>
                                 $(document).ready(function () {
+                                    $("select[name=country]").trigger("change");
                                     $('.content-wrapper').width('auto');
                                     $('.content-wrapper').css('padding-left', '0');
-                                    $(document).on('click', '.icons-standard', function (e) {
+                                    $('body').on('click', '.icons-standard', function (e) {
                                         $('#advertisement-upgrade').modal('show');
                                     });
-                                     $(document).on('click', '.modal-icon-close', function (e) {
+                                     $('body').on('click', '.modal-icon-close', function (e) {
                                          $('#advertisement-upgrade').modal('hide');
                                      });
-                                    
-                                });
-                            </script>
-                            @endsection
-                            @section('script')
-                            <script>
-                                $(document).ready(function () {
-                                    $("select[name=country]").trigger("change");
+                                     $('body').on('click', '.modal-icon-close', function (e) {
+                                         $('#advertisement-upgrade').modal('hide');
+                                     });
+                                   // photo-display-popup
+                                   $('body').on('click', '.photo-display-popup', function (e) {
+                                        var user_id = $(this).attr('data-user');
+                                         users.getProfile(user_id);
+                                     });
                                 });
                             </script>
                             @endsection
