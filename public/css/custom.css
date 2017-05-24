@@ -3374,6 +3374,7 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
 }
 .searchhdg2 {
     float: left;
+    padding-bottom: 20px;
 }
 .searchhdg2 h1 {
     float: left;
