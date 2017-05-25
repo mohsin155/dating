@@ -40,7 +40,8 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="email-address signup-page-outer">
-                            <form name="change-password" class="form-inline" id="change-password" novalidate="novalidate">
+                            <form name="change-password" class="form-inline" method="post" id="change-password" novalidate="novalidate">
+                                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                                 <div class="form-group">
                                     <label for="TimeZones">Time Zones:</label>
                                     <select class="form-control" id="country" name="country">
@@ -70,9 +71,11 @@
                                 <hr class="seperate-line">
                                 <div class="form-group">
                                     <label for="TimeZones">Measurement Units:</label>
-                                    <select class="form-control" id="measureUnits" name="measureUnits">
-                                        <option>Imperial USA</option>
-
+                                    <select class="form-control" id="measureUnits" name="metric">
+                                        <option value="1" {{Auth::user()->metric==1?'selected':''}}>Metric</option>
+                                        <option value="2" {{Auth::user()->metric==2?'selected':''}}>Metric/Imperial</option>
+                                        <option value="3" {{Auth::user()->metric==3?'selected':''}}>Imperial USA</option>
+                                        <option value="4" {{Auth::user()->metric==4?'selected':''}}>Imperial UK</option>
                                     </select>
                                       <img   alt="info" src="{{url('image/info.png')}}" class="pd-l-5" data-toggle="tooltip" data-placement="bottom" title="Metric uses measurement units like metre, kilometre, and kilogram. Imperial uses measurement units like inch, mile, and pound. Metric Imperial displays both the metric and imperial systems.">
                                     <label class="control-label"></label>

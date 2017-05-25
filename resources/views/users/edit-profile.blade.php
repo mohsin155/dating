@@ -194,10 +194,10 @@
                             <option value="0">--Please Select--</option>
                             @for($i=140;$i<220;$i++)
                             @if(!empty($profile_data) && $i==$profile_data->height){
-                                <option value="{{$profile_data->height}}" selected="selected">{{$i}}cm</option>
+                                <option value="{{$profile_data->height}}" selected="selected">{{getLength($i,Auth::user()->metric)}}</option>
                                 }
                                @else{
-                            <option value="{{$i}}">{{$i}}cm</option>
+                            <option value="{{$i}}">{{getLength($i,Auth::user()->metric)}}</option>
                             }
                             @endif
                             @endfor
@@ -210,10 +210,10 @@
                             <option value="0">--Please Select--</option>
                             @for($i=40;$i<220;$i++)
                             @if(!empty($profile_data) && $i==$profile_data->weight){
-                                <option value="{{$profile_data->weight}}" selected="selected">{{$i}}</option>
+                                <option value="{{$profile_data->weight}}" selected="selected">{{getWeight($i,Auth::user()->metric)}}</option>
                                 }
                                @else{
-                            <option value="{{$i}}">{{$i}}kg</option>
+                            <option value="{{$i}}">{{getWeight($i,Auth::user()->metric)}}</option>
                             }
                             @endif
                             @endfor

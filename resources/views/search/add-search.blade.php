@@ -235,36 +235,36 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Height : {{!empty($user_match)?$user_match->min_height:'Any'}}</h3>
+                        <h3>Height : {{!empty($user_match)?getLength($user_match->min_height,Auth::user()->metric):'Any'}}</h3>
                         <div class="form-group">
                             <select class="form-control" name="min_height">
-                                <option value="155">155cm</option>
+                                <option value="any">Any</option>
                                 @for($i=140;$i<220;$i++)
-                                <option value="{{$i}}"  {{!empty($user_match) && $i==$user_match->getOriginal()['min_height']?'selected':''}} >{{$i}}</option>
+                                <option value="{{$i}}"  {{!empty($user_match) && $i==$user_match->getOriginal()['min_height']?'selected':''}} >{{getLength($i,Auth::user()->metric)}}</option>
                                 @endfor
                             </select>
                             and
                             <select class="form-control" name="max_height">
-                                <option value="155">155cm</option>
+                                <option value="any">Any</option>
                                 @for($i=140;$i<220;$i++)
-                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['max_height']?'selected':''}} >{{$i}}</option>
+                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['max_height']?'selected':''}} >{{getLength($i,Auth::user()->metric)}}</option>
                                 @endfor
                             </select>
                         </div>
-                        <h3>Weight : {{!empty($user_match)?$user_match->min_weight:'Any'}}</h3>
+                        <h3>Weight : {{!empty($user_match)?getWeight($user_match->min_weight,Auth::user()->metric):'Any'}}</h3>
                         <div class="form-group">
                             <?php //echo $user_match->getOriginal()['min_weight'];exit;?>
                             <select class="form-control" name="min_weight">
                                 <option value="any">Any</option>
                                 @for($i=40;$i<220;$i++)
-                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['min_weight']?'selected':''}} >{{$i}}</option>
+                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['min_weight']?'selected':''}} >{{getWeight($i,Auth::user()->metric)}}</option>
                                 @endfor
                             </select>
                             and
                             <select class="form-control" name="max_weight">
                                 <option value="any">Any</option>
                                 @for($i=40;$i<220;$i++)
-                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['max_weight']?'selected':''}} >{{$i}}</option>
+                                <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['max_weight']?'selected':''}} >{{getWeight($i,Auth::user()->metric)}}</option>
                                 @endfor
                             </select>
                         </div>

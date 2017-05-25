@@ -388,5 +388,9 @@ class SearchController extends UtilityController {
         $search_data->star_sign = unserialize($search_data->star_sign);
         return $search_data;
     }
+    
+    public function getOneView() {
+        return view('search.one-view');
+    }
 
 }

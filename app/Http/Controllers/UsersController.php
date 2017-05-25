@@ -26,6 +26,7 @@ use App\Models\UserImbra;
 use App\Models\UserFavourite;
 use App\Models\UserBlock;
 use App\Models\ShowInterest;
+use App\Models\UserSetting;
 
 class UsersController extends UtilityController {
 
@@ -207,7 +208,17 @@ class UsersController extends UtilityController {
     public function getProfileSettings() {
         return view('users.profile-settings');
     }
-
+    
+    public function postProfileSettings() {
+        $inputs = Input::all();
+        
+        $setting = User::where(array('user_id'=>Auth::user()->user_id))->first();
+        $setting->metric = $inputs['metric'];
+        $setting->save();
+        Auth::user()->metric = $inputs['metric'];
+        return Redirect::to('users/profile-settings');
+    }
+    
     public function getAccountSettings() {
         return view('users.account-settings');
     }
@@ -361,15 +372,23 @@ class UsersController extends UtilityController {
          //$users= User::select('users.user_id','users.first_name','users.age','users.state','users.country','user_photos.photo_name',DB::raw("(select countries.name  from countries where countries.id=users.country)as country_name ") ,DB::raw("(select states.name from states where states.country_id=users.country AND states.id=users.state ) as state_name "))->leftJoin('user_photos','users.user_id','=','user_photos.user_id')->where('users.user_id', '!=',Auth::user()->user_id)->groupBy('users.user_id')->get();
            //print_r($users);exit;
          //$states= State::get();
+        $search = new SearchController();
         $match = UserMatch::where('user_id',$logged_in)->first();
         if(!empty($match)){
-            $search = new SearchController();
             $search_data = $search->getUnserializeData($match)->toArray();
             $user = new User();
-            $result = $user->searchResults($search_data, $logged_in);
         }else{
+            $user = User::where('user_id',$logged_in)->first();
+            if($user->gender=='male'){
+                $search_data['gender'] = 'female';
+            }else{
+                $search_data['gender'] = 'male';
+            }
+            $search_data['min_age'] = $user->age-5;
+            $search_data['max_age'] = $user->age+5;
             
         }
+        $result = $user->searchResults($search_data, $logged_in);
         return view('users.listing')->with('countries', $countries)->with('users', $result)->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
     }
     

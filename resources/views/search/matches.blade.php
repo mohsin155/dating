@@ -17,7 +17,7 @@
                     <!--<div class="matchnav_matches">
                         <span class="matches selectedTab"><img src="{{asset('image/icon_mymatches.png')}}" class="matchicon">My Matches</span> <a href="#"><img border="0" src="{{asset('image/icon_mutualmatches.png')}}" class="matchicon">Mutual Matches</a> <a href="#" class="reverse"><img border="0" src="{{asset('image/icon_reversematches.png')}}" class="matchicon">Reverse Matches</a>
                     </div>-->
-                    
+
 
                     <div class="clear"></div>
 
@@ -26,12 +26,12 @@
             </div>
             <div class="memberships">
                 @foreach($matches as $row)
-                 <div class="standardview">
+                <div class="standardview">
                     <div class="standardinfo" style="">
 
                         <span class="memberpic">
 
-                            <a href="javascript:void(0)" class="no-photo-display-popup">
+                            <a href="javascript:void(0)" class="no-photo-display-popup" data-user="{{$row->user_id}}" >
 
                                 <img border="0" height="136px" width="125px" src="{{url('uploads')}}/{{Auth::user()->user_id}}/{{$row->photo_name}}">
 
@@ -91,17 +91,22 @@
 @endsection
 @section('script')
 <script>
-    $('body').on('click','.addfavorites',function(){
+    $('body').on('click', '.addfavorites', function () {
         //$(".bg-loader").addClass("show");
-        users.addFavourite(this,"search",$(this).attr('data-id'));
+        users.addFavourite(this, "search", $(this).attr('data-id'));
     });
-    $('body').on('click','.remfavorites',function(){
+    $('body').on('click', '.remfavorites', function () {
         //$(".bg-loader").addClass("show");
-        users.removeFavourite(this,"search",$(this).attr('data-id'));
+        users.removeFavourite(this, "search", $(this).attr('data-id'));
     });
-    $('body').on('click','.sendinterest',function(){
+    $('body').on('click', '.sendinterest', function () {
         //$(".bg-loader").addClass("show");
-        users.addInterest(this,"search",$(this).attr('data-id'));
+        users.addInterest(this, "search", $(this).attr('data-id'));
+    });
+    // photo-display-popup
+    $('body').on('click', '.no-photo-display-popup', function (e) {
+        var user_id = $(this).attr('data-user');
+        users.getProfile(user_id);
     });
 </script>
 @endsection

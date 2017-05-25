@@ -7,7 +7,7 @@
                     <section class="slider">
                         <div id="slider" class="flexslider">
                             <ul class="slides">
-                                @if(!empty($user_details->photos))
+                                @if(!$user_details->photos->isEmpty())
                                 @foreach($user_details->photos as $photo)
                                 <li>
                                     <img src="{{url('uploads').'/' . $user_details->user_id.'/'}}{{$photo->photo_name}}" />
@@ -22,7 +22,7 @@
                         </div>
                         <div id="carousel" class="flexslider">
                             <ul class="slides">
-                                @if(!empty($user_details->photos))
+                                @if(!$user_details->photos->isEmpty())
                                 @foreach($user_details->photos as $photo)
                                 <li>
                                     <img src="{{url('uploads').'/' . $user_details->user_id.'/'}}{{$photo->photo_name}}" />
@@ -42,7 +42,7 @@
                         <div class="first-line">
                             <strong>{{$user_details->first_name}} <span>({{$user_details->age}})</span></strong>
                             <img id="member-grade" src="{{asset('image/icon_standard.gif')}}" alt="Standard" width="18" height="18">
-                            <a class="roundedbutton" href="#" target="_parent">View Profile<span id="arrow">»</span></a>
+                            <a class="roundedbutton" href="{{url('users/profile')}}/{{$user_details->user_id}}">View Profile<span id="arrow">»</span></a>
                         </div>
                         <div class="second-line">{{$user_details->city_name}}, {{$user_details->state_name}}, {{$user_details->country_name}}</div>
                         <div class="third-line">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div id="comments-panel">
-                    <div id="heading">
+                    <div id="">
                         <h1>Start a conversation with {{$user_details->first_name}} and say hi!</h1>
                     </div>  
 
@@ -88,14 +88,5 @@
 
             </div>
 <input name="user_id" value="{{$user_details->user_id}}" type="hidden" />
-<script type="text/javascript">
-    $('body').on('click','#favorites-btn',function(){
-        $(".bg-loader").addClass("show");
-        users.addFavourite("#favorites-btn","profile",$("input[name=user_id]").val());
-    });
-    $('body').on('click','#favorites-rem',function(){
-        $(".bg-loader").addClass("show");
-        users.removeFavourite("#favorites-rem","profile",$("input[name=user_id]").val());
-    });
-</script>
+<script src="{{url('js/popup.js')}}"></script>
 <!-- jQuery -->

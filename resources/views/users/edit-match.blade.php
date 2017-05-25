@@ -104,23 +104,23 @@
                     <div class="form-group">
                         <label for="height">Height : </label>
                         <select class="form-control" name="min_height">
-                            <option value="155">155cm</option>
+                            <option value="">Any</option>
                             @for($i=140;$i<220;$i++)
                               @if(!empty($match_data) && $match_data->min_height==$i){
-                             <option value="{{$i}}"  selected="selected">{{$i}}</option>
+                             <option value="{{$i}}" selected="selected">{{getLength($i,Auth::user()->metric)}}</option>
                              @else
-                             <option value="{{$i}}">{{$i}}</option>
+                             <option value="{{$i}}">{{getLength($i,Auth::user()->metric)}}</option>
                              @endif
                             @endfor
                         </select>
                         and
                         <select class="form-control" name="max_height">
-                            <option value="155">155cm</option>
+                            <option value="">Any</option>
                             @for($i=140;$i<220;$i++)
                              @if(!empty($match_data) && $match_data->max_height==$i){
-                             <option value="{{$i}}"  selected="selected">{{$i}}</option>
+                             <option value="{{$i}}"  selected="selected">{{getLength($i,Auth::user()->metric)}}</option>
                              @else
-                             <option value="{{$i}}">{{$i}}</option>
+                             <option value="{{$i}}">{{getLength($i,Auth::user()->metric)}}</option>
                              @endif
                             @endfor
                         </select>
@@ -132,9 +132,9 @@
                             <option value="">Any</option>
                             @for($i=40;$i<220;$i++)
                             @if(!empty($match_data) && $match_data->min_weight==$i){
-                             <option value="{{$i}}"  selected="selected">{{$i}}</option>
+                             <option value="{{$i}}"  selected="selected">{{getWeight($i,Auth::user()->metric)}}</option>
                              @else
-                             <option value="{{$i}}">{{$i}}</option>
+                             <option value="{{$i}}">{{getWeight($i,Auth::user()->metric)}}</option>
                              @endif
                             @endfor
                         </select>
@@ -143,9 +143,9 @@
                            <option value="">Any</option>
                             @for($i=40;$i<220;$i++)
                              @if(!empty($match_data) && $match_data->max_weight==$i){
-                             <option value="{{$i}}"  selected="selected">{{$i}}</option>
+                             <option value="{{$i}}"  selected="selected">{{getWeight($i,Auth::user()->metric)}}</option>
                              @else
-                             <option value="{{$i}}">{{$i}}</option>
+                             <option value="{{$i}}">{{getWeight($i,Auth::user()->metric)}}</option>
                              @endif
                             @endfor
                         </select>

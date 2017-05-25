@@ -11,14 +11,13 @@
                 </div>
                 <div class="pic my2">
 
-                    @if(!empty($photos)){
+                    @if(!empty($photos))
                     <a title="click to enlarge photo" id="addPhotoLHSCol1" class="enlargePhoto">
 
                         <div class="addphoto" ><img src="{{$image_path}}{{$photos->photo_name}}" width="100%" height="100%" />
 
                         </div>
                     </a>
-                    }
                     @else
                     <a href="{{url('users/edit-photos')}}" id="addPhotoLHSCol1"><div class="addphoto" title="The most effective way to get people to notice you is to add a photo. Add A Photo Now"></div></a>
                     @endif
@@ -220,13 +219,18 @@
                                                         <li class="iconmail"></li>
                                                     </a>
 
-                                                    <li class="iconinterest interest-btn" data-name="roxanna" data-imageurl=""></li>
-
-                                                    <a title="Add roxanna to your favorites" href="#">
-                                                        <li class="iconfavorites favorites-btn" data-name="roxanna" data-imageurl="#" data-altclass="iconfavoritessent" name=""></li>
-                                                    </a>
-
-                                                    <a style="display:none;" data-sitetranslationpath="en" class="launchRegistrationModal" href="javascript: void(0);"></a>
+                                                    @if(empty($user->interest_id))
+                                                    <li class="iconinterest sendinterest" name="" data-altclass="iconinterestsent" data-msid="" data-imageurl="" data-name="{{$user->first_name}}" data-id="{{$user->user_id}}"><a href="javascript:;" title="Show interest in {{$user->first_name}}"></a></li>
+                                                    @else
+                                                    <li class="iconreminterest" name="" data-altclass="iconinterestsent" data-msid="" data-imageurl="" data-name="{{$user->first_name}}" data-id="{{$user->user_id}}"><a href="javascript:;" title="You had shown interest in {{$user->first_name}}"></a></li>
+                                                    @endif
+                                                    @if(!empty($user->favourite_id))
+                                                    <li class="iconremfavorites remfavorites" name="" data-altclass="iconfavoritessent" data-imageurl="" data-name="{{$user->first_name}}" data-id="{{$user->user_id}}">
+                                                        <a href="javascript:;" title="Remove {{$user->first_name}} from your favorites"></a></li>
+                                                    @else
+                                                    <li class="iconfavorites addfavorites" name="" data-altclass="iconfavoritessent" data-imageurl="" data-name="{{$user->first_name}}" data-id="{{$user->user_id}}">
+                                                        <a href="javascript:;" title="Add {{$user->first_name}} to your favorites"></a></li>
+                                                    @endif
                                                     <a href="javascript: void(0);" title="I'm Online - click to chat"></a>
 
                                                     <a href="#" title="On mobile device - IM not available"><li class="icononlinemobile"></li></a>
@@ -372,17 +376,17 @@
                                                 </div>
                                             </div>
                                             <div class="clearfix">
-            <div class="right">
-                <div class="inline-block m2">
-                    <span class="inline-block membership-type membership-type-gold mx1"><svg viewBox="0 0 101 131" xmlns="http://www.w3.org/2000/svg"><path d="M50.895 64.068c14.618 0 26.469-14.342 26.469-32.034s-3.891-32.034-26.469-32.034c-22.578 0-26.47 14.342-26.47 32.034s11.851 32.034 26.47 32.034zm-49.995 48.912c-.005-1.079-.009-.304 0 0zm99.987.843c.014-.295.005-2.049 0 0zm-.056-2.136c-.49-30.819-4.53-39.601-35.443-45.16 0 0-4.351 5.525-14.494 5.525l-14.495-5.525c-30.575 5.498-34.861 14.15-35.424 44.159-.046 2.45-.068 2.579-.076 2.295.002.533.004 1.519.004 3.238 0 0 7.36 14.783 49.991 14.783 42.63 0 49.991-14.783 49.991-14.783l.002-2.395c-.008.176-.025-.165-.056-2.136z"></path></svg></span> Gold Member
-                </div>
-                <div class="inline-block m2">
-                    <span class="inline-block membership-type membership-type-platinum"><svg viewBox="0 0 101 131" xmlns="http://www.w3.org/2000/svg"><path d="M50.895 64.068c14.618 0 26.469-14.342 26.469-32.034s-3.891-32.034-26.469-32.034c-22.578 0-26.47 14.342-26.47 32.034s11.851 32.034 26.47 32.034zm-49.995 48.912c-.005-1.079-.009-.304 0 0zm99.987.843c.014-.295.005-2.049 0 0zm-.056-2.136c-.49-30.819-4.53-39.601-35.443-45.16 0 0-4.351 5.525-14.494 5.525l-14.495-5.525c-30.575 5.498-34.861 14.15-35.424 44.159-.046 2.45-.068 2.579-.076 2.295.002.533.004 1.519.004 3.238 0 0 7.36 14.783 49.991 14.783 42.63 0 49.991-14.783 49.991-14.783l.002-2.395c-.008.176-.025-.165-.056-2.136z"></path></svg></span> Platinum Member
-                </div>
-            </div>
-        </div>
+                                                <div class="right">
+                                                    <div class="inline-block m2">
+                                                        <span class="inline-block membership-type membership-type-gold mx1"><svg viewBox="0 0 101 131" xmlns="http://www.w3.org/2000/svg"><path d="M50.895 64.068c14.618 0 26.469-14.342 26.469-32.034s-3.891-32.034-26.469-32.034c-22.578 0-26.47 14.342-26.47 32.034s11.851 32.034 26.47 32.034zm-49.995 48.912c-.005-1.079-.009-.304 0 0zm99.987.843c.014-.295.005-2.049 0 0zm-.056-2.136c-.49-30.819-4.53-39.601-35.443-45.16 0 0-4.351 5.525-14.494 5.525l-14.495-5.525c-30.575 5.498-34.861 14.15-35.424 44.159-.046 2.45-.068 2.579-.076 2.295.002.533.004 1.519.004 3.238 0 0 7.36 14.783 49.991 14.783 42.63 0 49.991-14.783 49.991-14.783l.002-2.395c-.008.176-.025-.165-.056-2.136z"></path></svg></span> Gold Member
+                                                    </div>
+                                                    <div class="inline-block m2">
+                                                        <span class="inline-block membership-type membership-type-platinum"><svg viewBox="0 0 101 131" xmlns="http://www.w3.org/2000/svg"><path d="M50.895 64.068c14.618 0 26.469-14.342 26.469-32.034s-3.891-32.034-26.469-32.034c-22.578 0-26.47 14.342-26.47 32.034s11.851 32.034 26.47 32.034zm-49.995 48.912c-.005-1.079-.009-.304 0 0zm99.987.843c.014-.295.005-2.049 0 0zm-.056-2.136c-.49-30.819-4.53-39.601-35.443-45.16 0 0-4.351 5.525-14.494 5.525l-14.495-5.525c-30.575 5.498-34.861 14.15-35.424 44.159-.046 2.45-.068 2.579-.076 2.295.002.533.004 1.519.004 3.238 0 0 7.36 14.783 49.991 14.783 42.63 0 49.991-14.783 49.991-14.783l.002-2.395c-.008.176-.025-.165-.056-2.136z"></path></svg></span> Platinum Member
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                        
+
                                     </div>
 
                                 </div>
@@ -396,17 +400,17 @@
                                     $('body').on('click', '.icons-standard', function (e) {
                                         $('#advertisement-upgrade').modal('show');
                                     });
-                                     $('body').on('click', '.modal-icon-close', function (e) {
-                                         $('#advertisement-upgrade').modal('hide');
-                                     });
-                                     $('body').on('click', '.modal-icon-close', function (e) {
-                                         $('#advertisement-upgrade').modal('hide');
-                                     });
-                                   // photo-display-popup
-                                   $('body').on('click', '.photo-display-popup', function (e) {
+                                    $('body').on('click', '.modal-icon-close', function (e) {
+                                        $('#advertisement-upgrade').modal('hide');
+                                    });
+                                    $('body').on('click', '.modal-icon-close', function (e) {
+                                        $('#advertisement-upgrade').modal('hide');
+                                    });
+                                    // photo-display-popup
+                                    $('body').on('click', '.photo-display-popup', function (e) {
                                         var user_id = $(this).attr('data-user');
-                                         users.getProfile(user_id);
-                                     });
+                                        users.getProfile(user_id);
+                                    });
                                 });
                             </script>
                             @endsection
