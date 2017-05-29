@@ -3978,6 +3978,15 @@ button[id="addcomment"] {
     border: 1px solid #bbb;
     background-color: #eee;
 }
+
+.viewed {
+    display: block;
+    clear: both;
+    overflow: hidden;
+    padding: 5px 15px 0 0;
+    height: 67px;
+    line-height: 1.4em;
+}
 /*----------------End Popup CSS -------------------- */
 
 

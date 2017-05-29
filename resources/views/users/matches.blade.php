@@ -321,7 +321,7 @@
 
                             </ul>
                         </span>
-
+                        <p class="viewed">Tengo una nina de 2 mese soy madre soltera soy estudiante</p>
                     </div>
 
                 </div>
