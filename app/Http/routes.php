@@ -20,7 +20,7 @@ Route::post('/login','UsersController@postLogin');
 Route::get('/signup','UsersController@getSignup');
 Route::get('/embra','UsersController@getEmbra');
 Route::post('/signup','UsersController@postSignup');
-
+Route::get('/showemail','UsersController@getShowEmail');
 Route::controllers([
     'users'=>'UsersController',
     'search'=>'SearchController',

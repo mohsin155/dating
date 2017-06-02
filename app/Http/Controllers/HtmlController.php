@@ -18,4 +18,7 @@ class HtmlController extends UtilityController {
     public function getUpgrade(){
         return view('html.upgrade');
     }
+        public function getShowemail() {
+        return view('html.showemail');
+    }
 }
