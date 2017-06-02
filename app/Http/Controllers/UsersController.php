@@ -388,8 +388,8 @@ class UsersController extends UtilityController {
             $search_data['max_age'] = $user->age+5;
             
         }
-        $result = $user->searchResults($search_data, $logged_in);
-        return view('users.listing')->with('countries', $countries)->with('users', $result)->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
+        $result = $user->searchResults($search_data, $logged_in,0,30);
+        return view('users.listing')->with('countries', $countries)->with('users', $result['result'])->with('image_path', $image_path)->with('profile_data', $profile_data)->with('photos', $photos);
     }
     
      public function getMessaging() {
@@ -723,15 +723,37 @@ class UsersController extends UtilityController {
     }
     
     public function getMyFavourites(){
+        $inputs = Input::all();
+        if(isset($inputs['page']) && !empty($inputs['page'])){
+            $page_no = $inputs['page'];
+        }else{
+            $page_no = 0;
+        }
+        if(isset($inputs['order']) && !empty($inputs['order'])){
+            $order = $inputs['order'];
+        }else{
+            $order = '1';
+        }
         $user = new User();
         $favourites = $user->getMyFavouritesList(Auth::user()->user_id);
-        return view('users.my-favourites')->with('favourites',$favourites);
+        return view('users.my-favourites')->with('favourites',$favourites['result'])->with('total',$favourites['total'])->with('page_no',$page_no)->with('order',$order);
     }
     
     public function getMyBlocks(){
+        $inputs = Input::all();
+        if(isset($inputs['page']) && !empty($inputs['page'])){
+            $page_no = $inputs['page'];
+        }else{
+            $page_no = 0;
+        }
+        if(isset($inputs['order']) && !empty($inputs['order'])){
+            $order = $inputs['order'];
+        }else{
+            $order = '1';
+        }
         $user = new User();
         $blocks = $user->getMyBlockedList(Auth::user()->user_id);
-        return view('users.my-block')->with('blocks',$blocks);
+        return view('users.my-block')->with('blocks',$blocks['result'])->with('total',$favourites['total'])->with('page_no',$page_no)->with('order',$order);
     }
     
     public function getAddInterest($id){
@@ -742,9 +764,20 @@ class UsersController extends UtilityController {
     }
     
     public function getMyInterest(){
+        $inputs = Input::all();
+        if(isset($inputs['page']) && !empty($inputs['page'])){
+            $page_no = $inputs['page'];
+        }else{
+            $page_no = 0;
+        }
+        if(isset($inputs['order']) && !empty($inputs['order'])){
+            $order = $inputs['order'];
+        }else{
+            $order = '1';
+        }
         $user = new User();
         $interests = $user->getMyInterestList(Auth::user()->user_id);
-        return view('users.my-interest')->with('interests',$interests);
+        return view('users.my-interest')->with('interests',$interests['result'])->with('total',$favourites['total'])->with('page_no',$page_no)->with('order',$order);
     }
     
     public function getPopupProfile($user_id) {

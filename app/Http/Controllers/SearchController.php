@@ -210,15 +210,29 @@ class SearchController extends UtilityController {
         return $user_match;
     }
 
-    public function postSearchMatch() {
+    public function anySearchMatch() {
         $inputs = Input::all();
         $logged = Auth::user()->user_id;
-        $search_id = $this->addSearch($inputs);
+        if(isset($inputs['page']) && !empty($inputs['page'])){
+            $page_no = $inputs['page'];
+        }else{
+            $page_no = 0;
+        }
+        if(isset($inputs['order']) && !empty($inputs['order'])){
+            $order = $inputs['order'];
+        }else{
+            $order = '1';
+        }
+        if(isset($inputs['search_id']) && !empty($inputs['search_id'])){
+            $search_id = $inputs['search_id'];
+        }else{
+            $search_id = $this->addSearch($inputs);
+        }
         $search_data = UserSearch::where('search_id', $search_id)->first();
         $search_data = $this->getUnserializeData($search_data)->toArray();
         $user = new User();
-        $result = $user->searchResults($search_data, $logged);
-        return view('search.matches')->with('matches', $result);
+        $result = $user->searchResults($search_data, $logged,$page_no,config('constants.match_per_page'),$order);
+        return view('search.matches')->with('matches', $result['result'])->with('total',$result['total'])->with('order',$order)->with('page_no',$page_no)->with('per_page',config('constants.match_per_page'))->with('search_id',$search_id);
     }
 
     public function addSearch($inputs) {

@@ -22,7 +22,55 @@
                     <div class="clear"></div>
 
                 </div>
-                <div class="clear"></div>
+                <div class="clearfix"></div>
+                <div class="view">
+                    <h1>View:</h1>
+                    <ul class="views">
+
+
+                        <li class="photoview"><a href="#" title="Photo View" class="tipMe"></a></li>
+
+                        <li class="basicviewselected"><a href="#" title="Basic View" class="tipMe"></a></li>
+
+                        <li class="detailview"><a href="#" title="Detail View" class="tipMe"></a></li>
+
+                        <li class="profileview"><a href="#" title="Profile" class="tipMe"></a></li>
+
+                    </ul>
+
+                    <span class="display">1 - {{count($matches)}} of {{$total}}</span>
+
+
+                    <div class="pagination">
+                        @if($page_no == 0)
+                        <span class="inactive">first</span>
+                        <span class="inactive">&lt; prev</span>
+                        @else
+                        <a href="{{url('search/search-match').'?search_id='.$search_id}}">first</a>
+                        <a href="{{url('search/search-match').'?search_id='.$search_id.'&page='.($page_no-1)}}">&lt; prev</a>
+                        @endif
+
+                        @if((($page_no*$per_page)+count($matches))>=$total)
+                        <span class="inactive">next &gt;</span>
+                        <span class="inactive">last</span>
+                        @else
+                        <a href="{{url('search/search-match').'?search_id='.$search_id.'&page='.($page_no+1)}}">next &gt;</a>
+                        <a href="{{url('search/search-match').'?search_id='.$search_id.'&page='.(ceil($total/$per_page))}}">last</a>
+                        @endif
+
+                    </div>
+                    <span class="orderby">
+                        <p>Order By:</p>
+                        <select name="order" id="jumpMenu">
+                            <option value="1" {{$order==1?'selected':''}}>Newest members</option>
+                            <option value="2" {{$order==2?'selected':''}}>Photos First</option>
+                            <option value="3" {{$order==3?'selected':''}}>Last Active</option>
+                            <option value="1" {{$order==1?'selected':''}}>Relevance</option>
+                        </select>
+                    </span>
+
+                    <div class="clear"></div>
+                </div>
             </div>
             <div class="memberships">
                 @foreach($matches as $row)
@@ -85,6 +133,19 @@
                 </div>
                 @endforeach
             </div>
+            <!--<div class="view">
+                <div class="pagination">
+
+                    <span class="inactive">first</span>
+
+                    <span class="inactive">&lt; prev</span>
+
+                    <a href="#">next &gt;</a>
+
+                    <a href="#">last</a>
+
+                </div>
+                <div class="clear"></div></div>-->
         </div>
     </div>
 </div>
@@ -108,5 +169,27 @@
         var user_id = $(this).attr('data-user');
         users.getProfile(user_id);
     });
+    $("select[name=order]").on('change',function(){
+        var url = removeParam('order',window.location.href);
+        var final = url.indexOf("?")!=-1?url+"&order="+$(this).val():url+"?order="+$(this).val()+"&search_id={{$search_id}}";
+        window.location.href = final;
+    })
+    function removeParam(key, sourceURL) {
+    var rtn = sourceURL.split("?")[0],
+        param,
+        params_arr = [],
+        queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+    if (queryString !== "") {
+        params_arr = queryString.split("&");
+        for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+            param = params_arr[i].split("=")[0];
+            if (param === key) {
+                params_arr.splice(i, 1);
+            }
+        }
+        rtn = rtn + "?" + params_arr.join("&");
+    }
+    return rtn;
+}
 </script>
 @endsection
