@@ -735,8 +735,8 @@ class UsersController extends UtilityController {
             $order = '1';
         }
         $user = new User();
-        $favourites = $user->getMyFavouritesList(Auth::user()->user_id);
-        return view('users.my-favourites')->with('favourites',$favourites['result'])->with('total',$favourites['total'])->with('page_no',$page_no)->with('order',$order);
+        $favourites = $user->getMyFavouritesList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
+        return view('users.my-favourites')->with('favourites',$favourites['result'])->with('total',$favourites['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
     }
     
     public function getMyBlocks(){
@@ -752,8 +752,8 @@ class UsersController extends UtilityController {
             $order = '1';
         }
         $user = new User();
-        $blocks = $user->getMyBlockedList(Auth::user()->user_id);
-        return view('users.my-block')->with('blocks',$blocks['result'])->with('total',$favourites['total'])->with('page_no',$page_no)->with('order',$order);
+        $blocks = $user->getMyBlockedList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
+        return view('users.my-block')->with('blocks',$blocks['result'])->with('total',$blocks['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
     }
     
     public function getAddInterest($id){
@@ -776,8 +776,8 @@ class UsersController extends UtilityController {
             $order = '1';
         }
         $user = new User();
-        $interests = $user->getMyInterestList(Auth::user()->user_id);
-        return view('users.my-interest')->with('interests',$interests['result'])->with('total',$favourites['total'])->with('page_no',$page_no)->with('order',$order);
+        $interests = $user->getMyInterestList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
+        return view('users.my-interest')->with('interests',$interests['result'])->with('total',$interests['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
     }
     
     public function getPopupProfile($user_id) {

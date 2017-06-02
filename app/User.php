@@ -243,7 +243,7 @@ class User extends Authenticatable
                 ->join('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
                 ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
                 ->where('f.favourite_by',$user_id);
-        $query->groupBy('users.user_id')->get();
+        $query->groupBy('users.user_id');
         $total = $query->count();
         if($order=='1'){
             $query->orderBy('users.created_at','asc');
@@ -256,7 +256,7 @@ class User extends Authenticatable
         return array('result'=>$result,'total'=>$total);
     }
     
-    public function getMyBlockedList($user_id){
+    public function getMyBlockedList($user_id,$page_no=0,$limit=10,$order=0){
         $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,si.interest_id,b.block_id,b.created_at as blocked_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
                 ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
                 ->join('user_blocked as b', 'b.blocked_to', '=', 'users.user_id')
@@ -264,6 +264,25 @@ class User extends Authenticatable
                 ->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
                 ->leftJoin('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
                 ->where('b.blocked_by',$user_id);
+        $result = $query->groupBy('users.user_id');
+        $total = $query->count();
+        if($order=='1'){
+            $query->orderBy('users.created_at','asc');
+        }
+        if($order=='3'){
+            $query->orderBy('users.last_login','asc');
+        }
+        $result = $query->skip($page_no*$limit)->limit($limit)->get();
+        return array('result'=>$result,'total'=>$total);
+    }
+    
+    public function getMyInterestList($user_id,$page_no=0,$limit=10,$order=0){
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,si.interest_id,si.created_at as interested_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+                ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
+                ->join('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
+                ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
+                ->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                ->where('si.interest_by',$user_id);
         $result = $query->groupBy('users.user_id')->get();
         $total = $query->count();
         if($order=='1'){
@@ -272,18 +291,8 @@ class User extends Authenticatable
         if($order=='3'){
             $query->orderBy('users.last_login','asc');
         }
-        return $result;
-    }
-    
-    public function getMyInterestList($user_id){
-        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,si.interest_id,si.created_at as interested_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
-                ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
-                ->join('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
-                ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
-                ->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
-                ->where('si.interest_by',$user_id);
-        $result = $query->groupBy('users.user_id')->get();
-        return $result;
+        $result = $query->skip($page_no*$limit)->limit($limit)->get();
+        return array('result'=>$result,'total'=>$total);
     }
     
     public function getUserSummary($user_id, $logged){

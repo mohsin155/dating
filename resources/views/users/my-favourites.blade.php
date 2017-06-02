@@ -32,37 +32,34 @@
 
                     </ul>
 
-                    <span class="display">1 - 20 of 1000+</span>
+                    <span class="display">1 - {{count($favourites)}} of {{$total}}</span>
 
 
                     <div class="pagination">
-
+                        @if($page_no == 0)
                         <span class="inactive">first</span>
-
                         <span class="inactive">&lt; prev</span>
+                        @else
+                        <a href="{{url('users/my-favourites')}}">first</a>
+                        <a href="{{url('users/my-favourites').'?page='.($page_no-1)}}">&lt; prev</a>
+                        @endif
 
-                        <a href="#">next &gt;</a>
-
-                        <a href="#">last</a>
+                        @if((($page_no*$per_page)+count($favourites))>=$total)
+                        <span class="inactive">next &gt;</span>
+                        <span class="inactive">last</span>
+                        @else
+                        <a href="{{url('users/my-favourites').'?page='.($page_no+1)}}">next &gt;</a>
+                        <a href="{{url('users/my-favourites').'?page='.(ceil($total/$per_page))}}">last</a>
+                        @endif
 
                     </div>
                     <span class="orderby">
                         <p>Order By:</p>
-                        <select name="jumpMenu" id="jumpMenu">
-
-
-                            <option value="#">Newest members</option>
-
-
-                            <option value="#">Photos First</option>
-
-
-                            <option value="#">Last Active</option>
-
-
-
-                            <option value="#" selected="">Relevance</option>
-
+                        <select name="order" id="jumpMenu">
+                            <option value="1" {{$order==1?'selected':''}}>Newest members</option>
+                            <option value="2" {{$order==2?'selected':''}}>Photos First</option>
+                            <option value="3" {{$order==3?'selected':''}}>Last Active</option>
+                            <option value="1" {{$order==1?'selected':''}}>Relevance</option>
                         </select>
                     </span>
 
@@ -174,5 +171,27 @@
         //$(".bg-loader").addClass("show");
         users.addInterest(this,"search",$(this).attr('data-id'));
     });
+    $("select[name=order]").on('change',function(){
+        var url = removeParam('order',window.location.href);
+        var final = url.indexOf("?")!=-1?url+"&order="+$(this).val():url+"?order="+$(this).val();
+        window.location.href = final;
+    })
+    function removeParam(key, sourceURL) {
+    var rtn = sourceURL.split("?")[0],
+        param,
+        params_arr = [],
+        queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+    if (queryString !== "") {
+        params_arr = queryString.split("&");
+        for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+            param = params_arr[i].split("=")[0];
+            if (param === key) {
+                params_arr.splice(i, 1);
+            }
+        }
+        rtn = rtn + "?" + params_arr.join("&");
+    }
+    return rtn;
+}
 </script>
 @endsection
