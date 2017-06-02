@@ -395,6 +395,7 @@ class UsersController extends UtilityController {
      public function getMessaging() {
         return view('users.messaging');
     }
+
      public function getMatches() {
         return view('users.matches');
     }

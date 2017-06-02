@@ -39,7 +39,7 @@
                                 <input name="formType" id="topformType" type="hidden" value="">
 
 
-                                <a href="/en/mail/showfilter" id="filterOff">
+                                <a href="#" id="filterOff">
                                     <div class="mailheading-cell"><div class="filter-off tipMeRed" title="<strong>Message Filter is Off</strong><br/>Turning the message filter on will filter out messages that do not meet your filter criteria into a 'Filtered' folder.<br/><br/>To edit your filter criteria click on <strong>'Filter Settings'</strong>">Filter is off</div></div>
                                 </a><input type="hidden" name="onOffFilter" value="1">
 
