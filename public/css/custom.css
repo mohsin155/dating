@@ -3526,6 +3526,13 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
     font-weight: 700;
     color: #000;
 }
+.display-inner {
+     float: left;
+    padding: 5px 20px;
+    text-align: center;
+    font-weight: 700;
+    color: #000;
+}
 .memberships {
     clear: both;
     padding: 0 0 5px 15px;
@@ -4256,6 +4263,85 @@ button[id="addcomment"] {
     padding: 5px 15px 0 0;
     height: 67px;
     line-height: 1.4em;
+}
+
+.scroll-pane-new {
+    height: 300px;
+    overflow-y: scroll;
+        padding: 10px 0px 0px 10px;
+}
+.sentmsg {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 5px;
+    width: 100%;
+}
+.sentimg {
+    float: left;
+}
+.nopic {
+    display: block;
+    background-position: center center;
+    background-size: 35px 35px;
+    border: 1px solid #555;
+    width: 32px;
+    height: 32px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.sentbubble-sm {
+    display: block;
+    float: right;
+    overflow: hidden;
+    background: url(../image/bg-msgbubble-sm.gif) repeat-y;
+    line-height: 1.3em;
+}
+.sentbubbletop-sm {
+    overflow: hidden;
+    width: 540px;
+    background: url(../image/top-msgbubble-sm.gif) no-repeat;
+}
+.senttext-sm {
+    display: block;
+    margin-top: 7px;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 40px;
+    color: #333;
+    line-height: 1.4em;
+}
+.sentdate {
+    display: block;
+    margin: 0 10px 0 40px;
+    color: #aaa;
+    text-align: left;
+    line-height: 1.3em;
+}
+.sentdate a:link, .sentdate a:visited {
+    color: #42729c;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 12px;
+}
+.bottombubble {
+    display: block;
+    clear: both;
+}
+.sentbubble-sm2 {
+    display: block;
+    float: right;
+    overflow: hidden;
+    background: url(../image/bg-msgbubble-sm2.gif) repeat-y;
+    line-height: 1.3em;
+}
+.sentbubbletop-sm2 {
+    overflow: hidden;
+    width: 540px;
+    background: url(../image/top-msgbubble-sm2.gif) no-repeat;
+}
+.bglock {
+    background: url(../image/bg-lock.png) no-repeat center center;
 }
 /*----------------End Popup CSS -------------------- */
 

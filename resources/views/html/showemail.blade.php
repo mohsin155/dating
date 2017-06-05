@@ -4,8 +4,8 @@
     <div id="bannerpage">
         <div id="main-content">
             <div id="mailpage">
-                <div id="leftbar"> 
-                    <div id="mailnav">   
+                <div id="leftbar">
+                    <div id="mailnav">
                         <ul>
                             <li>
                                 <a href="#" id="inbox-icon" class="firstnav">Inbox (66)</a>
@@ -29,8 +29,8 @@
                             <li><a href="#" id="mail-filtered-icon" class="lastnav">Create Filter</a></li>
 
                         </ul>
-                    </div>     
-                </div>  
+                    </div>
+                </div>
                 <div id="right">
                     <div id="mail">
                         <div id="mailboxhdr">
@@ -63,7 +63,7 @@
 
 
                                 </ul>
-                            </div>   
+                            </div>
                         </div>
                         <div class="messages" dir="ltr">
                             <div id="msgprofile" class="clearfix" dir="ltr">
@@ -91,9 +91,9 @@
                                         <div class="standard-badge-icon" title="Standard"></div>
                                     </span>
                                     Santiago de los Caballeros, Santiago, Dominican Republic<br>
-                                    <strong>Seeking:</strong>	
+                                    <strong>Seeking:</strong>
 
-                                    Male 50 - 62 
+                                    Male 50 - 62
 
 
 
@@ -124,7 +124,7 @@
                         </div>
                         <div id="senthdr">
                             <h1 id="mailheading-subject" class="mailheading">
-                                Hi, there! 
+                                Hi, there!
                             </h1>
 
                             <div id="translate">
@@ -139,6 +139,92 @@
                             </div>
                             <div class="clear"></div>
                         </div>
+
+                        <div class="scroll-pane-new">
+
+                            <span class="sentmsg" name="276134603">
+                                <div class="sentimg"><span class="nopic" style="background-image:url(https://cdn.latinamericancupid.com/memphoto/Photo1/small/5362374.jpg);"></span></div>
+                                <div class="sentbubble-sm"><div class="sentbubbletop-sm">
+
+                                        <p class="senttext-sm"><a class="evtGblurryText" href="/en/payment/upgrade?useraction=readmail&amp;memberid=5362374" target="_parent"><img src="https://cdn.latinamericancupid.com/assets/images/mail/en/blurredtext4.gif" data-hover="https://cdn.latinamericancupid.com/assets/images/mail/en/blurredtext4-ov.gif" class="rollover" border="0"></a></p>
+
+                                        <span class="sentdate">
+                                            <a href="#" target="_parent">Rosanna</a>&nbsp;	June 5, 2017 8:18 AM
+
+                                            <img src="{{asset('image/message-locked.gif')}}" title="As a FREE standard member you cannot read messages from other standard members.<br/><strong>Upgrade Now to read this message.</strong>" class="tipMeGold right">
+
+                                            <div class="clear"></div></span>
+                                        <img src="{{asset('image/btm-msgbubble-sm.gif')}}" class="bottombubble">
+                                    </div></div>
+                            </span>
+                            <span class="sentmsg" name="276137481">
+                                <div class="sentimg">
+                                    <span class="sentpic" style="background-image:url(../image/nophoto_Male.gif);"></span>
+                                </div>
+                                <div class="sentbubble-sm2">
+                                    <div class="sentbubbletop-sm2">
+                                        <div class="bglock">
+
+                                            <p class="senttext-sm clearfix"> hello</p>
+                                            <span class="sentdate clearfix">
+                                                <p>June 5, 2017 8:32 AM</p>
+
+
+
+                                                <img src="{{asset('image/message-locked.gif')}}" title="Rosanna can't read this message as you are both FREE standard members.<br /><strong>Upgrade now so Rosanna can read this message.</strong>" class="tipMeGold right">
+
+                                            </span>
+                                            <img src="{{asset('image/btm-msgbubble-sm2.gif')}}" class="bottombubble">
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                             <span class="sentmsg" name="276137481">
+                                <div class="sentimg">
+                                    <span class="sentpic" style="background-image:url(../image/nophoto_Male.gif);"></span>
+                                </div>
+                                <div class="sentbubble-sm2">
+                                    <div class="sentbubbletop-sm2">
+                                        <div class="bglock">
+
+                                            <p class="senttext-sm clearfix"> hello</p>
+                                            <span class="sentdate clearfix">
+                                                <p>June 5, 2017 8:32 AM</p>
+
+
+
+                                                <img src="{{asset('image/message-locked.gif')}}" title="Rosanna can't read this message as you are both FREE standard members.<br /><strong>Upgrade now so Rosanna can read this message.</strong>" class="tipMeGold right">
+
+                                            </span>
+                                            <img src="{{asset('image/btm-msgbubble-sm2.gif')}}" class="bottombubble">
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                             <span class="sentmsg" name="276137481">
+                                <div class="sentimg">
+                                    <span class="sentpic" style="background-image:url(../image/nophoto_Male.gif);"></span>
+                                </div>
+                                <div class="sentbubble-sm2">
+                                    <div class="sentbubbletop-sm2">
+                                        <div class="bglock">
+
+                                            <p class="senttext-sm clearfix"> hello</p>
+                                            <span class="sentdate clearfix">
+                                                <p>June 5, 2017 8:32 AM</p>
+
+
+
+                                                <img src="{{asset('image/message-locked.gif')}}" title="Rosanna can't read this message as you are both FREE standard members.<br /><strong>Upgrade now so Rosanna can read this message.</strong>" class="tipMeGold right">
+
+                                            </span>
+                                            <img src="{{asset('image/btm-msgbubble-sm2.gif')}}" class="bottombubble">
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+
                         <div id="reply" class="clearfix">
                             <form id="emailreplyform" method="post" action="" autocomplete="off">
                                 <input type="hidden" id="currentMostRecentSubject" name="" value="default_1">
@@ -147,7 +233,7 @@
                                 <input type="hidden" id="replyMessageId" name="replyMessageId" value="">
                                 <input type="hidden" id="memberID" name="memberID" value="">
                                 <input name="mailsInThread" id="mailsInThread" type="hidden" readonly="readonly" value="2">
-                                <input type="hidden" id="imbraconsent" name="imbraconsent" value="0"> 
+                                <input type="hidden" id="imbraconsent" name="imbraconsent" value="0">
 
                                 <div id="replyform">
                                     <ul>
@@ -177,45 +263,62 @@
 
                         </div>
                         <div>
-            
-            <div id="hdrnav">
-                <ul>
-                	
-					
-                            <li class="visited">&lt; prev</li>
-                        
-                            <li class="visited">next &gt;</li>
-                        
-                </ul>
-            </div>
-            
-                <div class="clear"></div>
-                
-                <div id="onlinesafety">
-                  <h1>Safety Tip - Protect your PC and keep your account safe</h1>
-                  <div id="onlinesafetylady">
-                      <div id="odstright">
-                        <p>
-						Ensure your PC has anti-virus software, a firewall and is upto date with all security patches. 
-                        </p>
-                        <!--onlinesafetynav-->
-                
-                        <div class="clear"></div>
-                      </div>
-                      <!--odstright-->
-                      <div id="onlinesafetynav"><a href="/en/general/datingsafety">» For more safety tips click here</a></div>
-                    <!--onlinesafetylady2-->
-                  </div>
-                  <div class="clear"></div>
-                </div>
-            
-            <div class="clear"></div>
-            </div>
-                    </div>    
+
+                            <div id="hdrnav">
+                                <ul>
+
+
+                                    <li class="visited">&lt; prev</li>
+
+                                    <li class="visited">next &gt;</li>
+
+                                </ul>
+                            </div>
+
+                            <div class="clear"></div>
+
+                            <div id="onlinesafety">
+                                <h1>Safety Tip - Protect your PC and keep your account safe</h1>
+                                <div id="onlinesafetylady">
+                                    <div id="odstright">
+                                        <p>
+                                            Ensure your PC has anti-virus software, a firewall and is upto date with all security patches.
+                                        </p>
+                                        <!--onlinesafetynav-->
+
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--odstright-->
+                                    <div id="onlinesafetynav"><a href="/en/general/datingsafety">» For more safety tips click here</a></div>
+                                    <!--onlinesafetylady2-->
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="clear"></div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $(function ()
+    {
+        $('.scroll-pane')
+                .jScrollPane()
+                .bind(
+                        'mousewheel',
+                        function (e)
+                        {
+                            e.preventDefault();
+                        }
+                );
+    });
+
+</script>
 @endsection

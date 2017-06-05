@@ -69,7 +69,7 @@
 
                                     <input name="deleteChecked" type="button" value="Delete Checked" id="deleteChecked">
 
-                                    <p class="display">Displaying 1 - 20 of 74</p>
+                                    <p class="display-inner">Displaying 1 - 20 of 74</p>
 
                                     <select id="moveMailToFolder" name="moveMailToFolder" class="pull-right">
                                         <option value="">Copy checked to:</option>
@@ -322,4 +322,5 @@
         </div>
     </div>
 </div>
+ 
 @endsection
