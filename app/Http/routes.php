@@ -25,7 +25,8 @@ Route::controllers([
     'users'=>'UsersController',
     'search'=>'SearchController',
     'html'=>'HtmlController',
-    'payment'=>'PaymentController'
+    'payment'=>'PaymentController',
+    'message'=>'MessageController'
 ]);
 
 

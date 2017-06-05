@@ -82,3 +82,16 @@ function cm2feet($cm) {
     $inches = $inches % 12;
     return sprintf('%d\' %d "', $feet, $inches);
 }
+
+
+function getFolderList(){
+    $logged_in = \Illuminate\Support\Facades\Auth::user()->user_id;
+    $list = \App\Models\MessageFolder::where('user_id',$logged_in)->get();
+    return $list;
+}
+
+function getInboxTotal(){
+    $logged_in = \Illuminate\Support\Facades\Auth::user()->user_id;
+    $total = \App\Models\Message::where('to_id',$logged_in)->count();
+    return $total;
+}

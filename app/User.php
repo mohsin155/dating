@@ -225,8 +225,8 @@ class User extends Authenticatable
                 $query->whereIn('p.star_sign', $inputs['star_sign']);
             }
         }
+        $total = $query->count(DB::raw('DISTINCT users.user_id'));
         $query->groupBy('users.user_id');
-        $total = $query->count();
         if($order=='1'){
             $query->orderBy('users.created_at','asc');
         }
@@ -243,8 +243,8 @@ class User extends Authenticatable
                 ->join('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
                 ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
                 ->where('f.favourite_by',$user_id);
+        $total = $query->count(DB::raw('DISTINCT users.user_id'));
         $query->groupBy('users.user_id');
-        $total = $query->count();
         if($order=='1'){
             $query->orderBy('users.created_at','asc');
         }
@@ -264,8 +264,8 @@ class User extends Authenticatable
                 ->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
                 ->leftJoin('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
                 ->where('b.blocked_by',$user_id);
-        $result = $query->groupBy('users.user_id');
-        $total = $query->count();
+        $total = $query->count(DB::raw('DISTINCT users.user_id'));
+        $query->groupBy('users.user_id');
         if($order=='1'){
             $query->orderBy('users.created_at','asc');
         }
@@ -283,8 +283,8 @@ class User extends Authenticatable
                 ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
                 ->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
                 ->where('si.interest_by',$user_id);
-        $result = $query->groupBy('users.user_id')->get();
-        $total = $query->count();
+        $total = $query->count(DB::raw('DISTINCT users.user_id'));
+        $query->groupBy('users.user_id')->get();
         if($order=='1'){
             $query->orderBy('users.created_at','asc');
         }
