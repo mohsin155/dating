@@ -8,13 +8,8 @@
                 <div id="right">
                     <div id="mail">
                         <div id="mailboxhdr">
-                            <div id="mailheading"><div class="mailheading-cell"><h1>Received</h1></div></div>
-                            <!--<form id="topform" method="post">
-                                <input name="formType" id="topformType" type="hidden" value="">
-                                <a href="#" id="filterOff">
-                                    <div class="mailheading-cell"><div class="filter-off tipMeRed" title="<strong>Message Filter is Off</strong><br/>Turning the message filter on will filter out messages that do not meet your filter criteria into a 'Filtered' folder.<br/><br/>To edit your filter criteria click on <strong>'Filter Settings'</strong>">Filter is off</div></div>
-                                </a><input type="hidden" name="onOffFilter" value="1">
-                            </form>-->
+                            <div id="mailheading"><div class="mailheading-cell"><h1>Trash</h1></div></div>
+                            
                             <div id="hdrnav">
                                 <!--<ul>
                                     <li style="padding-top:2px;display:block">
@@ -30,20 +25,13 @@
                             <input name="action" type="hidden" value=""/>
                         <div class="mailbox">
                                 <div class="medgrey" style="padding:5px">
-                                    <input name="deleteChecked" type="button" value="Delete Checked" id="deleteChecked">
                                     <p class="display-inner">Displaying {{(config('constants.msg_per_page')*$page_no)+1}} - {{(config('constants.msg_per_page')*$page_no)+count($messages)}} of {{$total}}</p>
-                                    <?php $folders = getFolderList();?>
-                                    <select id="moveMailToFolder" name="moveMailToFolder" class="pull-right">
-                                        <option value="">Copy checked to:</option>
-                                        @foreach($folders as $row)
-                                        <option value="{{$row->folder_id}}">{{$row->folder_name}}</option>
-                                        @endforeach
-                                    </select>
+                                    
                                     <div class="clear">
                                     </div>
                                 </div>
                                 <div class="lightgrey mailboxhdg">
-                                    <span class="title" style="padding:3px 5px"><!--<input id="checkall" type="checkbox" value="">--></span>
+                                    <span class="title" style="padding:3px 5px"><input id="checkall" type="checkbox" value=""></span>
                                     <span class="subject-title">Subject</span>
                                     <span class="title from"><a href="#">From </a></span>
                                     <span class="title date"><a href="#">Date <img src="{{asset('image/arrowdown.gif')}}" border="0"></a></span>
@@ -55,7 +43,7 @@
                                     <span class="subject">
                                         <div class="center-cell">
                                             <span class="tickbox"><input name="from_id[]" class="mid" type="checkbox" value="{{$row->from_id}}"></span>
-                                            <a href="{{url('message/details/'.$row->from_id.'/'.$folder_id)}}">
+                                            <a href="#">
                                                 <div class="mailIcon">
 
                                                     <img src="{{asset('image/unread1.gif')}}" title="New message - Click to read" class="tipMe" border="0">
@@ -64,8 +52,8 @@
                                                     {{$row->subject}} <br><span class="msg"> {{$row->message}}
                                                     </span>
                                                 </div>
-                                            </a></div><a href="{{url('message/details/'.$row->from_id.'/'.$folder_id)}}">
-                                        </a></span><a href="{{url('message/details/'.$row->from_id.'/'.$folder_id)}}">
+                                            </a></div><a href="#">
+                                        </a></span><a href="#">
                                     </a>
                                     <span class="from">
                                         <div class="mailpic">
@@ -106,20 +94,7 @@
                             <p class="deletemsg">* Messages older than 2 months will be deleted</p> 
                             <div id="hdrnav">
                                 <ul>
-                                    @if($page_no == 0)
-                                    <li class="visited">first</li>
-                                    <li class="visited">&lt; prev</li>
-                                    @else
-                                    <li><a href="{{url('message/inbox/'.$folder_id.'?favourites='.$favourites)}}">first</a></li>
-                                    <li><a href="{{url('message/inbox/'.$folder_id.'?favourites='.$favourites.'&page='.($page_no-1))}}">&lt; prev</a></li>
-                                    @endif
-                                    @if((($page_no*config('constants.msg_per_page'))+count($messages))>=$total)
-                                    <li class="visited">next &gt;</li>
-                                    <li class="visited">last</li>
-                                    @else
-                                    <li><a href="{{url('message/inbox/'.$folder_id.'?favourites='.$favourites.'&page='.($page_no+1))}}">next &gt;</a>
-                                    <li><a href="{{url('message/inbox/'.$folder_id.'?favourites='.$favourites.'&page='.(ceil($total/config('constants.msg_per_page'))))}}">last</a>
-                                    @endif
+                                    
                                     <!--<li class="visited">first</li>
                                     <li class="visited">&lt; prev</li>
                                     <li><a href="#">next &gt;</a></li>
@@ -137,15 +112,7 @@
 @section('script')
 <script>
 $(function(){
-    $("#moveMailToFolder").on('change',function(){
-        $("input[name=action]").val('folder');
-        $("#mailboxform").submit();
-    });
-    
-    $("#deleteChecked").on('click',function(){
-        $("input[name=action]").val('delete');
-        $("#mailboxform").submit();
-    });
+
 });
 </script>
 @endsection

@@ -92,6 +92,12 @@ function getFolderList(){
 
 function getInboxTotal(){
     $logged_in = \Illuminate\Support\Facades\Auth::user()->user_id;
-    $total = \App\Models\Message::where('to_id',$logged_in)->count();
+    $total = \App\Models\Message::where('to_id',$logged_in)->where('deleted_at',NULL)->count(DB::raw('DISTINCT messages.from_id'));
+    return $total;
+}
+
+function getUnreadCount(){
+    $logged_in = \Illuminate\Support\Facades\Auth::user()->user_id;
+    $total = \App\Models\Message::where('to_id',$logged_in)->where('read_status',0)->where('deleted_at',NULL)->count(DB::raw('DISTINCT messages.from_id'));;
     return $total;
 }

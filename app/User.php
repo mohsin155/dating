@@ -34,17 +34,20 @@ class User extends Authenticatable
     }
     
     public function getUserDetails($user_id,$logged){
-        $result = User::select(DB::raw('users.*,f.favourite_id,b.block_id,si.interest_id,p.profile_id,p.dob_month,p.dob_year,p.hair_color,p.hair_length,p.hair_type,p.eye_color,p.eye_wear,p.height,p.weight,p.body_type,p.ethnicity,p.facial_hair,p.best_feature,p.body_art,
+        $result = User::select(DB::raw('users.*,p.profile_id,p.dob_month,p.dob_year,p.hair_color,p.hair_length,p.hair_type,p.eye_color,p.eye_wear,p.height,p.weight,p.body_type,p.ethnicity,p.facial_hair,p.best_feature,p.body_art,
                 p.appearance,p.drink,p.smoke,p.marital_status,p.have_children,p.no_children,p.oldest_child,p.youngest_child,p.more_child,p.have_pets,p.occupation,p.employment,p.income,p.home_type,p.living_situation,p.relocate,
                 p.relationship,p.nationality,p.education,p.languages,p.english_ability,p.portugese_ability,p.spanish_ability,p.religion,p.religious_values,p.star_sign,p.profile_heading,p.about_yourself,p.partner,
-                (select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+                (select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name,
+                (select f.favourite_id from user_favourites as f where (f.favourite_to = users.user_id and f.favourite_by = "' . $logged . '")) as favourite_id,
+                (select si.interest_id from user_showinterest as si where (si.interest_to = users.user_id and si.interest_by = "' . $logged . '")) as interest_id,
+                (select b.block_id from user_blocked as b where (b.blocked_to = users.user_id and b.blocked_by = "' . $logged . '")) as block_id'))
                 ->with('photos')->leftJoin('user_profile as p','users.user_id','=','p.user_id')
-                ->leftJoin('user_favourites as f','f.favourite_to','=','users.user_id')
-                ->leftJoin('user_blocked as b','b.blocked_to','=','users.user_id')
-                ->leftJoin('user_showinterest as si','si.interest_to','=','users.user_id')
-                ->whereRaw('f.favourite_by = "'.$logged.'" or f.favourite_by is null')
-                ->whereRaw('b.blocked_by = "'.$logged.'" or b.blocked_by is null')
-                ->whereRaw('si.interest_by = "'.$logged.'" or si.interest_by is null')
+                //->leftJoin('user_favourites as f','f.favourite_to','=','users.user_id')
+                //->leftJoin('user_blocked as b','b.blocked_to','=','users.user_id')
+                //->leftJoin('user_showinterest as si','si.interest_to','=','users.user_id')
+                //->whereRaw('f.favourite_by = "'.$logged.'" or f.favourite_by is null')
+                //->whereRaw('b.blocked_by = "'.$logged.'" or b.blocked_by is null')
+                //->whereRaw('si.interest_by = "'.$logged.'" or si.interest_by is null')
                 ->where('users.user_id',$user_id)->first()->toArray();
         return $result;
     }
@@ -56,14 +59,16 @@ class User extends Authenticatable
     }
     
     public function searchResults($inputs,$logged,$page_no=0,$limit=10,$order=1){
-        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,si.interest_id,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name,
+                 (select f.favourite_id from user_favourites as f where (f.favourite_to = users.user_id and f.favourite_by = "' . $logged . '")) as favourite_id,
+                (select si.interest_id from user_showinterest as si where (si.interest_to = users.user_id and si.interest_by = "' . $logged . '")) as interest_id'))
                 ->leftJoin('user_profile as p', 'users.user_id', '=', 'p.user_id')
                 ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
-                ->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
-                ->leftJoin('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
-                ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
-                ->whereRaw('(f.favourite_by = "' . $logged . '" or f.favourite_by is null)')
-                ->whereRaw('(si.interest_by = "' . $logged . '" or si.interest_by is null)');
+                //->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                //->leftJoin('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
+                ->leftJoin('user_match as um', 'users.user_id','=','um.user_id');
+                //->whereRaw('(f.favourite_by = "' . $logged . '" or f.favourite_by is null)')
+                //->whereRaw('(si.interest_by = "' . $logged . '" or si.interest_by is null)');
         if(isset($inputs['keyword']) && !empty($inputs['keyword'])) {
             $query = $query->whereRaw('(users.first_name like "'.$inputs['keyword'].'%" or users.first_name like "'.$inputs['keyword'].'%")');
         }
@@ -238,7 +243,8 @@ class User extends Authenticatable
     }
     
     public function getMyFavouritesList($user_id,$page_no=0,$limit=10,$order=0){
-        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,f.created_at as fav_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,f.created_at as fav_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name,
+                (select si.interest_id from user_showinterest as si where (si.interest_to = users.user_id and si.interest_by = "' . $user_id . '")) as interest_id'))
                 ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
                 ->join('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
                 ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
@@ -257,12 +263,13 @@ class User extends Authenticatable
     }
     
     public function getMyBlockedList($user_id,$page_no=0,$limit=10,$order=0){
-        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,si.interest_id,b.block_id,b.created_at as blocked_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,b.block_id,b.created_at as blocked_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name,
+                (select f.favourite_id from user_favourites as f where (f.favourite_to = users.user_id and f.favourite_by = "' . $user_id . '")) as favourite_id,(select si.interest_id from user_showinterest as si where (si.interest_to = users.user_id and si.interest_by = "' . $user_id . '")) as interest_id'))
                 ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
                 ->join('user_blocked as b', 'b.blocked_to', '=', 'users.user_id')
                 ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
-                ->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
-                ->leftJoin('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
+                //->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                //->leftJoin('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
                 ->where('b.blocked_by',$user_id);
         $total = $query->count(DB::raw('DISTINCT users.user_id'));
         $query->groupBy('users.user_id');
@@ -277,11 +284,12 @@ class User extends Authenticatable
     }
     
     public function getMyInterestList($user_id,$page_no=0,$limit=10,$order=0){
-        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,si.interest_id,si.created_at as interested_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,si.interest_id,si.created_at as interested_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name,
+                 (select f.favourite_id from user_favourites as f where (f.favourite_to = users.user_id and f.favourite_by = "' . $user_id . '")) as favourite_id'))
                 ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
                 ->join('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
                 ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
-                ->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                //->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
                 ->where('si.interest_by',$user_id);
         $total = $query->count(DB::raw('DISTINCT users.user_id'));
         $query->groupBy('users.user_id')->get();
@@ -296,14 +304,18 @@ class User extends Authenticatable
     }
     
     public function getUserSummary($user_id, $logged){
-        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,si.interest_id,users.*,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name'))
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,users.*,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name,
+                (select f.favourite_id from user_favourites as f where (f.favourite_to = users.user_id and f.favourite_by = "' . $logged . '")) as favourite_id,
+                (select si.interest_id from user_showinterest as si where (si.interest_to = users.user_id and si.interest_by = "' . $logged . '")) as interest_id,
+                (select b.block_id from user_blocked as b where (b.blocked_to = users.user_id and b.blocked_by = "' . $logged . '")) as block_id'))
                 ->with('photos')
                 ->leftJoin('user_profile as p', 'users.user_id', '=', 'p.user_id')
-                ->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
-                ->leftJoin('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
+                //->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                //->leftJoin('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
+                //->leftJoin('user_blocked as b', 'b.blocked_to', '=', 'users.user_id')
                 ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
-                ->whereRaw('(f.favourite_by = "' . $logged . '" or f.favourite_by is null)')
-                ->whereRaw('(si.interest_by = "' . $logged . '" or si.interest_by is null)')
+                //->whereRaw('(f.favourite_by = "' . $logged . '" or f.favourite_by is null) and (si.interest_by = "' . $logged . '" or si.interest_by is null) or (b.blocked_by = "' . $logged . '" or b.blocked_by is null))')
+                //->whereRaw('(si.interest_by = "' . $logged . '" or si.interest_by is null)')
                 ->where('users.user_id',$user_id)->first();
         return $query;        
     }

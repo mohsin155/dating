@@ -14,7 +14,7 @@
                     <a href="{{url('search/advance-search')}}">Search</a>
                 </li>
                 <li id="menu4">
-                    <a href="#">Messages<span class="mynotificationCircle circle">30</span></a>
+                    <a href="{{url('message/inbox/0')}}">Messages<span class="mynotificationCircle circle">{{getUnreadCount()}}</span></a>
                 </li>
                 <li id="menu5" class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Activity <b class="caret"></b></a>
