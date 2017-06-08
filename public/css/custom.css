@@ -4343,6 +4343,51 @@ button[id="addcomment"] {
 .bglock {
     background: url(../image/bg-lock.png) no-repeat center center;
 }
+.nothread-large {
+    margin-top: 50px;
+    text-align: center;
+    letter-spacing: -4px;
+    font: 700 52px Verdana, Geneva, sans-serif;
+    line-height: 1.2em;
+}
+.opaque20_global {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
+    -khtml-opacity: 0.2;
+    -moz-opacity: 0.2;
+    opacity: 0.2;
+}
+.outlineMe {
+    border: 1px solid #aaa;
+}
+#upgraderead2 {
+    margin: 10px 10px 0 35px;
+    padding: 7px 15px;
+    border: 1px #9ac649 solid;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #daedbc;
+}
+#upgradereadhdg {
+    display: block;
+    padding: 0 0 5px;
+    border-bottom: 1px dashed #aaa;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+}
+#upgradereadwrap {
+    overflow: hidden;
+    width: 100%;
+}
+#readtext {
+    float: left;
+    padding-top: 5px;
+    width: 300px;
+    color: #222e0c;
+    line-height: 1.4em;
+}
 /*----------------End Popup CSS -------------------- */
 
 
