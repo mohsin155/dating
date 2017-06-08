@@ -3953,6 +3953,57 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
     font-size: 12px;
     line-height: 1.5em;
 }
+#upgradetick {
+    display: block;
+    clear: both;
+    margin: 7px 10px 0 32px;
+    padding: 5px 5px 5px 10px;
+    border: 1px solid #6c951d;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #daedbc;
+    font-size: 11px;
+    line-height: 1.3em;
+        height: 45px;
+}
+.tickicon {
+    float: left;
+    margin-right: 7px;
+}
+.upgradeticknoupgrade-sm {
+    float: left;
+    margin: 0 0 0 5px;
+    width: 430px;
+    color: #222e0c;
+}
+#upgradetick a:link, #upgradetick a:visited {
+    color: #222e0c;
+    font-weight: 700;
+}
+#evtGUpgradeBannerBasicView  img {
+    width: 100%;
+}
+.sentpic {
+    display: block;
+    background-size: 35px 35px;
+    border: 1px solid #555;
+    width: 32px;
+    height: 32px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.inbox-nopic {
+    display: block;
+    background-position: center center;
+    background-size: 60px 60px;
+    border: 1px solid #555;
+    width: 55px;
+    height: 55px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
 /*----------------End Matches CSS -------------------- */
 
 /*----------------Popup CSS -------------------- */

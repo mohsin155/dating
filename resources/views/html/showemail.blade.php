@@ -154,7 +154,7 @@
                             </span>
                             <span class="sentmsg" name="276137481">
                                 <div class="sentimg">
-                                    <span class="sentpic" style="background-image:url(../image/nophoto_Male.gif);"></span>
+                                    <span class="sentpic" style="background-image:url('(../image/nophoto_Male.gif');"></span>
                                 </div>
                                 <div class="sentbubble-sm2">
                                     <div class="sentbubbletop-sm2">
@@ -399,11 +399,16 @@
                                     <span class="sentdate clearfix"><p>June 8, 2017 7:27 AM</p>
 
 
-                                        <img src="../image/message-locked.gif" style="float:right;padding-left:5px" title="Laura can't read this message as you are both FREE standard members.<br /><strong>Upgrade now so Laura can read this message.</strong>" class="tipMeGold">
+<!--                                        <img src="../image/message-locked.gif" style="float:right;padding-left:5px" title="Laura can't read this message as you are both FREE standard members.<br /><strong>Upgrade now so Laura can read this message.</strong>" class="tipMeGold">-->
 
                                     </span>
-
-                                    <div id="upgraderead2">
+                                    <span id="upgradetick">
+                                <img src="{{asset('image/upgrade-tick.gif')}}" class="tickicon" height="30" width="30">
+                                
+								<p class="upgradeticknoupgrade-sm" style="font-size:14px;padding-top:7px;"><a href="/en/payment/upgrade?useraction=standardtostandard&amp;memberid=452163" target="_parent">Upgrade now</a> so Jadhilly can read this message.</p>
+                                <div class="clear"></div>
+                            </span>
+<!--                                    <div id="upgraderead2">
 
                                         <span id="upgradereadhdg">Upgrade now so Laura can read this</span>
                                         <div id="upgradereadwrap">
@@ -411,12 +416,16 @@
                                             <a class="evtGUpgradeButtonSentMail" href="#" target="_parent"><img src="{{asset('image/btn-upgradenow-big.gif')}}" class="upgradegreen" border="0"></a>
                                         </div>
                                         <div class="clear"></div>
-                                    </div>
+                                    </div>-->
 
-                                    <img src="{{asset('imagebtm-msgbubble-sm2.gif')}}" class="bottombubble">
+                                    <img src="{{asset('image/btm-msgbubble-sm2.gif')}}" class="bottombubble">
                                 </div></div>
                         </span>
+                   
                     </div>
+                         <div id="basicViewBanner">
+            	<a href="#" target="_parent" id="evtGUpgradeBannerBasicView"><img src="{{asset('image/upgradebanner3.gif')}}" border="0"></a>
+            </div>
                     <div id="reply" class="clearfix">
                         <form id="emailreplyform" method="post" action="" autocomplete="off">
                             <input type="hidden" id="currentMostRecentSubject" name="" value="default_1">
