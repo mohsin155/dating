@@ -319,4 +319,9 @@ class User extends Authenticatable
                 ->where('users.user_id',$user_id)->first();
         return $query;        
     }
+    
+    public function viewedProfile($viewed_id, $logged_id){
+        $viewed = Models\UsersProfileviewed::updateOrCreate(['viewed_to' => $viewed_id, 'viewed_by' => $logged_id], ['viewed_to' => $viewed_id, 'viewed_by' => $logged_id]);
+        $viewed->save();
+    }
 }

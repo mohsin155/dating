@@ -645,6 +645,7 @@ class UsersController extends UtilityController {
         $logged = $id;
         $view_user = $id;
         $user = new User;
+        $user->viewedProfile($view_user,Auth::user()->user_id);
         $user_details = $user->getUserDetails($view_user,Auth::user()->user_id);
         $user_details['hair_color'] = $this->master_array[$user_details['hair_color']];
         $user_details['hair_length'] = $this->master_array[$user_details['hair_length']];
