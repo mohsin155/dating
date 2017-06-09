@@ -132,4 +132,22 @@ class MessageController extends UtilityController {
         //dd($user_details);
         return view('message.details')->with(array('msg_details'=>$msg_details,'user_details'=>$user_details,'folder_id'=>$folder_id));
     }
+    
+    public function getPopupMessage($user_id){
+        $logged_in = Auth::user()->user_id;
+        $message = new Message;
+        $msg_details = $message->getConversation($logged_in, $user_id);
+        //dd($msg_details);
+        $user = new User();
+        $user_details = $user->getUserSummary($user_id, $logged_in);
+        //dd($user_details);
+        return view('message.message-modal')->with(array('msg_details'=>$msg_details,'user_details'=>$user_details));
+    }
+    
+    public function postSendMessagePopup(){
+        $inputs = Input::all();
+        Message::insert(array("subject"=>$inputs['subject'],"message"=>$inputs['message'],"from_id"=>Auth::user()->user_id,
+            "to_id"=>$inputs["to"],"folder_id"=>$inputs['folder_id'],"created_at"=>date('Y-m-d h:i:s', strtotime('now'))));
+        return;
+    }
 }

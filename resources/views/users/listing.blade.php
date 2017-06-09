@@ -215,7 +215,7 @@
 
                                                     <a style="display:none;" data-sitetranslationpath="en" class="launchRegistrationModal" href="javascript: void(0);"><li class="iconmail"></li></a>
 
-                                                    <a class="emailpopup" memname="roxanna" rel="1018971" title="Send roxanna a message" href="#">
+                                                    <a class="emailpopup open-email-popup" title="Send {{$user->first_name}} a message" href="javascript:;" data-userid="{{$user->user_id}}" >
                                                         <li class="iconmail"></li>
                                                     </a>
 

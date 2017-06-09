@@ -17,7 +17,7 @@
         <link href="{{url('css/jquery-ui.css')}}" rel="stylesheet">
         <link href="{{url('css/highCheckTree.css')}}" rel="stylesheet">
         <link href="{{url('css/flexslider.css')}}" rel="stylesheet">
-          <link href="{{url('css/jquery.jscrollpane.css')}}" rel="stylesheet">
+        <link href="{{url('css/jquery.jscrollpane.css')}}" rel="stylesheet">
         <link href="{{url('css/demo.css')}}" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,6 +49,13 @@
 
                 </div>
 
+            </div>
+        </div>
+        <div id="message-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content message-popup">
+                </div>
             </div>
         </div>
         <script src="{{url('js/jquery-3.2.1.min.js')}}"></script>

@@ -108,7 +108,7 @@
                                 <li class="iconstandard">
                                     <a href="{{url('users/profile')}}/{{$row->user_id}}" title="click here to view profile"></a>
                                 </li>
-                                <li class="iconmail">
+                                <li class="iconmail open-email-popup">
                                     <a style="display:none;" data-sitetranslationpath="en" class="launchRegistrationModal" href="javascript: void(0);"></a>
                                     <a href="#" title="Send {{$row->first_name}} a message" class="emailpopup" rel="" memname="{{$row->first_name}}"></a>
                                 </li>

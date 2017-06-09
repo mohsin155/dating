@@ -299,3 +299,22 @@ $('#myModal').on('shown.bs.modal', function () {
             }
         });
     });
+    
+$(".open-email-popup").on('click',function(){
+    var user_id = $(this).attr('data-userid');
+    var basepath = $("input[name=basepath]").val();
+        $.ajax({
+            type: 'GET',
+            url: basepath+'/message/popup-message/'+user_id,
+            async: false,
+            success: function (data) {
+                //alert(data);
+                $('.message-popup').html(data);
+                $('#message-modal').modal('show'); 
+            }
+        });
+   
+});
+
+
+
