@@ -1,5 +1,14 @@
 @extends('layouts.main')
-@section('content')  
+@section('content')
+<style>
+    .icons {
+        display: block;
+        float: left;
+        margin: 3px;
+        padding: 0px;
+        border: none;
+    }
+</style>
 <div class="responsive-main clearfix">
     <div id="column1" class="column1">
         <div class="column1-content clearfix">
@@ -38,7 +47,6 @@
                         <!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 784.5 535.5" style="enable-background:new 0 0 784.5 535.5;" xml:space="preserve">
                             <style type="text/css">
-                                .st0{enable-background:new    ;}
                             </style>
                             <path id="Path_74" class="st0" d="M769.8,51.7L568.6,83.8l46.3,57.1L444.1,279.7L321.2,128.6L14.8,377.9l36,43.9l262.4-213.4
                                   l122.3,151.1l215.3-174.8l46.3,56.6L769.8,51.7z"></path>
