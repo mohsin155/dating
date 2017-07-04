@@ -72,21 +72,10 @@
             <div class="activity clearfix">
                 <h1>Recent Activity</h1>
                 <ul>
-
-
-                    <li><a href="#" class="messages unread">63 new messages</a></li>
-
-
-
-                    <li><a href="#" class="interests unread">1 new interests</a></li>
-
-
-
-                    <li><a href="#" class="views unread">6 new profile views</a></li>
-
-
-
-                    <li><a href="#" class="favorites read">0 new favorites</a></li>
+                    <li><a href="{{url('message/inbox/0')}}" class="messages unread">{{getUnreadCount()}} new messages</a></li>
+                    <li><a href="{{url('')}}" class="interests unread">{{newInterestCount()}} new interests</a></li>
+                    <li><a href="{{url('')}}" class="views unread">{{newViewedCount()}} new profile views</a></li>
+                    <li><a href="{{url('')}}" class="favorites read">{{newFavCount()}} new favorites</a></li>
                 </ul>
             </div>
             <div class="search clearfix">
@@ -110,8 +99,11 @@
                             <li>
                                 <label>Seeking</label>
                                 <select name="gender">
-                                    <option value="male" @if(!empty($profile_data) && $profile_data->gender=="female") selected @endif>Male</option>
-                                    <option value="female" @if(!empty($profile_data) && $profile_data->gender=="male") selected @endif>Female</option>
+                                    @if(!empty($profile_data) && $profile_data->gender=="female")
+                                    <option value="male">Male</option>
+                                    @else
+                                    <option value="female">Female</option>
+                                    @endif
                                 </select>
                             </li>
                             <li>
@@ -418,6 +410,18 @@
                                     $('body').on('click', '.photo-display-popup', function (e) {
                                         var user_id = $(this).attr('data-user');
                                         users.getProfile(user_id);
+                                    });
+                                    $('body').on('click', '.addfavorites', function () {
+                                        //$(".bg-loader").addClass("show");
+                                        users.addFavourite(this, "search", $(this).attr('data-id'));
+                                    });
+                                    $('body').on('click', '.remfavorites', function () {
+                                        //$(".bg-loader").addClass("show");
+                                        users.removeFavourite(this, "search", $(this).attr('data-id'));
+                                    });
+                                    $('body').on('click', '.sendinterest', function () {
+                                        //$(".bg-loader").addClass("show");
+                                        users.addInterest(this, "search", $(this).attr('data-id'));
                                     });
                                 });
                             </script>

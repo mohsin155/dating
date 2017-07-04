@@ -19,123 +19,50 @@
                 <li id="menu5" class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Activity <b class="caret"></b></a>
                     <ul class="dropdown-menu activity-dropdown-menu-left">
-                        <!--<li class="dropdown-submenu activity-dropdown-menu-left-heading">Activity Towards Me
+                        <li class="dropdown-submenu activity-dropdown-menu-left-heading">Activity Towards Me
                             <ul class="dropdown-menu activity-dropdown-menu-right">
                                 <li class="activity-dropdown-menu-left-heading">Recent Activity</li>
+                                <?php $activity_list = getActivityList();?>
+                                @foreach($activity_list as $row)
                                 <li>
-                                    <a href="#1">
+                                    <a href="{{url('users/profile')}}/{{$row->user_id}}">
                                         <div class="menuactivitytext">
                                             <p>
-                                                <strong>Iris Isabel (41) </strong>
+                                                <strong>{{$row->first_name}} ({{$row->age}}) </strong>
                                                 <br>
-                                                <img src="#">
-                                                sent you a message 9 hours ago
+                                                <!--<img src="#">-->
+                                                {{config('constants.activity_msg.'.$row->type)}} {{humanTiming($row->created_at)}} ago
                                                 <br>
                                             </p>
                                         </div>
                                         <span class="menuactivitypic">
-                                            <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
+                                            @if(!empty($row->photo))
+                                            <img src="{{url('uploads').'/' . $row->user_id.'/'}}{{$row->photo}}" width="40px" height="45px" border="0">
+                                            @else  
+                                            <img src="{{url('image/AffinityPhoto2.gif')}}" width="40px" height="45px" border="0">
+                                            @endif
                                         </span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="menuactivitytext">
-                                            <p>
-                                                <strong>Iris Isabel (41) </strong>
-                                                <br>
-                                                <img src="{{url('image/readme.gif')}}">
-                                                sent you a message 9 hours ago
-                                                <br>
-                                            </p>
-                                        </div>
-                                        <span class="menuactivitypic">
-                                            <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
-                                        </span>
-                                    </a> 
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="menuactivitytext">
-                                            <p>
-                                                <strong>Iris Isabel (41) </strong>
-                                                <br>
-                                                <img src="{{url('image/readme.gif')}}">
-                                                sent you a message 9 hours ago
-                                                <br>
-                                            </p>
-                                        </div>
-                                        <span class="menuactivitypic">
-                                            <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
-                                        </span>
-                                    </a> 
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="menuactivitytext">
-                                            <p>
-                                                <strong>Iris Isabel (41) </strong>
-                                                <br>
-                                                <img src="{{url('image/readme.gif')}}">
-                                                sent you a message 9 hours ago
-                                                <br>
-                                            </p>
-                                        </div>
-                                        <span class="menuactivitypic">
-                                            <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
-                                        </span>
-                                    </a> 
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="menuactivitytext">
-                                            <p>
-                                                <strong>Iris Isabel (41) </strong>
-                                                <br>
-                                                <img src="{{url('image/readme.gif')}}">
-                                                sent you a message 9 hours ago
-                                                <br>
-                                            </p>
-                                        </div>
-                                        <span class="menuactivitypic">
-                                            <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
-                                        </span>
-                                    </a> 
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="menuactivitytext">
-                                            <p>
-                                                <strong>Iris Isabel (41) </strong>
-                                                <br>
-                                                <img src="{{url('image/readme.gif')}}">
-                                                sent you a message 9 hours ago
-                                                <br>
-                                            </p>
-                                        </div>
-                                        <span class="menuactivitypic">
-                                            <img src="{{url('image/user_1.jpg')}}" width="40px" height="45px" border="0">
-                                        </span>
-                                    </a>
-                                </li>
+                                @endforeach
                             </ul>
-                        </li>-->
+                        </li>
                         <li>
-                            <a href="#" class="clearfix">
+                            <a href="{{url('users/interested-me')}}" class="clearfix">
                                 <p>
                                     <span class="dropmenutext">Interested In Me</span>
                                 </p>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="clearfix">
+                            <a href="{{url('users/favourite-me')}}" class="clearfix">
                                 <p>
                                     <span class="dropmenutext">I'm Their Favorite</span>
                                 </p>
                             </a>
                         </li>
                         <li>
-                            <a href="#" style="border: 0;" class="clearfix">
+                            <a href="{{url('users/viewed-me')}}" style="border: 0;" class="clearfix">
                                 <p>
                                     <span class="dropmenutext">Viewed My Profile</span>
                                     <span class="mynotificationCircle circle_sm">5</span>
@@ -146,7 +73,7 @@
                         <li class="activity-dropdown-menu-left-heading">Activity From Me</li>
                         <li><a href="{{url('users/my-interest')}}"><p>My Interests</p></a></li>
                         <li><a href="{{url('users/my-favourites')}}"><p>My Favorites</p></a></li>
-                        <li><a href="#"><p>Profiles I Viewed</p></a></li>
+                        <li><a href="{{url('users/my-viewed-profile')}}"><p>Profiles I Viewed</p></a></li>
                         <li class="line"></li>
                         <li><a href="{{url('users/my-blocks')}}"><p>Block List</p></a></li>
                     </ul>

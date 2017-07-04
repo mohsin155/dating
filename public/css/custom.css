@@ -4080,7 +4080,7 @@ a.roundedbutton {
 .action-buttons {
     padding-top: 5px;
 }
-img#interest-btn {
+/*img#interest-btn {
     float: left;
     height: 25px;
     width: 135px;
@@ -4089,7 +4089,7 @@ img#favorites-btn {
     float: right;
     height: 25px;
     width: 135px;
-}
+}*/
 div.first-line strong {
     float: left;
     padding-right: 2px;
@@ -4098,11 +4098,11 @@ div.first-line strong {
 div#action-buttons {
     padding-top: 5px;
 }
-img#favorites-btn {
+/*img#favorites-btn {
     float: right;
     height: 25px;
     width: 150px;
-}
+}*/
 .popup-user .modal-footer {
     border-top: none;
 }
@@ -4438,6 +4438,10 @@ button[id="addcomment"] {
     width: 300px;
     color: #222e0c;
     line-height: 1.4em;
+}
+.action-style{
+    width: 135px;
+    height: 30px;
 }
 /*----------------End Popup CSS -------------------- */
 

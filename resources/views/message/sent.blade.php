@@ -47,7 +47,7 @@
                                             <a href="{{url('message/details/'.$row->to_id)}}">
                                                 <div class="mailIcon">
 
-                                                    <img src="{{asset('image/unread1.gif')}}" title="New message - Click to read" class="tipMe" border="0">
+                                                    <img src="{{asset('image/unread0.gif')}}" title="New message - Click to read" class="tipMe" border="0">
                                                 </div>
                                                 <div class="subject2 ">
                                                     {{$row->subject}} <br><span class="msg"> {{$row->message}}

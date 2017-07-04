@@ -65,6 +65,7 @@ class MessageController extends UtilityController {
         $logged_in = Auth::user()->user_id;
         $message = new Message;
         $msg_details = $message->getConversation($logged_in, $from_id);
+        $message->updateRead($logged_in, $from_id);
         //dd($msg_details);
         $user = new User();
         $user_details = $user->getUserSummary($from_id, $logged_in);
@@ -76,6 +77,8 @@ class MessageController extends UtilityController {
         $inputs = Input::all();
         Message::insert(array("subject"=>$inputs['subject'],"message"=>$inputs['message'],"from_id"=>Auth::user()->user_id,
             "to_id"=>$inputs["to"],"folder_id"=>$inputs['folder_id'],"created_at"=>date('Y-m-d h:i:s', strtotime('now'))));
+        
+        \App\Models\Notification::insert(array("from_id"=>Auth::user()->user_id,"to_id"=>$inputs["to"],"type"=> 1,"created_at"=>date('Y-m-d h:i:s', strtotime('now'))));
         return redirect()->back();
     }
     

@@ -11,6 +11,7 @@ return["match_per_page"=>1,
         8=>"We are a perfect match",
         9=>"Please accept my contact",
         10=>"Seeking marriage"),
-    "msg_per_page"=>2];
+    "msg_per_page"=>2,
+    "activity_msg"=>array(1=>"has sent you a message")];
 
 

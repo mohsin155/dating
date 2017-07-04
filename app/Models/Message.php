@@ -14,8 +14,8 @@ class Message extends Model {
         return $result;
     }
     
-    public function updateRead(){
-        $result = Message::whereRaw('(from_id = '.$from.' and to_id = '.$to.') or (from_id = '.$to.' and to_id = '.$from.')')
+    public function updateRead($to,$from){
+        $result = Message::whereRaw('(from_id = '.$from.' and to_id = '.$to.')')
                 ->update(array('read_status'=>1));
         return $result;
     }

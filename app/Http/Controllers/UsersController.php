@@ -384,8 +384,8 @@ class UsersController extends UtilityController {
             }else{
                 $search_data['gender'] = 'male';
             }
-            $search_data['min_age'] = $user->age-5;
-            $search_data['max_age'] = $user->age+5;
+            //$search_data['min_age'] = $user->age-15;
+            //$search_data['max_age'] = $user->age+15;
             
         }
         $result = $user->searchResults($search_data, $logged_in,0,30);
@@ -738,7 +738,11 @@ class UsersController extends UtilityController {
         }
         $user = new User();
         $favourites = $user->getMyFavouritesList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
-        return view('users.my-favourites')->with('favourites',$favourites['result'])->with('total',$favourites['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
+        if($favourites['result']->isEmpty()){
+            return view('users.no-favourites');
+        }else{
+            return view('users.activity-list')->with('url','users/my-favourites')->with('title','Favourites')->with('result',$favourites['result'])->with('total',$favourites['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
+        }
     }
     
     public function getMyBlocks(){
@@ -755,7 +759,11 @@ class UsersController extends UtilityController {
         }
         $user = new User();
         $blocks = $user->getMyBlockedList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
-        return view('users.my-block')->with('blocks',$blocks['result'])->with('total',$blocks['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
+        if($blocks['result']->isEmpty()){
+            return view('users.no-blocks');
+        }else{
+            return view('users.activity-list')->with('url','users/my-blocks')->with('title','Blocked users')->with('result',$blocks['result'])->with('total',$blocks['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
+        }
     }
     
     public function getAddInterest($id){
@@ -779,7 +787,11 @@ class UsersController extends UtilityController {
         }
         $user = new User();
         $interests = $user->getMyInterestList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
-        return view('users.my-interest')->with('interests',$interests['result'])->with('total',$interests['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
+        if($interests['result']->isEmpty()){
+            return view('users.no-activity');
+        }else{
+            return view('users.activity-list')->with('url','users/my-interest')->with('title','Interests')->with('result',$interests['result'])->with('total',$interests['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
+        }
     }
     
     public function getPopupProfile($user_id) {
@@ -788,5 +800,93 @@ class UsersController extends UtilityController {
         $user_details = $user->getUserSummary($user_id,$logged_in);
         //dd($user_details);
         return view('users.profile-popup')->with('user_details',$user_details);
+    }
+    
+    public function getMyViewedProfile(){
+        $inputs = Input::all();
+        if(isset($inputs['page']) && !empty($inputs['page'])){
+            $page_no = $inputs['page'];
+        }else{
+            $page_no = 0;
+        }
+        if(isset($inputs['order']) && !empty($inputs['order'])){
+            $order = $inputs['order'];
+        }else{
+            $order = '1';
+        }
+        $user = new User();
+        $viewed = $user->getMyViewedList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
+        //dd($viewed);
+        if($viewed['result']->isEmpty()){
+            return view('users.no-viewed');
+        }else{
+            return view('users.activity-list')->with('url','users/my-viewed-profile')->with('title','Profiles I Viewed')->with('result',$viewed['result'])->with('total',$viewed['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
+        }
+    }
+    
+    public function getInterestedMe(){
+        $inputs = Input::all();
+        if(isset($inputs['page']) && !empty($inputs['page'])){
+            $page_no = $inputs['page'];
+        }else{
+            $page_no = 0;
+        }
+        if(isset($inputs['order']) && !empty($inputs['order'])){
+            $order = $inputs['order'];
+        }else{
+            $order = '1';
+        }
+        $user = new User();
+        $viewed = $user->getIntrMeList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
+        //dd($viewed);
+        if($viewed['result']->isEmpty()){
+            return view('users.no-viewed');
+        }else{
+            return view('users.activity-list')->with('url','users/my-viewed-profile')->with('title','Profiles I Viewed')->with('result',$viewed['result'])->with('total',$viewed['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
+        }
+    }
+    
+    public function getFavouriteMe(){
+        $inputs = Input::all();
+        if(isset($inputs['page']) && !empty($inputs['page'])){
+            $page_no = $inputs['page'];
+        }else{
+            $page_no = 0;
+        }
+        if(isset($inputs['order']) && !empty($inputs['order'])){
+            $order = $inputs['order'];
+        }else{
+            $order = '1';
+        }
+        $user = new User();
+        $viewed = $user->getFavMeList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
+        //dd($viewed);
+        if($viewed['result']->isEmpty()){
+            return view('users.no-viewed');
+        }else{
+            return view('users.activity-list')->with('url','users/my-viewed-profile')->with('title','Profiles I Viewed')->with('result',$viewed['result'])->with('total',$viewed['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
+        }
+    }
+    
+    public function getViewedMe(){
+        $inputs = Input::all();
+        if(isset($inputs['page']) && !empty($inputs['page'])){
+            $page_no = $inputs['page'];
+        }else{
+            $page_no = 0;
+        }
+        if(isset($inputs['order']) && !empty($inputs['order'])){
+            $order = $inputs['order'];
+        }else{
+            $order = '1';
+        }
+        $user = new User();
+        $viewed = $user->getViewedMeList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
+        //dd($viewed);
+        if($viewed['result']->isEmpty()){
+            return view('users.no-viewed');
+        }else{
+            return view('users.activity-list')->with('url','users/my-viewed-profile')->with('title','Profiles I Viewed')->with('result',$viewed['result'])->with('total',$viewed['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
+        }
     }
 }

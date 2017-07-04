@@ -57,11 +57,14 @@
                                             <span class="tickbox"><input name="from_id[]" class="mid" type="checkbox" value="{{$row->from_id}}"></span>
                                             <a href="{{url('message/details/'.$row->from_id.'/'.$folder_id)}}">
                                                 <div class="mailIcon">
-
+                                                    @if(getReadStatus($row->from_id))
                                                     <img src="{{asset('image/unread1.gif')}}" title="New message - Click to read" class="tipMe" border="0">
+                                                    @else 
+                                                    <img src="{{asset('image/unread0.gif')}}" title="" class="tipMe" border="0">
+                                                    @endif
                                                 </div>
                                                 <div class="subject2 ">
-                                                    {{$row->subject}} <br><span class="msg"> {{$row->message}}
+                                                    {{config('constants.subject')[$row->subject]}} <br><span class="msg"> {{$row->message}}
                                                     </span>
                                                 </div>
                                             </a></div><a href="{{url('message/details/'.$row->from_id.'/'.$folder_id)}}">

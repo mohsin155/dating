@@ -101,3 +101,36 @@ function getUnreadCount(){
     $total = \App\Models\Message::where('to_id',$logged_in)->where('read_status',0)->where('deleted_at',NULL)->count(DB::raw('DISTINCT messages.from_id'));;
     return $total;
 }
+
+function getActivityList(){
+    $logged_in = \Illuminate\Support\Facades\Auth::user()->user_id;
+    $result = \App\Models\Notification::select('u.first_name','u.user_id','u.age','notifications.type','notifications.created_at',
+            DB::raw('(select photo_name from user_photos where user_id='.$logged_in.' limit 0,1) as photo'))
+            ->join('users as u','notifications.from_id','=','u.user_id')->where('notifications.to_id',$logged_in)->get();
+    //dd($result);
+    return $result;
+}
+
+function getReadStatus($from_id){
+    $logged_in = \Illuminate\Support\Facades\Auth::user()->user_id;
+    $unread = \App\Models\Message::where('to_id',$logged_in)->where('from_id',$from_id)->where('read_status',0)->where('deleted_at',NULL)->count(DB::raw('DISTINCT messages.from_id'));;
+    return $unread;
+}
+
+function newInterestCount(){
+    $logged_in = \Illuminate\Support\Facades\Auth::user()->user_id;
+    $total = \App\Models\ShowInterest::where('interest_to',$logged_in)->whereRaw('created_at > DATE_SUB(CURDATE(), INTERVAL 1 DAY)')->count();
+    return $total;
+}
+
+function newFavCount(){
+    $logged_in = \Illuminate\Support\Facades\Auth::user()->user_id;
+    $total = \App\Models\UserFavourite::where('favourite_to',$logged_in)->whereRaw('created_at > DATE_SUB(CURDATE(), INTERVAL 1 DAY)')->count();
+    return $total;
+}
+
+function newViewedCount(){
+    $logged_in = \Illuminate\Support\Facades\Auth::user()->user_id;
+    $total = \App\Models\UsersProfileviewed::where('viewed_id',$logged_in)->whereRaw('created_at > DATE_SUB(CURDATE(), INTERVAL 1 DAY)')->count();
+    return $total;
+}

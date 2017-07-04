@@ -324,4 +324,84 @@ class User extends Authenticatable
         $viewed = Models\UsersProfileviewed::updateOrCreate(['viewed_to' => $viewed_id, 'viewed_by' => $logged_id], ['viewed_to' => $viewed_id, 'viewed_by' => $logged_id]);
         $viewed->save();
     }
+    
+    public function getMyViewedList($user_id,$page_no=0,$limit=10,$order=0){
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,si.created_at as interested_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name,
+                 (select f.favourite_id from user_favourites as f where (f.favourite_to = users.user_id and f.favourite_by = "' . $user_id . '")) as favourite_id,(select si.interest_id from user_showinterest as si where (si.interest_to = users.user_id and si.interest_by = "' . $user_id . '")) as interest_id'))
+                ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
+                ->join('users_profileviewed as si', 'si.viewed_to', '=', 'users.user_id')
+                ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
+                //->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                ->where('si.viewed_by',$user_id);
+        $total = $query->count(DB::raw('DISTINCT users.user_id'));
+        $query->groupBy('users.user_id')->get();
+        if($order=='1'){
+            $query->orderBy('users.created_at','asc');
+        }
+        if($order=='3'){
+            $query->orderBy('users.last_login','asc');
+        }
+        $result = $query->skip($page_no*$limit)->limit($limit)->get();
+        return array('result'=>$result,'total'=>$total);
+    }
+    
+    public function getMyIntrMeList($user_id,$page_no=0,$limit=10,$order=0){
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,si.interest_id,si.created_at as interested_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name,
+                 (select f.favourite_id from user_favourites as f where (f.favourite_to = users.user_id and f.favourite_to = "' . $user_id . '")) as favourite_id'))
+                ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
+                ->join('user_showinterest as si', 'si.interest_to', '=', 'users.user_id')
+                ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
+                //->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                ->where('si.interest_to',$user_id);
+        $total = $query->count(DB::raw('DISTINCT users.user_id'));
+        $query->groupBy('users.user_id')->get();
+        if($order=='1'){
+            $query->orderBy('users.created_at','asc');
+        }
+        if($order=='3'){
+            $query->orderBy('users.last_login','asc');
+        }
+        $result = $query->skip($page_no*$limit)->limit($limit)->get();
+        return array('result'=>$result,'total'=>$total);
+    }
+    
+    public function getFavMeList($user_id,$page_no=0,$limit=10,$order=0){
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,f.favourite_id,f.created_at as fav_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name,
+                (select si.interest_id from user_showinterest as si where (si.interest_to = users.user_id and si.interest_to = "' . $user_id . '")) as interest_id'))
+                ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
+                ->join('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
+                ->where('f.favourite_to',$user_id);
+        $total = $query->count(DB::raw('DISTINCT users.user_id'));
+        $query->groupBy('users.user_id');
+        if($order=='1'){
+            $query->orderBy('users.created_at','asc');
+        }
+        if($order=='3'){
+            $query->orderBy('users.last_login','asc');
+        }
+        $result = $query->skip($page_no*$limit)->limit($limit)->get();
+        
+        return array('result'=>$result,'total'=>$total);
+    }
+    
+    public function getViewedMeList($user_id,$page_no=0,$limit=10,$order=0){
+        $query = User::select(DB::raw('um.gender as seeking,um.min_age,um.max_age,si.created_at as interested_at,users.*,ph.photo_name,(select name from countries as c where users.country=c.id) as country_name,(select name from states as s where users.state=s.id) as state_name,(select name from cities as c where users.city=c.id) as city_name,
+                 (select f.favourite_id from user_favourites as f where (f.favourite_to = users.user_id and f.favourite_to = "' . $user_id . '")) as favourite_id,(select si.interest_id from user_showinterest as si where (si.interest_to = users.user_id and si.interest_to = "' . $user_id . '")) as interest_id'))
+                ->leftJoin('user_photos as ph', 'users.user_id', '=', 'ph.user_id')
+                ->join('users_profileviewed as si', 'si.viewed_to', '=', 'users.user_id')
+                ->leftJoin('user_match as um', 'users.user_id','=','um.user_id')
+                //->leftJoin('user_favourites as f', 'f.favourite_to', '=', 'users.user_id')
+                ->where('si.viewed_to',$user_id);
+        $total = $query->count(DB::raw('DISTINCT users.user_id'));
+        $query->groupBy('users.user_id')->get();
+        if($order=='1'){
+            $query->orderBy('users.created_at','asc');
+        }
+        if($order=='3'){
+            $query->orderBy('users.last_login','asc');
+        }
+        $result = $query->skip($page_no*$limit)->limit($limit)->get();
+        return array('result'=>$result,'total'=>$total);
+    }
 }

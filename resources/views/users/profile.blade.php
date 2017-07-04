@@ -138,8 +138,7 @@
                                 <img src="{{url('image/btn-interest-up.gif')}}" data-hover="btn-interest-ov.gif" width="145" height="30" border="0" name="" id="interest-btn" class="rollover">
                                 @endif
                             </a>
-                            <img style="display:none;" data-sitetranslationpath="en" src="https://cdn.latinamericancupid.com/assets/images/sitewide/en/btn-mail-up.gif" class="launchRegistrationModal" data-hover="https://cdn.latinamericancupid.com/assets/images/sitewide/en/btn-mail-ov.gif" width="145" height="30" border="0" id="mail-btn" name="283218">
-                            <a href="/en/mail/showEmail?mid=283218" class="emailpopup" rel="283218" memname="Ximena"><img src="https://cdn.latinamericancupid.com/assets/images/sitewide/en/btn-mail-up.gif" data-hover="https://cdn.latinamericancupid.com/assets/images/sitewide/en/btn-mail-ov.gif" width="145" height="30" border="0" id="mail-btn" class="rollover" name="283218"></a>
+                            <a href="javascript:void(0);" class="emailpopup open-email-popup" data-userid="{{$user_details['user_id']}}"><img src="{{url('image/btn-mail-up.gif')}}" width="145" height="30" border="0" id="mail-btn" class="rollover" /></a>
                             <div class="clear"></div>
                         </div>
                         <div id="slider" style="-moz-border-radius: 7px; border-radius: 7px;">
@@ -167,19 +166,19 @@
                         <div id="buttons">
                             <a href="javascript:void(0);">
                                @if(!empty($user_details['favourite_id']))
-                               <img src="{{url('image/btn-favorites-select.gif')}}" width="135" height="30" border="0" id="favorites-rem" class="rollover"></a>
+                               <img src="{{url('image/btn-favorites-select.gif')}}" class="action-style" border="0" id="favorites-rem" class="rollover">
                                @else 
-                               <img src="{{url('image/btn-favorites-up.gif')}}" width="135" height="30" border="0" id="favorites-btn" class="rollover"></a>
+                               <img src="{{url('image/btn-favorites-up.gif')}}" class="action-style" border="0" id="favorites-btn" class="rollover">
                                @endif
-                               <br><br>
+                               </a>
                             <a href="javascript:void(0);">
                                 @if(!empty($user_details['block_id']))
-                                <img src="{{url('image/btn-blockuser-select.gif')}}"  width="135" height="30" border="0" id="blockuser-rem" class="rollover" style="margin-top:3px">
+                                <img src="{{url('image/btn-blockuser-select.gif')}}"  class="action-style" id="blockuser-rem" class="rollover" style="margin-top:3px">
                                 @else
-                                <img src="{{url('image/btn-blockuser-up.gif')}}" width="135" height="30" border="0" id="blockuser-btn" class="rollover"></a>
+                                <img src="{{url('image/btn-blockuser-up.gif')}}" class="action-style" border="0" id="blockuser-btn" class="rollover">
                                 @endif
                             </a>
-                            <a href="#" class=""><img src="{{url('image/btn-report-up.gif')}}" name="report" width="135" height="30" border="0" id="report-btn" class="rollover" style="margin-top:3px"></a>
+                            <a href="#" class=""><img src="{{url('image/btn-report-up.gif')}}" name="report" class="action-style" border="0" id="report-btn" class="rollover" style="margin-top:3px"></a>
                         </div>
                         <div id="cupidwords">
                             <table width="135" border="0" cellpadding="0" cellspacing="0" dir="ltr">

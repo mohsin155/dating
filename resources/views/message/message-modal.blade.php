@@ -1,7 +1,7 @@
             <div class="modal-body" style="padding: 0px;">
                 <div id="mail">
                     <div id="mailboxhdr">
-                        <div id="mailheading"><div class="mailheading-cell"><h1>Send a message to laura</h1></div></div>
+                        <div id="mailheading"><div class="mailheading-cell"><h1>Send a message to {{$user_details->first_name}}</h1></div></div>
                     </div>
                     <!--<div id="senthdr">
                         <h1 id="mailheading-subject" class="mailheading">
@@ -15,6 +15,7 @@
                         </div>
                         <div class="clear"></div>
                     </div>-->
+                    <input name="user_id" value="{{$user_details->user_id}}" type="hidden" />
                     <div class="messages" dir="ltr">
                         <div id="msgprofile" class="clearfix" dir="ltr">
                             <span class="msgpic">
@@ -22,7 +23,7 @@
                                     <div class="memberpicwidget4 morePhotos" title="">
                                         <h3><span class="memberpicwidget4">
                                             </span></h3>
-                                        <?php $user_photo = !empty($photos)?url('uploads').'/' . $user_details->user_id.'/'.$photos[0]->photo_name:url('image/AffinityPhoto2.gif');?>
+                                        <?php $user_photo = !($user_details->photos->isEmpty())?url('uploads').'/' . $user_details->user_id.'/'.$user_details->photos[0]->photo_name:url('image/AffinityPhoto2.gif');?>
                                         <span class="widget-pic" style="background-image:url({{$user_photo}});"></span>
                                     </div>
                                 </a>
@@ -41,9 +42,27 @@
                                 </div>
                             </div>
                             <span class="msgbtns">
-                                <a href="#"><img src="http://localhost/dating/public/image/btn-blockuser-up.gif" data-hover="#" name="" border="0" id="blockuser-btn-email" class="rollover"></a>
-                                <a href="#"><img src="http://localhost/dating/public/image/btn-favorites-up.gif" data-hover="#" name="080382EEC2C043B4459D0A" border="0" id="favorites-btn-email" class="rollover" style="margin-top:5px"></a>
-                                <a href="#"><img src="http://localhost/dating/public/image/btn-interest-up.gif" data-hover="#" border="0" name="080382EEC2C043B4459D0A" id="interest-btn-email" class="rollover" style="margin-top:5px"></a>
+                                <a href="javascript:void(0);">
+                               @if(!empty($user_details['favourite_id']))
+                               <img src="{{url('image/btn-favorites-select.gif')}}" class="action-style" border="0" id="favorites-rem" class="rollover">
+                               @else 
+                               <img src="{{url('image/btn-favorites-up.gif')}}" class="action-style" border="0" id="favorites-btn" class="rollover">
+                               @endif
+                               </a>
+                            <a href="javascript:void(0);">
+                                @if(!empty($user_details['block_id']))
+                                <img src="{{url('image/btn-blockuser-select.gif')}}"  class="action-style" id="blockuser-rem" class="rollover" style="margin-top:3px">
+                                @else
+                                <img src="{{url('image/btn-blockuser-up.gif')}}" class="action-style" border="0" id="blockuser-btn" class="rollover">
+                                @endif
+                            </a>
+                            <a href="javascript:void(0);">
+                                @if(!empty($user_details['interest_id']))
+                                <img src="{{url('image/btn-interest-select-popup.gif')}}"  class="action-style" class="rollover" style="margin-top:3px">
+                                @else
+                                <img src="{{url('image/btn-interest-up-popup.gif')}}" class="action-style" border="0" id="interest-btn" class="rollover"></a>
+                                @endif
+                            </a>
                             </span>
                         </div>
                     </div>
@@ -83,7 +102,7 @@
                     <div id="reply" class="clearfix">
                         <form id="emailreplyform" method="post" action="" autocomplete="off">
                             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                            <input type="hidden" id="currentMostRecentSubject" name="folder_id" value="{{!empty($msg_details)?$msg->folder_id:''}}">
+                            <input type="hidden" id="currentMostRecentSubject" name="folder_id" value="{{!($msg_details->isEmpty())?$msg_details[0]->folder_id:''}}">
                             <input type="hidden" name="to" value="{{$user_details->user_id}}">
                             <div id="replyform">
                                 <ul>
@@ -143,4 +162,25 @@
         }
     });
 });
+
+$('body').on('click','#favorites-btn',function(){
+        $(".bg-loader").addClass("show");
+        users.addFavourite("#favorites-btn","profile",$("input[name=user_id]").val());
+    });
+    $('body').on('click','#favorites-rem',function(){
+        $(".bg-loader").addClass("show");
+        users.removeFavourite("#favorites-rem","profile",$("input[name=user_id]").val());
+    });
+    $('body').on('click','#blockuser-btn',function(){
+        $(".bg-loader").addClass("show");
+        users.blockUser("#blockuser-btn","profile",$("input[name=user_id]").val());
+    });
+    $('body').on('click','#blockuser-rem',function(){
+        $(".bg-loader").addClass("show");
+        users.unblockUser("#blockuser-rem","profile",$("input[name=user_id]").val());
+    });
+    $('body').on('click','#interest-btn',function(){
+        $(".bg-loader").addClass("show");
+        users.addInterest("#interest-btn","profile",$("input[name=user_id]").val());
+    });
                     </script>
