@@ -52,7 +52,7 @@
                     <?php $i++; ?>
                     <div class="col-md-12 pd-0">
                         <div class="col-md-3 tab-color">
-                            <span>{{$price->duration}} Months</span>
+                            <span>{{$price->duration_text}}</span>
                         </div>
                         <div class="col-md-9">
                             <div class="col-md-1 pd-t-10">
@@ -64,7 +64,7 @@
                                         $ {{$price->monthly_price}} USD
                                     </span>
                                     <span class="month">
-                                        per month
+                                        per <?php if($price->duration==7){echo "week";}elseif($price->duration==1){echo "day";}else{echo "month";}?>
                                     </span>
                                 </strong>
                                 <div class="inner-text">
@@ -72,9 +72,9 @@
                                     <span > $ {{$price->amount}} USD</span>
                                 </div>
                             </div>
-                            <div class="col-md-3 pd-0">
+                            <!--<div class="col-md-3 pd-0">
                                 <button class="btn btn-primary btn-purple" type="submit">SAVE 64%</button>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     @endif
@@ -89,7 +89,7 @@
                     <?php $i++; ?>
                     <div class="col-md-12 pd-0">
                         <div class="col-md-3 tab-color">
-                            <span>{{$price->duration}} Months</span>
+                            <span>{{$price->duration_text}}</span>
                         </div>
                         <div class="col-md-9">
                             <div class="col-md-1 pd-t-10">
@@ -101,7 +101,7 @@
                                         $ {{$price->monthly_price}} USD
                                     </span>
                                     <span class="month">
-                                        per month
+                                        per <?php if($price->duration==7){echo "week";}elseif($price->duration==1){echo "day";}else{echo "month";}?>
                                     </span>
                                 </strong>
                                 <div class="inner-text">
@@ -109,9 +109,9 @@
                                     <span > $ {{$price->amount}} USD</span>
                                 </div>
                             </div>
-                            <div class="col-md-3 pd-0">
+                            <!--<div class="col-md-3 pd-0">
                                 <button class="btn btn-primary btn-purple" type="submit">SAVE 64%</button>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     @endif

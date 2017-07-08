@@ -37,3 +37,7 @@ Route::get('/updateapp', function()
     \Artisan::call('dump-autoload');
     echo 'dump-autoload complete';
 });
+
+Route::get('/chat',function(){
+   return view('message.chat'); 
+});

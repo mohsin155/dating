@@ -23,6 +23,26 @@
                                         </div>
                                 </div>
                                 <p><a href="#" class="show-membership"><strong>Show historic membership</strong></a></p>
+                                <table class="membership">
+                                    <tr>
+                                        <th>Grade</th>
+                                        <th>Length</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
+                                        <th>Paid on</th>
+                                    </tr>
+                                    @if(!($billing->isEmpty()))
+                                    @foreach($billing as $row)
+                                    <tr>
+                                        <td>{{$row->subscription_type==1?'Gold':'Platinum'}}</td>
+                                        <td>{{$row->duration_text}}</td>
+                                        <td>{{$row->amount}}</td>
+                                        <td>{{$row->currency}}</td>
+                                        <td>{{date('Y-m-d',strtotime($row->created_at))}}</td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
+                                </table>
                             </div>
                         </div>
                    

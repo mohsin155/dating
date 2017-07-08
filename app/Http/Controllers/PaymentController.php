@@ -59,6 +59,13 @@ class PaymentController extends UtilityController {
             $responseNvp = $this->paypalRequest($data);
             //dd($responseNvp);
             if (isset($responseNvp['ACK']) && $responseNvp['ACK'] == 'Success') {
+                \App\Models\Billing::insert(array(
+                    'transaction_id'=>$responseNvp['TOKEN'],
+                    'payment_type'=>'paypal',
+                    'payment_status'=>'pending',
+                    'pricing_id'=>$pricing_id,
+                    'user_id'=>Auth::user()->user_id,
+                    'created_at'=>date('Y-m-d H:i:s')));
                 $query = array(
                     'cmd' => '_express-checkout',
                     'token' => $responseNvp['TOKEN']
@@ -106,7 +113,12 @@ class PaymentController extends UtilityController {
     
     public function getComplete(){
         $inputs = Input::all();
-        dd($inputs);
+        //dd($inputs);
+        $billing = \App\Models\Billing::where('transaction_id',$inputs['token'])->first();
+        $subs_end = date('Y-m-d H:i:s', strtotime($billing->created_at . ' +'.$billing->duration.' days'));
+        \App\Models\Billing::where('transaction_id',$inputs['token'])->update(['payment_status'=>'completed']);
+        User::where('user_id',Auth::user()->user_id)->update(['subscription_end'=>$subs_end,'subscription_type'=>$billing->subscription_type]);
+        return Redirect::to(url('users/billing'));
     }
 
 }

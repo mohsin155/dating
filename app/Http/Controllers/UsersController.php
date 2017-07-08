@@ -224,7 +224,9 @@ class UsersController extends UtilityController {
     }
 
     public function getBilling() {
-        return view('users.billing');
+        $billing = \App\Models\Billing::join('subscription_pricing as sp','user_billing.pricing_id','=','sp.pricing_id')->where('user_id',Auth::user()->user_id)->where('payment_status','completed')->get();
+        //dd($billing);
+        return view('users.billing')->with('billing',$billing);
     }
 
     public function getNotification() {
