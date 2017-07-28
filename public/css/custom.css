@@ -964,6 +964,7 @@ a, a:hover, a:visited {
     top: -5px;
     position: relative;
     padding-left: 100px;
+    clear: both;
 }
 .content-wrapper-inner {
         background-color: #fff;

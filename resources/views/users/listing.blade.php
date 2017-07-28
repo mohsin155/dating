@@ -175,7 +175,7 @@
                                     <li><a href="#">In My Area</a></li>
                                     <li><a href="#">New Members</a></li>
 
-                                    <li><a href="#">Women Of Latin America Gallery</a></li>
+                                    <li><a href="#">Verified Christian Women Photo Gallery</a></li>
 
                                 </ul>
                             </div>
@@ -208,17 +208,21 @@
                                             <div class="actionicons clearfix" style="display: none;">
                                                 <ul>
 
-                                                    <a title="click here to view profile" href="/en/profile/showProfile/ID/1018971">
+                                                    <a title="click here to view profile" href="{{url('users/profile/'.$user->user_id)}}">
                                                         <li class="iconstandard"></li>
                                                     </a>
 
 
                                                     <a style="display:none;" data-sitetranslationpath="en" class="launchRegistrationModal" href="javascript: void(0);"><li class="iconmail"></li></a>
-
+                                                    @if(Auth::user()->subscription_type != 0 && strtotime(Auth::user()->subscription_end) > strtotime('now'))
                                                     <a class="emailpopup open-email-popup" title="Send {{$user->first_name}} a message" href="javascript:;" data-userid="{{$user->user_id}}" >
                                                         <li class="iconmail"></li>
                                                     </a>
-
+                                                    @else
+                                                    <a class="emailpopup" title="Send {{$user->first_name}} a message" href="{{url('payment/subscription')}}" data-userid="{{$user->user_id}}" >
+                                                        <li class="iconmail"></li>
+                                                    </a>
+                                                    @endif
                                                     @if(empty($user->interest_id))
                                                     <li class="iconinterest sendinterest" name="" data-altclass="iconinterestsent" data-msid="" data-imageurl="" data-name="{{$user->first_name}}" data-id="{{$user->user_id}}"><a href="javascript:;" title="Show interest in {{$user->first_name}}"></a></li>
                                                     @else

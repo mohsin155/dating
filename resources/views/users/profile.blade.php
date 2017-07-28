@@ -105,7 +105,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td id="td3" class="beige" width="31%" align="left">Religion:</td>
+                                        <td id="td3" class="beige" width="31%" align="left">Denomination:</td>
                                         <td id="td3" class="ag_45" width="49%">
                                             {{$user_details['religion']}}
                                         </td>
@@ -138,7 +138,11 @@
                                 <img src="{{url('image/btn-interest-up.gif')}}" data-hover="btn-interest-ov.gif" width="145" height="30" border="0" name="" id="interest-btn" class="rollover">
                                 @endif
                             </a>
+                            @if(Auth::user()->subscription_type != 0 && strtotime(Auth::user()->subscription_end) > strtotime('now'))
                             <a href="javascript:void(0);" class="emailpopup open-email-popup" data-userid="{{$user_details['user_id']}}"><img src="{{url('image/btn-mail-up.gif')}}" width="145" height="30" border="0" id="mail-btn" class="rollover" /></a>
+                            @else
+                            <a href="{{url('payment/subscription')}}" class="emailpopup"><img src="{{url('image/btn-mail-up.gif')}}" width="145" height="30" border="0" id="mail-btn" class="rollover" /></a>
+                            @endif
                             <div class="clear"></div>
                         </div>
                         <div id="slider" style="-moz-border-radius: 7px; border-radius: 7px;">
@@ -758,13 +762,13 @@
                                             <td id="td1" width="1%" align="center" class="beige">
 
                                             </td>
-                                            <td id="td1" width="31%" class="ag_52">
+                                            <!--<td id="td1" width="31%" class="ag_52">
                                                 {{$user_details['star_sign']}} 
-                                            </td>
+                                            </td>-->
 
-                                            <td id="td1" width="36%" class="ag_52" align="left">
+                                            <!--<td id="td1" width="36%" class="ag_52" align="left">
                                                 <em>{{(empty($match_details))?'Any':$match_details['star_sign']}}</em>
-                                            </td>
+                                            </td>-->
                                         </tr>
                                         <tr>
                                             <td id="profiledetailhdr2" align="left" colspan="5"><em>Personal&nbsp;</em></td>

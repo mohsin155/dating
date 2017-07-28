@@ -3,7 +3,7 @@
 @extends('layouts.main')
 
 @section('content')
-
+<div id='app'>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -14,10 +14,11 @@
                     <chat-messages :messages="messages"></chat-messages>
                 </div>
                 <div class="panel-footer">
-                    <chat-for cv-on:messagesent="addMessage" :user="{{ Auth::user() }}"></chat-form>
+                    <chat-form v-on:messagesent="addMessage" :user="{{ Auth::user() }}"></chat-form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

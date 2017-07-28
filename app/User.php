@@ -33,6 +33,10 @@ class User extends Authenticatable
         return $this->hasMany('\App\Models\UserPhotos', 'user_id', 'user_id');
     }
     
+        public function messages()
+    {
+      return $this->hasMany('\App\Models\Messages', 'to_id', 'user_id');
+    }
     public function getUserDetails($user_id,$logged){
         $result = User::select(DB::raw('users.*,p.profile_id,p.dob_month,p.dob_year,p.hair_color,p.hair_length,p.hair_type,p.eye_color,p.eye_wear,p.height,p.weight,p.body_type,p.ethnicity,p.facial_hair,p.best_feature,p.body_art,
                 p.appearance,p.drink,p.smoke,p.marital_status,p.have_children,p.no_children,p.oldest_child,p.youngest_child,p.more_child,p.have_pets,p.occupation,p.employment,p.income,p.home_type,p.living_situation,p.relocate,

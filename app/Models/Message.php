@@ -7,7 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class Message extends Model {
     public $timestamps = true;
-    
+    protected $primaryKey = 'message_id';
+public $fillable = ['to_id', 'message'];
+    public function user()
+{
+  return $this->belongsTo('\App\Models\User', 'user_id', 'to_id');
+}
     public function getConversation($to, $from){
         $result = Message::whereRaw('(from_id = '.$from.' and to_id = '.$to.') or (from_id = '.$to.' and to_id = '.$from.')')
                 ->orderBy('created_at','asc')->get();

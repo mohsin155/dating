@@ -141,7 +141,6 @@
             </div>
                 <script>
                     $("#sendEmailBtn").on('click',function(){
-    alert('asdas');
     var user_id = $('#emailreplyform').find("input[name=to]").val();
     var basepath = $("input[name=basepath]").val();
     $.ajax({

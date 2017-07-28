@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="comments-panel">
+                <!--<div id="comments-panel">
                     <div id="">
                         <h1>Start a conversation with {{$user_details->first_name}} and say hi!</h1>
                     </div>  
@@ -76,13 +76,25 @@
 
                     <form id="commentform">
                         <textarea id="comment" class="grey-border" placeholder="Write a comment...">I would love to get to know you. I'm looking for a serious relationship. What about you?</textarea>
-                        <button id="addcomment" class="greyShinyButton" name="1258028" data-profilegrade="1" data-membergrade="1" data-showmessage="2">
+                        @if(Auth::user()->subscription_type != 0 && strtotime(Auth::user()->subscription_end) > strtotime('now'))
+                        <button id="sendEmailBtn" class="greyShinyButton">
                             <span class="iconbtn iconarrow" dir="ltr"></span>
+                            
                             <span class="send">Send</span>
                             <span class="sending" style="display: none">Sending...</span>
                         </button>
+                        @else
+                        <a href="{{url('payment/subscription')}}">
+                        <button class="greyShinyButton">
+                            <span class="iconbtn iconarrow" dir="ltr"></span>
+                            
+                            <span class="send">Send</span>
+                            <span class="sending" style="display: none">Sending...</span>
+                        </button>
+                        </a>
+                        @endif
                     </form>
-                </div>
+                </div>-->
             </div>
             <div class="modal-footer">
 

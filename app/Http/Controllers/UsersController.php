@@ -458,7 +458,7 @@ class UsersController extends UtilityController {
         $user_profile->eye_color = $inputs['eye_color'];
         $user_profile->eye_wear = $inputs['eye_wear'];
         $user_profile->height = $inputs['height'];
-        $user_profile->weight = $inputs['weight'];
+        //$user_profile->weight = $inputs['weight'];
         $user_profile->body_type = $inputs['body_type'];
         $user_profile->ethnicity = $inputs['ethnicity'];
         $user_profile->facial_hair = $inputs['facial_hair'];
@@ -491,7 +491,7 @@ class UsersController extends UtilityController {
         $user_profile->religious_values = $inputs['religious_values'];
         $user_profile->home_type = $inputs['home_type'];
         $user_profile->living_situation = $inputs['living_situation'];
-        $user_profile->star_sign = $inputs['star_sign'];
+        //$user_profile->star_sign = $inputs['star_sign'];
         $user_profile->profile_heading = $inputs['profile_heading'];
         $user_profile->about_yourself = $inputs['about_yourself'];
         $user_profile->partner = $inputs['partner'];
@@ -569,8 +569,8 @@ class UsersController extends UtilityController {
         $user_match->city = $inputs['city'];
         $user_match->min_height = $inputs['min_height'];
         $user_match->max_height = $inputs['max_height'];
-        $user_match->min_weight = $inputs['min_weight'];
-        $user_match->max_weight = $inputs['max_weight'];
+        //$user_match->min_weight = $inputs['min_weight'];
+        //$user_match->max_weight = $inputs['max_weight'];
         $user_match->hair_color = isset($inputs['hair_color'])?serialize($inputs['hair_color']):'';
         $user_match->hair_length = isset($inputs['hair_length'])?serialize($inputs['hair_length']):'';
         $user_match->hair_type = isset($inputs['hair_type'])?serialize($inputs['hair_type']):'';
@@ -607,7 +607,7 @@ class UsersController extends UtilityController {
         $user_match->religious_values = isset($inputs['religious_values'])?serialize($inputs['religious_values']):'';
         $user_match->home_type = isset($inputs['home_type'])?serialize($inputs['home_type']):'';
         $user_match->living_situation = isset($inputs['living_situation'])?serialize($inputs['living_situation']):'';
-        $user_match->star_sign = isset($inputs['star_sign'])?serialize($inputs['star_sign']):'';
+        //$user_match->star_sign = isset($inputs['star_sign'])?serialize($inputs['star_sign']):'';
        
          $user_match->save();
         return Redirect::to('users/edit-match')->with('success',trans('messages.match_updated'));
@@ -676,7 +676,7 @@ class UsersController extends UtilityController {
         $user_details['spanish_ability'] = $this->master_array[$user_details['spanish_ability']];
         $user_details['religion'] = $this->master_array[$user_details['religion']];
         $user_details['religious_values'] = $this->master_array[$user_details['religious_values']];
-        $user_details['star_sign'] = $this->master_array[$user_details['star_sign']];
+        //$user_details['star_sign'] = $this->master_array[$user_details['star_sign']];
         
         if(!empty($user_details['have_pets']))
         $user_details['have_pets'] = implode(array_map(array($this, 'getFormLabel'),unserialize($user_details['have_pets'])?unserialize($user_details['have_pets']):array()),',');
@@ -762,7 +762,7 @@ class UsersController extends UtilityController {
         $user = new User();
         $blocks = $user->getMyBlockedList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
         if($blocks['result']->isEmpty()){
-            return view('users.no-blocks');
+            return view('users.no-blocked');
         }else{
             return view('users.activity-list')->with('url','users/my-blocks')->with('title','Blocked users')->with('result',$blocks['result'])->with('total',$blocks['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
         }
@@ -790,7 +790,7 @@ class UsersController extends UtilityController {
         $user = new User();
         $interests = $user->getMyInterestList(Auth::user()->user_id,$page_no,config('constants.match_per_page'),$order);
         if($interests['result']->isEmpty()){
-            return view('users.no-activity');
+            return view('users.no-interest');
         }else{
             return view('users.activity-list')->with('url','users/my-interest')->with('title','Interests')->with('result',$interests['result'])->with('total',$interests['total'])->with('page_no',$page_no)->with('order',$order)->with('per_page',config('constants.match_per_page'));
         }

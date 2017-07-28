@@ -109,6 +109,9 @@ window.fbAsyncInit = function () {
                                 <li><a href="javascript:;" id="Swedish" onclick="translate(this.id);">Svenska<span>
                                         </span>
                                         <img src="image/flags/swedish.gif" alt="" /></a> </li>
+                                <li><a href="javascript:;" id="Spanish" onclick="translate(this.id);">Español<span>
+                                        </span>
+                                        <img src="image/flags/spanish.gif" alt="" /></a> </li>
                             </ul>
                                 </li>
                             </ul>

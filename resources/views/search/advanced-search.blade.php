@@ -198,7 +198,7 @@
                             @endforeach
                             </select>
                         </div>
-                        <h3>Hair Color : <?php $hc = empty($user_match)?$user_match->hair_color:'Any';?>{{$hc}}</h3>
+                        <h3>Hair Color : <?php $hc = !empty($user_match)?$user_match->hair_color:'Any';?>{{$hc}}</h3>
                          <div class="form-group">
                         <div class="hair-length pull-left">
 
@@ -251,7 +251,7 @@
                                 @endfor
                             </select>
                         </div>
-                        <h3>Weight : {{!empty($user_match)?getWeight($user_match->min_weight,Auth::user()->metric):'Any'}}</h3>
+                        <!--<h3>Weight : {{!empty($user_match)?getWeight($user_match->min_weight,Auth::user()->metric):'Any'}}</h3>
                         <div class="form-group">
                             <?php //echo $user_match->getOriginal()['min_weight'];exit;?>
                             <select class="form-control" name="min_weight">
@@ -267,7 +267,7 @@
                                 <option value="{{$i}}" {{!empty($user_match) && $i==$user_match->getOriginal()['max_weight']?'selected':''}} >{{getWeight($i,Auth::user()->metric)}}</option>
                                 @endfor
                             </select>
-                        </div>
+                        </div>-->
                         <h3>Body type : <?php $bd = !empty($user_match)?$user_match->body_type:'Any';?>{{$bd}}</h3>
                         <div class="form-group">
                             <input type="checkbox" name="body_type[]" value="" {{$bd=='Any'?'checked':''}}  />Any
@@ -452,13 +452,12 @@
 
                             <select class="form-control" name="income">
                                 <option value="0">Any</option>
-                                <option value="1" {{!empty($user_match) && $user_match->getOriginal()['income']==1?'selected':''}}>$0 - $30,000 (USD)</option>
-                                <option value="2" {{!empty($user_match) && $user_match->getOriginal()['income']==2?'selected':''}} >$30,001 - $60,000 (USD)</option>
-                                <option value="3" {{!empty($user_match) && $user_match->getOriginal()['income']==3?'selected':''}}>$60,001 - $120,000 (USD)</option>
-                                <option value="4" {{!empty($user_match) && $user_match->getOriginal()['income']==4?'selected':''}}>$120,001 - $180,000 (USD)</option>
-                                <option value="5" {{!empty($user_match) && $user_match->getOriginal()['income']==5?'selected':''}}>$180,001 - $240,000 (USD)</option>
-                                <option value="6" {{!empty($user_match) && $user_match->getOriginal()['income']==6?'selected':''}}>$240,001 - $600,000+ (USD)</option>
-                                <option value="7" {{!empty($user_match) && $user_match->getOriginal()['income']==7?'selected':''}}>Prefer not to say</option>
+                                <option value="1" {{!empty($user_match) && $user_match->getOriginal()['income']==1?'selected':''}}>Less than $25,000 (USD)</option>
+                                <option value="2" {{!empty($user_match) && $user_match->getOriginal()['income']==2?'selected':''}} >$25,000-$50,000 (USD)</option>
+                                <option value="3" {{!empty($user_match) && $user_match->getOriginal()['income']==3?'selected':''}}>$50,000-$75,000 (USD)</option>
+                                <option value="4" {{!empty($user_match) && $user_match->getOriginal()['income']==4?'selected':''}}>$75,000-$100,000 (USD)</option>
+                                <option value="5" {{!empty($user_match) && $user_match->getOriginal()['income']==5?'selected':''}}>$100,000-$125,000 (USD)</option>
+                                <option value="6" {{!empty($user_match) && $user_match->getOriginal()['income']==6?'selected':''}}>Over $125,000 (USD)</option>
                             </select>
                         </div>
                         <h3> Home type : <?php $ht = !empty($user_match)?$user_match->home_type:'Any';?>{{$ht}}</h3>
@@ -561,7 +560,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <h3>Religion : {{!empty($user_match)?$user_match->religion:'Any'}}</h3>
+                        <h3>Denomination : {{!empty($user_match)?$user_match->religion:'Any'}}</h3>
                         <div class="form-group">
 
                             <select class="form-control" name="religion">
@@ -582,7 +581,7 @@
                             </div>
                             @endforeach
                         </div>
-                        <h3 class="star-label">Star sign : <?php $ss = !empty($user_match)?$user_match->star_sign:'Any';?>{{$ss}}</h3>
+                        <!--<h3 class="star-label">Star sign : <?php $ss = !empty($user_match)?$user_match->star_sign:'Any';?>{{$ss}}</h3>
                         <div class="form-group">
                               <div class="hair-length pull-left">
                             <input type="checkbox" name="star_sign[]" value="" {{$ss=='Any'?'checked':''}}/>Any
@@ -592,7 +591,7 @@
                                 <input type="checkbox" name="star_sign[]" value="{{$row['value']}}"  {{!empty($user_match) && in_array($row['value'],unserialize($user_match->getOriginal()['star_sign']))?'checked':''}}/>{{$row['label']}}  
                             </div>
                             @endforeach
-                        </div>
+                        </div>-->
                     </div>
                     <div class="form-group">
                         <label>Save search:</label>

@@ -134,3 +134,8 @@ function newViewedCount(){
     $total = \App\Models\UsersProfileviewed::where('viewed_id',$logged_in)->whereRaw('created_at > DATE_SUB(CURDATE(), INTERVAL 1 DAY)')->count();
     return $total;
 }
+
+
+function getSubscription(){
+    
+}

@@ -102,8 +102,8 @@ class SearchController extends UtilityController {
                 $user_search->city = $inputs['city'];
                 $user_search->min_height = $inputs['min_height'];
                 $user_search->max_height = $inputs['max_height'];
-                $user_search->min_weight = $inputs['min_weight'];
-                $user_search->max_weight = $inputs['max_weight'];
+                //$user_search->min_weight = $inputs['min_weight'];
+                //$user_search->max_weight = $inputs['max_weight'];
                 $user_search->hair_color = isset($inputs['hair_color']) ? serialize($inputs['hair_color']) : '';
                 $user_search->hair_length = isset($inputs['hair_length']) ? serialize($inputs['hair_length']) : '';
                 $user_search->hair_type = isset($inputs['hair_type']) ? serialize($inputs['hair_type']) : '';
@@ -140,7 +140,7 @@ class SearchController extends UtilityController {
                 $user_search->religious_values = isset($inputs['religious_values']) ? serialize($inputs['religious_values']) : '';
                 $user_search->home_type = isset($inputs['home_type']) ? serialize($inputs['home_type']) : '';
                 $user_search->living_situation = isset($inputs['living_situation']) ? serialize($inputs['living_situation']) : '';
-                $user_search->star_sign = isset($inputs['star_sign']) ? serialize($inputs['star_sign']) : '';
+                //$user_search->star_sign = isset($inputs['star_sign']) ? serialize($inputs['star_sign']) : '';
                 $user_search->search_name = $inputs['search_name'];
                 $user_search->save();
                 return Redirect::to('search/advanced-search')->with('success', trans('messages.search_saved'));
@@ -202,7 +202,7 @@ class SearchController extends UtilityController {
         //$user_match->education = unserialize($user_match->education);
         $user_match->languages = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->languages)), ','));
         $user_match->religious_values = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->religious_values)), ','));
-        $user_match->star_sign = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->star_sign)), ','));
+        //$user_match->star_sign = ucfirst(implode(array_map(array($this, 'getFormLabel'), unserialize($user_match->star_sign)), ','));
         $user_match->english_ability = ucfirst(implode(array_map(array($this, 'getFormLabel'), [$user_match->english_ability]), ','));
         $user_match->portugese_ability = ucfirst(implode(array_map(array($this, 'getFormLabel'), [$user_match->portugese_ability]), ','));
         $user_match->spanish_ability = ucfirst(implode(array_map(array($this, 'getFormLabel'), [$user_match->spanish_ability]), ','));
@@ -309,8 +309,8 @@ class SearchController extends UtilityController {
             'eye_wear' => isset($inputs['eye_wear']) ? serialize($inputs['eye_wear']) : '',
             'min_height' => $inputs['min_height'],
             'max_height' => $inputs['max_height'],
-            'min_weight' => $inputs['min_weight'],
-            'max_weight' => $inputs['max_weight'],
+            //'min_weight' => $inputs['min_weight'],
+            //'max_weight' => $inputs['max_weight'],
             'body_type' => isset($inputs['body_type']) ? serialize($inputs['body_type']) : '',
             'ethnicity' => isset($inputs['ethnicity']) ? serialize($inputs['ethnicity']) : '',
             'best_feature' => isset($inputs['best_feature']) ? serialize($inputs['best_feature']) : '',
@@ -340,7 +340,7 @@ class SearchController extends UtilityController {
             'religious_values' => isset($inputs['religious_values']) ? serialize($inputs['religious_values']) : '',
             'home_type' => isset($inputs['home_type']) ? serialize($inputs['home_type']) : '',
             'living_situation' => isset($inputs['living_situation']) ? serialize($inputs['living_situation']) : '',
-            'star_sign' => isset($inputs['star_sign']) ? serialize($inputs['star_sign']) : '',
+            //'star_sign' => isset($inputs['star_sign']) ? serialize($inputs['star_sign']) : '',
             'search_name' => $search_name,
             'type' => $type,
         );
@@ -399,7 +399,7 @@ class SearchController extends UtilityController {
         //$search_data->education = unserialize($search_data->education);
         $search_data->languages = unserialize($search_data->languages);
         $search_data->religious_values = unserialize($search_data->religious_values);
-        $search_data->star_sign = unserialize($search_data->star_sign);
+        //$search_data->star_sign = unserialize($search_data->star_sign);
         return $search_data;
     }
     

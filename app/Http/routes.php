@@ -38,6 +38,24 @@ Route::get('/updateapp', function()
     echo 'dump-autoload complete';
 });
 
-Route::get('/chat',function(){
-   return view('message.chat'); 
+Route::get('/chat','MessageController@chat');
+
+Route::get('messages', 'MessageController@fetchMessages');
+Route::post('messages', 'MessageController@sendMessage');
+
+
+Route::get('/about-us',function(){
+    return view('about-us');
+});
+
+Route::get('/safety-tips',function(){
+    return view('safety-tips');
+});
+
+Route::get('/terms-condition',function(){
+    return view('terms-conditions');
+});
+
+Route::get('/privacy-policy',function(){
+    return view('privacy-policy');
 });

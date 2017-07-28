@@ -28,7 +28,7 @@ use App\Models\UserBlock;
 use App\Models\ShowInterest;
 use App\Models\UserSetting;
 use App\Models\Message;
-
+use App\Events\MessageSent;
 class MessageController extends UtilityController {
 
     public function __construct() {
@@ -153,4 +153,29 @@ class MessageController extends UtilityController {
             "to_id"=>$inputs["to"],"folder_id"=>$inputs['folder_id'],"created_at"=>date('Y-m-d h:i:s', strtotime('now'))));
         return;
     }
+    
+    public function chat() {
+        return view('message.chat');
+    }
+    public function fetchMessages()
+{
+  return Message::with('user')->get();
+}
+
+/**
+ * Persist message to database
+ *
+ * @param  Request $request
+ * @return Response
+ */
+public function sendMessage(Request $request)
+{
+  $user = Auth::user();
+
+  $message = $user->messages()->create([
+    'message' => $request->input('message')
+  ]);
+broadcast(new MessageSent($user, $message))->toOthers();
+  return ['status' => 'Message Sent!'];
+}
 }

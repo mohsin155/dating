@@ -125,7 +125,7 @@
                             @endfor
                         </select>
                     </div>
-                    <hr class="seperate-line">
+                    <!--<hr class="seperate-line">
                     <div class="form-group">
                         <label for="weight">Weight : </label>
                         <select class="form-control" name="min_weight">
@@ -149,7 +149,7 @@
                              @endif
                             @endfor
                         </select>
-                    </div>
+                    </div>-->
                     <hr class="seperate-line">
                     <div class="form-group">
                         <label for="body_type">Body type: </label>
@@ -502,13 +502,12 @@
                         <label for="income">Annual Income (or above): </label>
                         <select class="form-control" name="income">
                             <option value="0" @if(!empty($match_data) && $match_data->income==0) selected @endif>Any</option>
-                            <option value="1" @if(!empty($match_data) && $match_data->income==1) selected @endif>$0 - $30,000 (USD)</option>
-                            <option value="2" @if(!empty($match_data) && $match_data->income==2) selected @endif>$30,001 - $60,000 (USD)</option>
-                            <option value="3" @if(!empty($match_data) && $match_data->income==3) selected @endif>$60,001 - $120,000 (USD)</option>
-                            <option value="4" @if(!empty($match_data) && $match_data->income==4) selected @endif>$120,001 - $180,000 (USD)</option>
-                            <option value="5" @if(!empty($match_data) && $match_data->income==5) selected @endif>$180,001 - $240,000 (USD)</option>
-                            <option value="6" @if(!empty($match_data) && $match_data->income==6) selected @endif>$240,001 - $600,000+ (USD)</option>
-                            <option value="7" @if(!empty($match_data) && $match_data->income==7) selected @endif>Prefer not to say</option>
+                            <option value="1" @if(!empty($match_data) && $match_data->income==1) selected @endif>Less than $25,000 (USD)</option>
+                            <option value="2" @if(!empty($match_data) && $match_data->income==2) selected @endif>$25,000-$50,000 (USD)</option>
+                            <option value="3" @if(!empty($match_data) && $match_data->income==3) selected @endif>$50,000-$75,000 (USD)</option>
+                            <option value="4" @if(!empty($match_data) && $match_data->income==4) selected @endif>$75,000-$100,000 (USD)</option>
+                            <option value="5" @if(!empty($match_data) && $match_data->income==5) selected @endif>$100,000-$125,000 (USD)</option>
+                            <option value="6" @if(!empty($match_data) && $match_data->income==6) selected @endif>Over $125,000 (USD)</option>
 							
                         </select>
                     </div>
@@ -643,7 +642,7 @@
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group">
-                        <label for="religion">Religion : </label>
+                        <label for="religion">Denomination : </label>
                         <select class="form-control" name="religion">
                             <option value="" selected="selected">Any</option>
                             @foreach($form_layout[33] as $row)
@@ -670,7 +669,7 @@
                         </div>
                         @endforeach
                     </div>			
-                    <hr class="seperate-line">
+                    <!--<hr class="seperate-line">
                     <div class="form-group">
                         <label for="star_sign" class="star-label">Star sign:</label>
                         <input type="checkbox" name="star_sign[]" value="" {{!empty($match_data) && in_array('',unserialize($match_data->star_sign))?'checked':''}}/>Any
@@ -683,7 +682,7 @@
                          @endif
                         </div>
                         @endforeach
-                    </div>			
+                    </div>-->			
                     <hr class="seperate-line">
                   <div class="button-inner text-center email-address">
                         <button class="btn btn-primary btn-green" type="submit">SAVE</button>

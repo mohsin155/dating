@@ -17,7 +17,7 @@
                 <a href="javascript:void(0);" class="new-folder-icon" id="createNewFolder" data-toggle="modal" data-target="#myModal">New Folder</a>
             </li>
             <li><a href="{{url('message/sent/')}}" id="sent-icon">Sent</a></li>
-            <li><a href="{{url('message/trash/')}}" id="trash-icon">Trash</a></li>
+            <li><a href="{{url('message/trash/')}}" id="trash-icon">Deleted</a></li>
             <!--<li><a href="#" id="mail-filtered-icon" class="lastnav">Create Filter</a></li>-->
         </ul>
     </div>     

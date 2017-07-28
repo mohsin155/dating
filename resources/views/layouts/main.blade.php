@@ -19,6 +19,8 @@
         <link href="{{url('css/flexslider.css')}}" rel="stylesheet">
         <link href="{{url('css/jquery.jscrollpane.css')}}" rel="stylesheet">
         <link href="{{url('css/demo.css')}}" rel="stylesheet">
+        <link type="text/css" href="/dating/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
+<script type="text/javascript" src="/dating/cometchat/cometchatjs.php" charset="utf-8"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -34,6 +36,19 @@
             });
         </script>-->
         <style>
+            #footer-new{
+                text-align:center !important;
+                margin-top: 5px;
+            }
+            #footer-new li {
+                display: inline-block !important;
+                margin-left: 5px; 
+                margin-right: 5px; 
+                
+            }
+            #footer-new li a{
+                color: #333 !important;
+            }
   .chat {
     list-style: none;
     margin: 0;
@@ -72,10 +87,25 @@
   }
 </style>
     </head>
-    <body class="inner_pages">
+    <body class="inner_pages {{Route::current()->getName()}}">
+        
+        @if(Request::is('chat'))
+        @else
         @include('layouts.nav-bar')
-        <div class="content-wrapper">
+        @endif
+        <div class="content-wrapper clearfix">
             @yield('content')
+        </div>
+        <div class="footer">
+            <ul id="footer-new">
+                <li><a href="{{url('about-us')}}">About Us</a></li>
+                <li>|</li>
+                <li><a href="{{url('privacy-policy')}}">Privacy Policy</a></li>
+                <li>|</li>
+                <li><a href="{{url('terms-condition')}}">Terms And Conditions</a></li>
+                <li>|</li>
+                <li><a href="{{url('safety-tips')}}">Safety Tips</a></li>
+            </ul>
         </div>
         <!-- jQuery -->
         <input name="basepath" type="hidden"  value="{{url('/')}}" />
@@ -108,8 +138,7 @@
         <script src="{{url('js/script.js')}}"></script>
         <script src="{{url('js/jquery.flexslider.js')}}"></script>
         <script src="https://unpkg.com/vue"></script>
-        <!--<script src="{{url('js/require.js')}}"></script>-->
-        <script src="{{assets('app.js')}}"></script>
+        <script src="js/app.js"></script>
         @yield('script')
     </body>
 </html>
