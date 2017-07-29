@@ -775,7 +775,7 @@ label.error {
     width: 160px;
     height: 35px;
     float: left;
-    margin: 5px 10px 0 10px;
+    margin: 0px 10px 0 10px;
 }
 ul.menu {
     list-style: none;
@@ -4184,7 +4184,7 @@ form textarea#comment {
     height: 100px;
     margin: 8px auto;
     resize: none;
-    width: 34%;
+    width: 96%;
 }
 textarea[placeholder] {
     color: #444444;
@@ -4196,7 +4196,7 @@ textarea[placeholder] {
 button[id="addcomment"] {
     display: block;
     margin: 0 auto;
-    width: 20%;
+    width: 50%;
 }
 .greyShinyButton {
     background-color: #777;
@@ -4319,6 +4319,9 @@ button[id="addcomment"] {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+}
+.flexslider .slides img {
+    width: auto !important;
 }
 .platinumpic {
     float: left;

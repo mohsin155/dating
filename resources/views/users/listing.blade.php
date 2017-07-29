@@ -399,6 +399,7 @@
                             <script>
                                 $(document).ready(function () {
                                     $("select[name=country]").trigger("change");
+                       
                                     $('.content-wrapper').width('auto');
                                     $('.content-wrapper').css('padding-left', '0');
                                     $('body').on('click', '.icons-standard', function (e) {

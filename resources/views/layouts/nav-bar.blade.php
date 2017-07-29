@@ -2,7 +2,7 @@
     <!--<div class="top-header"></div>-->
     <div class="header-inner">
         <div class="header-inner-content clearfix">
-            <div class="logo"><a href="{{url('users/listing')}}"><img src="{{url('image')}}/Logo.jpg" border="0" height="35" width="160" alt="logo"/></a></div>
+            <div class="logo"><a href="{{url('users/listing')}}"><img src="{{url('image')}}/Logo.jpg" border="0" height="48" width="125" alt="logo"/></a></div>
             <ul class="menu">
                 <li id="menu1">
                     <a href="#">2,514 Members Online</a>
