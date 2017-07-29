@@ -75,7 +75,7 @@
                     <li><a href="{{url('message/inbox/0')}}" class="messages unread">{{getUnreadCount()}} new messages</a></li>
                     <li><a href="{{url('')}}" class="interests unread">{{newInterestCount()}} new interests</a></li>
                     <li><a href="{{url('')}}" class="views unread">{{newViewedCount()}} new profile views</a></li>
-                    <li><a href="{{url('')}}" class="favorites read">{{newFavCount()}} new favorites</a></li>
+                    <li class="clearfix"><a href="{{url('')}}" class="favorites unread">{{newFavCount()}} new favorites</a></li>
                 </ul>
             </div>
             <div class="search clearfix">
@@ -127,7 +127,7 @@
                             </li>
                             <li>
                                 <label>Country:</label>
-                                <select name="country" id="country">
+                                <select name="country" id="country"style="width: 45% !important; height: 25px !important;">
                                     <option value="0">Any Country</option>
                                     @foreach($countries as $country)
                                     <option value="{{$country->id}}" @if($country->id==old('country')) selected @endif >{{$country->name}}</option>

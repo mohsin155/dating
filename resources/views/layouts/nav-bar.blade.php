@@ -65,7 +65,7 @@
                             <a href="{{url('users/viewed-me')}}" style="border: 0;" class="clearfix">
                                 <p>
                                     <span class="dropmenutext">Viewed My Profile</span>
-                                    <span class="mynotificationCircle circle_sm">5</span>
+                                    <span class="mynotificationCircle circle_sm activity_cirlce">5</span>
                                 </p>
                             </a>
                         </li>
@@ -81,9 +81,37 @@
             </ul>   
             <div class="other-details">
                 <ul class="sidemenu">
-                    <li id="menu6">
-                        <img src="{{Utility::getUserImage()}}" alt="no image" width="25" height="30" border="0" class="img-menu">
+                       <li id="menu7" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
+                            <div class="icon-setting"></div>
+                        </a>
+                        <span class="caret up_caret hide"></span>
 
+                        <ul class="dropdown-menu dropdown-menu-header">
+                            <div class="dropdown_1columns col_1 bg-grey colSty">
+                            <li>Account Settings</li>
+                            <li><a href="{{url('users/account-settings')}}">Email Address</a></li>
+                            <li><a href="{{url('users/reset-password')}}">Password</a></li>
+                            <li><a href="{{url('users/profile-settings')}}">Profile Settings</a></li>
+                            <li><a href="{{url('users/billing')}}">Billing</a></li>
+                            <li><a href="{{url('users/notification')}}">Notifications</a></li>
+                            <li class="line"></li>
+                            <li><a href="#">Help</a></li>
+                            <li>
+                                <a href="{{url('payment/subscription')}}" id="evtGUpgradeMemberHeaderSubNav">
+                                    Upgrade Membership
+                                </a>
+                            </li>
+
+                            <li><a href="{{url('users/logout')}}">Logout</a></li>
+                            </div>
+                        </ul>
+
+                    </li>
+                    <li id="menu6">
+                        <a class="iconlink" href="javascript:void(0);">   
+                        <img src="{{Utility::getUserImage()}}" alt="no image" width="25" height="30" border="0" class="img-menu">
+                        </a>
                         <ul class="submenu" style="margin-left: -513px;">
                             <li>
                                 <div class="dropdown_2columns" style="width:570px; padding:0;">
@@ -136,33 +164,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li id="menu7" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
-                            <div class="icon-setting"></div>
-                        </a>
-                        <span class="caret up_caret hide"></span>
-
-                        <ul class="dropdown-menu dropdown-menu-header">
-                            <div class="dropdown_1columns col_1 bg-grey colSty">
-                            <li>Account Settings</li>
-                            <li><a href="{{url('users/account-settings')}}">Email Address</a></li>
-                            <li><a href="{{url('users/reset-password')}}">Password</a></li>
-                            <li><a href="{{url('users/profile-settings')}}">Profile Settings</a></li>
-                            <li><a href="{{url('users/billing')}}">Billing</a></li>
-                            <li><a href="{{url('users/notification')}}">Notifications</a></li>
-                            <li class="line"></li>
-                            <li><a href="#">Help</a></li>
-                            <li>
-                                <a href="{{url('payment/subscription')}}" id="evtGUpgradeMemberHeaderSubNav">
-                                    Upgrade Membership
-                                </a>
-                            </li>
-
-                            <li><a href="{{url('users/logout')}}">Logout</a></li>
-                            </div>
-                        </ul>
-
-                    </li>
+                 
 
                 </ul>
             </div>

@@ -802,16 +802,20 @@ ul.menu li a {
     color: #fff;
 }
 .menu .circle {
-    padding: 1px 5px;
+    padding: 2px 5px;
     text-align: center;
 }
 .mynotificationCircle {
     border-radius: 5em;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.1em;
     text-indent: 0;
     background-color: #d00303;
     color: #fff;
+}
+.activity_cirlce {
+    padding: 2px 6px;
+    text-align: center;
 }
 .other-details {
     float: right;
@@ -824,9 +828,36 @@ ul.menu li a {
     display: table;
     font: 1em 'Roboto', sans-serif;
 }
-#menu6, #menu7 {
+/*#menu6, #menu7 {
     display: table-cell;
     padding-left: 10px;
+}*/
+#menu6, #menu7 {
+    float: right;
+    padding: 0 5px;
+}
+#menu6 a {
+    padding: 7px 0 0;
+}
+#menu7 a {
+     padding: 3px 3px 4px;
+}
+ul.sidemenu li {
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+.col_1 a,  .col_1 a:visited {
+    color: #666 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    
+    
+}
+.buttonWithWhiteArrow {
+    background: rgba(0, 0, 0, 0) url("../image/whitearrow.png") no-repeat scroll center bottom;
 }
 .activity-dropdown-menu-left {
     width: 200px;
@@ -883,24 +914,27 @@ a, a:hover, a:visited {
 #menu7 .icon-setting {
     background-image: url(../image/icon_settings.png);
     background-repeat: no-repeat;
+    background-position: center;
+      height: 25px;
+    margin: 7px 0;
     width: 25px;
-    height: 30px;
-    display: table-cell;
-    top: -28px;
-    position: relative;
 }
 @-moz-document url-prefix() {
-    #menu7 .icon-setting {
+/*    #menu6, #menu7 {
+    float: left;
+    padding-left: 10px;
+}*/
+/*    #menu7 .icon-setting {
         top: -10px;
-    }
+    }*/
     #menu6 img {
          position: relative;
-         top: -20px;
+         top: 0px;
     }
 }
 #menu7 .dropdown-menu {
-    top: 35px;
-    left: -155px;
+    top: 44px;
+    left: -165px;
     min-width: 200px;
     border: none;
     background-color: #eee;
@@ -920,9 +954,10 @@ a, a:hover, a:visited {
 }
 .dropdown-menu-header li:first-child {
     font-weight: 600;
-    padding-left: 10px;
+    padding-left: 15px;
     margin-bottom: 8px;
     padding-top: 15px;
+    font-size: 16px;
 }
 .dropdown-menu>li>a {
     display: block;
@@ -932,6 +967,13 @@ a, a:hover, a:visited {
     line-height: 1.42857143;
     color: #333;
     white-space: nowrap;
+}
+.dropdown_1columns li {
+    width: 100% !important;
+}
+.dropdown_1columns li a {
+    padding: 5px 15px !important;
+    color: #666  !important;
 }
 .up_caret {
     position: absolute;
@@ -946,8 +988,8 @@ a, a:hover, a:visited {
     border-right: 10px solid transparent;
     content: "";
     margin-bottom: 8px;
-    margin-top: -5px;
-    right: 4px;
+    margin-top: -10px;
+    right: 10px;
 }
 /*------------End Header CSS --------------------- */
 
@@ -961,7 +1003,7 @@ a, a:hover, a:visited {
 .content-wrapper {
     width: 990px;
     margin: 0 auto;
-    top: -5px;
+    top: 0px;
     position: relative;
     padding-left: 100px;
     clear: both;
@@ -1266,16 +1308,22 @@ ul.tab li a {
     left: auto;
     padding: 0;
 }
-ul.sidemenu li {
+/*ul.sidemenu li {
     display: block;
-/*    float: left;*/
+    float: left;
     width: auto;
     margin: 0;
     padding: 0;
-/*    padding: 0 5px;*/
+    padding: 0 5px;
+}*/
+ul.sidemenu {
+    float: right;
+    font: 1em "Roboto",sans-serif;
+    list-style: outside none none;
+    padding: 0 5px 0 0;
 }
 .dropdown_2columns {
-        width: 570px;
+    width: 570px;
     padding: 0;
 }
 .sidemenu .col_2_1 {
@@ -1328,7 +1376,7 @@ ul.sidemenu li {
     font-size: 1.1em;
 }
 #menu6 a {
-    padding: 7px 0 0;
+    padding: 10px 0 0;
 }
 .myprofile a:link, .myprofile a:visited {
     color: #555;
@@ -1385,14 +1433,24 @@ ul.sidemenu li {
 ul.sidemenu {
     font-size: 1.3em;
 }
-ul.sidemenu li a {
+/*ul.sidemenu li a {
     font-weight: normal;
     display: block;
     padding: 12px;
-/*    color: #fff;*/
+    color: #fff;
     text-decoration: none;
     padding-bottom: 0px;
         color: #666;
+}*/
+.sidemenu .iconlink {
+    padding: 3px 3px 4px;
+}
+ul.sidemenu li a {
+    color: #fff;
+    display: block;
+    font-weight: normal;
+    padding: 12px;
+    text-decoration: none;
 }
 .profile-button {
     text-decoration: none;
@@ -1409,6 +1467,7 @@ ul.sidemenu li a {
         background-color: #fff;
 }
 .submenu h3 {
+    color: #333;
     font-size: 16px;
     font-weight: bold;
     padding: 10px 15px;
@@ -1559,6 +1618,7 @@ padding-bottom: 2px;
 .pets-section {
     float: right;
     width: 280px;
+    margin-bottom: 15px;
 }
 .pets-section input[type="checkbox"],  .hair-length  input[type="checkbox"] {
     margin-right: 10px;
@@ -1903,7 +1963,7 @@ a[id='addNewPhoto'] {
 #profilecompletionbar {
   float: right;
     width: 250px;
-    height: 15px;
+    height: 18px;
     border: solid 2px #555;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -1914,7 +1974,7 @@ a[id='addNewPhoto'] {
 }
 #profilecompletionlevel {
    width: 0%;
-    height: 12px;
+    height: 15px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
@@ -2010,7 +2070,7 @@ a[id='addNewPhoto'] {
 }
 .criminalhistory {
    list-style-type: none;
-   margin-left:-40px;
+/*   margin-left:-40px;*/
   
    
 }
@@ -2060,14 +2120,20 @@ table.childrenAge, table.residenceInfo, table.marriageHistory {
 .maritalStatus{
     width:250px;
 }
+
+.martial-status ul li.imbraText {
+    margin-left: 40px;
+}
 .martial-status li:first-child{
     list-style-type: none;
-    margin-left: -40px;
+/*    margin-left: -40px;*/
     
 }
 .martial-status li:not(:first-child){
     list-style-type: none;
     padding-top: 5px;
+    margin-left: 40px;
+    margin-bottom: 10px;
   
 }
 #childAge{
@@ -2645,7 +2711,7 @@ ul.tabsPanel li:hover, ul.tabsPanel li.active {
 }
 
 .search-for .pets-section:last-child {
-    padding-left: 150px;
+/*    padding-left: 150px;*/
 }
 /*------------END Search page CSS --------------------- */
 

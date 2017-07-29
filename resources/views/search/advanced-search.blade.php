@@ -147,7 +147,7 @@
                     </div>
                     <hr class="seperate-line">
                     <div class="form-group search-for">
-                        <label for="searching_for" class="pull-left">Searching For: </label>
+                        <label for="searching_for" class="pull-left" style="height: 100px">Searching For: </label>
                         <div class="pets-section pull-left">
                             <input type="checkbox" name="relationship[]" value="" checked="" />Any
                         </div>

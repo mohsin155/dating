@@ -364,7 +364,7 @@
                 </div>
             </div>
         </div>
-        <div class="criminal-history">
+        <div class="criminal-history" style="margin-left: 0px;">
             <div class="criminal-history-heading"><h1>Criminal History</h1></div>
             <ul class='criminal-listing-ul'>
                 <li class="imbraText">
@@ -392,7 +392,7 @@
                     <span class="radioRequiredMsg">Required</span>
                 </li>
                 <li class="imbraText">Please indicate with a check in the appropriate box if you have ever been arrested or convicted of any of the following (leave all boxes blank if none apply):</li>
-                <ul class="criminalhistory left">
+                <ul class="criminalhistory left" style="margin-left: 0px;">
 
                     <li class="imbraText">
                         <input type="checkbox" id="criminal_3" name="criminalHistory" value="3"><label for="criminal_3" style="cursor:hand">Homicide</label>
@@ -498,6 +498,7 @@
 
             <ul class='martial-status'>
                 <li class="sectionHeading clearfix imbraTopline"><h1>Marital Status and Dependents</h1></li>
+                <div style="margin-left: 40px;">
                 <li id="currentlyMarried" class="imbraText">
                     <span class="maritalStatus left">Are you currently married?</span>
                     <span class="labelyesno">
@@ -861,6 +862,7 @@
                         <input id="childAge_totalRecords" name="childAge_totalRecords" value="0" type="hidden" readonly="readonly">
                     </div>
                 </li>
+                </div>
             </ul>
             <ul class='martial-status'>
                 <li class="sectionHeading clearfix"><h1>Residence History</h1></li>
